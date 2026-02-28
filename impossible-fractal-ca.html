@@ -240,6 +240,13 @@
       When rendered on a triangular tessellation, its output is perceived as impossible 3D fractal geometry under isometric projection.
       Among its outputs is the <a href="https://www.deviantart.com/nydhalo/art/Selmi-Triangle-136342456">Selmi triangle</a>, a fractal Penrose tribar with self-similar structure at every scale.
     </p>
+    <p style="margin-top:10px;">
+      <strong>Presets:</strong>
+      The original rule set is <em>Selmi (2009)</em>, producing the fractal Penrose tribar.
+      <em>Kitaoka 2010</em> and <em>Selmi (2019)</em> are variants with different beam crossing behavior.
+      <em>Right Stairs</em> produces a descending staircase of impossible cubes.
+      The remaining presets generate non-interacting geometric primitives (single beams, cubes, ladders).
+    </p>
     <div class="instructions">
       <strong>How to use:</strong>
       Press <strong>Generate</strong> to run the automaton.
@@ -462,9 +469,9 @@ const DEFAULT_INIT = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWW
 const DEFAULT_ROWS = 34;
 
 const PRESETS = [
-  { name: "Selmi Triangle (2009)",       rules: SELMI_RULES,        init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Selmi (2009)",                 rules: SELMI_RULES,        init: DEFAULT_INIT, rows: DEFAULT_ROWS },
   { name: "Kitaoka 2010",               rules: KITAOKA_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Selmi 2",                    rules: SELMI_2_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Selmi (2019)",               rules: SELMI_2_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
   { name: "Right Stairs",               rules: RIGHT_STAIRS_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
   { name: "Right Ladder (non-interact)", rules: RIGHT_LADDER_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
   { name: "Cube (non-interact)",         rules: CUBE_RULES,         init: DEFAULT_INIT, rows: DEFAULT_ROWS },
