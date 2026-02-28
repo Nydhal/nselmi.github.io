@@ -259,6 +259,7 @@
   <div class="toolbar-section">
     <button class="primary" onclick="generate()">Generate</button>
     <button onclick="exportSVG()">Export SVG</button>
+    <select id="preset" onchange="applyPreset()"></select>
   </div>
   <div class="divider"></div>
   <div class="toolbar-section">
@@ -269,15 +270,24 @@
   <div class="toolbar-section">
     <label><input type="checkbox" id="skipWhite" checked> Skip W</label>
     <label><input type="checkbox" id="wrapAround"> Wrap</label>
-    <label><input type="checkbox" id="showBorders"> Borders</label>
+  </div>
+  <div class="divider"></div>
+  <div class="toolbar-section">
+    <select id="borderMode">
+      <option value="none">No Borders</option>
+      <option value="all">All Borders</option>
+      <option value="edges">Edge Borders</option>
+    </select>
+    <input type="color" id="borderColor" value="#000000" title="Border color">
+    <input type="number" id="borderWidth" value="1" min="0.5" max="5" step="0.5" style="width:40px;" title="Border width">
   </div>
   <div class="divider"></div>
   <div class="toolbar-section colors">
     <select id="colorPreset" onchange="applyColorPreset()"></select>
     <input type="color" id="colorW" value="#ffffff" title="W (background)">
     <input type="color" id="colorR" value="#e8a0a0" title="R (top face)">
-    <input type="color" id="colorG" value="#a0e8a0" title="G (left face)">
-    <input type="color" id="colorB" value="#a0a0e8" title="B (right face)">
+    <input type="color" id="colorG" value="#b8f0b8" title="G (left face, lit)">
+    <input type="color" id="colorB" value="#7878b8" title="B (right face, shadow)">
     <input type="color" id="colorK" value="#333333" title="K (undefined)">
   </div>
 </div>
@@ -328,9 +338,34 @@
 
 <script>
 // =============================================================================
-// DATA
+// EMERGENT IMPOSSIBLE FRACTAL GEOMETRY
 // =============================================================================
+// A 1D cellular automaton where each generation's cells are rendered as
+// alternating up/down triangles in a triangular tessellation. The 7-cell
+// neighborhood (radius 3) of the PARENT row determines each child's state.
+// When the four states map to isometric cube faces (R=top, G=left/lit,
+// B=right/shadow, W=background), certain rule sets produce structures the
+// visual system reads as impossible 3D fractals: geometry that is locally
+// consistent but globally contradictory. Neither the rules alone nor the
+// tessellation alone contain any impossible figure; the impossibility
+// EMERGES from their interaction.
+
+// =============================================================================
+// GEOMETRY
+// =============================================================================
+// TRI_H ≈ TRI_W × sin(60°) preserves equilateral proportions.
+// PAD_TOP adds one row of whitespace above the first generation in SVG
+// exports via a negative viewBox origin (see render()).
 const TRI_W = 20, TRI_H = 17, PAD_TOP = TRI_H;
+
+// =============================================================================
+// TRANSITION RULES
+// =============================================================================
+// Rule sets stored as "PATTERN:OUTPUT" strings. Each set defines a different
+// impossible object or geometric primitive from the same 4-state CA system.
+// "Non-interact" presets produce isolated shapes whose sub-components don't
+// overlap or interleave; interacting presets produce structures where beams
+// pass through and behind each other — the source of impossible geometry.
 
 const SELMI_RULES = [
   "BBBBBBB:W","BBBBBBR:W","BBBBBRR:W","BBBBRRG:R","BBBRRGG:R","BBGGRGG:G","BBGGWWW:G",
@@ -347,30 +382,130 @@ const SELMI_RULES = [
   "WWWWWWW:W",
 ];
 
-const COLOR_PRESETS = [
-  { name:"Pastel",      W:"#ffffff", R:"#e8a0a0", G:"#a0e8a0", B:"#a0a0e8", K:"#333333" },
-  { name:"Mondrian",    W:"#ffffff", R:"#e60000", G:"#ffd700", B:"#0047ab", K:"#222222" },
-  { name:"Monokai",     W:"#272822", R:"#f92672", G:"#a6e22e", B:"#66d9ef", K:"#f8f8f2" },
-  { name:"Solarized",   W:"#fdf6e3", R:"#dc322f", G:"#859900", B:"#268bd2", K:"#002b36" },
-  { name:"Dracula",     W:"#282a36", R:"#ff79c6", G:"#50fa7b", B:"#bd93f9", K:"#f8f8f2" },
-  { name:"Nord",        W:"#eceff4", R:"#bf616a", G:"#a3be8c", B:"#81a1c1", K:"#2e3440" },
-  { name:"Catppuccin",  W:"#eff1f5", R:"#e64553", G:"#40a02b", B:"#1e66f5", K:"#4c4f69" },
-  { name:"Matrix",      W:"#0d0d0d", R:"#003300", G:"#00ff41", B:"#008f11", K:"#00ff41" },
-  { name:"Vaporwave",   W:"#1a1a2e", R:"#ff6ec7", G:"#00ffcc", B:"#7b68ee", K:"#e0e0e0" },
-  { name:"Bauhaus",     W:"#f5f1e0", R:"#be1e2d", G:"#f0ab00", B:"#21409a", K:"#1a1a1a" },
-  { name:"Paper",       W:"#f7f3eb", R:"#c9a96e", G:"#8fae7e", B:"#7e9bb5", K:"#555555" },
-  { name:"Penrose",     W:"#ffffff", R:"#ff6b6b", G:"#51cf66", B:"#339af0", K:"#212529" },
-  { name:"Terracotta",  W:"#faf0e6", R:"#c1666b", G:"#94b49f", B:"#6b98a6", K:"#4a4a4a" },
-  { name:"Coral Reef",  W:"#f0f8ff", R:"#ff7f50", G:"#20b2aa", B:"#6495ed", K:"#2f4f4f" },
-  { name:"Ink",         W:"#ffffff", R:"#1a1a1a", G:"#555555", B:"#999999", K:"#ff0000" },
+const KITAOKA_RULES = [
+  "BBBBBBB:W","BBBBBBR:W","BBBBBRG:W","BBBBRGG:R","BBBRGGW:R","BBGGWRR:G","BBGGWWW:G",
+  "BBGRRRR:B","BBRGGWW:G","BGGWRRG:R","BGGWWWR:G","BGGWWWW:G","BGRRRRR:B","BRGGWWW:G",
+  "GBBBBBB:W","GBGGWWW:G","GGBGGWW:B","GGGWWWW:G","GGWBBGG:R","GGWRRGG:R","GGWWWRR:W",
+  "GGWWWWW:W","GRRRRRR:B","GWBBGGW:B","GWRRGGW:R","GWWWRRG:R","GWWWWWR:W","GWWWWWW:W",
+  "RBBGGWW:R","RBBGRRR:B","RGBBBBB:W","RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGGWWWW:G",
+  "RGWWWWW:W","RRBBGGW:B","RRBBGRR:B","RRGBBBB:G","RRGGBGG:W","RRGGGWW:B","RRGGWBB:R",
+  "RRGWWWW:G","RRRBBGG:B","RRRBBGR:B","RRRRBBG:B","RRRRRBB:B","RRRRRRB:B","RRRRRRR:B",
+  "WBBGGWR:B","WBBGGWW:B","WRRGBBB:G","WRRGGBG:G","WRRGGGW:G","WRRGGWB:R","WRRGWWW:G",
+  "WRRRRRR:B","WWRRGBB:G","WWRRGGB:G","WWRRGGG:G","WWRRGGW:R","WWRRGWW:G","WWRRRRR:G",
+  "WWWRRGB:R","WWWRRGG:R","WWWRRGW:R","WWWRRRR:R","WWWWRRG:R","WWWWRRR:R","WWWWWRR:W",
+  "WWWWWWR:W","WWWWWWW:W",
+];
+
+const SELMI_2_RULES = [
+  "BBBBBBB:W","BBBBBBG:W","BBBBBGG:R","BBBBGGW:R","BBBGGWW:G","BBGGWRR:G","BBGGWWW:G",
+  "BBGRRRR:B","BGGWRRG:R","BGGWWWR:G","BGGWWWW:G","BGRRRRR:B","GBBBBBB:W","GBGGWWW:G",
+  "GGBGGWW:B","GGGWWWW:G","GGWBBGG:R","GGWRRGG:R","GGWWWRR:W","GGWWWWW:W","GRRRRRR:B",
+  "GWBBGGW:B","GWRRGGW:R","GWWWRRG:R","GWWWWWR:W","GWWWWWW:W","RBBGGWW:B","RBBGRRR:B",
+  "RGBBBBB:W","RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGWWWWW:W","RRBBGGW:B","RRBBGRR:B",
+  "RRGBBBB:G","RRGGBGG:W","RRGGGWW:B","RRGGWBB:R","RRGWWWW:G","RRRBBGG:B","RRRBBGR:B",
+  "RRRRBBG:B","RRRRRBB:B","RRRRRRB:B","RRRRRRR:B","WBBGGWR:B","WBBGGWW:B","WRRGBBB:G",
+  "WRRGGBG:G","WRRGGGW:G","WRRGGWB:R","WRRGWWW:G","WRRRRRR:B","WWRRGBB:G","WWRRGGB:G",
+  "WWRRGGG:G","WWRRGGW:R","WWRRGWW:G","WWRRRRR:G","WWWRRGB:R","WWWRRGG:R","WWWRRGW:R",
+  "WWWRRRR:R","WWWWRRG:R","WWWWRRR:R","WWWWWRR:W","WWWWWWR:W","WWWWWWW:W",
+];
+
+const RIGHT_STAIRS_RULES = [
+  "BBBBBBB:W","BBBBBBR:W","BBBBBRR:W","BBBBRRG:R","BBBRRGG:R","BBGGWWW:G","BBRRGGG:G",
+  "BGGWWWW:G","BRRGGGW:G","GBGGWWW:G","GGBGGWW:B","GGGWWWW:G","GGWBBGG:R","GGWWWWW:W",
+  "GWBBGGW:B","GWWWWWW:W","RBBGGWW:G","RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGWWWWW:W",
+  "RRBBGGW:R","RRGGBGG:W","RRGGGWW:B","RRGGWBB:R","RRGWWWW:G","RRRBBGG:R","RRRRBBG:B",
+  "RRRRRBB:B","RRRRRRB:B","RRRRRRR:B","WBBBBBB:W","WBBGGWW:B","WRRGGBG:G","WRRGGGW:G",
+  "WRRGGWB:R","WRRGWWW:G","WRRRRRR:B","WWBBBBB:W","WWRRGGB:G","WWRRGGG:G","WWRRGGW:R",
+  "WWRRGWW:G","WWRRRRR:B","WWWBBBB:W","WWWRRGG:R","WWWRRGW:R","WWWRRRR:B","WWWWBBB:W",
+  "WWWWRRG:R","WWWWRRR:W","WWWWWBB:W","WWWWWRR:W","WWWWWWB:W","WWWWWWR:W","WWWWWWW:W",
+];
+
+const RIGHT_LADDER_RULES = [
+  "BBBBBBB:G","BBBBBBR:G","BBBBBRR:W","BBBBRRG:R","BBBRRGG:R","BBGGRGG:G","BBGGWRR:G",
+  "BBGGWWW:G","BBGRRRR:B","BBRRGGG:G","BGGRGGW:R","BGGWRRG:G","BGGWWWW:G","BGRRRRR:B",
+  "BRRGGGW:G","GBGGWWW:G","GGBGGWW:B","GGGWWWW:G","GGRGGWB:R","GGWBBGG:R","GGWRRGG:R",
+  "GGWWWWW:W","GRGGWBB:R","GRRRRRB:B","GWBBGGW:B","GWRRGGB:G","GWWWWWW:W","RBBGGWW:G",
+  "RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGWWWWW:W","RRBBGGW:R","RRGGBGG:W","RRGGGWW:B",
+  "RRGGWBB:R","RRGWWWW:G","RRRBBGG:R","RRRRBBG:B","RRRRRBB:B","RRRRRRB:B","RRRRRRR:B",
+  "WBBBBBB:B","WBBGGRG:B","WBBGGWR:B","WBBGGWW:B","WBBGRRR:B","WRRGGBG:G","WRRGGGW:G",
+  "WRRGGWB:R","WRRGWWW:G","WRRRRRR:B","WWBBBBB:B","WWBBGGR:B","WWBBGGW:B","WWBBGRR:B",
+  "WWRRGGB:G","WWRRGGG:G","WWRRGGW:R","WWRRGWW:G","WWRRRRR:B","WWWBBBB:W","WWWBBGG:W",
+  "WWWBBGR:W","WWWRRGG:R","WWWRRGW:R","WWWRRRR:B","WWWWBBB:W","WWWWBBG:W","WWWWRRG:R",
+  "WWWWRRR:W","WWWWWBB:W","WWWWWRR:W","WWWWWWB:W","WWWWWWR:W","WWWWWWW:W",
+];
+
+const CUBE_RULES = [
+  "BBGWWWW:W","BGWWWWW:W","GWWWWWW:W","RGWWWWW:W","RRGWWWW:W","WBBGWWW:W","WRRGWWW:G",
+  "WWBBGWW:W","WWRRGWW:B","WWWBBGW:W","WWWRRGW:B","WWWWBBG:W","WWWWRRG:W","WWWWWBB:W",
+  "WWWWWRR:W","WWWWWWB:W","WWWWWWR:W","WWWWWWW:W",
+];
+
+const RIGHT_BEAM_RULES = [
+  "BBGGWWW:G","BGGWWWW:G","GGWWWWW:W","GWWWWWW:W","RGWWWWW:W","RRGWWWW:G","WBBGGWW:B",
+  "WRRGWWW:G","WWBBGGW:B","WWRRGWW:B","WWWBBGG:W","WWWRRGW:B","WWWWBBG:W","WWWWRRG:W",
+  "WWWWWBB:W","WWWWWRR:W","WWWWWWB:W","WWWWWWR:W","WWWWWWW:W",
+];
+
+const LEFT_BEAM_RULES = [
+  "GGWWWWW:W","GWWWWWW:W","RGGWWWW:W","RGWWWWW:W","RRGGWWW:W","RRGWWWW:W","WRRGGWW:G",
+  "WRRGWWW:G","WWRRGGW:G","WWRRGWW:G","WWWRRGG:R","WWWRRGW:R","WWWWRRG:R","WWWWWRR:W",
+  "WWWWWWR:W","WWWWWWW:W",
 ];
 
 // =============================================================================
-// STATE: rules = Map<string,string>, result = {rows, used}
+// PRESETS: rule + seed + row count configurations
 // =============================================================================
+// All presets share the same minimal asymmetric seed: "RRG" centered in white.
+// The two R's and one G break bilateral symmetry. Each rule set produces a
+// different impossible object or geometric primitive from this same seed.
+const DEFAULT_INIT = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW";
+const DEFAULT_ROWS = 34;
+
+const PRESETS = [
+  { name: "Selmi Triangle (2009)",       rules: SELMI_RULES,        init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Kitaoka 2010",               rules: KITAOKA_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Selmi 2",                    rules: SELMI_2_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Right Stairs",               rules: RIGHT_STAIRS_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Right Ladder (non-interact)", rules: RIGHT_LADDER_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Cube (non-interact)",         rules: CUBE_RULES,         init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Right Beam (non-interact)",   rules: RIGHT_BEAM_RULES,   init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Left Beam (non-interact)",    rules: LEFT_BEAM_RULES,    init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+];
+
+// =============================================================================
+// COLOR PRESETS
+// =============================================================================
+// Colors encode isometric lighting: G (left face) catches the most light and
+// is brightest, R (top face) sits at intermediate illumination, B (right face)
+// falls in shadow and is darkest. This perceptual mapping is what makes the
+// visual system interpret flat 2D tessellations as 3D impossible geometry.
+// Luminance order enforced across all palettes: G > R > B.
+const COLOR_PRESETS = [
+  { name:"Pastel",    W:"#ffffff", R:"#e8a0a0", G:"#b8f0b8", B:"#7878b8", K:"#333333" },
+  { name:"Mondrian",  W:"#ffffff", R:"#e60000", G:"#ffd700", B:"#003580", K:"#222222" },
+  { name:"Monokai",   W:"#272822", R:"#f92672", G:"#a6e22e", B:"#665c80", K:"#f8f8f2" },
+  { name:"Solarized", W:"#fdf6e3", R:"#cb4b16", G:"#859900", B:"#073642", K:"#dc322f" },
+  { name:"Dracula",   W:"#282a36", R:"#ff79c6", G:"#50fa7b", B:"#6c5b8d", K:"#f8f8f2" },
+  { name:"Vaporwave", W:"#1a1a2e", R:"#ff6ec7", G:"#00ffcc", B:"#5b3d9e", K:"#e0e0e0" },
+  { name:"Bauhaus",   W:"#f5f1e0", R:"#be1e2d", G:"#f0ab00", B:"#13286a", K:"#1a1a1a" },
+  { name:"Lavender",  W:"#f5f0fa", R:"#b89cc8", G:"#d4bfe8", B:"#7b6899", K:"#4a3660" },
+  { name:"Ink",       W:"#ffffff", R:"#555555", G:"#999999", B:"#1a1a1a", K:"#ff0000" },
+];
+
+// =============================================================================
+// STATE
+// =============================================================================
+// rules: Map<string,string> — the live rule table. String keys (e.g. "WWWWRRG")
+//   eliminate bit-packing: the 4^7 = 16,384 key space is sparse (78 active rules),
+//   so Map's hash lookup is faster than array indexing would suggest.
+// baseKeys: snapshot of keys from the loaded preset, so the UI can distinguish
+//   user-added experimental rules (highlighted yellow) from preset defaults.
+//   This enables fearless experimentation — you always know what you changed.
+// result: last CA evolution output, kept so hover/click and "show used only"
+//   can reference it without re-evolving.
 let rules = new Map();
 let baseKeys = new Set();
-let result = null;   // { rows: string[][], used: Set<string> }
+let result = null;
 let svg = null;
 let showUsedOnly = false;
 
@@ -381,13 +516,22 @@ function parseRuleStrings(arr) {
 }
 
 // =============================================================================
-// CA ENGINE (pure function)
+// CA ENGINE
 // =============================================================================
+// Pure function: no side effects, no DOM, no state mutation. Returns the
+// complete space-time grid plus the set of rules that actually fired.
+//
+// The 'K' fallback for unmapped neighborhoods is a diagnostic: any K in the
+// output signals that the rule table is incomplete for that seed/boundary combo.
+// Wrap mode switches between infinite white padding (finite object floating in
+// space) and periodic/toroidal boundaries (tileable patterns from the same rules).
 function evolve(init, ruleMap, steps, wrap) {
   const rows = [init], used = new Set(), w = init.length;
   for (let s = 0; s < steps; s++) {
     const prev = rows[rows.length - 1], next = [];
     for (let c = 0; c < w; c++) {
+      // Boundary: wrap uses modular arithmetic for toroidal topology;
+      // pad returns 'W' beyond edges — as if the row extends to white infinity.
       const g = i => wrap ? prev[((i % w) + w) % w] : (i < 0 || i >= w) ? 'W' : prev[i];
       const key = g(c-3)+g(c-2)+g(c-1)+g(c)+g(c+1)+g(c+2)+g(c+3);
       const out = ruleMap.get(key);
@@ -398,6 +542,9 @@ function evolve(init, ruleMap, steps, wrap) {
   return { rows, used };
 }
 
+// Reconstructs the 7-cell neighborhood from the parent row on demand.
+// Replaces a precomputed neighborhoods array — the O(1) string concat
+// costs nothing, while the saved memory grows linearly with grid size.
 function getNeighborhood(rows, r, c, wrap) {
   if (r === 0) return null;
   const prev = rows[r - 1], w = prev.length;
@@ -406,8 +553,10 @@ function getNeighborhood(rows, r, c, wrap) {
 }
 
 // =============================================================================
-// COLORS: read/write DOM
+// COLORS
 // =============================================================================
+const $ = id => document.getElementById(id);
+
 function getColors() {
   return { W: $('colorW').value, R: $('colorR').value, G: $('colorG').value, B: $('colorB').value, K: $('colorK').value };
 }
@@ -422,11 +571,6 @@ function applyColorPreset() {
 }
 
 // =============================================================================
-// DOM helpers
-// =============================================================================
-const $ = id => document.getElementById(id);
-
-// =============================================================================
 // RENDER
 // =============================================================================
 function render(rows, containerId, colors, opts) {
@@ -437,6 +581,9 @@ function render(rows, containerId, colors, opts) {
   const w = (nCols + 2) * (TRI_W / 2);
   const h = nRows * TRI_H + PAD_TOP + 10;
 
+  // Negative viewBox Y origin shifts the coordinate system so y=0 in triangle
+  // space maps to y=PAD_TOP on screen. This adds export-safe top padding
+  // without repositioning any element — the padding lives in coordinate space.
   const svgEl = container.append('svg')
     .attr('xmlns', 'http://www.w3.org/2000/svg')
     .attr('viewBox', `0 ${-PAD_TOP} ${w} ${h}`)
@@ -447,12 +594,18 @@ function render(rows, containerId, colors, opts) {
 
   const triData = [];
   const counts = { W: 0, R: 0, G: 0, B: 0, K: 0, drawn: 0 };
+  const borderMode = opts.borderMode || 'none';
+  const borderColor = opts.borderColor || '#000000';
+  const borderWidth = opts.borderWidth || 1;
 
   for (let r = 0; r < nRows; r++) {
     for (let c = 0; c < nCols; c++) {
       const state = rows[r][c];
       counts[state] = (counts[state] || 0) + 1;
       if (opts.skipWhite && state === 'W') continue;
+      // Triangle parity: (r+c) % 2 encodes the alternating up/down pattern
+      // inherent in any triangular tessellation. This single bit determines
+      // vertex layout AND which row contains the third adjacency neighbor.
       const up = (r + c) % 2 === 0;
       const x = c * (TRI_W / 2), y = r * TRI_H;
       const pts = up
@@ -466,14 +619,83 @@ function render(rows, containerId, colors, opts) {
   svgEl.selectAll('polygon').data(triData).enter().append('polygon')
     .attr('points', d => d.pts)
     .attr('fill', d => d.color)
-    .attr('stroke', opts.borders ? '#000' : 'none')
-    .attr('stroke-width', opts.borders ? 1 : 0)
+    .attr('stroke', borderMode === 'all' ? borderColor : 'none')
+    .attr('stroke-width', borderMode === 'all' ? borderWidth : 0)
     .style('cursor', 'pointer')
     .on('mouseenter', (ev, d) => onHover(ev, d, true, rows, colors, opts.wrap, svgEl))
     .on('mouseleave', (ev, d) => onHover(ev, d, false, rows, colors, opts.wrap, svgEl))
     .on('click', (ev, d) => onClick(ev, d, rows, opts.wrap, svgEl));
 
+  // Edge borders are computed post-render because they depend on pairwise
+  // state comparison across the full grid, not on individual triangles.
+  if (borderMode === 'edges') {
+    drawEdgeBorders(svgEl, rows, borderColor, borderWidth);
+  }
+
   return { svgEl, counts };
+}
+
+// =============================================================================
+// EDGE BORDERS
+// =============================================================================
+// Draws borders only where adjacent triangles differ in state, revealing the
+// contour structure of the automaton output. On the triangular grid, each cell
+// has exactly 3 neighbors: left (c-1), right (c+1), and one vertical neighbor
+// — below (r+1) for up-pointing ▲, above (r-1) for down-pointing ▼.
+//
+// To draw each shared edge exactly once, we only process rightward (c→c+1)
+// and downward (▲ base → r+1) edges. Left and upward edges are the same
+// physical line segments seen from the other triangle's perspective.
+function drawEdgeBorders(svgEl, rows, color, width) {
+  const nRows = rows.length, nCols = rows[0].length;
+  const lines = [];
+
+  for (let r = 0; r < nRows; r++) {
+    for (let c = 0; c < nCols; c++) {
+      const state = rows[r][c];
+      const up = (r + c) % 2 === 0;
+      const x = c * (TRI_W / 2), y = r * TRI_H;
+
+      // Right neighbor (c+1): shared slanted edge.
+      // ▲ and ▼ have different vertex orderings for this edge.
+      if (c + 1 < nCols && rows[r][c + 1] !== state) {
+        if (up) {
+          // ▲ right edge: apex to bottom-right
+          lines.push({ x1: x + TRI_W/2, y1: y, x2: x + TRI_W, y2: y + TRI_H });
+        } else {
+          // ▼ right edge: nadir to top-right
+          lines.push({ x1: x + TRI_W/2, y1: y + TRI_H, x2: x + TRI_W, y2: y });
+        }
+      }
+
+      // Vertical neighbor: only ▲ checks downward to avoid double-drawing.
+      // Every ▼'s upward edge is the same segment as ▲(r-1,c)'s base.
+      if (up && r + 1 < nRows && rows[r + 1][c] !== state) {
+        // ▲ base: horizontal bottom edge
+        lines.push({ x1: x, y1: y + TRI_H, x2: x + TRI_W, y2: y + TRI_H });
+      }
+    }
+  }
+
+  // Top boundary: ▼ triangles in row 0 have a horizontal top edge at y=0
+  // with no grid neighbor above. Treat the padding as state 'W'.
+  for (let c = 0; c < nCols; c++) {
+    if (c % 2 !== 0 && rows[0][c] !== 'W') {
+      const x = c * (TRI_W / 2);
+      lines.push({ x1: x, y1: 0, x2: x + TRI_W, y2: 0 });
+    }
+  }
+
+  // All edge lines in one D3 bindpass; pointer-events:none lets hover/click
+  // pass through to the triangles underneath.
+  svgEl.selectAll('line.edge-border').data(lines).enter().append('line')
+    .attr('class', 'edge-border')
+    .attr('x1', d => d.x1).attr('y1', d => d.y1)
+    .attr('x2', d => d.x2).attr('y2', d => d.y2)
+    .attr('stroke', color)
+    .attr('stroke-width', width)
+    .attr('stroke-linecap', 'round')
+    .attr('pointer-events', 'none');
 }
 
 // =============================================================================
@@ -488,9 +710,8 @@ function onHover(ev, d, enter, rows, colors, wrap, svgEl) {
   }
   d3.select(ev.target).classed('tri-highlight', true);
 
-  // Highlight source cells
+  // Highlight the 7 source cells in the parent row that determined this cell.
   if (d.r > 0) {
-    const w = rows[0].length;
     svgEl.selectAll('polygon')
       .filter(td => td.r === d.r - 1 && Math.abs(td.c - d.c) <= 3)
       .classed('tri-source', true);
@@ -540,8 +761,12 @@ function generate() {
 
   result = evolve(init, rules, numRows - 1, wrap);
 
+  const borderMode = $('borderMode').value;
+  const borderColor = $('borderColor').value;
+  const borderWidth = parseFloat($('borderWidth').value) || 1;
+
   const { svgEl, counts } = render(result.rows, 'canvas-container', colors, {
-    skipWhite: $('skipWhite').checked, borders: $('showBorders').checked, wrap
+    skipWhite: $('skipWhite').checked, borderMode, borderColor, borderWidth, wrap
   });
   svg = svgEl;
 
@@ -569,6 +794,8 @@ function exportSVG() {
 }
 
 function exportRules() {
+  // Respects "show used only" filter: if active, exports only rules that
+  // fired in the last evolution — useful for finding minimal rule sets.
   const entries = showUsedOnly && result
     ? [...rules].filter(([k]) => result.used.has(k))
     : [...rules];
@@ -602,9 +829,17 @@ function clearRules() {
   if (confirm('Clear all rules?')) { rules.clear(); updateRuleStatus(); updateRuleList(); generate(); }
 }
 
-function loadPreset() {
-  rules = parseRuleStrings(SELMI_RULES);
+// Reloads the currently selected preset (rules + init + rows).
+function loadPreset() { applyPreset(); }
+
+// Applies the preset selected in the dropdown: loads its rules, seed, and row count.
+function applyPreset() {
+  const p = PRESETS[$('preset').selectedIndex];
+  if (!p) return;
+  rules = parseRuleStrings(p.rules);
   baseKeys = new Set(rules.keys());
+  $('initString').value = p.init;
+  $('numRows').value = p.rows;
   updateRuleStatus(); updateRuleList(); generate();
 }
 
@@ -663,11 +898,24 @@ function importRules() {
 // INIT
 // =============================================================================
 (function init() {
+  // Populate preset dropdown (rule + seed configurations)
+  const presetSel = $('preset');
+  PRESETS.forEach((p, i) => {
+    const o = document.createElement('option');
+    o.textContent = p.name; o.value = i;
+    presetSel.appendChild(o);
+  });
+
   // Populate color preset dropdown
-  const sel = $('colorPreset');
-  COLOR_PRESETS.forEach((p, i) => { const o = document.createElement('option'); o.textContent = p.name; o.value = i; sel.appendChild(o); });
+  const colorSel = $('colorPreset');
+  COLOR_PRESETS.forEach((p, i) => {
+    const o = document.createElement('option');
+    o.textContent = p.name; o.value = i;
+    colorSel.appendChild(o);
+  });
+
   setColors(COLOR_PRESETS[0]);
-  loadPreset();
+  applyPreset();
 })();
 </script>
 </body>
