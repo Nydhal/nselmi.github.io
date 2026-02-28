@@ -3,7 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emergent Impossible Fractal Geometry — Interactive Explorer</title>
+  <title>Emergent Impossible Fractal Geometry | Nidhal Selmi</title>
+  <meta name="description" content="Interactive explorer for a 4-state cellular automaton that generates impossible fractal geometry on triangular tessellations. Includes the Selmi triangle, a fractal Penrose tribar.">
+  <meta name="author" content="Nidhal Selmi">
+  <meta name="keywords" content="cellular automaton, impossible geometry, fractal, Penrose triangle, tribar, triangular tessellation, isometric, Selmi triangle, generative art, computational geometry">
+  <meta property="og:title" content="Emergent Impossible Fractal Geometry | Nidhal Selmi">
+  <meta property="og:description" content="Interactive 4-state cellular automaton that generates impossible fractal geometry on triangular tessellations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nselmi.com/impossible-fractal-ca.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Emergent Impossible Fractal Geometry">
+  <meta name="twitter:description" content="Interactive 4-state cellular automaton that generates impossible fractal geometry on triangular tessellations.">
+  <link rel="canonical" href="https://nselmi.com/impossible-fractal-ca.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Emergent Impossible Fractal Geometry from a 4-State Cellular Automaton on Triangular Tessellations",
+    "author": { "@type": "Person", "name": "Nidhal Selmi", "url": "https://nselmi.com" },
+    "description": "A 4-state cellular automaton with 78 transition rules whose output, rendered on a triangular tessellation, produces impossible fractal geometry under isometric projection.",
+    "url": "https://nselmi.com/impossible-fractal-ca.html",
+    "keywords": ["cellular automaton", "impossible geometry", "fractal", "Penrose triangle", "triangular tessellation", "Selmi triangle"]
+  }
+  </script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     * { box-sizing: border-box; }
@@ -38,6 +60,12 @@
     }
     .header a { color: #4a90d9; text-decoration: none; }
     .header a:hover { text-decoration: underline; }
+    .instructions {
+      margin-top: 12px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #777;
+    }
 
     .main { padding: 0 15px 15px; }
 
@@ -141,7 +169,7 @@
       font-size: 11px;
     }
 
-    #canvas-container { background: white; display: inline-block; border: 1px solid #ddd; border-radius: 4px; }
+    #canvas-container { background: white; display: inline-block; border: 1px solid #ddd; border-radius: 4px; overflow-x: auto; max-width: 100%; }
     #canvas-container svg { display: block; }
 
     .stats {
@@ -184,20 +212,44 @@
     .tri-highlight { stroke: #ff0 !important; stroke-width: 3px !important; }
     .tri-source { stroke: #0ff !important; stroke-width: 2px !important; }
     .tri-selected { stroke: #f0f !important; stroke-width: 3px !important; }
+
+    @media (max-width: 600px) {
+      .header { padding: 20px 16px 16px; }
+      .header h1 { font-size: 18px; }
+      .main { padding: 0 10px 10px; }
+      .toolbar { gap: 8px; padding: 8px; }
+      .divider { display: none; }
+      .toolbar-section.colors { flex-wrap: wrap; }
+      .init-row { flex-wrap: wrap; }
+      .init-row input[type="text"] { min-width: 0; }
+      .rule-bar { gap: 6px; padding: 8px; }
+      .hover-info { bottom: 10px; right: 10px; left: 10px; min-width: auto; }
+    }
   </style>
 </head>
 <body>
 
 <!-- Header -->
-<div class="header">
+<article class="header">
   <div class="header-inner">
     <h1>Emergent Impossible Fractal Geometry</h1>
-    <div class="subtitle">A 4-State Cellular Automaton on Triangular Tessellations</div>
+    <h2 class="subtitle">A 4-State Cellular Automaton on Triangular Tessellations</h2>
     <p>
-      A one-dimensional cellular automaton with 78 transition rules over a 7-cell neighborhood whose space-time evolution, rendered on a triangular tessellation, produces structures perceived as impossible 3D fractal objects under isometric projection. The system extends Wolfram's classical connection between elementary automata and fractal geometry&mdash;exemplified by Rule 90 generating the Sierpinski triangle&mdash;into a regime where the emergent fractals inhabit impossible space. Among its outputs is the Selmi triangle, a fractal Penrose tribar with self-similar structure at every scale, first described in 2009.
+      A 4-state cellular automaton with 78 transition rules over a 7-cell neighborhood.
+      When rendered on a triangular tessellation, its output is perceived as impossible 3D fractal geometry under isometric projection.
+      Among its outputs is the <a href="https://www.deviantart.com/nydhalo/art/Selmi-Triangle-136342456">Selmi triangle</a>, a fractal Penrose tribar with self-similar structure at every scale.
     </p>
+    <div class="instructions">
+      <strong>How to use:</strong>
+      Press <strong>Generate</strong> to run the automaton.
+      Edit the <strong>Init</strong> string to change the seed (W=white, R=red, G=green, B=blue).
+      Adjust <strong>Rows</strong> to control evolution depth.
+      Hover over any triangle to inspect its neighborhood and matching rule.
+      Click a triangle to load its rule into the editor.
+      Use <strong>Export</strong> to download the output as SVG.
+    </div>
   </div>
-</div>
+</article>
 
 <div class="main">
 
