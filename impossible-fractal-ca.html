@@ -184,6 +184,7 @@
     }
     .stats .warn { color: #c00; }
     .stats .rules-used { color: #07a; }
+    .stats .state-counts span { margin-right: 6px; }
 
     /* Hover info panel */
     .hover-info {
@@ -257,7 +258,7 @@
 <div class="toolbar">
   <div class="toolbar-section">
     <button class="primary" onclick="generate()">Generate</button>
-    <button onclick="exportSVG()">Export</button>
+    <button onclick="exportSVG()">Export SVG</button>
   </div>
   <div class="divider"></div>
   <div class="toolbar-section">
@@ -272,11 +273,11 @@
   </div>
   <div class="divider"></div>
   <div class="toolbar-section colors">
-    <span style="font-size:11px;color:#888;">Colors:</span>
-    <input type="color" id="colorW" value="#ffffff" title="W (white)">
-    <input type="color" id="colorR" value="#e8a0a0" title="R (red)">
-    <input type="color" id="colorG" value="#a0e8a0" title="G (green)">
-    <input type="color" id="colorB" value="#a0a0e8" title="B (blue)">
+    <select id="colorPreset" onchange="applyColorPreset()"></select>
+    <input type="color" id="colorW" value="#ffffff" title="W (background)">
+    <input type="color" id="colorR" value="#e8a0a0" title="R (top face)">
+    <input type="color" id="colorG" value="#a0e8a0" title="G (left face)">
+    <input type="color" id="colorB" value="#a0a0e8" title="B (right face)">
     <input type="color" id="colorK" value="#333333" title="K (undefined)">
   </div>
 </div>
@@ -300,10 +301,11 @@
   </select>
   <button onclick="addRule()">Add</button>
   <button onclick="deleteRule()">Del</button>
+  <button onclick="clearRules()">Clear</button>
   <button onclick="toggleRuleList()">List</button>
   <button onclick="exportRules()">Export</button>
   <button onclick="importRules()">Import</button>
-  <button onclick="resetRules()">Reset</button>
+  <button onclick="loadPreset()">Reset</button>
   <span class="rule-status" id="ruleStatus">78 rules</span>
 </div>
 <div class="rule-list" id="ruleList"></div>
@@ -326,489 +328,347 @@
 
 <script>
 // =============================================================================
-// CONSTANTS
+// DATA
 // =============================================================================
-const STATES = ['W', 'R', 'G', 'B'];
-const STATE_TO_INDEX = { W: 0, R: 1, G: 2, B: 3 };
-const INDEX_TO_STATE = ['W', 'R', 'G', 'B'];
+const TRI_W = 20, TRI_H = 17, PAD_TOP = TRI_H;
 
-const DEFAULT_COLORS = { W: '#ffffff', R: '#e8a0a0', G: '#a0e8a0', B: '#a0a0e8', K: '#333333' };
-let COLORS = { ...DEFAULT_COLORS };
-
-const TRI_WIDTH = 20, TRI_HEIGHT = 17;
-
-// =============================================================================
-// RULE SYSTEM
-// =============================================================================
-function neighborhoodToKey(n0, n1, n2, n3, n4, n5, n6) {
-  return (STATE_TO_INDEX[n0] << 12) | (STATE_TO_INDEX[n1] << 10) | (STATE_TO_INDEX[n2] << 8) |
-         (STATE_TO_INDEX[n3] << 6) | (STATE_TO_INDEX[n4] << 4) | (STATE_TO_INDEX[n5] << 2) | STATE_TO_INDEX[n6];
-}
-
-function patternToKey(p) {
-  p = p.toUpperCase();
-  return neighborhoodToKey(p[0], p[1], p[2], p[3], p[4], p[5], p[6]);
-}
-
-function keyToPattern(key) {
-  let r = '';
-  for (let i = 6; i >= 0; i--) r += INDEX_TO_STATE[(key >> (i * 2)) & 3];
-  return r;
-}
-
-// =============================================================================
-// BASE RULES
-// =============================================================================
-const BASE_RULES = [
-  ["BBBBBBB","W"],["BBBBBBR","W"],["BBBBBRR","W"],["BBBBRRG","R"],["BBBRRGG","R"],["BBGGRGG","G"],["BBGGWWW","G"],
-  ["BBGRRRR","B"],["BBRRGGG","G"],["BGGRGGW","R"],["BGGWRRG","G"],["BGGWWWW","G"],["BGRRRRR","B"],["BRRGGGW","G"],
-  ["GBBBBBB","G"],["GBBBBBR","G"],["GBGGWRR","G"],["GBGGWWW","G"],["GGBGGWR","B"],["GGBGGWW","B"],["GGGWWWR","G"],
-  ["GGGWWWW","G"],["GGRGGWB","R"],["GGWBBGG","R"],["GGWRRGG","R"],["GGWWWRR","W"],["GGWWWWW","W"],["GRGGWBB","R"],
-  ["GRRRRRB","B"],["GWBBGGR","B"],["GWBBGGW","B"],["GWRRGGB","G"],["GWWWRRG","R"],["GWWWWWR","W"],["GWWWWWW","W"],
-  ["RBBGGWW","G"],["RBBGRRR","B"],["RGBBBBB","G"],["RGGBGGW","B"],["RGGGWWW","G"],["RGGWBBG","R"],["RGWWWWW","W"],
-  ["RRBBGGW","R"],["RRBBGRR","B"],["RRGBBBB","B"],["RRGGBGG","W"],["RRGGGWW","B"],["RRGGWBB","R"],["RRGWWWW","G"],
-  ["RRRBBGG","R"],["RRRBBGR","B"],["RRRRBBG","B"],["RRRRRBB","B"],["RRRRRRB","B"],["RRRRRRR","B"],["WBBGGRG","B"],
-  ["WBBGGWW","B"],["WRRGBBB","G"],["WRRGGBG","G"],["WRRGGGW","G"],["WRRGGWB","R"],["WRRGWWW","G"],["WRRRRRR","B"],
-  ["WWRRGBB","G"],["WWRRGGB","G"],["WWRRGGG","G"],["WWRRGGW","R"],["WWRRGWW","G"],["WWRRRRR","G"],["WWWRRGB","R"],
-  ["WWWRRGG","R"],["WWWRRGW","R"],["WWWRRRR","R"],["WWWWRRG","R"],["WWWWRRR","R"],["WWWWWRR","W"],["WWWWWWR","W"],
-  ["WWWWWWW","W"],
+const SELMI_RULES = [
+  "BBBBBBB:W","BBBBBBR:W","BBBBBRR:W","BBBBRRG:R","BBBRRGG:R","BBGGRGG:G","BBGGWWW:G",
+  "BBGRRRR:B","BBRRGGG:G","BGGRGGW:R","BGGWRRG:G","BGGWWWW:G","BGRRRRR:B","BRRGGGW:G",
+  "GBBBBBB:G","GBBBBBR:G","GBGGWRR:G","GBGGWWW:G","GGBGGWR:B","GGBGGWW:B","GGGWWWR:G",
+  "GGGWWWW:G","GGRGGWB:R","GGWBBGG:R","GGWRRGG:R","GGWWWRR:W","GGWWWWW:W","GRGGWBB:R",
+  "GRRRRRB:B","GWBBGGR:B","GWBBGGW:B","GWRRGGB:G","GWWWRRG:R","GWWWWWR:W","GWWWWWW:W",
+  "RBBGGWW:G","RBBGRRR:B","RGBBBBB:G","RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGWWWWW:W",
+  "RRBBGGW:R","RRBBGRR:B","RRGBBBB:B","RRGGBGG:W","RRGGGWW:B","RRGGWBB:R","RRGWWWW:G",
+  "RRRBBGG:R","RRRBBGR:B","RRRRBBG:B","RRRRRBB:B","RRRRRRB:B","RRRRRRR:B","WBBGGRG:B",
+  "WBBGGWW:B","WRRGBBB:G","WRRGGBG:G","WRRGGGW:G","WRRGGWB:R","WRRGWWW:G","WRRRRRR:B",
+  "WWRRGBB:G","WWRRGGB:G","WWRRGGG:G","WWRRGGW:R","WWRRGWW:G","WWRRRRR:G","WWWRRGB:R",
+  "WWWRRGG:R","WWWRRGW:R","WWWRRRR:R","WWWWRRG:R","WWWWRRR:R","WWWWWRR:W","WWWWWWR:W",
+  "WWWWWWW:W",
 ];
 
-let RULE_MAP = new Map();
-let CUSTOM_RULES = new Set();
-
-function initRules() {
-  RULE_MAP.clear();
-  CUSTOM_RULES.clear();
-  for (const [p, o] of BASE_RULES) {
-    if (p.length === 7) RULE_MAP.set(patternToKey(p), STATE_TO_INDEX[o]);
-  }
-  updateRuleStatus();
-}
-
-function updateRuleStatus() {
-  const el = document.getElementById('ruleStatus');
-  const c = CUSTOM_RULES.size;
-  el.textContent = c > 0 ? `${RULE_MAP.size} rules (+${c})` : `${RULE_MAP.size} rules`;
-}
-
-// =============================================================================
-// CA ENGINE
-// =============================================================================
-class CA {
-  constructor(width, wrap = false) {
-    this.width = width;
-    this.wrap = wrap;
-    this.rows = [];
-    this.stats = { defined: 0, undefined: 0 };
-    this.neighborhoods = [];
-    this.usedRules = new Set();
-  }
-
-  setInitialRow(row) {
-    this.rows = [row];
-    this.neighborhoods = [new Array(row.length).fill(null)];
-    this.stats = { defined: 0, undefined: 0 };
-    this.usedRules = new Set();
-  }
-
-  getCell(r, c) {
-    if (r < 0) return 'W';
-    if (this.wrap) c = ((c % this.width) + this.width) % this.width;
-    else if (c < 0 || c >= this.width) return 'W';
-    return this.rows[r][c];
-  }
-
-  step() {
-    const r = this.rows.length - 1;
-    const newRow = [];
-    const newNeighborhoods = [];
-
-    for (let c = 0; c < this.width; c++) {
-      const n = [
-        this.getCell(r, c-3), this.getCell(r, c-2), this.getCell(r, c-1),
-        this.getCell(r, c), this.getCell(r, c+1), this.getCell(r, c+2), this.getCell(r, c+3)
-      ];
-      const pattern = n.join('');
-      const key = neighborhoodToKey(...n);
-      const out = RULE_MAP.get(key);
-
-      newNeighborhoods.push({
-        pattern: pattern,
-        key: key,
-        sourceRow: r,
-        sourceCols: [-3, -2, -1, 0, 1, 2, 3].map(offset => {
-          if (this.wrap) return ((c + offset) % this.width + this.width) % this.width;
-          return c + offset;
-        })
-      });
-
-      if (out === undefined) {
-        newRow.push('K');
-        this.stats.undefined++;
-      } else {
-        newRow.push(INDEX_TO_STATE[out]);
-        this.stats.defined++;
-        this.usedRules.add(key);
-      }
-    }
-    this.rows.push(newRow);
-    this.neighborhoods.push(newNeighborhoods);
-  }
-
-  run(gens) { for (let i = 0; i < gens; i++) this.step(); }
-
-  getNeighborhood(row, col) {
-    if (row === 0 || !this.neighborhoods[row]) return null;
-    return this.neighborhoods[row][col];
-  }
-}
+const COLOR_PRESETS = [
+  { name:"Pastel",      W:"#ffffff", R:"#e8a0a0", G:"#a0e8a0", B:"#a0a0e8", K:"#333333" },
+  { name:"Mondrian",    W:"#ffffff", R:"#e60000", G:"#ffd700", B:"#0047ab", K:"#222222" },
+  { name:"Monokai",     W:"#272822", R:"#f92672", G:"#a6e22e", B:"#66d9ef", K:"#f8f8f2" },
+  { name:"Solarized",   W:"#fdf6e3", R:"#dc322f", G:"#859900", B:"#268bd2", K:"#002b36" },
+  { name:"Dracula",     W:"#282a36", R:"#ff79c6", G:"#50fa7b", B:"#bd93f9", K:"#f8f8f2" },
+  { name:"Nord",        W:"#eceff4", R:"#bf616a", G:"#a3be8c", B:"#81a1c1", K:"#2e3440" },
+  { name:"Catppuccin",  W:"#eff1f5", R:"#e64553", G:"#40a02b", B:"#1e66f5", K:"#4c4f69" },
+  { name:"Matrix",      W:"#0d0d0d", R:"#003300", G:"#00ff41", B:"#008f11", K:"#00ff41" },
+  { name:"Vaporwave",   W:"#1a1a2e", R:"#ff6ec7", G:"#00ffcc", B:"#7b68ee", K:"#e0e0e0" },
+  { name:"Bauhaus",     W:"#f5f1e0", R:"#be1e2d", G:"#f0ab00", B:"#21409a", K:"#1a1a1a" },
+  { name:"Paper",       W:"#f7f3eb", R:"#c9a96e", G:"#8fae7e", B:"#7e9bb5", K:"#555555" },
+  { name:"Penrose",     W:"#ffffff", R:"#ff6b6b", G:"#51cf66", B:"#339af0", K:"#212529" },
+  { name:"Terracotta",  W:"#faf0e6", R:"#c1666b", G:"#94b49f", B:"#6b98a6", K:"#4a4a4a" },
+  { name:"Coral Reef",  W:"#f0f8ff", R:"#ff7f50", G:"#20b2aa", B:"#6495ed", K:"#2f4f4f" },
+  { name:"Ink",         W:"#ffffff", R:"#1a1a1a", G:"#555555", B:"#999999", K:"#ff0000" },
+];
 
 // =============================================================================
-// D3 RENDERER
+// STATE: rules = Map<string,string>, result = {rows, used}
 // =============================================================================
-class D3Renderer {
-  constructor(ca, skipWhite = true, showBorders = false) {
-    this.ca = ca;
-    this.skipWhite = skipWhite;
-    this.showBorders = showBorders;
-    this.drawn = 0;
-    this.skipped = 0;
-    this.svg = null;
-    this.triangles = null;
-  }
-
-  render(containerId) {
-    const container = d3.select(`#${containerId}`);
-    container.selectAll('*').remove();
-
-    const rows = this.ca.rows.length;
-    const cols = this.ca.width;
-    const w = (cols + 2) * (TRI_WIDTH / 2);
-    const h = rows * TRI_HEIGHT + 10;
-
-    this.svg = container.append('svg')
-      .attr('xmlns', 'http://www.w3.org/2000/svg')
-      .attr('viewBox', `0 0 ${w} ${h}`)
-      .attr('width', w)
-      .attr('height', h);
-
-    // Background
-    this.svg.append('rect')
-      .attr('width', '100%')
-      .attr('height', '100%')
-      .attr('fill', COLORS.W);
-
-    // Build triangle data
-    const triData = [];
-    this.drawn = 0;
-    this.skipped = 0;
-
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const state = this.ca.rows[r][c];
-        if (this.skipWhite && state === 'W') {
-          this.skipped++;
-          continue;
-        }
-
-        const up = (r + c) % 2 === 0;
-        const x = c * (TRI_WIDTH / 2);
-        const y = r * TRI_HEIGHT;
-
-        const pts = up
-          ? [[x, y + TRI_HEIGHT], [x + TRI_WIDTH/2, y], [x + TRI_WIDTH, y + TRI_HEIGHT]]
-          : [[x, y], [x + TRI_WIDTH/2, y + TRI_HEIGHT], [x + TRI_WIDTH, y]];
-
-        triData.push({
-          row: r,
-          col: c,
-          state: state,
-          points: pts.map(p => p.join(',')).join(' '),
-          color: COLORS[state] || COLORS.K,
-          neighborhood: this.ca.getNeighborhood(r, c)
-        });
-        this.drawn++;
-      }
-    }
-
-    // Create triangles with D3
-    this.triangles = this.svg.selectAll('polygon')
-      .data(triData)
-      .enter()
-      .append('polygon')
-      .attr('points', d => d.points)
-      .attr('fill', d => d.color)
-      .attr('stroke', this.showBorders ? '#000' : 'none')
-      .attr('stroke-width', this.showBorders ? 1 : 0)
-      .attr('data-row', d => d.row)
-      .attr('data-col', d => d.col)
-      .style('cursor', 'pointer')
-      .on('mouseenter', (event, d) => this.onHover(event, d, true))
-      .on('mouseleave', (event, d) => this.onHover(event, d, false))
-      .on('click', (event, d) => this.onClick(event, d));
-
-    return this;
-  }
-
-  onHover(event, d, isEnter) {
-    const infoPanel = document.getElementById('hoverInfo');
-
-    if (!isEnter) {
-      infoPanel.style.display = 'none';
-      // Remove all highlights
-      this.svg.selectAll('polygon')
-        .classed('tri-highlight', false)
-        .classed('tri-source', false);
-      return;
-    }
-
-    // Highlight current triangle
-    d3.select(event.target).classed('tri-highlight', true);
-
-    // Highlight source triangles (from previous row)
-    if (d.neighborhood) {
-      const srcRow = d.neighborhood.sourceRow;
-      const srcCols = d.neighborhood.sourceCols;
-
-      this.svg.selectAll('polygon')
-        .filter(td => td.row === srcRow && srcCols.includes(td.col))
-        .classed('tri-source', true);
-    }
-
-    // Update info panel
-    infoPanel.style.display = 'block';
-    document.getElementById('infoRow').textContent = d.row;
-    document.getElementById('infoCol').textContent = d.col;
-    document.getElementById('infoState').textContent = d.state;
-
-    const patternEl = document.getElementById('infoPattern');
-    const resultEl = document.getElementById('infoResult');
-
-    if (d.row === 0) {
-      patternEl.innerHTML = '<em>Initial row</em>';
-      resultEl.innerHTML = '';
-    } else if (d.neighborhood) {
-      // Color-code the pattern
-      const pattern = d.neighborhood.pattern;
-      let html = '';
-      for (let i = 0; i < pattern.length; i++) {
-        const ch = pattern[i];
-        const bg = COLORS[ch] || '#ccc';
-        const fg = (ch === 'W' || ch === 'G') ? '#000' : '#fff';
-        html += `<span style="background:${bg};color:${fg}">${ch}</span>`;
-      }
-      patternEl.innerHTML = html;
-
-      // Show rule result
-      const ruleOut = RULE_MAP.get(d.neighborhood.key);
-      if (ruleOut === undefined) {
-        resultEl.innerHTML = `<span class="undefined">&rarr; UNDEFINED (showing K)</span>`;
-      } else {
-        resultEl.innerHTML = `<span class="defined">&rarr; ${INDEX_TO_STATE[ruleOut]}</span>`;
-      }
-    }
-  }
-
-  onClick(event, d) {
-    if (d.row === 0 || !d.neighborhood) return;
-
-    // Populate rule editor with this pattern
-    document.getElementById('rulePattern').value = d.neighborhood.pattern;
-
-    // Set output to current state (or first option if undefined)
-    const ruleOut = RULE_MAP.get(d.neighborhood.key);
-    const outputSelect = document.getElementById('ruleOutput');
-    if (ruleOut !== undefined) {
-      outputSelect.value = INDEX_TO_STATE[ruleOut];
-    }
-
-    // Add visual feedback
-    this.svg.selectAll('polygon').classed('tri-selected', false);
-    d3.select(event.target).classed('tri-selected', true);
-  }
-
-  toSVG() {
-    if (!this.svg) return '';
-    return this.svg.node().outerHTML;
-  }
-}
-
-// =============================================================================
-// UI
-// =============================================================================
-let currentCA = null, currentRenderer = null;
+let rules = new Map();
+let baseKeys = new Set();
+let result = null;   // { rows: string[][], used: Set<string> }
+let svg = null;
 let showUsedOnly = false;
 
+function parseRuleStrings(arr) {
+  const m = new Map();
+  for (const s of arr) { const [p, o] = s.split(':'); m.set(p, o); }
+  return m;
+}
+
+// =============================================================================
+// CA ENGINE (pure function)
+// =============================================================================
+function evolve(init, ruleMap, steps, wrap) {
+  const rows = [init], used = new Set(), w = init.length;
+  for (let s = 0; s < steps; s++) {
+    const prev = rows[rows.length - 1], next = [];
+    for (let c = 0; c < w; c++) {
+      const g = i => wrap ? prev[((i % w) + w) % w] : (i < 0 || i >= w) ? 'W' : prev[i];
+      const key = g(c-3)+g(c-2)+g(c-1)+g(c)+g(c+1)+g(c+2)+g(c+3);
+      const out = ruleMap.get(key);
+      if (out) { used.add(key); next.push(out); } else next.push('K');
+    }
+    rows.push(next);
+  }
+  return { rows, used };
+}
+
+function getNeighborhood(rows, r, c, wrap) {
+  if (r === 0) return null;
+  const prev = rows[r - 1], w = prev.length;
+  const g = i => wrap ? prev[((i % w) + w) % w] : (i < 0 || i >= w) ? 'W' : prev[i];
+  return g(c-3)+g(c-2)+g(c-1)+g(c)+g(c+1)+g(c+2)+g(c+3);
+}
+
+// =============================================================================
+// COLORS: read/write DOM
+// =============================================================================
 function getColors() {
-  COLORS.W = document.getElementById('colorW').value;
-  COLORS.R = document.getElementById('colorR').value;
-  COLORS.G = document.getElementById('colorG').value;
-  COLORS.B = document.getElementById('colorB').value;
-  COLORS.K = document.getElementById('colorK').value;
+  return { W: $('colorW').value, R: $('colorR').value, G: $('colorG').value, B: $('colorB').value, K: $('colorK').value };
 }
 
-function parseInit(str) {
-  const r = [];
-  for (const c of str.toUpperCase()) if ('WRGB'.includes(c)) r.push(c);
-  return r;
+function setColors(c) {
+  $('colorW').value = c.W; $('colorR').value = c.R; $('colorG').value = c.G; $('colorB').value = c.B; $('colorK').value = c.K;
 }
 
+function applyColorPreset() {
+  const p = COLOR_PRESETS[$('colorPreset').selectedIndex];
+  if (p) { setColors(p); generate(); }
+}
+
+// =============================================================================
+// DOM helpers
+// =============================================================================
+const $ = id => document.getElementById(id);
+
+// =============================================================================
+// RENDER
+// =============================================================================
+function render(rows, containerId, colors, opts) {
+  const container = d3.select('#' + containerId);
+  container.selectAll('*').remove();
+
+  const nRows = rows.length, nCols = rows[0].length;
+  const w = (nCols + 2) * (TRI_W / 2);
+  const h = nRows * TRI_H + PAD_TOP + 10;
+
+  const svgEl = container.append('svg')
+    .attr('xmlns', 'http://www.w3.org/2000/svg')
+    .attr('viewBox', `0 ${-PAD_TOP} ${w} ${h}`)
+    .attr('width', w).attr('height', h);
+
+  svgEl.append('rect').attr('x', 0).attr('y', -PAD_TOP)
+    .attr('width', w).attr('height', h).attr('fill', colors.W);
+
+  const triData = [];
+  const counts = { W: 0, R: 0, G: 0, B: 0, K: 0, drawn: 0 };
+
+  for (let r = 0; r < nRows; r++) {
+    for (let c = 0; c < nCols; c++) {
+      const state = rows[r][c];
+      counts[state] = (counts[state] || 0) + 1;
+      if (opts.skipWhite && state === 'W') continue;
+      const up = (r + c) % 2 === 0;
+      const x = c * (TRI_W / 2), y = r * TRI_H;
+      const pts = up
+        ? `${x},${y+TRI_H} ${x+TRI_W/2},${y} ${x+TRI_W},${y+TRI_H}`
+        : `${x},${y} ${x+TRI_W/2},${y+TRI_H} ${x+TRI_W},${y}`;
+      triData.push({ r, c, state, pts, color: colors[state] || colors.K });
+      counts.drawn++;
+    }
+  }
+
+  svgEl.selectAll('polygon').data(triData).enter().append('polygon')
+    .attr('points', d => d.pts)
+    .attr('fill', d => d.color)
+    .attr('stroke', opts.borders ? '#000' : 'none')
+    .attr('stroke-width', opts.borders ? 1 : 0)
+    .style('cursor', 'pointer')
+    .on('mouseenter', (ev, d) => onHover(ev, d, true, rows, colors, opts.wrap, svgEl))
+    .on('mouseleave', (ev, d) => onHover(ev, d, false, rows, colors, opts.wrap, svgEl))
+    .on('click', (ev, d) => onClick(ev, d, rows, opts.wrap, svgEl));
+
+  return { svgEl, counts };
+}
+
+// =============================================================================
+// HOVER / CLICK
+// =============================================================================
+function onHover(ev, d, enter, rows, colors, wrap, svgEl) {
+  const panel = $('hoverInfo');
+  if (!enter) {
+    panel.style.display = 'none';
+    svgEl.selectAll('polygon').classed('tri-highlight', false).classed('tri-source', false);
+    return;
+  }
+  d3.select(ev.target).classed('tri-highlight', true);
+
+  // Highlight source cells
+  if (d.r > 0) {
+    const w = rows[0].length;
+    svgEl.selectAll('polygon')
+      .filter(td => td.r === d.r - 1 && Math.abs(td.c - d.c) <= 3)
+      .classed('tri-source', true);
+  }
+
+  panel.style.display = 'block';
+  $('infoRow').textContent = d.r;
+  $('infoCol').textContent = d.c;
+  $('infoState').textContent = d.state;
+
+  const patternEl = $('infoPattern'), resultEl = $('infoResult');
+  const nb = getNeighborhood(rows, d.r, d.c, wrap);
+  if (!nb) {
+    patternEl.innerHTML = '<em>Initial row</em>';
+    resultEl.innerHTML = '';
+  } else {
+    patternEl.innerHTML = [...nb].map(ch => {
+      const bg = colors[ch] || '#ccc', fg = (ch === 'W' || ch === 'G') ? '#000' : '#fff';
+      return `<span style="background:${bg};color:${fg}">${ch}</span>`;
+    }).join('');
+    const out = rules.get(nb);
+    resultEl.innerHTML = out
+      ? `<span class="defined">&rarr; ${out}</span>`
+      : `<span class="undefined">&rarr; UNDEFINED (K)</span>`;
+  }
+}
+
+function onClick(ev, d, rows, wrap, svgEl) {
+  const nb = getNeighborhood(rows, d.r, d.c, wrap);
+  if (!nb) return;
+  $('rulePattern').value = nb;
+  const out = rules.get(nb);
+  if (out) $('ruleOutput').value = out;
+  svgEl.selectAll('polygon').classed('tri-selected', false);
+  d3.select(ev.target).classed('tri-selected', true);
+}
+
+// =============================================================================
+// GENERATE
+// =============================================================================
 function generate() {
-  getColors();
-  const numRows = parseInt(document.getElementById('numRows').value) || 34;
-  const skipWhite = document.getElementById('skipWhite').checked;
-  const wrap = document.getElementById('wrapAround').checked;
-  const showBorders = document.getElementById('showBorders').checked;
-  const init = parseInit(document.getElementById('initString').value);
-  const numCols = init.length;
+  const colors = getColors();
+  const numRows = parseInt($('numRows').value) || 34;
+  const wrap = $('wrapAround').checked;
+  const init = [...$('initString').value.toUpperCase()].filter(c => 'WRGB'.includes(c));
+  $('numCols').value = init.length;
 
-  document.getElementById('numCols').value = numCols;
+  result = evolve(init, rules, numRows - 1, wrap);
 
-  currentCA = new CA(numCols, wrap);
-  currentCA.setInitialRow(init);
-  currentCA.run(numRows - 1);
+  const { svgEl, counts } = render(result.rows, 'canvas-container', colors, {
+    skipWhite: $('skipWhite').checked, borders: $('showBorders').checked, wrap
+  });
+  svg = svgEl;
 
-  currentRenderer = new D3Renderer(currentCA, skipWhite, showBorders);
-  currentRenderer.render('canvas-container');
+  const undef = counts.K || 0;
+  const stateHtml = ['R','G','B','K'].filter(s => counts[s])
+    .map(s => `<span style="color:${colors[s]}">${s}:${counts[s]}</span>`).join('');
 
-  const s = currentCA.stats;
-  const usedCount = currentCA.usedRules.size;
-  const totalRules = RULE_MAP.size;
-  document.getElementById('stats').innerHTML =
-    `${numRows}&times;${numCols} | ${s.defined} def | <span class="${s.undefined?'warn':''}">${s.undefined} undef</span> | ${currentRenderer.drawn} drawn | ${wrap?'wrap':'pad'} | <span class="rules-used">${usedCount} of ${totalRules} rules used</span>`;
+  $('stats').innerHTML =
+    `${numRows}&times;${init.length} | ${counts.drawn} drawn`
+    + ` | <span class="${undef?'warn':''}">${undef} undef</span>`
+    + ` | ${wrap?'wrap':'pad'}`
+    + ` | <span class="rules-used">${result.used.size}/${rules.size} rules</span>`
+    + ` | <span class="state-counts">${stateHtml}</span>`;
 
+  updateRuleStatus();
   updateRuleList();
 }
 
+// =============================================================================
+// EXPORTS
+// =============================================================================
 function exportSVG() {
-  if (!currentRenderer) return;
-  const svgStr = currentRenderer.toSVG();
-  const blob = new Blob([svgStr], { type: 'image/svg+xml' });
+  if (!svg) return;
+  download(svg.node().outerHTML, 'ca.svg', 'image/svg+xml');
+}
+
+function exportRules() {
+  const entries = showUsedOnly && result
+    ? [...rules].filter(([k]) => result.used.has(k))
+    : [...rules];
+  const json = '[\n' + entries.sort((a,b) => a[0].localeCompare(b[0]))
+    .map(([p,o]) => JSON.stringify([p,o])).join(',\n') + '\n]';
+  download(json, 'rules.json', 'application/json');
+}
+
+function download(content, name, type) {
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'ca.svg';
-  a.click();
+  a.href = URL.createObjectURL(new Blob([content], { type }));
+  a.download = name; a.click();
 }
 
 // =============================================================================
 // RULE EDITOR
 // =============================================================================
 function addRule() {
-  const p = document.getElementById('rulePattern').value.toUpperCase();
-  const o = document.getElementById('ruleOutput').value;
+  const p = $('rulePattern').value.toUpperCase(), o = $('ruleOutput').value;
   if (p.length !== 7 || !/^[WRGB]{7}$/.test(p)) { alert('Invalid pattern'); return; }
-  RULE_MAP.set(patternToKey(p), STATE_TO_INDEX[o]);
-  CUSTOM_RULES.add(p);
-  updateRuleStatus();
-  updateRuleList();
-  // Regenerate to show updated rule
-  generate();
+  rules.set(p, o);
+  updateRuleStatus(); updateRuleList(); generate();
 }
 
 function deleteRule() {
-  const p = document.getElementById('rulePattern').value.toUpperCase();
-  if (p.length !== 7) { alert('Enter 7-char pattern'); return; }
-  const k = patternToKey(p);
-  if (RULE_MAP.has(k)) {
-    RULE_MAP.delete(k);
-    CUSTOM_RULES.delete(p);
-    updateRuleStatus();
-    updateRuleList();
-    generate();
-  }
+  const p = $('rulePattern').value.toUpperCase();
+  if (p.length === 7 && rules.delete(p)) { updateRuleStatus(); updateRuleList(); generate(); }
+}
+
+function clearRules() {
+  if (confirm('Clear all rules?')) { rules.clear(); updateRuleStatus(); updateRuleList(); generate(); }
+}
+
+function loadPreset() {
+  rules = parseRuleStrings(SELMI_RULES);
+  baseKeys = new Set(rules.keys());
+  updateRuleStatus(); updateRuleList(); generate();
+}
+
+function updateRuleStatus() {
+  const custom = [...rules.keys()].filter(k => !baseKeys.has(k)).length;
+  $('ruleStatus').textContent = custom > 0 ? `${rules.size} rules (+${custom})` : `${rules.size} rules`;
 }
 
 function toggleRuleList() {
-  const el = document.getElementById('ruleList');
+  const el = $('ruleList');
   el.classList.toggle('show');
   if (el.classList.contains('show')) updateRuleList();
 }
 
-function toggleUsedOnly() {
-  showUsedOnly = !showUsedOnly;
-  updateRuleList();
-}
+function toggleUsedOnly() { showUsedOnly = !showUsedOnly; updateRuleList(); }
 
 function updateRuleList() {
-  const el = document.getElementById('ruleList');
+  const el = $('ruleList');
   if (!el.classList.contains('show')) return;
-
-  const usedKeys = currentCA ? currentCA.usedRules : new Set();
-  const entries = Array.from(RULE_MAP.entries()).sort((a,b) => keyToPattern(a[0]).localeCompare(keyToPattern(b[0])));
+  const usedKeys = result ? result.used : new Set();
+  const entries = [...rules].sort((a,b) => a[0].localeCompare(b[0]));
 
   let html = `<div class="rule-list-controls"><label><input type="checkbox" ${showUsedOnly?'checked':''} onchange="toggleUsedOnly()"> Show used only</label>`;
-  if (currentCA) html += `<span style="color:#888;">(${usedKeys.size} used)</span>`;
+  if (result) html += `<span style="color:#888;">(${usedKeys.size} used)</span>`;
   html += '</div>';
 
-  html += entries
-    .filter(([k]) => !showUsedOnly || usedKeys.has(k))
-    .map(([k, o]) => {
-      const p = keyToPattern(k), out = INDEX_TO_STATE[o], custom = CUSTOM_RULES.has(p);
-      const used = usedKeys.has(k);
-      const cls = [custom ? 'custom' : '', used ? 'used' : 'unused'].filter(Boolean).join(' ');
-      return `<div class="rule-item ${cls}"><span class="pattern">${p}</span><span class="rule-arrow">&rarr;</span><span class="output">${out}</span><span class="del" onclick="delRule('${p}')">&times;</span></div>`;
-    }).join('');
-
+  html += entries.filter(([k]) => !showUsedOnly || usedKeys.has(k)).map(([p, o]) => {
+    const custom = !baseKeys.has(p), used = usedKeys.has(p);
+    const cls = [custom ? 'custom' : '', used ? 'used' : 'unused'].filter(Boolean).join(' ');
+    return `<div class="rule-item ${cls}"><span class="pattern">${p}</span><span class="rule-arrow">&rarr;</span><span class="output">${o}</span><span class="del" onclick="delRule('${p}')">&times;</span></div>`;
+  }).join('');
   el.innerHTML = html;
 }
 
-function delRule(p) {
-  RULE_MAP.delete(patternToKey(p));
-  CUSTOM_RULES.delete(p);
-  updateRuleStatus();
-  updateRuleList();
-  generate();
-}
-
-function exportRules() {
-  const rules = Array.from(RULE_MAP.entries()).map(([k,o]) => [keyToPattern(k), INDEX_TO_STATE[o]]).sort((a,b) => a[0].localeCompare(b[0]));
-  const json = '[\n' + rules.map(r => JSON.stringify(r)).join(',\n') + '\n]';
-  const blob = new Blob([json], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'rules.json';
-  a.click();
-}
+function delRule(p) { rules.delete(p); updateRuleStatus(); updateRuleList(); generate(); }
 
 function importRules() {
   const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = '.json';
-  input.onchange = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+  input.type = 'file'; input.accept = '.json';
+  input.onchange = e => {
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = e => {
       try {
-        const rules = JSON.parse(e.target.result);
-        RULE_MAP.clear();
-        CUSTOM_RULES.clear();
-        for (const [p, o] of rules) {
-          if (p.length === 7 && /^[WRGB]{7}$/i.test(p)) {
-            RULE_MAP.set(patternToKey(p), STATE_TO_INDEX[o.toUpperCase()]);
-            CUSTOM_RULES.add(p.toUpperCase());
-          }
-        }
-        updateRuleStatus();
-        updateRuleList();
-        generate();
+        const arr = JSON.parse(e.target.result);
+        rules.clear();
+        for (const [p, o] of arr) if (p.length === 7 && /^[WRGB]{7}$/i.test(p)) rules.set(p.toUpperCase(), o.toUpperCase());
+        updateRuleStatus(); updateRuleList(); generate();
       } catch (err) { alert('Error: ' + err.message); }
     };
-    reader.readAsText(file);
+    reader.readAsText(e.target.files[0]);
   };
   input.click();
-}
-
-function resetRules() {
-  if (confirm('Reset to base rules?')) { initRules(); updateRuleList(); generate(); }
 }
 
 // =============================================================================
 // INIT
 // =============================================================================
-initRules();
-window.onload = generate;
+(function init() {
+  // Populate color preset dropdown
+  const sel = $('colorPreset');
+  COLOR_PRESETS.forEach((p, i) => { const o = document.createElement('option'); o.textContent = p.name; o.value = i; sel.appendChild(o); });
+  setColors(COLOR_PRESETS[0]);
+  loadPreset();
+})();
 </script>
 </body>
 </html>
