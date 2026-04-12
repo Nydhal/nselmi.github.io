@@ -280,6 +280,10 @@
   </div>
   <div class="divider"></div>
   <div class="toolbar-section">
+    <select id="gridMode" onchange="generate()" title="Grid type">
+      <option value="triangles">&#9650; Triangles</option>
+      <option value="squares">&#9638; Squares</option>
+    </select>
     <select id="borderMode">
       <option value="none">No Borders</option>
       <option value="all">All Borders</option>
@@ -364,6 +368,7 @@
 // PAD_TOP adds one row of whitespace above the first generation in SVG
 // exports via a negative viewBox origin (see render()).
 const TRI_W = 20, TRI_H = 17, PAD_TOP = TRI_H;
+const SQ_SIZE = 10;
 
 // =============================================================================
 // TRANSITION RULES
@@ -585,8 +590,10 @@ function render(rows, containerId, colors, opts) {
   container.selectAll('*').remove();
 
   const nRows = rows.length, nCols = rows[0].length;
-  const w = (nCols + 2) * (TRI_W / 2);
-  const h = nRows * TRI_H + PAD_TOP + 10;
+  const gridMode = opts.gridMode || 'triangles';
+  const sq = gridMode === 'squares';
+  const w = sq ? nCols * SQ_SIZE : (nCols + 2) * (TRI_W / 2);
+  const h = (sq ? nRows * SQ_SIZE : nRows * TRI_H) + PAD_TOP + 10;
 
   // Negative viewBox Y origin shifts the coordinate system so y=0 in triangle
   // space maps to y=PAD_TOP on screen. This adds export-safe top padding
@@ -599,7 +606,7 @@ function render(rows, containerId, colors, opts) {
   svgEl.append('rect').attr('x', 0).attr('y', -PAD_TOP)
     .attr('width', w).attr('height', h).attr('fill', colors.W);
 
-  const triData = [];
+  const cellData = [];
   const counts = { W: 0, R: 0, G: 0, B: 0, K: 0, drawn: 0 };
   const borderMode = opts.borderMode || 'none';
   const borderColor = opts.borderColor || '#000000';
@@ -610,21 +617,30 @@ function render(rows, containerId, colors, opts) {
       const state = rows[r][c];
       counts[state] = (counts[state] || 0) + 1;
       if (opts.skipWhite && state === 'W') continue;
-      // Triangle parity: (r+c) % 2 encodes the alternating up/down pattern
-      // inherent in any triangular tessellation. This single bit determines
-      // vertex layout AND which row contains the third adjacency neighbor.
-      const up = (r + c) % 2 === 0;
-      const x = c * (TRI_W / 2), y = r * TRI_H;
-      const pts = up
-        ? `${x},${y+TRI_H} ${x+TRI_W/2},${y} ${x+TRI_W},${y+TRI_H}`
-        : `${x},${y} ${x+TRI_W/2},${y+TRI_H} ${x+TRI_W},${y}`;
-      triData.push({ r, c, state, pts, color: colors[state] || colors.K });
+      if (sq) {
+        cellData.push({ r, c, state, x: c * SQ_SIZE, y: r * SQ_SIZE, color: colors[state] || colors.K });
+      } else {
+        const up = (r + c) % 2 === 0;
+        const x = c * (TRI_W / 2), y = r * TRI_H;
+        const pts = up
+          ? `${x},${y+TRI_H} ${x+TRI_W/2},${y} ${x+TRI_W},${y+TRI_H}`
+          : `${x},${y} ${x+TRI_W/2},${y+TRI_H} ${x+TRI_W},${y}`;
+        cellData.push({ r, c, state, pts, color: colors[state] || colors.K });
+      }
       counts.drawn++;
     }
   }
 
-  svgEl.selectAll('polygon').data(triData).enter().append('polygon')
-    .attr('points', d => d.pts)
+  const cells = sq
+    ? svgEl.selectAll('rect.cell').data(cellData).enter().append('rect')
+        .attr('class', 'cell')
+        .attr('x', d => d.x).attr('y', d => d.y)
+        .attr('width', SQ_SIZE).attr('height', SQ_SIZE)
+    : svgEl.selectAll('polygon.cell').data(cellData).enter().append('polygon')
+        .attr('class', 'cell')
+        .attr('points', d => d.pts);
+
+  cells
     .attr('fill', d => d.color)
     .attr('stroke', borderMode === 'all' ? borderColor : 'none')
     .attr('stroke-width', borderMode === 'all' ? borderWidth : 0)
@@ -636,7 +652,7 @@ function render(rows, containerId, colors, opts) {
   // Edge borders are computed post-render because they depend on pairwise
   // state comparison across the full grid, not on individual triangles.
   if (borderMode === 'edges') {
-    drawEdgeBorders(svgEl, rows, borderColor, borderWidth);
+    drawEdgeBorders(svgEl, rows, borderColor, borderWidth, sq);
   }
 
   return { svgEl, counts };
@@ -645,56 +661,67 @@ function render(rows, containerId, colors, opts) {
 // =============================================================================
 // EDGE BORDERS
 // =============================================================================
-// Draws borders only where adjacent triangles differ in state, revealing the
-// contour structure of the automaton output. On the triangular grid, each cell
-// has exactly 3 neighbors: left (c-1), right (c+1), and one vertical neighbor
-// — below (r+1) for up-pointing ▲, above (r-1) for down-pointing ▼.
+// Draws borders only where adjacent cells differ in state, revealing the
+// contour structure of the automaton output.
 //
-// To draw each shared edge exactly once, we only process rightward (c→c+1)
-// and downward (▲ base → r+1) edges. Left and upward edges are the same
-// physical line segments seen from the other triangle's perspective.
-function drawEdgeBorders(svgEl, rows, color, width) {
+// Triangles: 3 neighbors (left, right, vertical). Process rightward (c→c+1)
+// and downward (▲ base → r+1) edges to draw each shared edge exactly once.
+//
+// Squares: 4 neighbors (up, down, left, right). Process rightward (c→c+1)
+// and downward (r→r+1) edges to avoid duplicates.
+function drawEdgeBorders(svgEl, rows, color, width, sq) {
   const nRows = rows.length, nCols = rows[0].length;
   const lines = [];
 
-  for (let r = 0; r < nRows; r++) {
-    for (let c = 0; c < nCols; c++) {
-      const state = rows[r][c];
-      const up = (r + c) % 2 === 0;
-      const x = c * (TRI_W / 2), y = r * TRI_H;
-
-      // Right neighbor (c+1): shared slanted edge.
-      // ▲ and ▼ have different vertex orderings for this edge.
-      if (c + 1 < nCols && rows[r][c + 1] !== state) {
-        if (up) {
-          // ▲ right edge: apex to bottom-right
-          lines.push({ x1: x + TRI_W/2, y1: y, x2: x + TRI_W, y2: y + TRI_H });
-        } else {
-          // ▼ right edge: nadir to top-right
-          lines.push({ x1: x + TRI_W/2, y1: y + TRI_H, x2: x + TRI_W, y2: y });
+  if (sq) {
+    for (let r = 0; r < nRows; r++) {
+      for (let c = 0; c < nCols; c++) {
+        const state = rows[r][c];
+        const x = c * SQ_SIZE, y = r * SQ_SIZE;
+        if (c + 1 < nCols && rows[r][c + 1] !== state) {
+          lines.push({ x1: x + SQ_SIZE, y1: y, x2: x + SQ_SIZE, y2: y + SQ_SIZE });
+        }
+        if (r + 1 < nRows && rows[r + 1][c] !== state) {
+          lines.push({ x1: x, y1: y + SQ_SIZE, x2: x + SQ_SIZE, y2: y + SQ_SIZE });
         }
       }
+    }
+    // Top boundary: non-W cells in row 0 against padding.
+    for (let c = 0; c < nCols; c++) {
+      if (rows[0][c] !== 'W') {
+        const x = c * SQ_SIZE;
+        lines.push({ x1: x, y1: 0, x2: x + SQ_SIZE, y2: 0 });
+      }
+    }
+  } else {
+    for (let r = 0; r < nRows; r++) {
+      for (let c = 0; c < nCols; c++) {
+        const state = rows[r][c];
+        const up = (r + c) % 2 === 0;
+        const x = c * (TRI_W / 2), y = r * TRI_H;
 
-      // Vertical neighbor: only ▲ checks downward to avoid double-drawing.
-      // Every ▼'s upward edge is the same segment as ▲(r-1,c)'s base.
-      if (up && r + 1 < nRows && rows[r + 1][c] !== state) {
-        // ▲ base: horizontal bottom edge
-        lines.push({ x1: x, y1: y + TRI_H, x2: x + TRI_W, y2: y + TRI_H });
+        if (c + 1 < nCols && rows[r][c + 1] !== state) {
+          if (up) {
+            lines.push({ x1: x + TRI_W/2, y1: y, x2: x + TRI_W, y2: y + TRI_H });
+          } else {
+            lines.push({ x1: x + TRI_W/2, y1: y + TRI_H, x2: x + TRI_W, y2: y });
+          }
+        }
+
+        if (up && r + 1 < nRows && rows[r + 1][c] !== state) {
+          lines.push({ x1: x, y1: y + TRI_H, x2: x + TRI_W, y2: y + TRI_H });
+        }
+      }
+    }
+    // Top boundary: ▼ triangles in row 0 against padding (state 'W').
+    for (let c = 0; c < nCols; c++) {
+      if (c % 2 !== 0 && rows[0][c] !== 'W') {
+        const x = c * (TRI_W / 2);
+        lines.push({ x1: x, y1: 0, x2: x + TRI_W, y2: 0 });
       }
     }
   }
 
-  // Top boundary: ▼ triangles in row 0 have a horizontal top edge at y=0
-  // with no grid neighbor above. Treat the padding as state 'W'.
-  for (let c = 0; c < nCols; c++) {
-    if (c % 2 !== 0 && rows[0][c] !== 'W') {
-      const x = c * (TRI_W / 2);
-      lines.push({ x1: x, y1: 0, x2: x + TRI_W, y2: 0 });
-    }
-  }
-
-  // All edge lines in one D3 bindpass; pointer-events:none lets hover/click
-  // pass through to the triangles underneath.
   svgEl.selectAll('line.edge-border').data(lines).enter().append('line')
     .attr('class', 'edge-border')
     .attr('x1', d => d.x1).attr('y1', d => d.y1)
@@ -712,14 +739,14 @@ function onHover(ev, d, enter, rows, colors, wrap, svgEl) {
   const panel = $('hoverInfo');
   if (!enter) {
     panel.style.display = 'none';
-    svgEl.selectAll('polygon').classed('tri-highlight', false).classed('tri-source', false);
+    svgEl.selectAll('.cell').classed('tri-highlight', false).classed('tri-source', false);
     return;
   }
   d3.select(ev.target).classed('tri-highlight', true);
 
   // Highlight the 7 source cells in the parent row that determined this cell.
   if (d.r > 0) {
-    svgEl.selectAll('polygon')
+    svgEl.selectAll('.cell')
       .filter(td => td.r === d.r - 1 && Math.abs(td.c - d.c) <= 3)
       .classed('tri-source', true);
   }
@@ -752,7 +779,7 @@ function onClick(ev, d, rows, wrap, svgEl) {
   $('rulePattern').value = nb;
   const out = rules.get(nb);
   if (out) $('ruleOutput').value = out;
-  svgEl.selectAll('polygon').classed('tri-selected', false);
+  svgEl.selectAll('.cell').classed('tri-selected', false);
   d3.select(ev.target).classed('tri-selected', true);
 }
 
@@ -771,9 +798,10 @@ function generate() {
   const borderMode = $('borderMode').value;
   const borderColor = $('borderColor').value;
   const borderWidth = parseFloat($('borderWidth').value) || 1;
+  const gridMode = $('gridMode').value;
 
   const { svgEl, counts } = render(result.rows, 'canvas-container', colors, {
-    skipWhite: $('skipWhite').checked, borderMode, borderColor, borderWidth, wrap
+    skipWhite: $('skipWhite').checked, borderMode, borderColor, borderWidth, wrap, gridMode
   });
   svg = svgEl;
 
