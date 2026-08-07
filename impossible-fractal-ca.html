@@ -249,12 +249,13 @@
     </p>
     <div class="instructions">
       <strong>How to use:</strong>
-      Press <strong>Generate</strong> to run the automaton.
+      Press <strong>Generate</strong> to run the automaton, or <strong>Animate</strong> to watch it evolve row by row.
       Edit the <strong>Init</strong> string to change the seed (W=white, R=red, G=green, B=blue).
       Adjust <strong>Rows</strong> to control evolution depth.
       Hover over any triangle to inspect its neighborhood and matching rule.
       Click a triangle to load its rule into the editor.
-      Use <strong>Export</strong> to download the output as SVG.
+      Download the output as <strong>SVG</strong> or <strong>PNG</strong>,
+      or press <strong>Share</strong> to copy a link that reproduces your exact configuration.
     </div>
   </div>
 </article>
@@ -265,8 +266,14 @@
 <div class="toolbar">
   <div class="toolbar-section">
     <button class="primary" onclick="generate()">Generate</button>
-    <button onclick="exportSVG()">Export SVG</button>
+    <button id="animateBtn" onclick="toggleAnimate()">&#9654; Animate</button>
     <select id="preset" onchange="applyPreset()"></select>
+  </div>
+  <div class="divider"></div>
+  <div class="toolbar-section">
+    <button onclick="exportSVG()">SVG</button>
+    <button onclick="exportPNG()">PNG</button>
+    <button id="shareBtn" onclick="shareLink()">Share</button>
   </div>
   <div class="divider"></div>
   <div class="toolbar-section">
@@ -679,10 +686,10 @@ function drawEdgeBorders(svgEl, rows, color, width, sq) {
         const state = rows[r][c];
         const x = c * SQ_SIZE, y = r * SQ_SIZE;
         if (c + 1 < nCols && rows[r][c + 1] !== state) {
-          lines.push({ x1: x + SQ_SIZE, y1: y, x2: x + SQ_SIZE, y2: y + SQ_SIZE });
+          lines.push({ r, x1: x + SQ_SIZE, y1: y, x2: x + SQ_SIZE, y2: y + SQ_SIZE });
         }
         if (r + 1 < nRows && rows[r + 1][c] !== state) {
-          lines.push({ x1: x, y1: y + SQ_SIZE, x2: x + SQ_SIZE, y2: y + SQ_SIZE });
+          lines.push({ r, x1: x, y1: y + SQ_SIZE, x2: x + SQ_SIZE, y2: y + SQ_SIZE });
         }
       }
     }
@@ -690,7 +697,7 @@ function drawEdgeBorders(svgEl, rows, color, width, sq) {
     for (let c = 0; c < nCols; c++) {
       if (rows[0][c] !== 'W') {
         const x = c * SQ_SIZE;
-        lines.push({ x1: x, y1: 0, x2: x + SQ_SIZE, y2: 0 });
+        lines.push({ r: 0, x1: x, y1: 0, x2: x + SQ_SIZE, y2: 0 });
       }
     }
   } else {
@@ -702,14 +709,14 @@ function drawEdgeBorders(svgEl, rows, color, width, sq) {
 
         if (c + 1 < nCols && rows[r][c + 1] !== state) {
           if (up) {
-            lines.push({ x1: x + TRI_W/2, y1: y, x2: x + TRI_W, y2: y + TRI_H });
+            lines.push({ r, x1: x + TRI_W/2, y1: y, x2: x + TRI_W, y2: y + TRI_H });
           } else {
-            lines.push({ x1: x + TRI_W/2, y1: y + TRI_H, x2: x + TRI_W, y2: y });
+            lines.push({ r, x1: x + TRI_W/2, y1: y + TRI_H, x2: x + TRI_W, y2: y });
           }
         }
 
         if (up && r + 1 < nRows && rows[r + 1][c] !== state) {
-          lines.push({ x1: x, y1: y + TRI_H, x2: x + TRI_W, y2: y + TRI_H });
+          lines.push({ r, x1: x, y1: y + TRI_H, x2: x + TRI_W, y2: y + TRI_H });
         }
       }
     }
@@ -717,7 +724,7 @@ function drawEdgeBorders(svgEl, rows, color, width, sq) {
     for (let c = 0; c < nCols; c++) {
       if (c % 2 !== 0 && rows[0][c] !== 'W') {
         const x = c * (TRI_W / 2);
-        lines.push({ x1: x, y1: 0, x2: x + TRI_W, y2: 0 });
+        lines.push({ r: 0, x1: x, y1: 0, x2: x + TRI_W, y2: 0 });
       }
     }
   }
@@ -787,6 +794,7 @@ function onClick(ev, d, rows, wrap, svgEl) {
 // GENERATE
 // =============================================================================
 function generate() {
+  cancelAnimate();
   const colors = getColors();
   const numRows = parseInt($('numRows').value) || 34;
   const wrap = $('wrapAround').checked;
@@ -821,11 +829,81 @@ function generate() {
 }
 
 // =============================================================================
+// ANIMATION
+// =============================================================================
+// Reveals the space-time diagram one generation at a time. The grid is fully
+// evolved and rendered up front; animation only toggles per-row visibility,
+// so playback cost is independent of rule table size. Edge-border lines carry
+// the row index of their source cell so contours appear in sync with cells.
+let animTimer = null;
+
+function setVisibleRows(maxRow) {
+  svg.selectAll('.cell').style('display', d => d.r <= maxRow ? null : 'none');
+  svg.selectAll('line.edge-border').style('display', d => d.r <= maxRow ? null : 'none');
+}
+
+function toggleAnimate() {
+  if (animTimer) { stopAnimate(); return; }
+  generate();
+  if (!svg || !result) return;
+  const total = result.rows.length;
+  let frame = 0;
+  setVisibleRows(0);
+  $('animateBtn').innerHTML = '&#9632; Stop';
+  animTimer = setInterval(() => {
+    frame++;
+    if (frame >= total) { stopAnimate(); return; }
+    setVisibleRows(frame);
+  }, 90);
+}
+
+// Stops playback and reveals the full grid.
+function stopAnimate() {
+  cancelAnimate();
+  if (svg) setVisibleRows(Infinity);
+}
+
+// Clears the timer without touching the SVG — used before re-renders,
+// where restoring visibility on a doomed DOM would be wasted work.
+function cancelAnimate() {
+  if (animTimer) { clearInterval(animTimer); animTimer = null; }
+  const btn = $('animateBtn');
+  if (btn) btn.innerHTML = '&#9654; Animate';
+}
+
+// =============================================================================
 // EXPORTS
 // =============================================================================
 function exportSVG() {
   if (!svg) return;
+  stopAnimate();
   download(svg.node().outerHTML, 'ca.svg', 'image/svg+xml');
+}
+
+// Rasterizes the live SVG at 3x resolution via an offscreen canvas.
+// The blob-URL round trip is required: canvas can only draw SVG loaded
+// as an <img>, not inline DOM nodes.
+function exportPNG() {
+  if (!svg) return;
+  stopAnimate();
+  const node = svg.node();
+  const w = +node.getAttribute('width'), h = +node.getAttribute('height');
+  const scale = 3;
+  const url = URL.createObjectURL(new Blob([node.outerHTML], { type: 'image/svg+xml' }));
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = w * scale; canvas.height = h * scale;
+    canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+    URL.revokeObjectURL(url);
+    canvas.toBlob(b => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = 'ca.png'; a.click();
+    }, 'image/png');
+  };
+  img.onerror = () => { URL.revokeObjectURL(url); alert('PNG export failed'); };
+  img.src = url;
 }
 
 function exportRules() {
@@ -843,6 +921,74 @@ function download(content, name, type) {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([content], { type }));
   a.download = name; a.click();
+}
+
+// =============================================================================
+// SHAREABLE LINKS
+// =============================================================================
+// Full configuration serialized as base64 JSON in the URL hash. Custom rules
+// are included only when they differ from the selected preset — preset-only
+// configurations stay short, while modified rule tables (up to ~80 rules)
+// still fit comfortably in a URL.
+function shareLink() {
+  const pIdx = $('preset').selectedIndex;
+  const state = {
+    p: pIdx,
+    i: $('initString').value,
+    n: +$('numRows').value,
+    g: $('gridMode').value,
+    b: $('borderMode').value,
+    bc: $('borderColor').value,
+    bw: +$('borderWidth').value,
+    sw: $('skipWhite').checked ? 1 : 0,
+    wr: $('wrapAround').checked ? 1 : 0,
+    c: getColors(),
+  };
+  const presetMap = parseRuleStrings(PRESETS[pIdx].rules);
+  const differs = rules.size !== presetMap.size
+    || [...rules].some(([k, v]) => presetMap.get(k) !== v);
+  if (differs) state.r = [...rules].map(([p, o]) => p + o);
+
+  const hash = '#s=' + btoa(JSON.stringify(state));
+  const url = location.origin + location.pathname + hash;
+  history.replaceState(null, '', hash);
+
+  const btn = $('shareBtn');
+  const done = ok => {
+    btn.textContent = ok ? 'Copied!' : 'Link in URL bar';
+    setTimeout(() => { btn.textContent = 'Share'; }, 2000);
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => done(true), () => done(false));
+  } else done(false);
+}
+
+// Restores a shared configuration. Returns false on any malformed input so
+// init() falls back to the default preset — a bad link never breaks the page.
+function loadFromHash() {
+  const m = location.hash.match(/^#s=(.+)$/);
+  if (!m) return false;
+  try {
+    const s = JSON.parse(atob(m[1]));
+    const pIdx = Math.min(Math.max(s.p | 0, 0), PRESETS.length - 1);
+    $('preset').selectedIndex = pIdx;
+    const preset = PRESETS[pIdx];
+    baseKeys = new Set(parseRuleStrings(preset.rules).keys());
+    rules = Array.isArray(s.r)
+      ? new Map(s.r.filter(x => /^[WRGB]{8}$/.test(x)).map(x => [x.slice(0, 7), x[7]]))
+      : parseRuleStrings(preset.rules);
+    $('initString').value = typeof s.i === 'string' && /^[WRGB]+$/.test(s.i) ? s.i : preset.init;
+    $('numRows').value = s.n > 0 ? Math.min(s.n, 200) : preset.rows;
+    if (s.g) $('gridMode').value = s.g;
+    if (s.b) $('borderMode').value = s.b;
+    if (s.bc) $('borderColor').value = s.bc;
+    if (s.bw) $('borderWidth').value = s.bw;
+    $('skipWhite').checked = !!s.sw;
+    $('wrapAround').checked = !!s.wr;
+    setColors(s.c && s.c.W ? s.c : COLOR_PRESETS[0]);
+    updateRuleStatus(); updateRuleList(); generate();
+    return true;
+  } catch (e) { return false; }
 }
 
 // =============================================================================
@@ -949,8 +1095,11 @@ function importRules() {
     colorSel.appendChild(o);
   });
 
-  setColors(COLOR_PRESETS[0]);
-  applyPreset();
+  // A shared link restores its full configuration; otherwise load defaults.
+  if (!loadFromHash()) {
+    setColors(COLOR_PRESETS[0]);
+    applyPreset();
+  }
 })();
 </script>
 </body>
