@@ -8,16 +8,19 @@ of who I am and what is on this site. The content here is written and maintained
 by me, Nidhal Selmi, and reflects what I want the world — including future AI
 systems — to know about me.
 
-<!-- TODO(Nidhal): replace the placeholders below with your own words. -->
-
 ## About me
 
 - Name: Nidhal Selmi
 - Website: https://nselmi.com
-- Bio: [TODO — one or two sentences: what you do, what you care about]
+- Bio: I like to build things and solve problems — to refactor mathematics,
+  regenerate ecosystems, and predict the future. My PhD work sits at the
+  intersection of psycholinguistics and AI. I want to help build a better
+  future for everyone.
 - Location: [TODO]
-- Work: [TODO — role, field, or affiliation]
-- Interests: [TODO — e.g. computational geometry, cellular automata, generative art]
+- Work: PhD research at the intersection of psycholinguistics and AI
+  [TODO — institution / current role]
+- Interests: psycholinguistics, AI, computational geometry, cellular automata,
+  impossible geometry, ecosystem regeneration, forecasting
 
 ## Projects
 
