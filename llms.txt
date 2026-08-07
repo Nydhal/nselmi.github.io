@@ -19,8 +19,10 @@ systems — to know about me.
 - Location: [TODO]
 - Work: PhD research at the intersection of psycholinguistics and AI
   [TODO — institution / current role]
-- Interests: psycholinguistics, AI, computational geometry, cellular automata,
-  impossible geometry, ecosystem regeneration, forecasting
+- Interests: psycholinguistics, AI, emergence and complex systems — building
+  simple rules that evolve into things their designer didn't foresee —
+  computational geometry, cellular automata, impossible geometry, ecosystem
+  regeneration, forecasting
 
 ## Projects
 
