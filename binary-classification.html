@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Interactive binary-classification experiment with live confusion-matrix metrics.">
+  <title>Binary Classification - Nidhal Selmi</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f7f5;
+      --panel: #fff;
+      --ink: #20211f;
+      --muted: #6e716c;
+      --line: #d9dbd6;
+      --green: #16854d;
+      --red: #c63b36;
+      --field: #fbfbf9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 13px/1.35 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    }
+    header, main, footer { max-width: 1440px; margin: auto; }
+    header { padding: 16px 18px 10px; }
+    h1 { margin: 0; font: 400 21px/1.2 Georgia, serif; }
+    main {
+      display: grid;
+      grid-template-columns: 220px minmax(340px, 520px) minmax(440px, 1fr);
+      gap: 14px;
+      padding: 0 18px 24px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 10px;
+    }
+    h2 {
+      margin: 0 0 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .controls h2:not(:first-child) { margin-top: 9px; }
+    .control { display: block; margin: 0 0 6px; }
+    .control-line { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 1px; }
+    output { color: var(--muted); font-variant-numeric: tabular-nums; }
+    input[type="range"] { width: 100%; accent-color: var(--green); }
+    .plot-panel { width: 100%; max-width: 520px; padding: 10px; justify-self: center; }
+    canvas {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--field);
+      border-radius: 3px;
+      touch-action: none;
+      cursor: grab;
+    }
+    .legend { display: flex; flex-wrap: wrap; gap: 5px 14px; margin-top: 8px; color: var(--muted); }
+    .key { white-space: nowrap; }
+    .swatch { display: inline-block; width: 15px; border-top: 2px solid; vertical-align: middle; }
+    .swatch.dashed { border-top-style: dashed; }
+    .green { color: var(--green); }
+    .red { color: var(--red); }
+    .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    .summary-table th, .summary-table td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: center; }
+    .summary-table th { color: var(--muted); font-weight: 400; }
+    .summary-table td { font-variant-numeric: tabular-nums; }
+    .summary-table .row-label { text-align: left; }
+    .metrics { display: grid; grid-template-columns: 1fr; gap: 0 18px; }
+    .metric {
+      padding: 5px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .metric summary {
+      position: relative;
+      padding-left: 14px;
+      list-style: none;
+      cursor: pointer;
+    }
+    .metric summary::-webkit-details-marker { display: none; }
+    .metric summary::before { content: '▸'; position: absolute; left: 0; top: 0; }
+    .metric[open] summary::before { content: '▾'; }
+    .metric-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .metric-name { min-width: 0; }
+    .metric-value { flex: none; font-weight: 400; font-variant-numeric: tabular-nums; }
+    .metric-bar {
+      display: block;
+      height: 7px;
+      overflow: hidden;
+      background: #eceee9;
+      border: 1px solid var(--line);
+    }
+    .metric-fill {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--line);
+      transition: width 120ms linear, background-color 120ms linear;
+    }
+    .metric-axis {
+      display: block;
+      position: relative;
+      height: 15px;
+      margin-top: 1px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+    }
+    .metric-axis span { position: absolute; top: 1px; }
+    .metric-axis .start { left: 0; }
+    .metric-axis .mid { transform: translateX(-50%); }
+    .metric-axis .end { right: 0; }
+    .metric-description { margin: 5px 0 1px 14px; color: var(--muted); font-size: 11px; }
+    .metric-pair-values {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric-pair-values b { font-weight: 400; }
+    .metric-bar.split { display: flex; }
+    .metric-pair-fill { display: block; height: 100%; transition: width 120ms linear; }
+    .metric-pair-fill.good { background: var(--green); }
+    .metric-pair-fill.bad { background: var(--red); }
+    footer {
+      padding: 0 18px 18px;
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    @media (max-width: 1080px) {
+      main { grid-template-columns: 210px minmax(340px, 1fr); }
+      .results { grid-column: 1 / -1; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 680px) {
+      header { padding-inline: 10px; }
+      main { display: block; padding: 0 10px 18px; }
+      footer { padding-inline: 10px; }
+      .panel { margin-bottom: 10px; }
+      .metrics { grid-template-columns: 1fr; }
+      .summary-table th, .summary-table td { padding-inline: 3px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Binary Classification - Nidhal Selmi</h1>
+  </header>
+
+  <main>
+    <section class="panel controls" aria-labelledby="controls-title">
+      <h2 id="controls-title">Population</h2>
+      <label class="control" for="population-size">
+        <span class="control-line"><span>Total population</span><output id="population-size-out"></output></span>
+        <input id="population-size" type="range" min="10" max="5000" step="10" value="1000">
+      </label>
+      <label class="control" for="class-balance">
+        <span class="control-line"><span>P / N balance</span><output id="class-balance-out"></output></span>
+        <input id="class-balance" type="range" min="0" max="1000" step="1" value="500">
+      </label>
+
+      <h2>Population geometry</h2>
+      <label class="control" for="sigma">
+        <span class="control-line"><span>Positive std. dev.</span><output id="sigma-out"></output></span>
+        <input id="sigma" type="range" min="0.10" max="3.00" step="0.05" value="1.00">
+      </label>
+      <label class="control" for="inner">
+        <span class="control-line"><span>Annulus inner radius</span><output id="inner-out"></output></span>
+        <input id="inner" type="range" min="0" max="4.9" step="0.1" value="3.0">
+      </label>
+      <h2>Classifier</h2>
+      <label class="control" for="green-radius">
+        <span class="control-line"><span>Decision radius</span><output id="green-radius-out"></output></span>
+        <input id="green-radius" type="range" min="0.1" max="5" step="0.1" value="2.3">
+      </label>
+    </section>
+
+    <section class="panel plot-panel" aria-label="Classification field">
+      <canvas id="plot" width="520" height="520" role="img" aria-label="Positive Gaussian points and negative annulus points; drag the green decision circle to move its center"></canvas>
+      <div class="legend" aria-label="Plot legend">
+        <span class="key"><span class="swatch green"></span> predicted +</span>
+        <span class="key"><span class="swatch red"></span> predicted −</span>
+        <span class="key">+ real positive</span>
+        <span class="key">− real negative</span>
+        <span class="key green"><span class="swatch dashed"></span> 1σ</span>
+        <span class="key red"><span class="swatch dashed"></span> annulus inner</span>
+      </div>
+    </section>
+
+    <section class="panel results" aria-labelledby="results-title">
+      <h2 id="results-title">Live evaluation</h2>
+      <table class="summary-table" aria-label="Confusion matrix">
+        <tbody>
+          <tr><th class="row-label">Real \ predicted</th><th>Positive</th><th>Negative</th></tr>
+          <tr><th class="row-label">Positive</th><td><abbr title="True positive / Hit">TP</abbr> <span id="tp">—</span></td><td><abbr title="False negative / Miss / Underestimation / Type II error">FN</abbr> <span id="fn">—</span></td></tr>
+          <tr><th class="row-label">Negative</th><td><abbr title="False positive / False alarm / Overestimation / Type I error">FP</abbr> <span id="fp">—</span></td><td><abbr title="True negative / Correct rejection">TN</abbr> <span id="tn">—</span></td></tr>
+        </tbody>
+      </table>
+      <div class="metrics" id="metrics"></div>
+    </section>
+  </main>
+
+  <footer>Dependencies: none — HTML · CSS · Canvas 2D · JS</footer>
+
+  <script>
+  (() => {
+    'use strict';
+
+    const DOMAIN_RADIUS = 5;
+    const GLYPH_SIZE = 16;
+    const $ = id => document.getElementById(id);
+    const controls = {
+      sigma: $('sigma'),
+      inner: $('inner'),
+      greenRadius: $('green-radius')
+    };
+    const populationControls = {
+      total: $('population-size'),
+      balance: $('class-balance')
+    };
+    const state = {
+      seed: 1, total: 1000, p: 500, n: 500,
+      positive: [], negative: [],
+      green: { x: 0, y: 0 }, drag: null
+    };
+
+    const allMetricDefs = [
+      { id: 'prevalence', short: 'Prevalence', name: 'Prevalence', scale: 'unit', direction: 'neutral', description: 'Fraction of the population that is actually positive. P / (P + N). Range [0,1].' },
+      { id: 'tpr', short: 'TPR', name: 'True positive rate', scale: 'unit', direction: 'high', description: 'Share of real positives correctly detected. Also recall, sensitivity, SEN, probability of detection, hit rate, and power. TP / P. Range [0,1].' },
+      { id: 'fnr', short: 'FNR', name: 'False negative rate', scale: 'unit', direction: 'low', description: 'Share of real positives missed. Also miss rate and Type II error rate. FN / P. Range [0,1].' },
+      { id: 'tnr', short: 'TNR', name: 'True negative rate', scale: 'unit', direction: 'high', description: 'Share of real negatives correctly rejected. Also specificity, SPC, and selectivity. TN / N. Range [0,1].' },
+      { id: 'fpr', short: 'FPR', name: 'False positive rate', scale: 'unit', direction: 'low', description: 'Share of real negatives incorrectly accepted. Also probability of false alarm, fall-out, and Type I error rate. FP / N. Range [0,1].' },
+      { id: 'ppv', short: 'PPV', name: 'Positive predictive value', scale: 'unit', direction: 'high', description: 'Share of positive predictions that are correct. Also precision. TP / (TP + FP). Range [0,1].' },
+      { id: 'fdr', short: 'FDR', name: 'False discovery rate', scale: 'unit', direction: 'low', description: 'Share of positive predictions that are incorrect. FP / (TP + FP). Range [0,1].' },
+      { id: 'npv', short: 'NPV', name: 'Negative predictive value', scale: 'unit', direction: 'high', description: 'Share of negative predictions that are correct. TN / (TN + FN). Range [0,1].' },
+      { id: 'for', short: 'FOR', name: 'False omission rate', scale: 'unit', direction: 'low', description: 'Share of negative predictions that are incorrect. FN / (FN + TN). Range [0,1].' },
+      { id: 'acc', short: 'ACC', name: 'Accuracy', scale: 'unit', direction: 'high', description: 'Share of all predictions that are correct. (TP + TN) / (P + N). Range [0,1].' },
+      { id: 'ba', short: 'BA', name: 'Balanced accuracy', scale: 'unit', direction: 'high', description: 'Mean performance across the two real classes. (TPR + TNR) / 2. Range [0,1].' },
+      { id: 'bm', short: 'BM', name: 'Informedness', scale: 'signed', direction: 'high', description: 'Chance-corrected probability that the classifier is informed about the real class. Also Bookmaker informedness. TPR + TNR − 1. Range [−1,1].' },
+      { id: 'mk', short: 'MK', name: 'Markedness', scale: 'signed', direction: 'high', description: 'Chance-corrected reliability of the predicted labels. Also Δp. PPV + NPV − 1. Range [−1,1].' },
+      { id: 'mcc', short: 'MCC', name: 'Matthews correlation coefficient', scale: 'signed', direction: 'high', description: 'Correlation between real and predicted binary labels. Also the phi coefficient (φ). Range [−1,1].' },
+      { id: 'f1', short: 'F1', name: 'F1 score', scale: 'unit', direction: 'high', description: 'Harmonic mean of precision and recall. 2TP / (2TP + FP + FN). Range [0,1].' },
+      { id: 'fm', short: 'FM', name: 'Fowlkes–Mallows index', scale: 'unit', direction: 'high', description: 'Geometric mean of precision and recall. √(PPV × TPR). Range [0,1].' },
+      { id: 'ts', short: 'TS', name: 'Threat score', scale: 'unit', direction: 'high', description: 'Positive-class intersection over union. Also critical success index, CSI, and Jaccard index. TP / (TP + FP + FN). Range [0,1].' },
+      { id: 'lrp', short: 'LR+', name: 'Positive likelihood ratio', scale: 'ratio10', direction: 'high', description: 'How much more likely a positive prediction is for a real positive than a real negative. TPR / FPR. Range [0,∞); bar uses a capped logarithmic axis.' },
+      { id: 'lrn', short: 'LR−', name: 'Negative likelihood ratio', scale: 'ratio10', direction: 'low', description: 'How much more likely a negative prediction is for a real positive than a real negative. FNR / TNR. Range [0,∞); bar uses a capped logarithmic axis.' },
+      { id: 'dor', short: 'DOR', name: 'Diagnostic odds ratio', scale: 'ratio100', direction: 'high', description: 'Ratio of the odds of a correct result to the odds of an incorrect result. (TP × TN) / (FP × FN). Range [0,∞); bar uses a capped logarithmic axis.' }
+    ];
+    const metricsById = Object.fromEntries(allMetricDefs.map(def => [def.id, def]));
+    const metricRows = [
+      { type: 'single', def: metricsById.prevalence },
+      { type: 'pair', good: metricsById.tpr, bad: metricsById.fnr },
+      { type: 'pair', good: metricsById.tnr, bad: metricsById.fpr },
+      { type: 'pair', good: metricsById.ppv, bad: metricsById.fdr },
+      { type: 'pair', good: metricsById.npv, bad: metricsById.for },
+      ...['acc', 'ba', 'bm', 'mk', 'mcc', 'f1', 'fm', 'ts', 'lrp', 'lrn', 'dor']
+        .map(id => ({ type: 'single', def: metricsById[id] }))
+    ];
+    const metricDefs = allMetricDefs;
+    const pairedIds = new Set(metricRows.filter(row => row.type === 'pair').flatMap(row => [row.good.id, row.bad.id]));
+
+    function axis(def) {
+      if (def.scale === 'signed') return '<span class="metric-axis"><span class="start">−1</span><span class="mid" style="left:50%">0</span><span class="end">1</span></span>';
+      if (def.scale.startsWith('ratio')) {
+        const cap = def.scale === 'ratio100' ? 100 : 10;
+        const neutral = Math.log(2) / Math.log(1 + cap) * 100;
+        return `<span class="metric-axis"><span class="start">0</span><span class="mid" style="left:${neutral.toFixed(2)}%">1</span><span class="end">${cap}+</span></span>`;
+      }
+      return '<span class="metric-axis"><span class="start">0</span><span class="end">1</span></span>';
+    }
+
+    function singleMetric(def) {
+      return `<details class="metric">
+        <summary>
+          <span class="metric-top"><span class="metric-name">${def.name} (${def.short})</span><b class="metric-value" id="metric-${def.id}">—</b></span>
+          <span class="metric-bar" aria-hidden="true"><span class="metric-fill" id="bar-${def.id}"></span></span>
+          ${axis(def)}
+        </summary>
+        <p class="metric-description">${def.description}</p>
+      </details>`;
+    }
+
+    function pairedMetric(row) {
+      return `<details class="metric metric-pair">
+        <summary>
+          <span class="metric-top"><span class="metric-name">${row.good.name} (${row.good.short}) / ${row.bad.name} (${row.bad.short})</span></span>
+          <span class="metric-pair-values"><span>${row.good.short} <b id="metric-${row.good.id}">—</b></span><span>${row.bad.short} <b id="metric-${row.bad.id}">—</b></span></span>
+          <span class="metric-bar split" aria-hidden="true"><span class="metric-pair-fill good" id="bar-${row.good.id}"></span><span class="metric-pair-fill bad" id="bar-${row.bad.id}"></span></span>
+          ${axis(row.good)}
+        </summary>
+        <p class="metric-description">${row.good.description} ${row.bad.description}</p>
+      </details>`;
+    }
+
+    $('metrics').innerHTML = metricRows.map(row => row.type === 'pair' ? pairedMetric(row) : singleMetric(row.def)).join('');
+
+    function mulberry32(seed) {
+      return () => {
+        seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+        let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
+
+    function makeSamples(count, seed) {
+      const random = mulberry32(seed);
+      return Array.from({ length: count }, () => ({ u: random(), a: random() * Math.PI * 2 }));
+    }
+
+    function rebuildPopulation() {
+      state.positive = makeSamples(state.p, state.seed ^ 0x9E3779B9);
+      state.negative = makeSamples(state.n, state.seed ^ 0x85EBCA6B);
+      update();
+    }
+
+    function syncPopulationControls() {
+      populationControls.total.value = state.total;
+      populationControls.balance.max = state.total;
+      populationControls.balance.value = state.p;
+      $('population-size-out').textContent = state.total;
+      $('class-balance-out').textContent = `P ${state.p} / N ${state.n}`;
+    }
+
+    function setPopulation(source) {
+      if (source === 'total') {
+        const prevalence = state.total ? state.p / state.total : 0.5;
+        state.total = Number(populationControls.total.value);
+        state.p = Math.round(state.total * prevalence);
+        state.n = state.total - state.p;
+      } else {
+        state.p = Number(populationControls.balance.value);
+        state.n = state.total - state.p;
+      }
+      syncPopulationControls();
+      rebuildPopulation();
+    }
+
+    function values() {
+      return Object.fromEntries(Object.entries(controls).map(([key, el]) => [key, Number(el.value)]));
+    }
+
+    function points(v) {
+      const retainedMass = 1 - Math.exp(-(DOMAIN_RADIUS ** 2) / (2 * v.sigma ** 2));
+      const positive = state.positive.map(q => {
+        const r = v.sigma * Math.sqrt(-2 * Math.log(1 - q.u * retainedMass));
+        return { x: r * Math.cos(q.a), y: r * Math.sin(q.a), positive: true };
+      });
+      const negative = state.negative.map(q => {
+        const r = Math.sqrt(v.inner ** 2 + q.u * (DOMAIN_RADIUS ** 2 - v.inner ** 2));
+        return { x: r * Math.cos(q.a), y: r * Math.sin(q.a), positive: false };
+      });
+      return positive.concat(negative);
+    }
+
+    const divide = (a, b) => b === 0 ? NaN : a / b;
+    function evaluate(data, v) {
+      let tp = 0, tn = 0, fp = 0, fn = 0;
+      const r2 = v.greenRadius ** 2;
+      for (const point of data) {
+        point.predictedPositive = (point.x - state.green.x) ** 2 + (point.y - state.green.y) ** 2 <= r2;
+        if (point.positive) point.predictedPositive ? tp++ : fn++;
+        else point.predictedPositive ? fp++ : tn++;
+      }
+      const population = tp + tn + fp + fn;
+      const p = tp + fn, n = tn + fp;
+      const tpr = divide(tp, p), fnr = divide(fn, p), fpr = divide(fp, n), tnr = divide(tn, n);
+      const ppv = divide(tp, tp + fp), npv = divide(tn, tn + fn);
+      const metrics = {
+        prevalence: divide(p, population), tpr, fnr, fpr, tnr, ppv,
+        for: divide(fn, fn + tn), fdr: divide(fp, fp + tp), npv,
+        acc: divide(tp + tn, population), ba: (tpr + tnr) / 2,
+        bm: tpr + tnr - 1, mk: ppv + npv - 1,
+        f1: divide(2 * tp, 2 * tp + fp + fn), fm: Math.sqrt(ppv * tpr),
+        lrp: divide(tpr, fpr), lrn: divide(fnr, tnr), ts: divide(tp, tp + fn + fp),
+        mcc: divide(tp * tn - fp * fn, Math.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))),
+        dor: divide(tp * tn, fp * fn)
+      };
+      return { tp, tn, fp, fn, p, n, population, metrics };
+    }
+
+    function format(value) {
+      if (Number.isNaN(value)) return '—';
+      if (!Number.isFinite(value)) return '∞';
+      return value.toFixed(3);
+    }
+
+    function visual(def, value) {
+      if (!Number.isFinite(value)) return { width: Number.isNaN(value) ? 0 : 100, color: 'var(--line)' };
+      let position;
+      let neutral = 0.5;
+      if (def.scale === 'signed') position = (value + 1) / 2;
+      else if (def.scale.startsWith('ratio')) {
+        const cap = def.scale === 'ratio100' ? 100 : 10;
+        position = Math.log(1 + Math.min(Math.max(value, 0), cap)) / Math.log(1 + cap);
+        neutral = Math.log(2) / Math.log(1 + cap);
+      } else position = value;
+      position = Math.min(1, Math.max(0, position));
+
+      if (def.direction === 'neutral') {
+        return { width: position * 100, color: `hsl(${210 - position * 35} 55% 48%)` };
+      }
+      let quality;
+      if (def.scale.startsWith('ratio')) {
+        quality = position <= neutral
+          ? 0.5 * position / neutral
+          : 0.5 + 0.5 * (position - neutral) / (1 - neutral);
+      } else quality = position;
+      if (def.direction === 'low') quality = 1 - quality;
+      return { width: position * 100, color: `hsl(${Math.round(quality * 120)} 62% 42%)` };
+    }
+
+    function draw(data, v) {
+      const canvas = $('plot');
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width < 40) return;
+      const dpr = window.devicePixelRatio || 1;
+      const size = Math.max(1, Math.floor(rect.width));
+      if (canvas.width !== size * dpr || canvas.height !== size * dpr) {
+        canvas.width = size * dpr;
+        canvas.height = size * dpr;
+      }
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, size, size);
+      const css = getComputedStyle(document.documentElement);
+      const color = name => css.getPropertyValue(name).trim();
+      const pad = 18, scale = (size / 2 - pad) / DOMAIN_RADIUS;
+      const sx = x => size / 2 + x * scale;
+      const sy = y => size / 2 - y * scale;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, DOMAIN_RADIUS * scale, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.fillStyle = color('--field');
+      ctx.fillRect(0, 0, size, size);
+      ctx.globalAlpha = .1;
+      ctx.fillStyle = color('--green');
+      ctx.beginPath();
+      ctx.arc(sx(state.green.x), sy(state.green.y), v.greenRadius * scale, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = .8;
+      const glyphSize = Math.min(GLYPH_SIZE, Math.max(12, size / 28));
+      ctx.font = `${glyphSize}px ui-monospace, monospace`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      for (const point of data) {
+        ctx.fillStyle = point.predictedPositive ? color('--green') : color('--red');
+        ctx.fillText(point.positive ? '+' : '−', sx(point.x), sy(point.y));
+      }
+      ctx.restore();
+
+      drawRing(ctx, size / 2, size / 2, DOMAIN_RADIUS * scale, color('--ink'), false, 1.4);
+      drawRing(ctx, size / 2, size / 2, v.sigma * scale, color('--green'), true, 1.3);
+      drawRing(ctx, size / 2, size / 2, v.inner * scale, color('--red'), true, 1.3);
+      drawRing(ctx, sx(state.green.x), sy(state.green.y), v.greenRadius * scale, color('--green'), false, 2);
+      canvas._geometry = { size, scale };
+    }
+
+    function drawRing(ctx, x, y, radius, color, dashed, width) {
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      if (dashed) ctx.setLineDash([5, 5]);
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function pointerPosition(event) {
+      const canvas = $('plot');
+      const rect = canvas.getBoundingClientRect();
+      const geometry = canvas._geometry;
+      return {
+        x: (event.clientX - rect.left - geometry.size / 2) / geometry.scale,
+        y: -(event.clientY - rect.top - geometry.size / 2) / geometry.scale
+      };
+    }
+
+    function update() {
+      const v = values();
+      $('sigma-out').textContent = v.sigma.toFixed(2);
+      $('inner-out').textContent = v.inner.toFixed(2);
+      $('green-radius-out').textContent = v.greenRadius.toFixed(2);
+      const data = points(v);
+      const result = evaluate(data, v);
+      draw(data, v);
+      for (const key of ['tp', 'tn', 'fp', 'fn']) $(key).textContent = result[key];
+      for (const def of metricDefs) {
+        const value = result.metrics[def.id];
+        $('metric-' + def.id).textContent = format(value);
+        if (pairedIds.has(def.id)) {
+          $('bar-' + def.id).style.width = `${Number.isFinite(value) ? Math.min(1, Math.max(0, value)) * 100 : 0}%`;
+        } else {
+          const bar = visual(def, value);
+          $('bar-' + def.id).style.width = `${bar.width}%`;
+          $('bar-' + def.id).style.backgroundColor = bar.color;
+        }
+      }
+    }
+
+    controls.sigma.addEventListener('input', update);
+    controls.inner.addEventListener('input', update);
+    controls.greenRadius.addEventListener('input', update);
+    populationControls.total.addEventListener('input', () => setPopulation('total'));
+    populationControls.balance.addEventListener('input', () => setPopulation('balance'));
+    $('plot').addEventListener('pointerdown', event => {
+      const point = pointerPosition(event);
+      const tolerance = 12 / $('plot')._geometry.scale;
+      if (Math.hypot(point.x - state.green.x, point.y - state.green.y) > values().greenRadius + tolerance) return;
+      state.drag = { point, origin: { ...state.green } };
+      $('plot').setPointerCapture(event.pointerId);
+      $('plot').style.cursor = 'grabbing';
+    });
+    $('plot').addEventListener('pointermove', event => {
+      if (!state.drag) return;
+      const point = pointerPosition(event);
+      state.green = {
+        x: state.drag.origin.x + point.x - state.drag.point.x,
+        y: state.drag.origin.y + point.y - state.drag.point.y
+      };
+      update();
+    });
+    const stopDrag = () => {
+      state.drag = null;
+      $('plot').style.cursor = 'grab';
+    };
+    $('plot').addEventListener('pointerup', stopDrag);
+    $('plot').addEventListener('pointercancel', stopDrag);
+    new ResizeObserver(update).observe($('plot'));
+    syncPopulationControls();
+    rebuildPopulation();
+  })();
+  </script>
+</body>
+</html>
