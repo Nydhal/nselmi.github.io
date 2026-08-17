@@ -78,6 +78,15 @@
       touch-action: none;
       cursor: grab;
     }
+    #cross-section {
+      display: block;
+      width: 100%;
+      height: 112px;
+      margin-top: 8px;
+      background: var(--field);
+      border-radius: 3px;
+    }
+    .cross-caption { margin-top: 4px; color: var(--muted); font-size: 11px; }
     .legend { display: flex; flex-wrap: wrap; gap: 5px 14px; margin-top: 8px; color: var(--muted); }
     .key { white-space: nowrap; }
     .swatch { display: inline-block; width: 15px; border-top: 2px solid; vertical-align: middle; }
@@ -222,7 +231,7 @@
     <details class="tool-intro">
       <summary>How this tool works</summary>
       <p>Real positives (+) follow a 2D normal distribution; real negatives (−) are uniform in the surrounding annulus. Points inside the movable green circle are predicted positive. Adjust the population and geometry controls, change the decision radius, or drag the decision circle to update every result live.</p>
-      <p>The confusion matrix shows the current operating point. ROC and precision–recall curves sweep every possible radius; their marker shows the selected radius. The prevalence stress test changes only class balance while holding TPR and FPR fixed, exposing when accuracy or precision is driven by prevalence rather than better discrimination.</p>
+      <p>The slim center cross-section shares the field’s exact −5 to +5 horizontal scale and shows both class densities and their boundaries at y = 0. The confusion matrix shows the current operating point. ROC and precision–recall curves sweep every possible radius; their marker shows the selected radius. The prevalence stress test changes only class balance while holding TPR and FPR fixed, exposing when accuracy or precision is driven by prevalence rather than better discrimination.</p>
     </details>
   </header>
 
@@ -256,6 +265,8 @@
 
     <section class="panel plot-panel" aria-label="Classification field">
       <canvas id="plot" width="520" height="520" role="img" aria-label="Positive Gaussian points and negative annulus points; drag the green decision circle to move its center"></canvas>
+      <canvas id="cross-section" width="520" height="112" role="img" aria-label="Horizontal center cross-section from minus five to five showing the positive normal density, negative annulus density, and decision boundaries"></canvas>
+      <div class="cross-caption"><span class="green">normal +</span> · <span class="red">uniform annulus −</span> · solid vertical lines: decision boundary · cross-section y = 0</div>
       <div class="legend" aria-label="Plot legend">
         <span class="key"><span class="swatch green"></span> predicted +</span>
         <span class="key"><span class="swatch red"></span> predicted −</span>
@@ -611,6 +622,126 @@
       canvas._geometry = { size, scale };
     }
 
+    function drawCrossSection(v) {
+      const canvas = $('cross-section');
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width < 40 || rect.height < 40) return;
+      const dpr = window.devicePixelRatio || 1;
+      const width = Math.max(1, Math.floor(rect.width));
+      const height = Math.max(1, Math.floor(rect.height));
+      if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+      }
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+      const css = getComputedStyle(document.documentElement);
+      const color = name => css.getPropertyValue(name).trim();
+      const left = 18, right = width - 18, top = 19, bottom = height - 20;
+      const plotWidth = right - left, plotHeight = bottom - top;
+      const sx = x => left + (x + DOMAIN_RADIUS) / (2 * DOMAIN_RADIUS) * plotWidth;
+
+      ctx.font = '10px ui-monospace, monospace';
+      ctx.fillStyle = color('--muted');
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText('class density', left, 4);
+
+      const crossDistance = Math.abs(state.green.y);
+      const halfChord = crossDistance <= v.greenRadius
+        ? Math.sqrt(v.greenRadius ** 2 - crossDistance ** 2)
+        : NaN;
+      if (Number.isFinite(halfChord)) {
+        const start = Math.max(-DOMAIN_RADIUS, state.green.x - halfChord);
+        const end = Math.min(DOMAIN_RADIUS, state.green.x + halfChord);
+        if (start < end) {
+          ctx.save();
+          ctx.globalAlpha = .08;
+          ctx.fillStyle = color('--green');
+          ctx.fillRect(sx(start), top, sx(end) - sx(start), plotHeight);
+          ctx.restore();
+        }
+      }
+
+      const retainedMass = 1 - Math.exp(-(DOMAIN_RADIUS ** 2) / (2 * v.sigma ** 2));
+      const positivePeak = 1 / (2 * Math.PI * v.sigma ** 2 * retainedMass);
+      const negativeDensity = 1 / (Math.PI * (DOMAIN_RADIUS ** 2 - v.inner ** 2));
+      const densityMax = Math.max(positivePeak, negativeDensity);
+      const sy = density => bottom - density / densityMax * plotHeight;
+
+      ctx.save();
+      ctx.globalAlpha = .12;
+      ctx.fillStyle = color('--red');
+      const negativeTop = sy(negativeDensity);
+      ctx.fillRect(sx(-DOMAIN_RADIUS), negativeTop, sx(-v.inner) - sx(-DOMAIN_RADIUS), bottom - negativeTop);
+      ctx.fillRect(sx(v.inner), negativeTop, sx(DOMAIN_RADIUS) - sx(v.inner), bottom - negativeTop);
+      ctx.restore();
+      ctx.strokeStyle = color('--red');
+      ctx.lineWidth = 1.5;
+      for (const interval of [[-DOMAIN_RADIUS, -v.inner], [v.inner, DOMAIN_RADIUS]]) {
+        ctx.beginPath();
+        ctx.moveTo(sx(interval[0]), bottom);
+        ctx.lineTo(sx(interval[0]), negativeTop);
+        ctx.lineTo(sx(interval[1]), negativeTop);
+        ctx.lineTo(sx(interval[1]), bottom);
+        ctx.stroke();
+      }
+
+      ctx.beginPath();
+      for (let i = 0; i <= 240; i++) {
+        const x = -DOMAIN_RADIUS + i / 240 * 2 * DOMAIN_RADIUS;
+        const density = positivePeak * Math.exp(-(x ** 2) / (2 * v.sigma ** 2));
+        const px = sx(x), py = sy(density);
+        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+      ctx.lineTo(right, bottom);
+      ctx.lineTo(left, bottom);
+      ctx.closePath();
+      ctx.save();
+      ctx.globalAlpha = .1;
+      ctx.fillStyle = color('--green');
+      ctx.fill();
+      ctx.restore();
+      ctx.strokeStyle = color('--green');
+      ctx.lineWidth = 1.8;
+      ctx.stroke();
+
+      ctx.save();
+      ctx.setLineDash([4, 4]);
+      ctx.lineWidth = 1;
+      for (const x of [-v.inner, v.inner]) {
+        ctx.strokeStyle = color('--red');
+        ctx.beginPath(); ctx.moveTo(sx(x), top); ctx.lineTo(sx(x), bottom); ctx.stroke();
+      }
+      for (const x of [-v.sigma, v.sigma]) {
+        ctx.strokeStyle = color('--green');
+        ctx.beginPath(); ctx.moveTo(sx(x), top); ctx.lineTo(sx(x), bottom); ctx.stroke();
+      }
+      ctx.restore();
+
+      if (Number.isFinite(halfChord)) {
+        ctx.strokeStyle = color('--green');
+        ctx.lineWidth = 2;
+        for (const x of [state.green.x - halfChord, state.green.x + halfChord]) {
+          if (x < -DOMAIN_RADIUS || x > DOMAIN_RADIUS) continue;
+          ctx.beginPath(); ctx.moveTo(sx(x), top); ctx.lineTo(sx(x), bottom); ctx.stroke();
+        }
+      }
+
+      ctx.strokeStyle = color('--ink');
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(left, bottom); ctx.lineTo(right, bottom); ctx.stroke();
+      for (const x of [-DOMAIN_RADIUS, 0, DOMAIN_RADIUS]) {
+        const px = sx(x);
+        ctx.beginPath(); ctx.moveTo(px, bottom); ctx.lineTo(px, bottom + 4); ctx.stroke();
+        ctx.fillStyle = color('--muted');
+        ctx.textAlign = x === -DOMAIN_RADIUS ? 'left' : x === DOMAIN_RADIUS ? 'right' : 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillText(String(x), px, bottom + 5);
+      }
+    }
+
     function drawRing(ctx, x, y, radius, color, dashed, width) {
       ctx.save();
       ctx.strokeStyle = color;
@@ -794,6 +925,7 @@
       const data = points(v);
       const result = evaluate(data, v);
       draw(data, v);
+      drawCrossSection(v);
       for (const key of ['tp', 'tn', 'fp', 'fn']) $(key).textContent = result[key];
       for (const def of metricDefs) {
         const value = result.metrics[def.id];
@@ -839,6 +971,7 @@
     $('plot').addEventListener('pointercancel', stopDrag);
     const resizeObserver = new ResizeObserver(update);
     resizeObserver.observe($('plot'));
+    resizeObserver.observe($('cross-section'));
     resizeObserver.observe($('roc-chart'));
     resizeObserver.observe($('pr-chart'));
     resizeObserver.observe($('stress-chart'));
