@@ -231,7 +231,7 @@
     <details class="tool-intro">
       <summary>How this tool works</summary>
       <p>Real positives (+) follow a 2D normal distribution; real negatives (−) are uniform in the surrounding annulus. Points inside the movable green circle are predicted positive. Adjust the population and geometry controls, change the decision radius, or drag the decision circle to update every result live.</p>
-      <p>The slim center cross-section shares the field’s exact −5 to +5 horizontal scale and shows both class densities and their boundaries at y = 0. The confusion matrix shows the current operating point. ROC and precision–recall curves sweep every possible radius; their marker shows the selected radius. The prevalence stress test changes only class balance while holding TPR and FPR fixed, exposing when accuracy or precision is driven by prevalence rather than better discrimination.</p>
+      <p>The positive distribution is a Gaussian conditioned to remain inside the radius-5 field, so the σ control reports underlying → visible standard deviation; truncation matters most at large σ. The slim center cross-section shares the field’s exact −5 to +5 horizontal scale and shows only the two class densities at y = 0. The confusion matrix shows the current operating point. ROC and precision–recall curves sweep every possible radius; their marker shows the selected radius. The prevalence stress test changes only class balance while holding TPR and FPR fixed.</p>
     </details>
   </header>
 
@@ -249,7 +249,7 @@
 
       <h2>Population geometry</h2>
       <label class="control" for="sigma">
-        <span class="control-line"><span>Positive std. dev.</span><output id="sigma-out"></output></span>
+        <span class="control-line"><span>Gaussian σ</span><output id="sigma-out"></output></span>
         <input id="sigma" type="range" min="0.10" max="3.00" step="0.05" value="1.00">
       </label>
       <label class="control" for="inner">
@@ -265,14 +265,14 @@
 
     <section class="panel plot-panel" aria-label="Classification field">
       <canvas id="plot" width="520" height="520" role="img" aria-label="Positive Gaussian points and negative annulus points; drag the green decision circle to move its center"></canvas>
-      <canvas id="cross-section" width="520" height="112" role="img" aria-label="Horizontal center cross-section from minus five to five showing the positive normal density, negative annulus density, and decision boundaries"></canvas>
-      <div class="cross-caption"><span class="green">normal +</span> · <span class="red">uniform annulus −</span> · solid vertical lines: decision boundary · cross-section y = 0</div>
+      <canvas id="cross-section" width="520" height="112" role="img" aria-label="Horizontal center cross-section from minus five to five showing the truncated positive Gaussian density and negative uniform annulus density"></canvas>
+      <div class="cross-caption"><span class="green">truncated Gaussian +</span> · <span class="red">uniform annulus −</span> · cross-section y = 0</div>
       <div class="legend" aria-label="Plot legend">
         <span class="key"><span class="swatch green"></span> predicted +</span>
         <span class="key"><span class="swatch red"></span> predicted −</span>
         <span class="key">+ real positive</span>
         <span class="key">− real negative</span>
-        <span class="key green"><span class="swatch dashed"></span> 1σ</span>
+        <span class="key green"><span class="swatch dashed"></span> visible σ</span>
         <span class="key red"><span class="swatch dashed"></span> annulus inner</span>
       </div>
     </section>
@@ -467,6 +467,13 @@
       return Object.fromEntries(Object.entries(controls).map(([key, el]) => [key, Number(el.value)]));
     }
 
+    function visiblePositiveSigma(sigma) {
+      const limit = DOMAIN_RADIUS ** 2 / (2 * sigma ** 2);
+      const tail = Math.exp(-limit);
+      const varianceRatio = (1 - (limit + 1) * tail) / (1 - tail);
+      return sigma * Math.sqrt(Math.max(0, varianceRatio));
+    }
+
     function points(v) {
       const retainedMass = 1 - Math.exp(-(DOMAIN_RADIUS ** 2) / (2 * v.sigma ** 2));
       const positive = state.positive.map(q => {
@@ -616,7 +623,7 @@
       ctx.restore();
 
       drawRing(ctx, size / 2, size / 2, DOMAIN_RADIUS * scale, color('--ink'), false, 1.4);
-      drawRing(ctx, size / 2, size / 2, v.sigma * scale, color('--green'), true, 1.3);
+      drawRing(ctx, size / 2, size / 2, visiblePositiveSigma(v.sigma) * scale, color('--green'), true, 1.3);
       drawRing(ctx, size / 2, size / 2, v.inner * scale, color('--red'), true, 1.3);
       drawRing(ctx, sx(state.green.x), sy(state.green.y), v.greenRadius * scale, color('--green'), false, 2);
       canvas._geometry = { size, scale };
@@ -647,22 +654,6 @@
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
       ctx.fillText('class density', left, 4);
-
-      const crossDistance = Math.abs(state.green.y);
-      const halfChord = crossDistance <= v.greenRadius
-        ? Math.sqrt(v.greenRadius ** 2 - crossDistance ** 2)
-        : NaN;
-      if (Number.isFinite(halfChord)) {
-        const start = Math.max(-DOMAIN_RADIUS, state.green.x - halfChord);
-        const end = Math.min(DOMAIN_RADIUS, state.green.x + halfChord);
-        if (start < end) {
-          ctx.save();
-          ctx.globalAlpha = .08;
-          ctx.fillStyle = color('--green');
-          ctx.fillRect(sx(start), top, sx(end) - sx(start), plotHeight);
-          ctx.restore();
-        }
-      }
 
       const retainedMass = 1 - Math.exp(-(DOMAIN_RADIUS ** 2) / (2 * v.sigma ** 2));
       const positivePeak = 1 / (2 * Math.PI * v.sigma ** 2 * retainedMass);
@@ -714,20 +705,12 @@
         ctx.strokeStyle = color('--red');
         ctx.beginPath(); ctx.moveTo(sx(x), top); ctx.lineTo(sx(x), bottom); ctx.stroke();
       }
-      for (const x of [-v.sigma, v.sigma]) {
+      const visibleSigma = visiblePositiveSigma(v.sigma);
+      for (const x of [-visibleSigma, visibleSigma]) {
         ctx.strokeStyle = color('--green');
         ctx.beginPath(); ctx.moveTo(sx(x), top); ctx.lineTo(sx(x), bottom); ctx.stroke();
       }
       ctx.restore();
-
-      if (Number.isFinite(halfChord)) {
-        ctx.strokeStyle = color('--green');
-        ctx.lineWidth = 2;
-        for (const x of [state.green.x - halfChord, state.green.x + halfChord]) {
-          if (x < -DOMAIN_RADIUS || x > DOMAIN_RADIUS) continue;
-          ctx.beginPath(); ctx.moveTo(sx(x), top); ctx.lineTo(sx(x), bottom); ctx.stroke();
-        }
-      }
 
       ctx.strokeStyle = color('--ink');
       ctx.lineWidth = 1;
@@ -919,7 +902,7 @@
 
     function update() {
       const v = values();
-      $('sigma-out').textContent = v.sigma.toFixed(2);
+      $('sigma-out').textContent = `${v.sigma.toFixed(2)} → ${visiblePositiveSigma(v.sigma).toFixed(2)}`;
       $('inner-out').textContent = v.inner.toFixed(2);
       $('green-radius-out').textContent = v.greenRadius.toFixed(2);
       const data = points(v);
