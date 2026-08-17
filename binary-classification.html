@@ -27,6 +27,22 @@
     header, main, footer { max-width: 1440px; margin: auto; }
     header { padding: 16px 18px 10px; }
     h1 { margin: 0; font: 400 21px/1.2 Georgia, serif; }
+    .tool-intro { margin-top: 7px; max-width: 920px; }
+    .tool-intro > summary,
+    .metric-group > summary {
+      position: relative;
+      padding-left: 14px;
+      color: var(--muted);
+      cursor: pointer;
+      list-style: none;
+    }
+    .tool-intro > summary::-webkit-details-marker,
+    .metric-group > summary::-webkit-details-marker { display: none; }
+    .tool-intro > summary::before,
+    .metric-group > summary::before { content: '▸'; position: absolute; left: 0; }
+    .tool-intro[open] > summary::before,
+    .metric-group[open] > summary::before { content: '▾'; }
+    .tool-intro p { margin: 6px 0 0 14px; color: var(--muted); }
     main {
       display: grid;
       grid-template-columns: 220px minmax(340px, 520px) minmax(440px, 1fr);
@@ -135,6 +151,9 @@
     .metric-pair-fill { display: block; height: 100%; transition: width 120ms linear; }
     .metric-pair-fill.good { background: var(--green); }
     .metric-pair-fill.bad { background: var(--red); }
+    .metric-group { margin-top: 4px; border-bottom: 1px solid var(--line); }
+    .metric-group > summary { padding-block: 7px; }
+    .metric-group > .metrics { border-top: 1px solid var(--line); }
     .analysis-panel { grid-column: 1 / -1; }
     .analysis-grid {
       display: grid;
@@ -200,6 +219,11 @@
 <body>
   <header>
     <h1>Binary Classification - Nidhal Selmi</h1>
+    <details class="tool-intro">
+      <summary>How this tool works</summary>
+      <p>Real positives (+) follow a 2D normal distribution; real negatives (−) are uniform in the surrounding annulus. Points inside the movable green circle are predicted positive. Adjust the population and geometry controls, change the decision radius, or drag the decision circle to update every result live.</p>
+      <p>The confusion matrix shows the current operating point. ROC and precision–recall curves sweep every possible radius; their marker shows the selected radius. The prevalence stress test changes only class balance while holding TPR and FPR fixed, exposing when accuracy or precision is driven by prevalence rather than better discrimination.</p>
+    </details>
   </header>
 
   <main>
@@ -251,7 +275,11 @@
           <tr><th class="row-label">Negative</th><td><abbr title="False positive / False alarm / Overestimation / Type I error">FP</abbr> <span id="fp">—</span></td><td><abbr title="True negative / Correct rejection">TN</abbr> <span id="tn">—</span></td></tr>
         </tbody>
       </table>
-      <div class="metrics" id="metrics"></div>
+      <div class="metrics" id="core-metrics"></div>
+      <details class="metric-group">
+        <summary>More metrics (11)</summary>
+        <div class="metrics" id="extra-metrics"></div>
+      </details>
     </section>
 
     <section class="panel analysis-panel" aria-labelledby="analysis-title">
@@ -326,17 +354,22 @@
       { id: 'dor', short: 'DOR', name: 'Diagnostic odds ratio', scale: 'ratio100', direction: 'high', description: 'Ratio of the odds of a correct result to the odds of an incorrect result. (TP × TN) / (FP × FN). Range [0,∞); bar uses a capped logarithmic axis.' }
     ];
     const metricsById = Object.fromEntries(allMetricDefs.map(def => [def.id, def]));
-    const metricRows = [
+    const coreMetricRows = [
       { type: 'single', def: metricsById.prevalence },
       { type: 'pair', good: metricsById.tpr, bad: metricsById.fnr },
       { type: 'pair', good: metricsById.tnr, bad: metricsById.fpr },
-      { type: 'single', def: metricsById.rocauc },
-      { type: 'single', def: metricsById.prauc },
       { type: 'pair', good: metricsById.ppv, bad: metricsById.fdr },
+      { type: 'single', def: metricsById.acc },
+      { type: 'single', def: metricsById.f1 },
+      { type: 'single', def: metricsById.rocauc },
+      { type: 'single', def: metricsById.prauc }
+    ];
+    const extraMetricRows = [
       { type: 'pair', good: metricsById.npv, bad: metricsById.for },
-      ...['acc', 'ba', 'bm', 'mk', 'mcc', 'f1', 'fm', 'ts', 'lrp', 'lrn', 'dor']
+      ...['ba', 'mcc', 'bm', 'mk', 'fm', 'ts', 'lrp', 'lrn', 'dor']
         .map(id => ({ type: 'single', def: metricsById[id] }))
     ];
+    const metricRows = coreMetricRows.concat(extraMetricRows);
     const metricDefs = allMetricDefs;
     const pairedIds = new Set(metricRows.filter(row => row.type === 'pair').flatMap(row => [row.good.id, row.bad.id]));
 
@@ -373,7 +406,9 @@
       </details>`;
     }
 
-    $('metrics').innerHTML = metricRows.map(row => row.type === 'pair' ? pairedMetric(row) : singleMetric(row.def)).join('');
+    const renderMetricRows = rows => rows.map(row => row.type === 'pair' ? pairedMetric(row) : singleMetric(row.def)).join('');
+    $('core-metrics').innerHTML = renderMetricRows(coreMetricRows);
+    $('extra-metrics').innerHTML = renderMetricRows(extraMetricRows);
 
     function mulberry32(seed) {
       return () => {
