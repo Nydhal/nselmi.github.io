@@ -53,7 +53,7 @@
     output { color: var(--muted); font-variant-numeric: tabular-nums; }
     input[type="range"] { width: 100%; accent-color: var(--green); }
     .plot-panel { width: 100%; max-width: 520px; padding: 10px; justify-self: center; }
-    canvas {
+    #plot {
       display: block;
       width: 100%;
       aspect-ratio: 1;
@@ -135,6 +135,41 @@
     .metric-pair-fill { display: block; height: 100%; transition: width 120ms linear; }
     .metric-pair-fill.good { background: var(--green); }
     .metric-pair-fill.bad { background: var(--red); }
+    .analysis-panel { grid-column: 1 / -1; }
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .analysis-item { min-width: 0; }
+    .analysis-item h3 {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 5px;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .analysis-value { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .chart {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.45;
+      background: var(--field);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+    }
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .chart-legend .swatch { width: 12px; }
+    .ink { color: var(--ink); }
+    .analysis-note { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
     footer {
       padding: 0 18px 18px;
       color: var(--muted);
@@ -145,6 +180,9 @@
       main { grid-template-columns: 210px minmax(340px, 1fr); }
       .results { grid-column: 1 / -1; }
       .metrics { grid-template-columns: 1fr 1fr; }
+      .analysis-grid { grid-template-columns: 1fr 1fr; }
+      .analysis-item:last-child { grid-column: 1 / -1; }
+      .analysis-item:last-child .chart { aspect-ratio: 2.2; }
     }
     @media (max-width: 680px) {
       header { padding-inline: 10px; }
@@ -152,6 +190,9 @@
       footer { padding-inline: 10px; }
       .panel { margin-bottom: 10px; }
       .metrics { grid-template-columns: 1fr; }
+      .analysis-grid { grid-template-columns: 1fr; }
+      .analysis-item:last-child { grid-column: auto; }
+      .analysis-item:last-child .chart { aspect-ratio: 1.45; }
       .summary-table th, .summary-table td { padding-inline: 3px; }
     }
   </style>
@@ -212,6 +253,28 @@
       </table>
       <div class="metrics" id="metrics"></div>
     </section>
+
+    <section class="panel analysis-panel" aria-labelledby="analysis-title">
+      <h2 id="analysis-title">Threshold and prevalence analysis</h2>
+      <div class="analysis-grid">
+        <section class="analysis-item" aria-labelledby="roc-title">
+          <h3 id="roc-title"><span>ROC curve</span><span class="analysis-value">AUC <b id="roc-auc">—</b></span></h3>
+          <canvas class="chart" id="roc-chart" width="420" height="290" role="img" aria-label="Receiver operating characteristic curve with the current decision radius marked"></canvas>
+          <div class="chart-legend"><span class="key green"><span class="swatch"></span> threshold sweep</span><span class="key ink">● current radius</span><span class="key"><span class="swatch dashed"></span> random</span></div>
+        </section>
+        <section class="analysis-item" aria-labelledby="pr-title">
+          <h3 id="pr-title"><span>Precision–recall curve</span><span class="analysis-value">PR-AUC <b id="pr-auc">—</b></span></h3>
+          <canvas class="chart" id="pr-chart" width="420" height="290" role="img" aria-label="Precision recall curve with the current decision radius marked"></canvas>
+          <div class="chart-legend"><span class="key red"><span class="swatch"></span> threshold sweep</span><span class="key ink">● current radius</span><span class="key"><span class="swatch dashed"></span> prevalence</span></div>
+        </section>
+        <section class="analysis-item" aria-labelledby="stress-title">
+          <h3 id="stress-title"><span>Prevalence stress test</span><span class="analysis-value">current <b id="stress-prevalence">—</b></span></h3>
+          <canvas class="chart" id="stress-chart" width="420" height="290" role="img" aria-label="Accuracy precision and F1 across all possible prevalence values, holding sensitivity and false positive rate constant"></canvas>
+          <div class="chart-legend"><span class="key ink"><span class="swatch"></span> accuracy</span><span class="key green"><span class="swatch"></span> precision</span><span class="key red"><span class="swatch"></span> F1</span></div>
+          <p class="analysis-note">Sweeps prevalence while holding the current TPR and FPR fixed.</p>
+        </section>
+      </div>
+    </section>
   </main>
 
   <footer>Dependencies: none — HTML · CSS · Canvas 2D · JS</footer>
@@ -244,6 +307,8 @@
       { id: 'fnr', short: 'FNR', name: 'False negative rate', scale: 'unit', direction: 'low', description: 'Share of real positives missed. Also miss rate and Type II error rate. FN / P. Range [0,1].' },
       { id: 'tnr', short: 'TNR', name: 'True negative rate', scale: 'unit', direction: 'high', description: 'Share of real negatives correctly rejected. Also specificity, SPC, and selectivity. TN / N. Range [0,1].' },
       { id: 'fpr', short: 'FPR', name: 'False positive rate', scale: 'unit', direction: 'low', description: 'Share of real negatives incorrectly accepted. Also probability of false alarm, fall-out, and Type I error rate. FP / N. Range [0,1].' },
+      { id: 'rocauc', short: 'ROC-AUC', name: 'Area under the ROC curve', scale: 'unit', direction: 'high', description: 'Probability that a randomly chosen real positive is ranked ahead of a randomly chosen real negative by distance to the decision center. Sweeps every decision radius. Range [0,1]; 0.5 is random ranking.' },
+      { id: 'prauc', short: 'PR-AUC', name: 'Area under the precision–recall curve', scale: 'unit', direction: 'high', description: 'Average precision across the full decision-radius sweep, using stepwise integration. Its baseline is prevalence, so it responds strongly to class imbalance. Range [0,1].' },
       { id: 'ppv', short: 'PPV', name: 'Positive predictive value', scale: 'unit', direction: 'high', description: 'Share of positive predictions that are correct. Also precision. TP / (TP + FP). Range [0,1].' },
       { id: 'fdr', short: 'FDR', name: 'False discovery rate', scale: 'unit', direction: 'low', description: 'Share of positive predictions that are incorrect. FP / (TP + FP). Range [0,1].' },
       { id: 'npv', short: 'NPV', name: 'Negative predictive value', scale: 'unit', direction: 'high', description: 'Share of negative predictions that are correct. TN / (TN + FN). Range [0,1].' },
@@ -265,6 +330,8 @@
       { type: 'single', def: metricsById.prevalence },
       { type: 'pair', good: metricsById.tpr, bad: metricsById.fnr },
       { type: 'pair', good: metricsById.tnr, bad: metricsById.fpr },
+      { type: 'single', def: metricsById.rocauc },
+      { type: 'single', def: metricsById.prauc },
       { type: 'pair', good: metricsById.ppv, bad: metricsById.fdr },
       { type: 'pair', good: metricsById.npv, bad: metricsById.for },
       ...['acc', 'ba', 'bm', 'mk', 'mcc', 'f1', 'fm', 'ts', 'lrp', 'lrn', 'dor']
@@ -368,6 +435,41 @@
     }
 
     const divide = (a, b) => b === 0 ? NaN : a / b;
+
+    function thresholdSweep(data) {
+      const ranked = data
+        .map(point => ({
+          distance: Math.hypot(point.x - state.green.x, point.y - state.green.y),
+          positive: point.positive
+        }))
+        .sort((a, b) => a.distance - b.distance);
+      const p = state.p, n = state.n;
+      if (p === 0 || n === 0) return { roc: [], pr: [], rocauc: NaN, prauc: NaN };
+
+      let tp = 0, fp = 0, previousTpr = 0, previousFpr = 0;
+      let rocauc = 0, prauc = 0, previousRecall = 0;
+      const roc = [{ x: 0, y: 0 }];
+      const pr = [{ x: 0, y: 1 }];
+      for (let i = 0; i < ranked.length;) {
+        const distance = ranked[i].distance;
+        while (i < ranked.length && ranked[i].distance === distance) {
+          ranked[i].positive ? tp++ : fp++;
+          i++;
+        }
+        const tpr = tp / p;
+        const fpr = fp / n;
+        const precision = tp / (tp + fp);
+        rocauc += (fpr - previousFpr) * (tpr + previousTpr) / 2;
+        prauc += (tpr - previousRecall) * precision;
+        roc.push({ x: fpr, y: tpr });
+        pr.push({ x: tpr, y: precision });
+        previousTpr = tpr;
+        previousFpr = fpr;
+        previousRecall = tpr;
+      }
+      return { roc, pr, rocauc, prauc };
+    }
+
     function evaluate(data, v) {
       let tp = 0, tn = 0, fp = 0, fn = 0;
       const r2 = v.greenRadius ** 2;
@@ -380,8 +482,10 @@
       const p = tp + fn, n = tn + fp;
       const tpr = divide(tp, p), fnr = divide(fn, p), fpr = divide(fp, n), tnr = divide(tn, n);
       const ppv = divide(tp, tp + fp), npv = divide(tn, tn + fn);
+      const sweep = thresholdSweep(data);
       const metrics = {
         prevalence: divide(p, population), tpr, fnr, fpr, tnr, ppv,
+        rocauc: sweep.rocauc, prauc: sweep.prauc,
         for: divide(fn, fn + tn), fdr: divide(fp, fp + tp), npv,
         acc: divide(tp + tn, population), ba: (tpr + tnr) / 2,
         bm: tpr + tnr - 1, mk: ppv + npv - 1,
@@ -390,7 +494,7 @@
         mcc: divide(tp * tn - fp * fn, Math.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))),
         dor: divide(tp * tn, fp * fn)
       };
-      return { tp, tn, fp, fn, p, n, population, metrics };
+      return { tp, tn, fp, fn, p, n, population, metrics, sweep };
     }
 
     function format(value) {
@@ -483,6 +587,160 @@
       ctx.restore();
     }
 
+    function chartContext(id) {
+      const canvas = $(id);
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width < 40 || rect.height < 40) return null;
+      const dpr = window.devicePixelRatio || 1;
+      const width = Math.max(1, Math.floor(rect.width));
+      const height = Math.max(1, Math.floor(rect.height));
+      if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+      }
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+      const css = getComputedStyle(document.documentElement);
+      const color = name => css.getPropertyValue(name).trim();
+      const frame = { left: 42, top: 10, right: width - 10, bottom: height - 31 };
+      frame.width = frame.right - frame.left;
+      frame.height = frame.bottom - frame.top;
+      frame.x = value => frame.left + value * frame.width;
+      frame.y = value => frame.bottom - value * frame.height;
+      return { canvas, ctx, color, frame, width, height };
+    }
+
+    function drawPath(ctx, frame, points, stroke, width = 2, dash = []) {
+      ctx.save();
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = width;
+      ctx.setLineDash(dash);
+      ctx.beginPath();
+      let drawing = false;
+      for (const point of points) {
+        if (!Number.isFinite(point.x) || !Number.isFinite(point.y)) {
+          drawing = false;
+          continue;
+        }
+        const x = frame.x(Math.min(1, Math.max(0, point.x)));
+        const y = frame.y(Math.min(1, Math.max(0, point.y)));
+        drawing ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+        drawing = true;
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawUnitChart(id, series, baselines, markers, xLabel, yLabel, emptyMessage) {
+      const chart = chartContext(id);
+      if (!chart) return;
+      const { ctx, color, frame, width, height } = chart;
+      ctx.font = '10px ui-monospace, monospace';
+      ctx.fillStyle = color('--muted');
+      ctx.strokeStyle = color('--line');
+      ctx.lineWidth = 1;
+
+      for (const tick of [0, 0.5, 1]) {
+        const x = frame.x(tick), y = frame.y(tick);
+        ctx.beginPath(); ctx.moveTo(x, frame.top); ctx.lineTo(x, frame.bottom); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(frame.left, y); ctx.lineTo(frame.right, y); ctx.stroke();
+        ctx.textAlign = tick === 0 ? 'left' : tick === 1 ? 'right' : 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillText(tick.toFixed(1), x, frame.bottom + 4);
+        ctx.textAlign = 'right';
+        ctx.textBaseline = tick === 0 ? 'bottom' : tick === 1 ? 'top' : 'middle';
+        ctx.fillText(tick.toFixed(1), frame.left - 5, y);
+      }
+      ctx.strokeStyle = color('--ink');
+      ctx.strokeRect(frame.left, frame.top, frame.width, frame.height);
+
+      for (const baseline of baselines) {
+        drawPath(ctx, frame, baseline.points, color(baseline.color), baseline.width || 1, baseline.dash || [4, 4]);
+      }
+      for (const item of series) {
+        drawPath(ctx, frame, item.points, color(item.color), item.width || 2);
+      }
+      for (const marker of markers) {
+        if (!Number.isFinite(marker.x) || !Number.isFinite(marker.y)) continue;
+        ctx.beginPath();
+        ctx.arc(frame.x(marker.x), frame.y(marker.y), 4, 0, Math.PI * 2);
+        ctx.fillStyle = color('--panel');
+        ctx.fill();
+        ctx.strokeStyle = color(marker.color || '--ink');
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      if (emptyMessage) {
+        ctx.fillStyle = color('--muted');
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(emptyMessage, frame.left + frame.width / 2, frame.top + frame.height / 2);
+      }
+      ctx.fillStyle = color('--muted');
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+      ctx.fillText(xLabel, frame.left + frame.width / 2, height - 1);
+      ctx.save();
+      ctx.translate(10, frame.top + frame.height / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText(yLabel, 0, 0);
+      ctx.restore();
+    }
+
+    function drawAnalyses(result) {
+      const { metrics, sweep } = result;
+      $('roc-auc').textContent = format(metrics.rocauc);
+      $('pr-auc').textContent = format(metrics.prauc);
+      $('stress-prevalence').textContent = format(metrics.prevalence);
+      const invalid = !Number.isFinite(metrics.rocauc);
+
+      drawUnitChart(
+        'roc-chart',
+        [{ points: sweep.roc, color: '--green' }],
+        [{ points: [{ x: 0, y: 0 }, { x: 1, y: 1 }], color: '--muted' }],
+        [{ x: metrics.fpr, y: metrics.tpr, color: '--ink' }],
+        'False positive rate', 'True positive rate', invalid ? 'requires P and N' : ''
+      );
+      drawUnitChart(
+        'pr-chart',
+        [{ points: sweep.pr, color: '--red' }],
+        [{ points: [{ x: 0, y: metrics.prevalence }, { x: 1, y: metrics.prevalence }], color: '--muted' }],
+        [{ x: metrics.tpr, y: metrics.ppv, color: '--ink' }],
+        'Recall', 'Precision', invalid ? 'requires P and N' : ''
+      );
+
+      const stress = { acc: [], ppv: [], f1: [] };
+      for (let i = 0; i <= 100; i++) {
+        const prevalence = i / 100;
+        const accuracy = prevalence * metrics.tpr + (1 - prevalence) * metrics.tnr;
+        const precision = divide(prevalence * metrics.tpr, prevalence * metrics.tpr + (1 - prevalence) * metrics.fpr);
+        const f1 = divide(2 * precision * metrics.tpr, precision + metrics.tpr);
+        stress.acc.push({ x: prevalence, y: accuracy });
+        stress.ppv.push({ x: prevalence, y: precision });
+        stress.f1.push({ x: prevalence, y: f1 });
+      }
+      const prevalenceLine = Number.isFinite(metrics.prevalence)
+        ? [{ x: metrics.prevalence, y: 0 }, { x: metrics.prevalence, y: 1 }]
+        : [];
+      drawUnitChart(
+        'stress-chart',
+        [
+          { points: stress.acc, color: '--ink', width: 1.5 },
+          { points: stress.ppv, color: '--green' },
+          { points: stress.f1, color: '--red' }
+        ],
+        [{ points: prevalenceLine, color: '--muted' }],
+        [
+          { x: metrics.prevalence, y: metrics.acc, color: '--ink' },
+          { x: metrics.prevalence, y: metrics.ppv, color: '--green' },
+          { x: metrics.prevalence, y: metrics.f1, color: '--red' }
+        ],
+        'Prevalence', 'Metric value', (!Number.isFinite(metrics.tpr) || !Number.isFinite(metrics.fpr)) ? 'requires P and N' : ''
+      );
+    }
+
     function pointerPosition(event) {
       const canvas = $('plot');
       const rect = canvas.getBoundingClientRect();
@@ -513,6 +771,7 @@
           $('bar-' + def.id).style.backgroundColor = bar.color;
         }
       }
+      drawAnalyses(result);
     }
 
     controls.sigma.addEventListener('input', update);
@@ -543,7 +802,11 @@
     };
     $('plot').addEventListener('pointerup', stopDrag);
     $('plot').addEventListener('pointercancel', stopDrag);
-    new ResizeObserver(update).observe($('plot'));
+    const resizeObserver = new ResizeObserver(update);
+    resizeObserver.observe($('plot'));
+    resizeObserver.observe($('roc-chart'));
+    resizeObserver.observe($('pr-chart'));
+    resizeObserver.observe($('stress-chart'));
     syncPopulationControls();
     rebuildPopulation();
   })();
