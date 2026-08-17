@@ -1,0 +1,12 @@
+# Nidhal Selmi
+
+> A personal site featuring clear, interactive visual demos designed to help readers internalize data-science fundamentals and build deeper intuition through direct exploration.
+
+## Interactive demos
+
+- [Classification Trade-offs Mini-Lab](https://nselmi.com/binary-classification.html): A simplified 2D binary-classification demo for exploring class geometry, prevalence, decision thresholds, confusion-matrix metrics, ROC and precision-recall curves, and common evaluation trade-offs.
+- [Impossible Fractal Cellular Automaton](https://nselmi.com/impossible-fractal-ca.html): An interactive explorer for a four-state cellular automaton on triangular tessellations.
+
+## Site
+
+- [Home](https://nselmi.com/): Nidhal Selmi's personal site and index of interactive demos.
