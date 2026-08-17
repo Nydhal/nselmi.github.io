@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Interactive laboratory for exploring class imbalance, decision thresholds, ROC and precision-recall behavior, and binary-classification metrics.">
-  <title>Binary Classification - Nidhal Selmi</title>
+  <meta name="description" content="A small interactive demo of common classification metrics and trade-offs using a simplified 2D binary classifier.">
+  <title>Classification Trade-offs Mini-Lab - Nidhal Selmi</title>
   <style>
     :root {
       color-scheme: light;
@@ -243,10 +243,10 @@
 </head>
 <body>
   <header>
-    <h1>Binary Classification - Nidhal Selmi</h1>
+    <h1>Classification Trade-offs Mini-Lab - Nidhal Selmi</h1>
     <details class="tool-intro">
       <summary>Model and evaluation</summary>
-      <p>Real positives (+) are sampled from an isotropic bivariate Gaussian centered at the origin and conditioned on radius ≤ 5. Real negatives (−) are sampled uniformly by area from the surrounding annulus. The σ control reports underlying → visible coordinate standard deviation. The classifier predicts positive inside its movable circular boundary and negative outside it.</p>
+      <p>This mini-lab shows common classification metrics and trade-offs using a simplified 2D binary classifier. Real positives (+) are sampled from an isotropic bivariate Gaussian centered at the origin and conditioned on radius ≤ 5. Real negatives (−) are sampled uniformly by area from the surrounding annulus. The σ control reports underlying → visible coordinate standard deviation. The classifier predicts positive inside its movable circular boundary and negative outside it.</p>
       <p>Every interaction recomputes the confusion matrix, complementary error rates, predictive values, aggregate scores, likelihood ratios, and correlation measures. The density cross-section exposes the class geometry at y = 0. ROC and precision–recall curves sweep all decision radii and mark the selected operating point; the prevalence stress test isolates how class balance changes accuracy, precision, and F1 while TPR and FPR remain fixed.</p>
     </details>
   </header>
