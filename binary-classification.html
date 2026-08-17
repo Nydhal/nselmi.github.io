@@ -21,6 +21,8 @@
       --line: #d9dbd6;
       --green: #16854d;
       --red: #c63b36;
+      --green-light: #73b896;
+      --red-light: #df8c87;
       --green-dark: #075b32;
       --red-dark: #922b27;
       --field: #fbfbf9;
@@ -252,7 +254,7 @@
     <h1>Classification Trade-offs Mini-Lab - Nidhal Selmi</h1>
     <details class="tool-intro">
       <summary>Model and evaluation</summary>
-      <p>This mini-lab shows common classification metrics and trade-offs using a simplified 2D binary classifier. Real positives (+) are sampled from an isotropic bivariate Gaussian centered at the origin and conditioned on radius ≤ 5. Real negatives (−) are sampled uniformly by area from the surrounding annulus. The σ control reports underlying → visible coordinate standard deviation. The classifier predicts positive inside its movable circular boundary and negative outside it.</p>
+      <p>This mini-lab shows common classification metrics and trade-offs using a simplified 2D binary classifier. Real positives (+) are sampled from an isotropic bivariate Gaussian centered at the origin and conditioned on radius ≤ 5. Real negatives (−) are sampled uniformly by area from the surrounding annulus. The σ control reports underlying → visible coordinate standard deviation. The classifier predicts positive inside its movable circular boundary and negative outside it. Glyph sign and hue encode the true class; lighter glyphs are inside the boundary and therefore predicted positive.</p>
       <p>Every interaction recomputes the confusion matrix, complementary error rates, predictive values, aggregate scores, likelihood ratios, and correlation measures. The density cross-section exposes the class geometry at y = 0. ROC and precision–recall curves sweep all decision radii and mark the selected operating point; the prevalence stress test isolates how class balance changes accuracy, precision, and F1 while TPR and FPR remain fixed.</p>
     </details>
   </header>
@@ -287,14 +289,14 @@
     </section>
 
     <section class="panel plot-panel" aria-label="Classification field">
-      <canvas id="plot" width="520" height="520" role="img" aria-label="Positive Gaussian points and negative annulus points; drag the green decision circle to move its center"></canvas>
+      <canvas id="plot" width="520" height="520" role="img" aria-label="Positive Gaussian points in green and negative annulus points in red; lighter glyphs are predicted positive; drag the green decision circle to move its center"></canvas>
       <canvas id="cross-section" width="520" height="112" role="img" aria-label="Horizontal center cross-section from minus five to five showing the truncated positive Gaussian density and negative uniform annulus density"></canvas>
       <div class="cross-caption"><span class="green">truncated Gaussian +</span> · <span class="red">uniform annulus −</span> · cross-section y = 0</div>
       <div class="legend" aria-label="Plot legend">
-        <span class="key"><span class="swatch green"></span> predicted +</span>
-        <span class="key"><span class="swatch red"></span> predicted −</span>
-        <span class="key">+ real positive</span>
-        <span class="key">− real negative</span>
+        <span class="key green">+ real positive</span>
+        <span class="key red">− real negative</span>
+        <span class="key">lighter = inside / predicted +</span>
+        <span class="key green"><span class="swatch"></span> decision boundary</span>
         <span class="key green-dark"><span class="swatch dashed"></span> visible σ</span>
         <span class="key red-dark"><span class="swatch dashed"></span> annulus inner</span>
       </div>
@@ -640,7 +642,9 @@
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       for (const point of data) {
-        ctx.fillStyle = point.predictedPositive ? color('--green') : color('--red');
+        const classColor = point.positive ? '--green' : '--red';
+        const insideColor = point.positive ? '--green-light' : '--red-light';
+        ctx.fillStyle = color(point.predictedPositive ? insideColor : classColor);
         ctx.fillText(point.positive ? '+' : '−', sx(point.x), sy(point.y));
       }
       ctx.restore();
