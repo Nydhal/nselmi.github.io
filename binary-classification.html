@@ -68,6 +68,18 @@
     .control-line { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 1px; }
     output { color: var(--muted); font-variant-numeric: tabular-nums; }
     input[type="range"] { width: 100%; accent-color: var(--green); }
+    .regenerate {
+      width: 100%;
+      margin-top: 4px;
+      padding: 5px 7px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: var(--field);
+      color: var(--ink);
+      font: inherit;
+      cursor: pointer;
+    }
+    .regenerate:hover { border-color: var(--muted); }
     .plot-panel { width: 100%; max-width: 520px; padding: 10px; justify-self: center; }
     #plot {
       display: block;
@@ -261,6 +273,7 @@
         <span class="control-line"><span>Decision radius</span><output id="green-radius-out"></output></span>
         <input id="green-radius" type="range" min="0.1" max="5" step="0.1" value="2.3">
       </label>
+      <button class="regenerate" id="regenerate" type="button">Regenerate sample</button>
     </section>
 
     <section class="panel plot-panel" aria-label="Classification field">
@@ -929,6 +942,10 @@
     controls.greenRadius.addEventListener('input', update);
     populationControls.total.addEventListener('input', () => setPopulation('total'));
     populationControls.balance.addEventListener('input', () => setPopulation('balance'));
+    $('regenerate').addEventListener('click', () => {
+      state.seed = (state.seed + 1) >>> 0;
+      rebuildPopulation();
+    });
     $('plot').addEventListener('pointerdown', event => {
       const point = pointerPosition(event);
       const tolerance = 12 / $('plot')._geometry.scale;
