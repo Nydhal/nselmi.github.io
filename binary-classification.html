@@ -21,10 +21,13 @@
       --line: #d9dbd6;
       --green: #16854d;
       --red: #c63b36;
-      --green-light: #73b896;
-      --red-light: #df8c87;
-      --green-dark: #075b32;
-      --red-dark: #922b27;
+      --positive: #0072b2;
+      --positive-light: #8ccbe7;
+      --positive-dark: #005b8f;
+      --negative: #d55e00;
+      --negative-light: #f0a677;
+      --negative-dark: #a64200;
+      --decision: #6d5bd0;
       --field: #fbfbf9;
     }
     * { box-sizing: border-box; }
@@ -77,7 +80,9 @@
     .control { display: block; margin: 0 0 6px; }
     .control-line { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 1px; }
     output { color: var(--muted); font-variant-numeric: tabular-nums; }
-    input[type="range"] { width: 100%; accent-color: var(--green); }
+    input[type="range"] { width: 100%; accent-color: var(--decision); }
+    #sigma { accent-color: var(--positive); }
+    #inner { accent-color: var(--negative); }
     .regenerate {
       width: 100%;
       margin-top: 4px;
@@ -115,8 +120,11 @@
     .swatch.dashed { border-top-style: dashed; }
     .green { color: var(--green); }
     .red { color: var(--red); }
-    .green-dark { color: var(--green-dark); }
-    .red-dark { color: var(--red-dark); }
+    .positive { color: var(--positive); }
+    .negative { color: var(--negative); }
+    .positive-dark { color: var(--positive-dark); }
+    .negative-dark { color: var(--negative-dark); }
+    .decision { color: var(--decision); }
     .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
     .summary-table th, .summary-table td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: center; }
     .summary-table th { color: var(--muted); font-weight: 400; }
@@ -290,16 +298,16 @@
     </section>
 
     <section class="panel plot-panel" aria-label="Classification field">
-      <canvas id="plot" width="520" height="520" role="img" aria-label="Positive Gaussian points in green and negative annulus points in red; drag the green decision circle to move its center"></canvas>
+      <canvas id="plot" width="520" height="520" role="img" aria-label="Positive Gaussian points in blue and negative annulus points in orange; drag the violet decision circle to move its center"></canvas>
       <canvas id="cross-section" width="520" height="112" role="img" aria-label="Horizontal center cross-section from minus five to five showing the truncated positive Gaussian density and negative uniform annulus density"></canvas>
-      <div class="cross-caption"><span class="green">truncated Gaussian +</span> · <span class="red">uniform annulus −</span> · cross-section y = 0</div>
+      <div class="cross-caption"><span class="positive">truncated Gaussian +</span> · <span class="negative">uniform annulus −</span> · cross-section y = 0</div>
       <div class="legend" aria-label="Plot legend">
-        <span class="key green">+ real positive</span>
-        <span class="key red">− real negative</span>
+        <span class="key positive">+ real positive</span>
+        <span class="key negative">− real negative</span>
         <span class="key">lighter = inside / predicted +</span>
-        <span class="key green"><span class="swatch"></span> decision boundary</span>
-        <span class="key green-dark"><span class="swatch dashed"></span> visible σ</span>
-        <span class="key red-dark"><span class="swatch dashed"></span> annulus inner</span>
+        <span class="key decision"><span class="swatch"></span> decision boundary</span>
+        <span class="key positive-dark"><span class="swatch dashed"></span> visible σ</span>
+        <span class="key negative-dark"><span class="swatch dashed"></span> annulus inner</span>
       </div>
     </section>
 
@@ -325,17 +333,17 @@
         <section class="analysis-item" aria-labelledby="roc-title">
           <h3 id="roc-title"><span>ROC curve</span><span class="analysis-value">AUC <b id="roc-auc">—</b></span></h3>
           <canvas class="chart" id="roc-chart" width="420" height="290" role="img" aria-label="Receiver operating characteristic curve with the current decision radius marked"></canvas>
-          <div class="chart-legend"><span class="key green"><span class="swatch"></span> threshold sweep</span><span class="key ink">● current radius</span><span class="key"><span class="swatch dashed"></span> random</span></div>
+          <div class="chart-legend"><span class="key decision"><span class="swatch"></span> threshold sweep</span><span class="key ink">● current radius</span><span class="key"><span class="swatch dashed"></span> random</span></div>
         </section>
         <section class="analysis-item" aria-labelledby="pr-title">
           <h3 id="pr-title"><span>Precision–recall curve</span><span class="analysis-value">PR-AUC <b id="pr-auc">—</b></span></h3>
           <canvas class="chart" id="pr-chart" width="420" height="290" role="img" aria-label="Precision recall curve with the current decision radius marked"></canvas>
-          <div class="chart-legend"><span class="key red"><span class="swatch"></span> threshold sweep</span><span class="key ink">● current radius</span><span class="key"><span class="swatch dashed"></span> prevalence</span></div>
+          <div class="chart-legend"><span class="key decision"><span class="swatch"></span> threshold sweep</span><span class="key ink">● current radius</span><span class="key"><span class="swatch dashed"></span> prevalence</span></div>
         </section>
         <section class="analysis-item" aria-labelledby="stress-title">
           <h3 id="stress-title"><span>Prevalence stress test</span><span class="analysis-value">current <b id="stress-prevalence">—</b></span></h3>
           <canvas class="chart" id="stress-chart" width="420" height="290" role="img" aria-label="Accuracy precision and F1 across all possible prevalence values, holding sensitivity and false positive rate constant"></canvas>
-          <div class="chart-legend"><span class="key ink"><span class="swatch"></span> accuracy</span><span class="key green"><span class="swatch"></span> precision</span><span class="key red"><span class="swatch"></span> F1</span></div>
+          <div class="chart-legend"><span class="key ink"><span class="swatch"></span> accuracy</span><span class="key positive"><span class="swatch"></span> precision</span><span class="key decision"><span class="swatch"></span> F1</span></div>
           <p class="analysis-note">Sweeps prevalence while holding the current TPR and FPR fixed.</p>
         </section>
       </div>
@@ -632,8 +640,8 @@
       ctx.clip();
       ctx.fillStyle = color('--field');
       ctx.fillRect(0, 0, size, size);
-      ctx.globalAlpha = .1;
-      ctx.fillStyle = color('--green');
+      ctx.globalAlpha = .055;
+      ctx.fillStyle = color('--decision');
       ctx.beginPath();
       ctx.arc(sx(state.green.x), sy(state.green.y), v.greenRadius * scale, 0, Math.PI * 2);
       ctx.fill();
@@ -643,17 +651,17 @@
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       for (const point of data) {
-        const classColor = point.positive ? '--green' : '--red';
-        const insideColor = point.positive ? '--green-light' : '--red-light';
+        const classColor = point.positive ? '--positive' : '--negative';
+        const insideColor = point.positive ? '--positive-light' : '--negative-light';
         ctx.fillStyle = color(point.predictedPositive ? insideColor : classColor);
         ctx.fillText(point.positive ? '+' : '−', sx(point.x), sy(point.y));
       }
       ctx.restore();
 
       drawRing(ctx, size / 2, size / 2, DOMAIN_RADIUS * scale, color('--ink'), false, 1.4);
-      drawRing(ctx, size / 2, size / 2, visiblePositiveSigma(v.sigma) * scale, color('--green-dark'), true, 1.5);
-      drawRing(ctx, size / 2, size / 2, v.inner * scale, color('--red-dark'), true, 1.5);
-      drawRing(ctx, sx(state.green.x), sy(state.green.y), v.greenRadius * scale, color('--green'), false, 2);
+      drawRing(ctx, size / 2, size / 2, visiblePositiveSigma(v.sigma) * scale, color('--positive-dark'), true, 1.5);
+      drawRing(ctx, size / 2, size / 2, v.inner * scale, color('--negative-dark'), true, 1.5);
+      drawRing(ctx, sx(state.green.x), sy(state.green.y), v.greenRadius * scale, color('--decision'), false, 2);
       canvas._geometry = { size, scale };
     }
 
@@ -691,12 +699,12 @@
 
       ctx.save();
       ctx.globalAlpha = .12;
-      ctx.fillStyle = color('--red');
+      ctx.fillStyle = color('--negative');
       const negativeTop = sy(negativeDensity);
       ctx.fillRect(sx(-DOMAIN_RADIUS), negativeTop, sx(-v.inner) - sx(-DOMAIN_RADIUS), bottom - negativeTop);
       ctx.fillRect(sx(v.inner), negativeTop, sx(DOMAIN_RADIUS) - sx(v.inner), bottom - negativeTop);
       ctx.restore();
-      ctx.strokeStyle = color('--red');
+      ctx.strokeStyle = color('--negative');
       ctx.lineWidth = 1.5;
       for (const interval of [[-DOMAIN_RADIUS, -v.inner], [v.inner, DOMAIN_RADIUS]]) {
         ctx.beginPath();
@@ -719,10 +727,10 @@
       ctx.closePath();
       ctx.save();
       ctx.globalAlpha = .1;
-      ctx.fillStyle = color('--green');
+      ctx.fillStyle = color('--positive');
       ctx.fill();
       ctx.restore();
-      ctx.strokeStyle = color('--green');
+      ctx.strokeStyle = color('--positive');
       ctx.lineWidth = 1.8;
       ctx.stroke();
 
@@ -730,12 +738,12 @@
       ctx.setLineDash([4, 4]);
       ctx.lineWidth = 1;
       for (const x of [-v.inner, v.inner]) {
-        ctx.strokeStyle = color('--red-dark');
+        ctx.strokeStyle = color('--negative-dark');
         ctx.beginPath(); ctx.moveTo(sx(x), top); ctx.lineTo(sx(x), bottom); ctx.stroke();
       }
       const visibleSigma = visiblePositiveSigma(v.sigma);
       for (const x of [-visibleSigma, visibleSigma]) {
-        ctx.strokeStyle = color('--green-dark');
+        ctx.strokeStyle = color('--positive-dark');
         ctx.beginPath(); ctx.moveTo(sx(x), top); ctx.lineTo(sx(x), bottom); ctx.stroke();
       }
       ctx.restore();
@@ -875,14 +883,14 @@
 
       drawUnitChart(
         'roc-chart',
-        [{ points: sweep.roc, color: '--green' }],
+        [{ points: sweep.roc, color: '--decision' }],
         [{ points: [{ x: 0, y: 0 }, { x: 1, y: 1 }], color: '--muted' }],
         [{ x: metrics.fpr, y: metrics.tpr, color: '--ink' }],
         'False positive rate', 'True positive rate', invalid ? 'requires P and N' : ''
       );
       drawUnitChart(
         'pr-chart',
-        [{ points: sweep.pr, color: '--red' }],
+        [{ points: sweep.pr, color: '--decision' }],
         [{ points: [{ x: 0, y: metrics.prevalence }, { x: 1, y: metrics.prevalence }], color: '--muted' }],
         [{ x: metrics.tpr, y: metrics.ppv, color: '--ink' }],
         'Recall', 'Precision', invalid ? 'requires P and N' : ''
@@ -905,14 +913,14 @@
         'stress-chart',
         [
           { points: stress.acc, color: '--ink', width: 1.5 },
-          { points: stress.ppv, color: '--green' },
-          { points: stress.f1, color: '--red' }
+          { points: stress.ppv, color: '--positive' },
+          { points: stress.f1, color: '--decision' }
         ],
         [{ points: prevalenceLine, color: '--muted' }],
         [
           { x: metrics.prevalence, y: metrics.acc, color: '--ink' },
-          { x: metrics.prevalence, y: metrics.ppv, color: '--green' },
-          { x: metrics.prevalence, y: metrics.f1, color: '--red' }
+          { x: metrics.prevalence, y: metrics.ppv, color: '--positive' },
+          { x: metrics.prevalence, y: metrics.f1, color: '--decision' }
         ],
         'Prevalence', 'Metric value', (!Number.isFinite(metrics.tpr) || !Number.isFinite(metrics.fpr)) ? 'requires P and N' : ''
       );
