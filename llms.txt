@@ -6,6 +6,7 @@
 
 - [Classification Trade-offs Mini-Lab](https://nselmi.com/binary-classification.html): A simplified 2D binary-classification demo for exploring class geometry, prevalence, decision thresholds, confusion-matrix metrics, ROC and precision-recall curves, and common evaluation trade-offs.
 - [Impossible Fractal Cellular Automaton](https://nselmi.com/impossible-fractal-ca.html): An interactive explorer for a four-state cellular automaton on triangular tessellations.
+- [Reaction-Diffusion Oscillator Lab](https://nselmi.com/reaction-diffusion-lab.html): A WebGL2 lab for a kernel-convolution cellular automaton driven by a global oscillator, with six kernel families, ten activation functions, calibrated palettes, two-parameter sweeps, and a live linear-stability (dispersion relation) analysis that unifies Turing patterns, SmoothLife and Lenia as one discrete-time neural field.
 
 ## Site
 

@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reaction-Diffusion Oscillator Lab | Nidhal Selmi</title>
+<meta name="description" content="Interactive GPU lab for a kernel-convolution cellular automaton driven by a global oscillator: six kernel families, ten activations, calibrated palettes, parameter sweeps and live linear-stability analysis.">
+<meta name="author" content="Nidhal Selmi">
+<meta name="keywords" content="reaction-diffusion, cellular automaton, Turing patterns, Lenia, SmoothLife, neural field, kernel convolution, WebGL, oscillator, pattern formation, linear stability">
+<meta property="og:title" content="Reaction-Diffusion Oscillator Lab | Nidhal Selmi">
+<meta property="og:description" content="Interactive GPU lab for a kernel-convolution cellular automaton driven by a global oscillator: six kernel families, ten activations, calibrated palettes, parameter sweeps and live linear-stability analysis.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nselmi.com/reaction-diffusion-lab.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reaction-Diffusion Oscillator Lab">
+<meta name="twitter:description" content="Interactive GPU lab for a kernel-convolution cellular automaton driven by a global oscillator: six kernel families, ten activations, calibrated palettes, parameter sweeps and live linear-stability analysis.">
+<link rel="canonical" href="https://nselmi.com/reaction-diffusion-lab.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Reaction-Diffusion Oscillator Lab",
+  "author": { "@type": "Person", "name": "Nidhal Selmi", "url": "https://nselmi.com" },
+  "description": "Interactive GPU lab for a kernel-convolution cellular automaton driven by a global oscillator: six kernel families, ten activations, calibrated palettes, parameter sweeps and live linear-stability analysis.",
+  "url": "https://nselmi.com/reaction-diffusion-lab.html",
+  "keywords": ["reaction-diffusion", "cellular automaton", "Turing patterns", "Lenia", "neural field", "WebGL"]
+}
+</script>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--line:#2a2f3a;--fg:#d7dae0;--mute:#8a919e;--acc:#5ab4ff;--warn:#ffb454}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:13px/1.4 system-ui,"Segoe UI",Roboto,sans-serif}
+body{display:grid;grid-template-columns:350px 1fr;height:100vh}
+aside{background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;padding:10px 12px}
+main{display:flex;flex-direction:column;align-items:center;padding:12px;gap:8px;overflow:auto}
+h1{font-size:15px;margin:2px 0 8px}
+h1 small{display:block;color:var(--mute);font-weight:normal}
+fieldset{border:1px solid var(--line);border-radius:6px;margin:0 0 8px;padding:6px 8px}
+legend{color:var(--acc);padding:0 4px;font-weight:600;display:flex;align-items:center;gap:6px}
+legend button{width:18px;height:18px;padding:0;border-radius:50%;font-size:11px;line-height:1;color:var(--acc);font-weight:700}
+.row{display:grid;grid-template-columns:112px 1fr 58px;align-items:center;gap:6px;margin:3px 0}
+.row label{color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:help;border-bottom:1px dotted var(--line);width:max-content;max-width:100%}
+.row label:hover{color:var(--fg);border-bottom-color:var(--acc)}
+.row output{text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;margin:0;accent-color:var(--acc)}
+select,input[type=number],button{background:#0f1115;color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:3px 6px;font:inherit}
+.row select,.row input[type=number]{grid-column:2/4;width:100%}
+.row input[type=checkbox]{justify-self:start;accent-color:var(--acc)}
+.quick{display:flex;gap:4px;margin:0 0 4px 118px;flex-wrap:wrap}
+.quick button{padding:1px 6px;font-size:11px}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}
+button{cursor:pointer}
+button:hover{border-color:var(--acc)}
+button.on{background:var(--acc);color:#000;border-color:var(--acc)}
+button.rec{background:#c0392b;border-color:#c0392b;color:#fff}
+canvas#view{width:min(100%,800px);background:#000;image-rendering:pixelated;border:1px solid var(--line)}
+#kprev{width:132px;height:132px;image-rendering:pixelated;border:1px solid var(--line);display:block;margin:6px auto 2px}
+#kinfo,#sinfo{text-align:center;color:var(--mute);font-size:12px}
+#palprev{display:block;width:100%;height:12px;border:1px solid var(--line);border-radius:3px;margin:4px 0 2px}
+#status{display:flex;gap:14px;flex-wrap:wrap;color:var(--mute);font-variant-numeric:tabular-nums;width:min(100%,800px)}
+#status b{color:var(--fg);font-weight:600}
+canvas#chart{width:min(100%,800px);height:110px;border:1px solid var(--line);background:var(--panel)}
+canvas#disp{width:min(100%,800px);height:150px;border:1px solid var(--line);background:var(--panel)}
+#dispinfo{width:min(100%,800px);color:var(--mute);font-size:12px;cursor:help;border-bottom:1px dotted var(--line)}
+#dispinfo b{color:var(--fg)}
+#actprev{display:block;width:100%;height:90px;border:1px solid var(--line);border-radius:3px;margin:4px 0 2px;background:#0f1115}
+canvas#sweep{width:min(100%,800px);border:1px solid var(--line);cursor:pointer;image-rendering:pixelated}
+#sweeptitle{width:min(100%,800px);color:var(--mute);font-size:12px}
+#err{color:var(--warn);white-space:pre-wrap;max-width:800px}
+.hint{color:var(--mute);font-size:12px;margin:4px 0 0}
+kbd{background:#0f1115;border:1px solid var(--line);border-radius:3px;padding:0 4px}
+#pop{position:fixed;z-index:10;width:300px;max-width:calc(100vw - 16px);background:#1f2430;border:1px solid var(--acc);border-radius:6px;padding:8px 10px;font-size:12px;line-height:1.45;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+#pop b{color:var(--acc);display:block;margin-bottom:3px}
+#pop code,.hint code{background:#0f1115;padding:0 3px;border-radius:3px;font-size:11px}
+body{grid-template-rows:auto 1fr}
+aside,main{min-height:0}
+#site{grid-column:1/-1;background:var(--panel);border-bottom:1px solid var(--line);padding:10px 16px 12px}
+#site .crumbs{font-size:12px;color:var(--mute)}
+#site .crumbs a{color:var(--acc);text-decoration:none}
+#site .crumbs a:hover{text-decoration:underline}
+#site h1{font:normal 19px Georgia,serif;margin:3px 0 0;color:var(--fg)}
+#site h1 small{display:block;font:13px system-ui,"Segoe UI",Roboto,sans-serif;color:var(--mute);margin-top:2px}
+#site p{margin:6px 0 0;color:var(--mute);max-width:960px;font-size:12.5px;line-height:1.5}
+#site p code{background:#0f1115;padding:0 3px;border-radius:3px;font-size:11px}
+@media (max-width:820px){
+  body{grid-template-columns:1fr;height:auto}
+  aside{border-right:0;border-bottom:1px solid var(--line);max-height:60vh}
+}
+</style>
+</head>
+<body>
+<header id="site">
+<div class="crumbs"><a href="/">Nidhal Selmi</a> / Interactive labs</div>
+<h1>Reaction-Diffusion Oscillator Lab<small>kernel-convolution automaton driven by a global oscillator, computed on the GPU</small></h1>
+<p>A continuous cellular automaton where every cell becomes an activation of the convolution of the grid with a ring-shaped kernel, plus a global oscillating bias.
+One equation, <code>x' = (1 - a) x + a f(K * x + h(t))</code>, covers Turing patterns, SmoothLife-style automata and Lenia, and the analysis panel below the canvas shows the linear-stability prediction live.
+Started as a 2023 Colab notebook. Click any label or <b>?</b> for an explanation, try the presets, and use the sweep to map regimes; the URL hash records every parameter, so a link reproduces an experiment exactly. Needs WebGL2.</p>
+</header>
+<aside>
+<div class="btns" id="mainbtns"></div>
+<div id="controls"></div>
+<p class="hint">Click any label or the <b>?</b> in a section title for an explanation. <kbd>Space</kbd> play/pause, <kbd>S</kbd> step, <kbd>R</kbd> reseed, <kbd>Esc</kbd> closes popovers.</p>
+</aside>
+<main>
+<canvas id="view" width="800" height="800"></canvas>
+<div id="status"></div>
+<canvas id="chart" width="800" height="110"></canvas>
+<div id="dispinfo" data-pop="1" title="Click for the theory"></div>
+<canvas id="disp" width="800" height="150"></canvas>
+<div id="sweeptitle" hidden></div>
+<canvas id="sweep" hidden></canvas>
+<div id="err"></div>
+</main>
+<div id="pop" hidden></div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const canvas = $('view'), errBox = $('err');
+const gl = canvas.getContext('webgl2', {antialias:false, alpha:false, depth:false, stencil:false, preserveDrawingBuffer:false});
+function fail(m){ errBox.textContent = m; throw new Error(m); }
+if (!gl) fail('WebGL2 is required for this lab.');
+if (!gl.getExtension('EXT_color_buffer_float')) fail('EXT_color_buffer_float is required (float render targets).');
+gl.disable(gl.BLEND); gl.disable(gl.DEPTH_TEST);
+
+// ---------- option lists ----------
+const ACTS   = ['tanh(sin(k*c)) / |c|  (original)', 'tanh(k*c)', 'sign(c)', 'k * |c|', 'c (identity)', 'sigmoid(k*c) / |c|', '2*sigmoid(k*c) - 1', 'sin(k*c)', 'clamp(k*c, -1, 1)', 'gaussian bump 2*exp(-(k*c)^2) - 1'];
+const WAVES  = ['sine (original)', 'square', 'triangle', 'sawtooth', 'off'];
+const SEEDS  = ['cross (original)', 'center square', 'uniform noise', 'blank (-1)'];
+const BOUNDS = ['zero padding (original)', 'periodic'];
+const CHANS  = ['state', 'conv field c (pre-activation)'];
+const KTYPES = ['hard core / ring (original)', 'smooth core / ring', 'difference of Gaussians', 'alternating shells', 'gradient (directional)', 'random radial profile'];
+const RANGES = ['manual (vmin / vmax)', 'auto percentile 1..99', 'auto symmetric about 0', 'histogram equalized'];
+
+// ---------- palettes: polynomial fits or colour stops interpolated in Oklab ----------
+const PALETTES = {
+  'viridis (original)': {poly:[[0.2777,0.0054,0.3341],[0.1051,1.4046,1.3846],[-0.3309,0.2148,0.0951],[-4.6342,-5.7991,-19.3324],[6.2283,14.1799,56.6906],[4.7764,-13.7451,-65.3530],[-5.4355,4.6459,26.3124]]},
+  'inferno': {poly:[[0.0002,0.0017,-0.0195],[0.1065,0.5640,3.9327],[11.6025,-3.9729,-15.9424],[-41.7040,17.4364,44.3541],[77.1629,-33.4024,-81.8073],[-71.3194,32.6261,73.2095],[25.1311,-12.2427,-23.0703]]},
+  'magma': {poly:[[-0.0021,-0.0007,-0.0054],[0.2517,0.6775,2.4940],[8.3537,-3.5777,0.3145],[-27.6687,14.2647,-13.6492],[52.1761,-27.9436,12.9442],[-50.7685,29.0466,4.2342],[18.6557,-11.4898,-5.6020]]},
+  'plasma': {poly:[[0.0587,0.0233,0.5433],[2.1765,0.2384,0.7540],[-2.6895,-7.4559,3.1108],[6.1303,42.3462,-28.5189],[-11.1074,-82.6663,60.1398],[10.0231,71.4136,-54.0722],[-3.6587,-22.9315,18.1919]]},
+  'turbo': {turbo:1},
+  'cividis': {stops:['#00204c','#213d6b','#555b6c','#7b7a77','#a59c74','#d3c164','#ffea46']},
+  'cubehelix': {cubehelix:1},
+  'twilight (cyclic)': {stops:['#e2d9e2','#9db4d7','#6b7fc4','#7043a3','#4b1a5c','#2c0f2a','#5e1a2f','#a23b46','#cf7d6d','#e2d9e2']},
+  'phase (cyclic)': {stops:['#a8780d','#d05a4a','#b43e9a','#5a5ac9','#0a8ea5','#45a04c','#a8780d']},
+  'coolwarm': {stops:['#3b4cc0','#dddddd','#b40426']},
+  'blue-white-red': {stops:['#053061','#2166ac','#4393c3','#92c5de','#d1e5f0','#f7f7f7','#fddbc7','#f4a582','#d6604d','#b2182b','#67001f']},
+  'pink-green': {stops:['#8e0152','#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#b8e186','#7fbc41','#4d9221','#276419']},
+  'spectral': {stops:['#5e4fa2','#3288bd','#66c2a5','#abdda4','#e6f598','#ffffbf','#fee08b','#fdae61','#f46d43','#d53e4f','#9e0142']},
+  'ice': {stops:['#03051a','#0a2a5e','#1b6ea8','#6ec3e6','#e8fbff']},
+  'fire': {stops:['#000000','#5a0a00','#d43d00','#ffb300','#ffffe0']},
+  'dune': {stops:['#0b1a2e','#1f4f6b','#3e8f8b','#c9c39a','#f5efe0']},
+  'ink (duotone)': {stops:['#0d0b1e','#f2efe6']},
+  'gray': {stops:['#000000','#ffffff']},
+};
+const PAL_NAMES = Object.keys(PALETTES);
+
+const SECTIONS = {
+  Simulation: 'Grid, timing and boundary. Each step computes <code>c = kernel * state + h(t)</code> for every cell in a fragment shader and writes <code>act(c)</code> back. Speed and Max steps/frame decouple simulation time from screen refresh. Symmetric summation makes the arithmetic mirror-exact so symmetric seeds stay symmetric.',
+  Seed: 'The initial condition. The rules are deterministic, so everything you see descends from this pattern plus the oscillator. Any change here restarts the run at t = 0.',
+  Kernel: 'The interaction neighbourhood. All families share the same geometry controls (radii, Minkowski metric, rotation, aspect) and are normalised so the positive part sums to Core mass and the negative part to Ring mass. Preview: red positive, blue negative. Kernel changes apply to the running simulation in place.',
+  Oscillator: 'A single global bias h(t) added to every cell before activation. It acts as a time-varying threshold that rhythmically favours + or -, so the whole pattern breathes in sync. The blue trace and the status line show h(t) live.',
+  Activation: 'The non-linearity that maps the field c to the next state, plus its softness (eps) and inertia (blend). This is where the character of the patterns comes from: sign-like functions give crisp domains, smooth ones give soft gradients.',
+  Display: 'Colour mapping and calibration. Palettes are interpolated in a perceptual colour space; the range modes decide which values get which colours. Nothing here affects the simulation.',
+  Analysis: 'Every configuration here is one discrete-time neural field: <code>x(t+1) = (1 - a) x + a f(K * x + h)</code> (map rule) or <code>x + a f(K * x + h)</code> clamped (flow rule). Linearising around the homogeneous state x* gives, for each spatial frequency q, an independent growth factor per step <code>lambda(q) = (1 - a) + a f\'(c*) K(q)</code>, where K(q) is the Fourier transform of the kernel and c* = sum(K) x* + h(t). Modes with lambda above +1 grow into Turing patterns at that wavelength; modes with lambda below -1 flip sign every step, which is the pixel-scale flicker you see with high gain or thin rings; everything between decays. So the kernel decides <i>which wavelengths</i> can grow (its spectrum K(q)), the activation slope f\'(c*) times the blend decides <i>whether</i> they grow, and the oscillator moves c* along the activation so the slope, and hence the regime, changes with time. Saturation of f is what stops growth and turns a linear instability into a pattern.',
+  Sweep: 'Runs an N by N grid of short simulations, varying one parameter along columns and another along rows, each from the current seed for the given number of steps, and shows the final frames as thumbnails. Click a thumbnail to load that combination into the main view. Everything else stays as currently set, so sweep from a configuration you like.',
+};
+
+// ---------- parameter table: the single source of truth for UI, URL hash, uniforms ----------
+const P = {
+  nx:      {g:'Simulation', l:'Grid width', min:32, max:1024, step:32, v:80, realloc:1,
+            tip:'Cells across. Cost per step grows with width times height times kernel area. Changing it reallocates the GPU textures and reseeds.'},
+  ny:      {g:'Simulation', l:'Grid height', min:32, max:1024, step:32, v:80, realloc:1,
+            tip:'Cells down. Set different width and height for wide or tall canvases; the display keeps the aspect ratio.'},
+  speed:   {g:'Simulation', l:'Speed (steps/s)', min:0, max:4, step:0.01, v:60, log:1, quick:[1, 10, 60, 600, 6000],
+            tip:'Target simulation steps per second on a log scale from 1 to 10000. Below the display refresh rate the animation slows down and you can watch single transitions; above it several steps are batched per frame. The status line shows achieved / requested.'},
+  maxSpf:  {g:'Simulation', l:'Max steps / frame', min:1, max:200, step:1, v:20,
+            tip:'Upper bound on steps executed in one rendered frame. Keeps the page responsive when Speed asks for more than the GPU can deliver; the shortfall is dropped, not queued.'},
+  boundary:{g:'Simulation', l:'Boundary', t:'select', opts:BOUNDS, v:0,
+            tip:'What lies outside the grid. Zero padding (notebook: <code>np.pad</code> then valid convolution) treats outside cells as 0, a third value between the -1 background and +1, so the edge acts as a wall that seeds structure. Periodic wraps the grid into a torus and removes edge effects.'},
+  symsum:  {g:'Simulation', l:'Symmetric summation', t:'check', v:true,
+            tip:'Adds the four mirror-image taps (+-dx, +-dy) together before accumulating. Float addition is commutative but not associative, so without this a cell and its mirror image sum their neighbourhoods in different orders and differ in the last bit; the original activation jumps at c = 0 and amplifies that into visible asymmetry. Automatically disabled for kernels that are not mirror-symmetric (gradient, odd rotations).'},
+  seedMode:{g:'Seed', l:'Pattern', t:'select', opts:SEEDS, v:0, seed:1,
+            tip:'Initial state. Cross (notebook <code>init_seed_state</code>): -1 everywhere, a horizontal band of 0 and a vertical band of 2 through the centre. Centre square: a +1 block on -1. Uniform noise: every cell random in [-1, 1]. Blank: all -1, to see what the oscillator alone does.'},
+  seedSize:{g:'Seed', l:'Seed size', min:2, max:64, step:2, v:6, seed:1,
+            tip:'Width in cells of the band or square. The notebook drew <code>(randint(3) + 2) * 2</code>, so 4, 6 or 8 at random.'},
+  seedNoise:{g:'Seed', l:'Noise amplitude', min:0, max:1, step:0.01, v:0, seed:1,
+            tip:'Uniform random jitter of this amplitude added to every seed cell. Even 0.01 breaks all symmetry, which is the honest way to get organic patterns instead of relying on rounding noise.'},
+  seedRng: {g:'Seed', l:'RNG seed', t:'number', step:1, v:1, seed:1, kernel:1,
+            tip:'Integer seed of the random generator used for seed noise and for the random radial kernel, so runs are reproducible.'},
+  ktype:{g:'Kernel', l:'Family', t:'select', opts:KTYPES, v:0, kernel:1,
+         tip:'Hard core / ring: the notebook kernel, +1 inside r1, -1 out to r2. Smooth core / ring: the same regions with smooth bump profiles, which removes lattice aliasing. Difference of Gaussians: the classic Mexican hat, sigma = r1/2 and r2/2. Alternating shells: Lenia-style Gaussian rings of alternating sign out to r2. Gradient: an antisymmetric kernel along the rotation angle, which makes patterns drift. Random radial: a random step profile over Shells bins, drawn from the RNG seed.'},
+  r1:   {g:'Kernel', l:'Inner radius r1', min:0, max:24, step:0.5, v:5, kernel:1, show: () => V.ktype <= 2,
+         tip:'Extent of the positive core (notebook 5). For the Gaussian family the core sigma is r1 / 2. Larger cores smooth the field and enlarge features.'},
+  r2:   {g:'Kernel', l:'Outer radius r2', min:1, max:24, step:1, v:8, kernel:1,
+         tip:'Outer extent of the kernel (notebook 8). The kernel is a (2 r2 + 1) square, so cost per cell is quadratic in r2. The pattern wavelength scales with r2.'},
+  p1:   {g:'Kernel', l:'Minkowski p1', min:0.5, max:6, step:0.05, v:1.5, kernel:1, show: () => V.ktype <= 2,
+         tip:'Exponent of the metric <code>(|x|^p + |y|^p)^(1/p)</code> for the core. 1 gives a diamond, 2 a disc, large values a square. The notebook used 1.5, a rounded diamond, hence the octagonal preview.'},
+  p2:   {g:'Kernel', l:'Minkowski p2', min:0.5, max:6, step:0.05, v:1.5, kernel:1,
+         tip:'Same exponent for the ring. Different p1 and p2 give the core and the ring different shapes.'},
+  rot:  {g:'Kernel', l:'Rotation (deg)', min:0, max:180, step:1, v:0, kernel:1, quick:[0, 45, 90],
+         tip:'Rotates the kernel coordinate frame. No effect on a perfect disc (p = 2, aspect 1). With the notebook rounded diamond, 45 degrees turns it into a rounded square so the lattice diagonals rather than the axes compete. Also the direction of the gradient kernel. Multiples of 45 keep mirror symmetry; other angles disable symmetric summation.'},
+  aspect:{g:'Kernel', l:'Aspect ratio', min:-0.6, max:0.6, step:0.01, v:1, log:1, kernel:1,
+         tip:'Stretches the kernel along its rotated axis (log scale, 0.25 to 4). Elliptical cores and rings favour stripes along one direction, giving oriented textures.'},
+  shells:{g:'Kernel', l:'Shells / bins', min:2, max:6, step:1, v:3, kernel:1, show: () => V.ktype === 3 || V.ktype === 5,
+         tip:'Number of Gaussian shells for the alternating-shells family, or radial bins for the random radial family.'},
+  wPos: {g:'Kernel', l:'Core mass', min:0, max:3, step:0.01, v:0.9, kernel:1,
+         tip:'Total weight of the positive part of the kernel (notebook 0.9). Self-excitation: a cell surrounded by like values is pushed further that way.'},
+  wNeg: {g:'Kernel', l:'Ring mass', min:0, max:3, step:0.01, v:0.9, kernel:1,
+         tip:'Total weight of the negative part (notebook 0.9). Lateral inhibition. Equal masses make the kernel sum to zero, so a uniform region yields c = h(t) exactly and only contrast matters.'},
+  wave:   {g:'Oscillator', l:'Waveform', t:'select', opts:WAVES, v:0,
+           tip:'Shape of the global drive <code>h = h0 - A(t) wave(t / tau + phase)</code>. Sine is the notebook. Square gives abrupt regime flips, triangle a linear sweep, sawtooth a slow rise and sudden reset, off disables the oscillator (h = h0).'},
+  tau:    {g:'Oscillator', l:'Time scale tau', min:1, max:400, step:1, v:40, show: () => V.wave !== 4,
+           tip:'Time constant in steps: the phase advances by 1 / tau per step, so one sine period is 2 pi tau steps, about 251 for the notebook value 40.'},
+  a1:     {g:'Oscillator', l:'Amplitude A1', min:0, max:1.5, step:0.005, v:0.1, show: () => V.wave !== 4, tip:'Oscillator amplitude before the switch time (notebook 0.1).'},
+  a2:     {g:'Oscillator', l:'Amplitude A2', min:0, max:1.5, step:0.005, v:0.3, show: () => V.wave !== 4,
+           tip:'Oscillator amplitude from the switch time on (notebook 0.3). The jump from 0.1 to 0.3 at t = 200 is what makes the notebook animation change character partway through.'},
+  tSwitch:{g:'Oscillator', l:'Switch time', min:0, max:5000, step:10, v:200, show: () => V.wave !== 4, tip:'Step at which the amplitude changes from A1 to A2.'},
+  h0:     {g:'Oscillator', l:'Offset h0', min:-1, max:1, step:0.005, v:0,
+           tip:'Constant bias added to the field. Positive favours +, negative favours -, like a threshold shift. The notebook used 0.'},
+  phase:  {g:'Oscillator', l:'Phase', min:0, max:6.28, step:0.01, v:0, show: () => V.wave !== 4,
+           tip:'Phase offset in radians inside the waveform, so a run can start at a peak (pi / 2) instead of at a zero crossing.'},
+  act:  {g:'Activation', l:'Function', t:'select', opts:ACTS, v:0,
+         tip:'Turns the field c = conv + h into the new state. The notebook default <code>tanh(sin(k c)) / |c|</code> is sign-like with a ripple: it tends to +-1.5 as c approaches 0 and decays like 1 / |c| for large |c|. The other entries were commented-out lines in the notebook, made k-parametrised here, plus a Lenia-style Gaussian bump.'},
+  k:    {g:'Activation', l:'Gain k', min:0, max:12, step:0.01, v:1.5, show: () => V.act !== 2 && V.act !== 4,
+         tip:'Gain applied to c inside the function. The field c is small (kernel masses of 0.9 on states near +-1 give |c| below about 2), so k between 2 and 8 is where tanh and sigmoid variants switch from linear blur to crisp domains.'},
+  eps:  {g:'Activation', l:'eps (softness)', t:'number', step:'any', v:1e-6, show: () => V.act === 0 || V.act === 5,
+         tip:'Lower bound on |c| in the divisions. The notebook divided by |c| itself and survived 0/0 only because the kernel weights failed to cancel exactly. Larger values, 0.05 to 0.5, soften the jump at c = 0 into a steep ramp, which makes the dynamics far less sensitive to rounding noise.'},
+  blend:{g:'Activation', l:'Blend alpha', min:0.01, max:1, step:0.01, v:1,
+         tip:'Map rule: fraction of the new value taken each step, <code>state = (1 - alpha) state + alpha act(c)</code>; 1 reproduces the notebook. Flow rule: the time step, <code>state += alpha act(c)</code>. Smaller values add inertia and damp the period-2 flicker that appears when the growth factor drops below -1 (see the analysis panel).'},
+  rule: {g:'Activation', l:'Update rule', t:'select', opts:['map: blend toward act(c)  (original)', 'flow: add alpha * act(c), clamp to [-1, 1]'], v:0,
+         tip:'Map: the state is replaced (or blended) by act(c), a coupled-map lattice like the notebook, SmoothLife and neural cellular automata. Flow: act(c) is a growth rate added to the state and clamped, the Lenia formulation, where act should be signed (the Gaussian bump is designed for it). Linearised, both give per-step growth factors of the form (base) + alpha f\'(c*) K(q); the map has base 1 - alpha, the flow has base 1.'},
+  pal:  {g:'Display', l:'Palette', t:'select', opts:PAL_NAMES, v:0,
+         tip:'Colour ramp. Viridis, inferno, magma, plasma and turbo are the standard perceptual maps; cyclic palettes (twilight, phase) wrap around and suit oscillating fields; diverging palettes (coolwarm, blue-white-red, pink-green, spectral) put a neutral colour at the midpoint, pair them with auto symmetric range so the midpoint is zero. Stops are interpolated in Oklab so ramps have no muddy dips.'},
+  rev:  {g:'Display', l:'Reverse palette', t:'check', v:false, tip:'Flips the palette direction.'},
+  range:{g:'Display', l:'Range mode', t:'select', opts:RANGES, v:0,
+         tip:'Manual uses vmin / vmax. Auto percentile maps the 1st..99th percentile of the displayed channel onto the palette. Auto symmetric does the same but centred on 0 so the palette midpoint means zero. Histogram equalized spends palette range where the values actually are, which makes the bimodal states of the original activation (almost everything at +-1.5) readable. Auto modes need Read back stats.'},
+  vmin: {g:'Display', l:'vmin', min:-3, max:3, step:0.05, v:-1.3, show: () => V.range === 0, tip:'Value mapped to the bottom of the palette in manual mode (notebook -1.3).'},
+  vmax: {g:'Display', l:'vmax', min:-3, max:3, step:0.05, v:1.3, show: () => V.range === 0, tip:'Value mapped to the top of the palette in manual mode (notebook 1.3).'},
+  gamma:{g:'Display', l:'Gamma', min:0.3, max:3, step:0.01, v:1,
+         tip:'Contrast curve applied to the normalised value before palette lookup. Below 1 brightens the low end, above 1 the high end.'},
+  bands:{g:'Display', l:'Bands', min:0, max:16, step:1, v:0,
+         tip:'Quantises the palette into this many flat bands (0 or 1 = continuous) for a contour-map look.'},
+  chan: {g:'Display', l:'Channel', t:'select', opts:CHANS, v:0,
+         tip:'State shows the cell values. Conv field shows c, the raw convolution plus h(t) before activation, which reveals the smooth field the pattern is carved from.'},
+  stats:{g:'Display', l:'Read back stats', t:'check', v:true,
+         tip:'Reads the grid back from the GPU every 15 frames for mean, min, max, NaN count, mirror asymmetry, and the auto range / equalization histogram.'},
+  sx:  {g:'Sweep', l:'Columns vary', t:'select', opts:[], v:0, sweep:1, tip:'Parameter varied from left to right.'},
+  sxA: {g:'Sweep', l:'from', t:'number', step:'any', v:2, sweep:1, tip:'Column parameter value in the leftmost column.'},
+  sxB: {g:'Sweep', l:'to', t:'number', step:'any', v:10, sweep:1, tip:'Column parameter value in the rightmost column. Values are spaced linearly; for select-type parameters they are rounded to option indices.'},
+  sy:  {g:'Sweep', l:'Rows vary', t:'select', opts:[], v:0, sweep:1, tip:'Parameter varied from top to bottom.'},
+  syA: {g:'Sweep', l:'from', t:'number', step:'any', v:0.5, sweep:1, tip:'Row parameter value in the top row.'},
+  syB: {g:'Sweep', l:'to', t:'number', step:'any', v:6, sweep:1, tip:'Row parameter value in the bottom row.'},
+  sN:  {g:'Sweep', l:'Tiles per side', min:2, max:8, step:1, v:5, sweep:1, tip:'The sweep renders N by N thumbnails at the current grid size.'},
+  sT:  {g:'Sweep', l:'Steps per tile', min:10, max:3000, step:10, v:300, sweep:1,
+        tip:'Steps simulated per tile before its snapshot. One tile is computed per frame, so a 5x5 sweep takes 25 frames plus GPU time.'},
+};
+const SWEEP_KEYS = ['r1', 'r2', 'p1', 'p2', 'rot', 'aspect', 'shells', 'wPos', 'wNeg', 'ktype', 'tau', 'a1', 'a2', 'tSwitch', 'h0', 'phase', 'wave', 'act', 'k', 'eps', 'blend', 'seedMode', 'seedSize', 'seedNoise', 'seedRng'];
+P.sx.opts = P.sy.opts = SWEEP_KEYS.map(k => P[k].l + '  [' + k + ']');
+P.sx.v = SWEEP_KEYS.indexOf('r1'); P.sy.v = SWEEP_KEYS.indexOf('k');
+const V = {};
+for (const k in P) V[k] = P[k].v;
+
+// Found with the sweep tool; each one is a distinct regime, not a parameter tweak.
+const PRESETS = {
+  'Original (Colab defaults)': {},
+  'Original with rounding noise': {symsum:false},
+  'Original rule from noise (waves)': {nx:160, ny:160, boundary:1, seedMode:2, speed:600, range:3, pal:4},
+  'Original rule, strong drive (pulsing dots)': {nx:160, ny:160, boundary:1, seedMode:2, a1:0.5, a2:0.5, speed:300, range:3, pal:4},
+  'Original rule, 45 degree kernel': {rot:45, nx:160, ny:160, boundary:1, speed:120, range:3},
+  'Labyrinth (periodic 256)': {nx:256, ny:256, boundary:1, speed:600, range:3, pal:3},
+  'Turing spots (DoG, biased)': {nx:256, ny:160, boundary:1, ktype:2, r1:3, r2:9, wPos:1, wNeg:0.85, act:1, k:4, h0:-0.2, blend:0.3, wave:4, seedMode:2, speed:600, range:1, pal:1},
+  'Turing maze (DoG)': {nx:256, ny:160, boundary:1, ktype:2, r1:3, r2:9, wPos:1, wNeg:0.85, act:1, k:6, blend:0.3, wave:4, seedMode:2, speed:600, range:1, pal:1},
+  'Smooth labyrinth, breathing': {nx:256, ny:160, boundary:1, ktype:1, p1:2, p2:2, rot:30, act:1, k:5, blend:0.4, seedMode:2, tau:60, a1:0.15, a2:0.15, speed:600, range:2, pal:9},
+  'Oriented stripes (anisotropic kernel)': {nx:256, ny:160, boundary:1, ktype:1, p1:2, p2:2, r1:7, r2:12, aspect:1.6, rot:30, act:1, k:5, blend:0.4, seedMode:2, wave:4, speed:120, range:2, pal:10},
+  'Drifting waves (gradient kernel)': {nx:256, ny:256, boundary:1, ktype:4, r2:6, rot:20, wPos:1, wNeg:1, act:1, k:6, blend:0.5, seedMode:2, tau:50, a1:0.2, a2:0.2, speed:600, range:1, pal:4},
+  'Shell blobs (alternating shells)': {nx:256, ny:256, boundary:1, ktype:3, r2:12, shells:3, wPos:1, wNeg:0.7, act:9, k:2.5, blend:0.25, seedMode:2, wave:4, speed:600, range:1, pal:7},
+};
+
+// ---------- URL hash / params ----------
+function paramString(){
+  const parts = [];
+  for (const k in P) if (V[k] !== P[k].v) parts.push(k + '=' + (P[k].t === 'check' ? (V[k] ? 1 : 0) : V[k]));
+  return parts.join('&');
+}
+function parseParamString(s){
+  const o = {}, q = new URLSearchParams(s.slice(s.indexOf('#') + 1));
+  q.forEach((v, k) => { if (k in P){ const x = P[k].t === 'check' ? v === '1' : parseFloat(v); if (P[k].t === 'check' || !Number.isNaN(x)) o[k] = x; } });
+  return o;
+}
+let hashTimer = 0;
+function updateHash(){
+  clearTimeout(hashTimer);
+  hashTimer = setTimeout(() => {
+    const s = paramString();
+    try { history.replaceState(null, '', location.pathname + (s ? '#' + s : '')); } catch (e) { /* data: or sandboxed URL */ }
+  }, 150);
+}
+function shareLink(){
+  const base = /^(file|https?):$/.test(location.protocol) ? location.href.split('#')[0] : '';
+  return base + '#' + paramString();
+}
+
+// ---------- shaders ----------
+const VS = `#version 300 es
+out vec2 vUv;
+void main(){
+  vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));
+  vUv = p;
+  gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);
+}`;
+
+// One simulation step. R channel = state, G channel = raw conv field c (incl. h).
+const SIM_FS = `#version 300 es
+precision highp float;
+precision highp int;
+uniform sampler2D uState;
+uniform sampler2D uKernel;
+uniform ivec2 uN;
+uniform int uR, uBoundary, uAct, uSym, uRule;
+uniform float uH, uK, uEps, uBlend;
+out vec4 o;
+float fetch(ivec2 q){
+  if (uBoundary == 1) return texelFetch(uState, (q + uN) % uN, 0).r;
+  return (q.x < 0 || q.y < 0 || q.x >= uN.x || q.y >= uN.y) ? 0.0 : texelFetch(uState, q, 0).r;
+}
+float act(float c){
+  float a = max(abs(c), uEps), kc = uK * c;
+  if (uAct == 0) return tanh(sin(kc)) / a;
+  if (uAct == 1) return tanh(kc);
+  if (uAct == 2) return sign(c);
+  if (uAct == 3) return uK * abs(c);
+  if (uAct == 4) return c;
+  if (uAct == 5) return (1.0 / (1.0 + exp(-kc))) / a;
+  if (uAct == 6) return 2.0 / (1.0 + exp(-kc)) - 1.0;
+  if (uAct == 7) return sin(kc);
+  if (uAct == 8) return clamp(kc, -1.0, 1.0);
+  return 2.0 * exp(-kc * kc) - 1.0;
+}
+void main(){
+  ivec2 p = ivec2(gl_FragCoord.xy);
+  float c = 0.0;
+  if (uSym == 1) {
+    // Mirror-exact: the four taps at (+-dx, +-dy) share one weight; add them pairwise so a cell and
+    // its mirror image perform bitwise identical arithmetic (addition is commutative, not associative).
+    for (int dy = 0; dy <= uR; dy++){
+      for (int dx = 0; dx <= uR; dx++){
+        float w = texelFetch(uKernel, ivec2(dx + uR, dy + uR), 0).r;
+        if (w == 0.0) continue;
+        float g;
+        if (dx > 0 && dy > 0) g = (fetch(p + ivec2(dx, dy)) + fetch(p + ivec2(-dx, dy))) + (fetch(p + ivec2(dx, -dy)) + fetch(p + ivec2(-dx, -dy)));
+        else if (dy > 0)      g = fetch(p + ivec2(0, dy)) + fetch(p + ivec2(0, -dy));
+        else if (dx > 0)      g = fetch(p + ivec2(dx, 0)) + fetch(p + ivec2(-dx, 0));
+        else                  g = fetch(p);
+        c += w * g;
+      }
+    }
+  } else {
+    for (int dy = -uR; dy <= uR; dy++){
+      for (int dx = -uR; dx <= uR; dx++){
+        float w = texelFetch(uKernel, ivec2(dx + uR, dy + uR), 0).r;
+        if (w == 0.0) continue;
+        c += w * fetch(p + ivec2(dx, dy));
+      }
+    }
+  }
+  c += uH;
+  float prev = texelFetch(uState, p, 0).r;
+  float next = uRule == 0 ? mix(prev, act(c), uBlend) : clamp(prev + uBlend * act(c), -1.0, 1.0);
+  o = vec4(next, c, 0.0, 1.0);
+}`;
+
+const DISP_FS = `#version 300 es
+precision highp float;
+uniform sampler2D uState, uPal, uCdf;
+uniform vec2 uRange;
+uniform int uChan, uEq, uRev;
+uniform float uGamma, uBands;
+in vec2 vUv;
+out vec4 o;
+void main(){
+  vec4 s = texture(uState, vec2(vUv.x, 1.0 - vUv.y)); // row 0 at the top, like imshow
+  float v = uChan == 0 ? s.r : s.g;
+  float t = clamp((v - uRange.x) / (uRange.y - uRange.x), 0.0, 1.0);
+  if (uEq == 1) t = texture(uCdf, vec2(t * (255.0 / 256.0) + 0.5 / 256.0, 0.5)).r;
+  t = pow(t, uGamma);
+  if (uBands >= 2.0) t = floor(t * uBands) / (uBands - 1.0);
+  if (uRev == 1) t = 1.0 - t;
+  o = vec4(texture(uPal, vec2(clamp(t, 0.0, 1.0) * (255.0 / 256.0) + 0.5 / 256.0, 0.5)).rgb, 1.0);
+}`;
+
+function compile(type, src){
+  const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh);
+  if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) fail('Shader error: ' + gl.getShaderInfoLog(sh));
+  return sh;
+}
+function program(fs){
+  const pr = gl.createProgram();
+  gl.attachShader(pr, compile(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, compile(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr);
+  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) fail('Link error: ' + gl.getProgramInfoLog(pr));
+  const u = {};
+  const n = gl.getProgramParameter(pr, gl.ACTIVE_UNIFORMS);
+  for (let i = 0; i < n; i++){ const info = gl.getActiveUniform(pr, i); u[info.name] = gl.getUniformLocation(pr, info.name); }
+  return {pr, u};
+}
+const sim = program(SIM_FS), disp = program(DISP_FS);
+gl.bindVertexArray(gl.createVertexArray()); // empty VAO, vertices come from gl_VertexID
+
+// ---------- GPU resources ----------
+function makeTex(internal, w, h, fmt, type, data, filter){
+  const t = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter || gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filter || gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texImage2D(gl.TEXTURE_2D, 0, internal, w, h, 0, fmt, type, data);
+  return t;
+}
+const kernelTex = gl.createTexture();
+const palTex = makeTex(gl.RGBA8, 256, 1, gl.RGBA, gl.UNSIGNED_BYTE, null, gl.LINEAR);
+const cdfTex = makeTex(gl.RGBA8, 256, 1, gl.RGBA, gl.UNSIGNED_BYTE, null, gl.LINEAR);
+
+// A Sim is a ping-pong pair of float textures plus its own clock. The main view and the sweep each own one.
+function makeSim(){ return {tex:[null, null], fbo:[null, null], read:0, t:0, w:0, h:0}; }
+function allocateSim(s, w, h){
+  if (s.w === w && s.h === h) return;
+  for (let i = 0; i < 2; i++){
+    if (s.tex[i]) { gl.deleteTexture(s.tex[i]); gl.deleteFramebuffer(s.fbo[i]); }
+    s.tex[i] = makeTex(gl.RGBA32F, w, h, gl.RGBA, gl.FLOAT, null);
+    s.fbo[i] = gl.createFramebuffer();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, s.fbo[i]);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, s.tex[i], 0);
+    if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE) fail('Float framebuffer incomplete.');
+  }
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  s.w = w; s.h = h;
+}
+const main = makeSim(), sw = makeSim();
+let statsBuf = null;
+function allocate(){
+  allocateSim(main, V.nx, V.ny);
+  statsBuf = new Float32Array(V.nx * V.ny * 4);
+  const W = Math.max(800, V.nx), H = Math.round(W * V.ny / V.nx);
+  if (canvas.width !== W || canvas.height !== H){ canvas.width = W; canvas.height = H; }
+  canvas.style.aspectRatio = V.nx + ' / ' + V.ny;
+}
+
+// ---------- seed (matches the numpy slicing of init_seed_state) ----------
+function rng(seed){
+  let a = seed >>> 0;
+  return () => { a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+let stepsDue = 0;
+function seedInto(s){
+  const w = s.w, h = s.h, data = new Float32Array(w * h * 4), rnd = rng(V.seedRng);
+  const sz = V.seedSize, cx = w >> 1, cy = h >> 1, x0 = cx - (sz >> 1), x1 = cx + (sz >> 1), y0 = cy - (sz >> 1), y1 = cy + (sz >> 1);
+  const set = (x, y, v) => { data[(y * w + x) * 4] = v; };
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) set(x, y, V.seedMode === 2 ? rnd() * 2 - 1 : -1);
+  if (V.seedMode === 0){
+    for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) set(x, y, 1);
+    for (let y = y0; y < y1; y++) for (let x = 0; x < w; x++) set(x, y, 0);   // horizontal band
+    for (let y = 0; y < h; y++) for (let x = x0; x < x1; x++) set(x, y, 2);   // vertical band (overwrites the square)
+  } else if (V.seedMode === 1){
+    for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) set(x, y, 1);
+  }
+  if (V.seedNoise > 0) for (let i = 0; i < w * h; i++) data[i * 4] += (rnd() * 2 - 1) * V.seedNoise;
+  gl.bindTexture(gl.TEXTURE_2D, s.tex[s.read]);
+  gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, w, h, gl.RGBA, gl.FLOAT, data);
+  s.t = 0;
+  if (s === main){ stepsDue = 0; histLen = 0; histPos = 0; lastStats = null; prevState = null; }
+}
+function reseed(){ seedInto(main); }
+
+// ---------- kernel families ----------
+let kernelInfo = '', kernelSymmetric = true, kernelR = 8;
+function buildKernel(preview = true){
+  const asp = V.aspect, S = V.shells;
+  // The support box must hold the stretched kernel, otherwise aspect ratios clip the ring.
+  const R = kernelR = Math.min(40, Math.ceil(V.r2 * Math.max(asp, 1 / asp))), K = 2 * R + 1, kern = new Float32Array(K * K);
+  const th = V.rot * Math.PI / 180, cs = Math.cos(th), sn = Math.sin(th);
+  const dist = (x, y, p) => { const u = (x * cs + y * sn) / asp, v = (-x * sn + y * cs) * asp; return Math.pow(Math.pow(Math.abs(u), p) + Math.pow(Math.abs(v), p), 1 / p); };
+  const bump = z => { const q = 1 - z * z; return q > 0 ? q * q : 0; };
+  const rnd = rng(V.seedRng * 7919 + 17), prof = []; for (let i = 0; i < S; i++) prof.push(rnd() * 2 - 1);
+  const s1 = Math.max(V.r1, 0.5) / 2, s2 = V.r2 / 2, mid = (V.r1 + V.r2) / 2, hw = Math.max((V.r2 - V.r1) / 2, 1e-9);
+  for (let y = -R; y <= R; y++) for (let x = -R; x <= R; x++){
+    const d1 = dist(x, y, V.p1), d2 = dist(x, y, V.p2);
+    let w = 0;
+    switch (V.ktype){
+      case 0: w = d1 <= V.r1 ? 1 : (d2 <= V.r2 ? -1 : 0); break;
+      case 1: w = (V.r1 > 0 ? bump(d1 / V.r1) : 0) - bump((d2 - mid) / hw); break;
+      case 2: w = Math.exp(-d1 * d1 / (2 * s1 * s1)) / (s1 * s1) - Math.exp(-d2 * d2 / (2 * s2 * s2)) / (s2 * s2); break;
+      case 3: { const sh = V.r2 / S, sg = sh / 2.5; for (let i = 0; i < S; i++){ const cen = (i + 0.5) * sh, z = (d2 - cen) / sg; w += (i % 2 ? -1 : 1) * Math.exp(-z * z / 2); } if (d2 > V.r2) w = 0; break; }
+      case 4: w = (x * cs + y * sn) * Math.exp(-d2 * d2 / (2 * s2 * s2)); break;
+      case 5: w = d2 <= V.r2 ? prof[Math.min(S - 1, Math.floor(d2 / V.r2 * S))] : 0; break;
+    }
+    kern[(y + R) * K + (x + R)] = w;
+  }
+  // Zero negligible tails (Gaussian families never reach exactly 0) so the shader can skip those taps.
+  let wmax = 0; for (const w of kern) wmax = Math.max(wmax, Math.abs(w));
+  for (let i = 0; i < kern.length; i++) if (Math.abs(kern[i]) < 1e-3 * wmax) kern[i] = 0;
+  let sp = 0, sn2 = 0;
+  for (const w of kern){ if (w > 0) sp += w; else sn2 -= w; }
+  for (let i = 0; i < kern.length; i++) kern[i] = kern[i] > 0 ? (sp ? kern[i] * V.wPos / sp : 0) : kern[i] < 0 ? (sn2 ? kern[i] * V.wNeg / sn2 : 0) : 0;
+  // Mirror symmetry: if the kernel is symmetric up to rounding, make it exactly so; otherwise disable symmetric summation.
+  kernelSymmetric = true;
+  outer: for (let y = 0; y <= R; y++) for (let x = 0; x <= R; x++){
+    const a = kern[(R + y) * K + (R + x)], m = [kern[(R + y) * K + (R - x)], kern[(R - y) * K + (R + x)], kern[(R - y) * K + (R - x)]];
+    for (const b of m) if (Math.abs(a - b) > 1e-5 * (Math.abs(a) + Math.abs(b)) + 1e-12){ kernelSymmetric = false; break outer; }
+  }
+  if (kernelSymmetric) for (let y = 0; y <= R; y++) for (let x = 0; x <= R; x++){
+    const a = kern[(R + y) * K + (R + x)];
+    kern[(R + y) * K + (R - x)] = a; kern[(R - y) * K + (R + x)] = a; kern[(R - y) * K + (R - x)] = a;
+  }
+  gl.bindTexture(gl.TEXTURE_2D, kernelTex);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.R32F, K, K, 0, gl.RED, gl.FLOAT, kern);
+  let nz = 0; for (const w of kern) if (w !== 0) nz++;
+  kernelInfo = K + 'x' + K + ' taps, ' + nz + ' nonzero, sum ' + ((sp ? V.wPos : 0) - (sn2 ? V.wNeg : 0)).toFixed(3) + (kernelSymmetric ? ', mirror-symmetric' : ', NOT mirror-symmetric (symmetric summation off)');
+  if (preview) drawKernelPreview(kern, K);
+  computeKhat(kern, K, R);
+  updateAnalysis();
+}
+
+// ---------- linear stability analysis ----------
+// Kernel spectrum K(q) along the x axis and the diagonal, for q in [0, pi] (pi = 2-cell wavelength).
+const NQ = 96;
+const kHat = {axis: new Float32Array(NQ), diag: new Float32Array(NQ), sum: 0};
+function computeKhat(kern, K, R){
+  const ax = kHat.axis, dg = kHat.diag; ax.fill(0); dg.fill(0);
+  let sum = 0;
+  for (let y = -R; y <= R; y++) for (let x = -R; x <= R; x++){
+    const w = kern[(y + R) * K + (x + R)]; if (w === 0) continue;
+    sum += w;
+    const d = (x + y) / Math.SQRT2;
+    for (let i = 0; i < NQ; i++){ const q = Math.PI * i / (NQ - 1); ax[i] += w * Math.cos(q * x); dg[i] += w * Math.cos(q * d); }
+  }
+  kHat.sum = sum;
+}
+// JS twin of the GLSL act(), used for the activation plot and the slope f'(c*).
+function actJS(c){
+  const a = Math.max(Math.abs(c), V.eps), kc = V.k * c;
+  switch (V.act){
+    case 0: return Math.tanh(Math.sin(kc)) / a;
+    case 1: return Math.tanh(kc);
+    case 2: return Math.sign(c);
+    case 3: return V.k * Math.abs(c);
+    case 4: return c;
+    case 5: return (1 / (1 + Math.exp(-kc))) / a;
+    case 6: return 2 / (1 + Math.exp(-kc)) - 1;
+    case 7: return Math.sin(kc);
+    case 8: return Math.max(-1, Math.min(1, kc));
+    default: return 2 * Math.exp(-kc * kc) - 1;
+  }
+}
+const dispC = $('disp'), dctx = dispC.getContext('2d'), dispInfo = $('dispinfo');
+function updateAnalysis(){
+  const mean = lastStats ? lastStats.mean : (V.seedMode === 2 ? 0 : -1);
+  const cstar = kHat.sum * mean + hOf(main.t), d = 1e-3;
+  const fp = Math.max(-60, Math.min(60, (actJS(cstar + d) - actJS(cstar - d)) / (2 * d)));
+  const base = V.rule === 0 ? 1 - V.blend : 1;
+  const lam = kq => base + V.blend * fp * kq;
+  // Dispersion plot
+  const W = dispC.width, H = dispC.height;
+  let ymax = 1.5; for (let i = 0; i < NQ; i++) ymax = Math.max(ymax, Math.abs(lam(kHat.axis[i])), Math.abs(lam(kHat.diag[i])));
+  ymax = Math.min(ymax, 6);
+  const yOf = v => H / 2 - Math.max(-ymax, Math.min(ymax, v)) / ymax * (H / 2 - 4), xOf = i => 44 + i / (NQ - 1) * (W - 52);
+  dctx.clearRect(0, 0, W, H);
+  dctx.font = '11px system-ui, sans-serif';
+  [[1, '#2ecc71', '+1'], [0, '#2a2f3a', '0'], [-1, '#e74c3c', '-1']].forEach(([v, col, lab]) => {
+    dctx.strokeStyle = col; dctx.setLineDash(v ? [4, 4] : []); dctx.beginPath(); dctx.moveTo(44, yOf(v)); dctx.lineTo(W - 8, yOf(v)); dctx.stroke();
+    dctx.fillStyle = col === '#2a2f3a' ? '#8a919e' : col; dctx.fillText(lab, 26, yOf(v) + 4);
+  });
+  dctx.setLineDash([]);
+  // shade unstable regions
+  dctx.fillStyle = 'rgba(46,204,113,0.10)'; dctx.fillRect(44, 4, W - 52, yOf(1) - 4);
+  dctx.fillStyle = 'rgba(231,76,60,0.10)'; dctx.fillRect(44, yOf(-1), W - 52, H - 4 - yOf(-1));
+  const series = [[kHat.axis, '#5ab4ff', 'lambda(q) along x'], [kHat.diag, '#ffb454', 'lambda(q) along diagonal']];
+  let best = {v: 0, i: -1}, worst = {v: 0, i: -1};
+  series.forEach(([arr, col, label], si) => {
+    dctx.strokeStyle = col; dctx.lineWidth = 1.5; dctx.beginPath();
+    for (let i = 0; i < NQ; i++){
+      const l = lam(arr[i]);
+      if (si === 0){ if (l > best.v){ best = {v: l, i}; } if (l < worst.v){ worst = {v: l, i}; } }
+      i === 0 ? dctx.moveTo(xOf(i), yOf(l)) : dctx.lineTo(xOf(i), yOf(l));
+    }
+    dctx.stroke();
+    dctx.fillStyle = col; dctx.fillText(label, 50 + si * 150, 14);
+  });
+  // kernel spectrum itself, thin grey, scaled to its own max
+  let km = 0; for (let i = 0; i < NQ; i++) km = Math.max(km, Math.abs(kHat.axis[i]));
+  dctx.strokeStyle = '#8a919e'; dctx.lineWidth = 1; dctx.setLineDash([2, 3]); dctx.beginPath();
+  for (let i = 0; i < NQ; i++){ const y = yOf(km ? kHat.axis[i] / km * ymax * 0.9 : 0); i === 0 ? dctx.moveTo(xOf(i), y) : dctx.lineTo(xOf(i), y); }
+  dctx.stroke(); dctx.setLineDash([]);
+  dctx.fillStyle = '#8a919e'; dctx.fillText('K(q) shape', 360, 14);
+  [2, 3, 4, 6, 8, 12, 24].forEach(wl => { const i = (NQ - 1) * 2 / wl; if (i >= 0 && i < NQ){ dctx.fillText(wl, xOf(i) - 4, H - 2); } });
+  dctx.fillText('wavelength (cells)', W - 110, H - 2);
+  const wlOf = i => i <= 0 ? 'uniform' : (2 * (NQ - 1) / i).toFixed(1) + ' cells';
+  let regime;
+  if (best.v > 1 && worst.v < -1) regime = 'Turing growth (fastest at ' + wlOf(best.i) + ') and period-2 flicker (strongest at ' + wlOf(worst.i) + ')';
+  else if (best.v > 1) regime = 'Turing instability, fastest growth at ' + wlOf(best.i) + ', lambda ' + best.v.toFixed(2);
+  else if (worst.v < -1) regime = 'period-2 flicker instability, strongest at ' + wlOf(worst.i) + ', lambda ' + worst.v.toFixed(2) + ' (lower gain or blend to remove)';
+  else regime = 'homogeneous state linearly stable, nothing grows (raise gain, kernel mass or bias)';
+  dispInfo.innerHTML = 'Linear stability at the current mean: c* = <b>' + cstar.toFixed(3) + '</b>, slope f\'(c*) = <b>' + fp.toFixed(2) + '</b>, sum K = ' + kHat.sum.toFixed(2) + '. Regime: <b>' + regime + '</b>. Click for the theory.';
+  // Activation plot
+  const ac = $('actprev'); if (!ac) return;
+  const aw = ac.width, ah = ac.height, actx = ac.getContext('2d');
+  actx.clearRect(0, 0, aw, ah);
+  const ax = c => (c + 2.5) / 5 * aw, ay = v => ah / 2 - Math.max(-2, Math.min(2, v)) / 2 * (ah / 2 - 3);
+  actx.strokeStyle = '#2a2f3a'; actx.beginPath(); actx.moveTo(0, ay(0)); actx.lineTo(aw, ay(0)); actx.moveTo(ax(0), 0); actx.lineTo(ax(0), ah); actx.stroke();
+  actx.strokeStyle = '#5ab4ff'; actx.lineWidth = 1.5; actx.beginPath();
+  for (let i = 0; i <= 300; i++){ const c = -2.5 + 5 * i / 300, v = actJS(c); if (v !== v) continue; i === 0 ? actx.moveTo(ax(c), ay(v)) : actx.lineTo(ax(c), ay(v)); }
+  actx.stroke();
+  actx.strokeStyle = '#ffb454'; actx.beginPath(); actx.moveTo(ax(cstar), 0); actx.lineTo(ax(cstar), ah); actx.stroke();
+  actx.fillStyle = '#8a919e'; actx.font = '10px system-ui, sans-serif'; actx.fillText('act(c), c in [-2.5, 2.5], y clipped to [-2, 2]; orange = c*', 4, 10);
+}
+function coolwarm(t){
+  const a = t < 0.5 ? [0.23, 0.30, 0.75] : [0.87, 0.87, 0.87], b = t < 0.5 ? [0.87, 0.87, 0.87] : [0.71, 0.016, 0.15], u = t < 0.5 ? t * 2 : (t - 0.5) * 2;
+  return [0, 1, 2].map(i => Math.round(255 * (a[i] + (b[i] - a[i]) * u)));
+}
+function drawKernelPreview(kern, K){
+  const cv = $('kprev'); if (!cv) return;
+  cv.width = cv.height = K;
+  const ctx = cv.getContext('2d'), img = ctx.createImageData(K, K);
+  let m = 0; for (const v of kern) m = Math.max(m, Math.abs(v));
+  for (let i = 0; i < kern.length; i++){ const c = coolwarm(m ? 0.5 + kern[i] / (2 * m) : 0.5); img.data.set([c[0], c[1], c[2], 255], i * 4); }
+  ctx.putImageData(img, 0, 0);
+  $('kinfo').textContent = kernelInfo;
+}
+
+// ---------- palettes ----------
+const clamp01 = x => Math.min(1, Math.max(0, x));
+const srgb2lin = c => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+const lin2srgb = c => { c = clamp01(c); return c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055; };
+function hex2rgb(h){ return [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255); }
+function rgb2oklab([r, g, b]){
+  r = srgb2lin(r); g = srgb2lin(g); b = srgb2lin(b);
+  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b), m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b), s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  return [0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s, 1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s, 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s];
+}
+function oklab2rgb([L, a, b]){
+  const l = Math.pow(L + 0.3963377774 * a + 0.2158037573 * b, 3), m = Math.pow(L - 0.1055613458 * a - 0.0638541728 * b, 3), s = Math.pow(L - 0.0894841775 * a - 1.2914855480 * b, 3);
+  return [lin2srgb(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s), lin2srgb(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s), lin2srgb(-0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s)];
+}
+function paletteColor(def, t){
+  t = clamp01(t);
+  if (def.poly){ const c = def.poly; return [0, 1, 2].map(i => clamp01(c[0][i] + t * (c[1][i] + t * (c[2][i] + t * (c[3][i] + t * (c[4][i] + t * (c[5][i] + t * c[6][i]))))))); }
+  if (def.turbo){
+    const x2 = t * t, x3 = x2 * t, x4 = x3 * t, x5 = x4 * t;
+    return [clamp01(0.13572138 + 4.61539260 * t - 42.66032258 * x2 + 132.13108234 * x3 - 152.94239396 * x4 + 59.28637943 * x5),
+            clamp01(0.09140261 + 2.19418839 * t + 4.84296658 * x2 - 14.18503333 * x3 + 4.27729857 * x4 + 2.82956604 * x5),
+            clamp01(0.10667330 + 12.64194608 * t - 60.58204836 * x2 + 110.36276771 * x3 - 89.90310912 * x4 + 27.34824973 * x5)];
+  }
+  if (def.cubehelix){
+    const ang = 2 * Math.PI * (0.5 / 3 + 1 - 1.5 * t), amp = t * (1 - t) / 2, c = Math.cos(ang), s = Math.sin(ang);
+    return [clamp01(t + amp * (-0.14861 * c + 1.78277 * s)), clamp01(t + amp * (-0.29227 * c - 0.90649 * s)), clamp01(t + amp * (1.97294 * c))];
+  }
+  const labs = def._labs || (def._labs = def.stops.map(h => rgb2oklab(hex2rgb(h))));
+  const n = labs.length - 1, x = t * n, i = Math.min(n - 1, Math.floor(x)), f = x - i;
+  return oklab2rgb([0, 1, 2].map(j => labs[i][j] + (labs[i + 1][j] - labs[i][j]) * f));
+}
+function buildPalette(){
+  const def = PALETTES[PAL_NAMES[V.pal]], data = new Uint8Array(256 * 4);
+  for (let i = 0; i < 256; i++){ const c = paletteColor(def, i / 255); data.set([Math.round(c[0] * 255), Math.round(c[1] * 255), Math.round(c[2] * 255), 255], i * 4); }
+  gl.bindTexture(gl.TEXTURE_2D, palTex);
+  gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, 256, 1, gl.RGBA, gl.UNSIGNED_BYTE, data);
+  const cv = $('palprev'); if (!cv) return;
+  cv.width = 256; cv.height = 1;
+  const img = cv.getContext('2d').createImageData(256, 1);
+  for (let i = 0; i < 256; i++){ const j = V.rev ? 255 - i : i; img.data.set(data.subarray(j * 4, j * 4 + 4), i * 4); }
+  cv.getContext('2d').putImageData(img, 0, 0);
+}
+
+// ---------- oscillator ----------
+function hOf(step){
+  const A = step < V.tSwitch ? V.a1 : V.a2, x = step / V.tau + V.phase;
+  let w = 0;
+  switch (V.wave){
+    case 0: w = Math.sin(x); break;
+    case 1: w = Math.sign(Math.sin(x)); break;
+    case 2: w = 2 / Math.PI * Math.asin(Math.sin(x)); break;
+    case 3: { const u = x / (2 * Math.PI); w = 2 * (u - Math.floor(u + 0.5)); break; }
+  }
+  return V.h0 - A * w;
+}
+
+// ---------- simulation ----------
+function bindSim(s){
+  gl.useProgram(sim.pr);
+  gl.viewport(0, 0, s.w, s.h);
+  gl.uniform1i(sim.u.uState, 0); gl.uniform1i(sim.u.uKernel, 1);
+  gl.uniform2i(sim.u.uN, s.w, s.h); gl.uniform1i(sim.u.uR, kernelR);
+  gl.uniform1i(sim.u.uBoundary, V.boundary); gl.uniform1i(sim.u.uAct, V.act); gl.uniform1i(sim.u.uSym, V.symsum && kernelSymmetric ? 1 : 0);
+  gl.uniform1f(sim.u.uK, V.k); gl.uniform1f(sim.u.uEps, V.eps); gl.uniform1f(sim.u.uBlend, V.blend); gl.uniform1i(sim.u.uRule, V.rule);
+  gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, kernelTex);
+  gl.activeTexture(gl.TEXTURE0);
+}
+function stepSim(s){
+  gl.bindFramebuffer(gl.FRAMEBUFFER, s.fbo[1 - s.read]);
+  gl.bindTexture(gl.TEXTURE_2D, s.tex[s.read]);
+  gl.uniform1f(sim.u.uH, hOf(s.t));
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+  s.read = 1 - s.read; s.t++;
+}
+let range = [-1.3, 1.3];
+function drawSim(s){
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  gl.viewport(0, 0, canvas.width, canvas.height);
+  gl.useProgram(disp.pr);
+  gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, cdfTex);
+  gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, palTex);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, s.tex[s.read]);
+  gl.uniform1i(disp.u.uState, 0); gl.uniform1i(disp.u.uPal, 1); gl.uniform1i(disp.u.uCdf, 2);
+  gl.uniform1i(disp.u.uChan, V.chan); gl.uniform1i(disp.u.uEq, V.range === 3 ? 1 : 0); gl.uniform1i(disp.u.uRev, V.rev ? 1 : 0);
+  gl.uniform1f(disp.u.uGamma, V.gamma); gl.uniform1f(disp.u.uBands, V.bands);
+  const lo = V.range === 0 ? V.vmin : range[0], hi = V.range === 0 ? V.vmax : range[1];
+  gl.uniform2f(disp.u.uRange, lo, hi > lo ? hi : lo + 1e-6);
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+let lastStats = null, prevState = null, prevT = 0;
+const hist = new Uint32Array(256), cdfBytes = new Uint8Array(256 * 4), ent = new Uint32Array(64);
+function readStats(){
+  const w = main.w, h = main.h, b = statsBuf, ch = V.chan === 0 ? 0 : 1;
+  gl.bindFramebuffer(gl.FRAMEBUFFER, main.fbo[main.read]);
+  gl.readPixels(0, 0, w, h, gl.RGBA, gl.FLOAT, b);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  let sum = 0, mn = Infinity, mx = -Infinity, bad = 0, lr = 0, ud = 0;
+  const N = w * h;
+  for (let i = 0; i < N; i++){
+    const v = b[i * 4 + ch];
+    if (v !== v) { bad++; continue; }
+    sum += v; if (v < mn) mn = v; if (v > mx) mx = v;
+  }
+  const half = w >> 1;
+  for (let y = 0; y < h; y++){
+    const row = y * w, mrow = (h - 1 - y) * w;
+    for (let x = 0; x < half; x++){
+      lr += Math.abs(b[(row + x) * 4] - b[(row + w - 1 - x) * 4]);
+      ud += Math.abs(b[(row + x) * 4] - b[(mrow + x) * 4]) + Math.abs(b[(row + w - 1 - x) * 4] - b[(mrow + w - 1 - x) * 4]);
+    }
+  }
+  // Shannon entropy of the state histogram (64 bins over [-2, 2]) and mean absolute change per step.
+  ent.fill(0);
+  for (let i = 0; i < N; i++){ const v = b[i * 4]; if (v === v) ent[Math.min(63, Math.max(0, Math.floor((v + 2) / 4 * 64)))]++; }
+  let H = 0;
+  for (let j = 0; j < 64; j++) if (ent[j]){ const p = ent[j] / (N - bad); H -= p * Math.log2(p); }
+  let activity = NaN;
+  if (prevState && prevState.length === N && main.t > prevT){
+    let s = 0; for (let i = 0; i < N; i++){ const dlt = b[i * 4] - prevState[i]; if (dlt === dlt) s += Math.abs(dlt); }
+    activity = s / N / (main.t - prevT);
+  }
+  if (!prevState || prevState.length !== N) prevState = new Float32Array(N);
+  for (let i = 0; i < N; i++) prevState[i] = b[i * 4];
+  prevT = main.t;
+  lastStats = {mean: sum / (N - bad), min: mn, max: mx, bad, lr: lr / (h * half), ud: ud / (2 * h * half), entropy: H, activity};
+  updateAnalysis();
+  if (V.range === 0 || !(mx > mn)) { if (V.range === 3) { range = [V.vmin, V.vmax]; } else return; }
+  // histogram of the displayed channel over [mn, mx] for percentiles
+  hist.fill(0);
+  const span = mx - mn || 1;
+  for (let i = 0; i < N; i++){ const v = b[i * 4 + ch]; if (v === v) hist[Math.min(255, Math.floor((v - mn) / span * 256))]++; }
+  const pick = q => { let acc = 0; for (let i = 0; i < 256; i++){ acc += hist[i]; if (acc >= q * (N - bad)) return mn + (i + 0.5) / 256 * span; } return mx; };
+  let lo = pick(0.01), hi = pick(0.99);
+  if (V.range === 2){ const m = Math.max(Math.abs(lo), Math.abs(hi)); lo = -m; hi = m; }
+  if (V.range === 3){ lo = mn; hi = mx; }
+  if (!(hi > lo)){ hi = lo + 1e-3; }
+  range = [range[0] + (lo - range[0]) * 0.3, range[1] + (hi - range[1]) * 0.3];
+  if (V.range === 3){
+    hist.fill(0);
+    const s2 = range[1] - range[0];
+    for (let i = 0; i < N; i++){ const v = b[i * 4 + ch]; if (v === v) hist[Math.min(255, Math.max(0, Math.floor((v - range[0]) / s2 * 256)))]++; }
+    let acc = 0;
+    for (let i = 0; i < 256; i++){ acc += hist[i]; const c = Math.round(255 * acc / (N - bad || 1)); cdfBytes[i * 4] = c; cdfBytes[i * 4 + 1] = c; cdfBytes[i * 4 + 2] = c; cdfBytes[i * 4 + 3] = 255; }
+    gl.bindTexture(gl.TEXTURE_2D, cdfTex);
+    gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, 256, 1, gl.RGBA, gl.UNSIGNED_BYTE, cdfBytes);
+  }
+}
+
+// ---------- history chart ----------
+const chart = $('chart'), cctx = chart.getContext('2d'), HIST = 400;
+const histH = new Float32Array(HIST), histM = new Float32Array(HIST), histE = new Float32Array(HIST), histA = new Float32Array(HIST);
+let histLen = 0, histPos = 0;
+function pushHist(h, m, e, a){ histH[histPos] = h; histM[histPos] = m; histE[histPos] = e; histA[histPos] = a; histPos = (histPos + 1) % HIST; if (histLen < HIST) histLen++; }
+function drawChart(){
+  const W = chart.width, H = chart.height;
+  const yL = v => H - (Math.min(1.6, Math.max(-1.6, v)) + 1.6) / 3.2 * H;   // left axis: -1.6 .. 1.6
+  const yR = v => H - Math.min(1, Math.max(0, v)) * H;                       // right axis: 0 .. 1
+  cctx.clearRect(0, 0, W, H);
+  cctx.strokeStyle = '#2a2f3a'; cctx.beginPath(); cctx.moveTo(0, yL(0)); cctx.lineTo(W, yL(0)); cctx.stroke();
+  const series = [[histH, '#5ab4ff', 'h(t)', yL, v => v], [histM, '#ffb454', 'mean state', yL, v => v], [histE, '#2ecc71', 'entropy / 6 bits', yR, v => v / 6], [histA, '#e74c3c', 'activity |dx| per step', yR, v => v]];
+  series.forEach(([buf, col, label, yOf, tr], si) => {
+    cctx.strokeStyle = col; cctx.lineWidth = 1.5; cctx.beginPath();
+    let started = false;
+    for (let i = 0; i < histLen; i++){
+      const v = buf[(histPos - histLen + i + HIST) % HIST];
+      if (v !== v) continue;
+      const x = (i / (HIST - 1)) * W, y = yOf(tr(v));
+      started ? cctx.lineTo(x, y) : cctx.moveTo(x, y); started = true;
+    }
+    cctx.stroke();
+    cctx.fillStyle = col; cctx.font = '12px system-ui, sans-serif'; cctx.fillText(label, 8 + si * 125, 14);
+  });
+  cctx.fillStyle = '#8a919e'; cctx.fillText('+1.6 | 1', W - 46, 12); cctx.fillText('-1.6 | 0', W - 46, H - 4);
+}
+
+// ---------- parameter sweep ----------
+const sweepCanvas = $('sweep'), sctx = sweepCanvas.getContext('2d'), sweepTitle = $('sweeptitle');
+let sweep = null, lastSweep = null;
+function snapValue(k, v){
+  const d = P[k];
+  if (d.t === 'select') return Math.min(d.opts.length - 1, Math.max(0, Math.round(v)));
+  if (d.t === 'number') return v;
+  return parseFloat(v.toPrecision(4));
+}
+function startSweep(){
+  const xk = SWEEP_KEYS[V.sx], yk = SWEEP_KEYS[V.sy], N = V.sN;
+  if (xk === yk){ errBox.textContent = 'Pick two different parameters to sweep.'; return; }
+  errBox.textContent = '';
+  const lin = (a, b, i) => a + (b - a) * (N === 1 ? 0 : i / (N - 1));
+  const xs = [], ys = [];
+  for (let i = 0; i < N; i++){ xs.push(snapValue(xk, lin(V.sxA, V.sxB, i))); ys.push(snapValue(yk, lin(V.syA, V.syB, i))); }
+  allocateSim(sw, main.w, main.h);
+  const tw = Math.floor(800 / N), th = Math.max(24, Math.round(tw * main.h / main.w));
+  sweepCanvas.width = tw * N; sweepCanvas.height = th * N;
+  sctx.fillStyle = '#000'; sctx.fillRect(0, 0, sweepCanvas.width, sweepCanvas.height);
+  sweepCanvas.hidden = false; sweepTitle.hidden = false;
+  sweep = lastSweep = {xk, yk, xs, ys, i: 0, N, tw, th};
+  sweepTitle.textContent = 'Sweep: columns ' + P[xk].l + ' ' + fmt(xs[0]) + ' .. ' + fmt(xs[N - 1]) + ', rows ' + P[yk].l + ' ' + fmt(ys[0]) + ' .. ' + fmt(ys[N - 1]) + ', ' + V.sT + ' steps each. Click a tile to load it.';
+  $('b_sweep').textContent = 'Running 0/' + N * N;
+}
+function sweepTick(){
+  const s = sweep, col = s.i % s.N, row = Math.floor(s.i / s.N);
+  const save = {}; save[s.xk] = V[s.xk]; save[s.yk] = V[s.yk];
+  V[s.xk] = s.xs[col]; V[s.yk] = s.ys[row];
+  const kdirty = P[s.xk].kernel || P[s.yk].kernel;
+  if (kdirty) buildKernel(false);
+  seedInto(sw); bindSim(sw);
+  for (let i = 0; i < V.sT; i++) stepSim(sw);
+  drawSim(sw);
+  sctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, col * s.tw, row * s.th, s.tw, s.th);
+  const label = s.xk + '=' + fmt(s.xs[col]) + '  ' + s.yk + '=' + fmt(s.ys[row]);
+  sctx.font = '11px system-ui, sans-serif';
+  sctx.fillStyle = 'rgba(0,0,0,0.6)'; sctx.fillRect(col * s.tw, row * s.th, sctx.measureText(label).width + 8, 15);
+  sctx.fillStyle = '#fff'; sctx.fillText(label, col * s.tw + 4, row * s.th + 11);
+  Object.assign(V, save);
+  if (kdirty) buildKernel(false);
+  s.i++;
+  $('b_sweep').textContent = 'Running ' + s.i + '/' + s.N * s.N;
+  if (s.i >= s.N * s.N){ sweep = null; $('b_sweep').textContent = 'Run sweep'; }
+}
+sweepCanvas.addEventListener('click', e => {
+  const s = lastSweep; if (!s || sweep) return;
+  const r = sweepCanvas.getBoundingClientRect();
+  const col = Math.min(s.N - 1, Math.floor((e.clientX - r.left) / r.width * s.N)), row = Math.min(s.N - 1, Math.floor((e.clientY - r.top) / r.height * s.N));
+  setParam(s.xk, s.xs[col]); setParam(s.yk, s.ys[row]); reseed();
+});
+
+// ---------- info popover ----------
+const pop = $('pop');
+let popAnchor = null;
+function showPop(anchor, title, html){
+  if (!pop.hidden && popAnchor === anchor){ pop.hidden = true; popAnchor = null; return; }
+  popAnchor = anchor;
+  pop.innerHTML = '<b>' + title + '</b>' + html;
+  pop.hidden = false;
+  const r = anchor.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight;
+  pop.style.left = Math.max(8, Math.min(r.left, window.innerWidth - w - 8)) + 'px';
+  pop.style.top = (r.bottom + h + 12 > window.innerHeight ? Math.max(8, r.top - h - 6) : r.bottom + 6) + 'px';
+}
+document.addEventListener('click', e => { if (!e.target.closest('#pop') && !e.target.closest('[data-pop]')){ pop.hidden = true; popAnchor = null; } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape'){ pop.hidden = true; popAnchor = null; } });
+
+// ---------- UI ----------
+const groups = {};
+function fmt(v){ return typeof v === 'number' ? String(parseFloat(v.toPrecision(4))) : String(v); }
+function sliderVal(d, v){ return d.log ? Math.log10(v) : v; }
+function buildUI(){
+  const root = $('controls');
+  for (const [k, d] of Object.entries(P)){
+    if (!groups[d.g]){
+      const fs = document.createElement('fieldset'), lg = document.createElement('legend');
+      lg.textContent = d.g;
+      const q = document.createElement('button'); q.textContent = '?'; q.title = 'About this section'; q.dataset.pop = '1';
+      q.onclick = () => showPop(q, d.g, SECTIONS[d.g] || '');
+      lg.appendChild(q); fs.appendChild(lg); root.appendChild(fs); groups[d.g] = fs;
+    }
+    const row = document.createElement('div'); row.className = 'row';
+    const lab = document.createElement('label'); lab.textContent = d.l; lab.title = 'Click for details'; lab.dataset.pop = '1';
+    lab.onclick = e => { e.preventDefault(); showPop(lab, d.l, d.tip || ''); };
+    row.appendChild(lab);
+    let inp, out = null;
+    if (d.t === 'select'){
+      inp = document.createElement('select');
+      d.opts.forEach((o, i) => { const op = document.createElement('option'); op.value = i; op.textContent = o; inp.appendChild(op); });
+      inp.value = V[k];
+    } else if (d.t === 'number'){
+      inp = document.createElement('input'); inp.type = 'number'; inp.value = V[k]; inp.step = d.step;
+    } else if (d.t === 'check'){
+      inp = document.createElement('input'); inp.type = 'checkbox'; inp.checked = V[k];
+    } else {
+      inp = document.createElement('input'); inp.type = 'range'; inp.min = d.min; inp.max = d.max; inp.step = d.step; inp.value = sliderVal(d, V[k]);
+      out = document.createElement('output'); out.textContent = fmt(V[k]);
+    }
+    inp.id = 'p_' + k; row.appendChild(inp); if (out) row.appendChild(out);
+    inp.addEventListener('input', () => {
+      let v = d.t === 'check' ? inp.checked : d.t === 'select' ? +inp.value : parseFloat(inp.value);
+      if (d.t !== 'check' && Number.isNaN(v)) return;
+      if (d.log) v = parseFloat(Math.pow(10, v).toPrecision(3));
+      setParam(k, v);
+    });
+    groups[d.g].appendChild(row);
+    if (d.quick){
+      const qd = document.createElement('div'); qd.className = 'quick';
+      d.quick.forEach(v => { const b = document.createElement('button'); b.textContent = v; b.onclick = () => setParam(k, v); qd.appendChild(b); });
+      groups[d.g].appendChild(qd);
+    }
+  }
+  const kp = document.createElement('canvas'); kp.id = 'kprev'; groups.Kernel.appendChild(kp);
+  const ki = document.createElement('div'); ki.id = 'kinfo'; groups.Kernel.appendChild(ki);
+  const ap = document.createElement('canvas'); ap.id = 'actprev'; ap.width = 320; ap.height = 90; groups.Activation.appendChild(ap);
+  dispInfo.onclick = () => showPop(dispInfo, 'Analysis: one framework for all of it', SECTIONS.Analysis);
+  const pp = document.createElement('canvas'); pp.id = 'palprev'; groups.Display.insertBefore(pp, groups.Display.children[2]);
+  const sb = document.createElement('div'); sb.className = 'btns';
+  const run = document.createElement('button'); run.id = 'b_sweep'; run.textContent = 'Run sweep'; run.onclick = () => { if (!sweep) startSweep(); };
+  const clr = document.createElement('button'); clr.textContent = 'Hide grid'; clr.onclick = () => { sweepCanvas.hidden = true; sweepTitle.hidden = true; };
+  sb.appendChild(run); sb.appendChild(clr); groups.Sweep.appendChild(sb);
+}
+function refreshControl(k){
+  const inp = $('p_' + k); if (!inp) return;
+  if (P[k].t === 'check') inp.checked = V[k]; else inp.value = sliderVal(P[k], V[k]);
+  const out = inp.nextElementSibling; if (out && out.tagName === 'OUTPUT') out.textContent = fmt(V[k]);
+}
+function updateVisibility(){
+  for (const k in P){
+    if (!P[k].show) continue;
+    const inp = $('p_' + k); if (inp) inp.parentElement.hidden = !P[k].show();
+  }
+}
+function setParam(k, v){
+  V[k] = v; refreshControl(k);
+  const d = P[k];
+  if (d.realloc){ allocate(); reseed(); }
+  else if (d.seed) reseed();
+  if (d.kernel) buildKernel();
+  if (k === 'pal' || k === 'rev') buildPalette();
+  if (k === 'range' && v === 0) range = [V.vmin, V.vmax];
+  if (d.g === 'Activation' || d.g === 'Oscillator') updateAnalysis();
+  updateVisibility();
+  updateHash();
+}
+function applyParams(o, resetOthers){
+  for (const k in P){ if (k in o) V[k] = o[k]; else if (resetOthers) V[k] = P[k].v; refreshControl(k); }
+  range = [V.vmin, V.vmax];
+  allocate(); buildKernel(); buildPalette(); reseed(); updateVisibility(); updateHash();
+}
+function applyPreset(name){ applyParams(PRESETS[name] || {}, true); }
+function loadParams(){
+  const s = prompt('Paste a link, a #hash fragment, or JSON from Copy JSON:');
+  if (!s) return;
+  const str = s.trim();
+  let o;
+  if (str.startsWith('{')){ try { o = JSON.parse(str); } catch (e) { errBox.textContent = 'Could not parse JSON.'; return; } }
+  else o = parseParamString(str);
+  applyParams(o, true);
+}
+
+let running = true, snap = false, recorder = null, chunks = [];
+function download(blob, name){
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+function stamp(){ return new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19); }
+function copyText(s){
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(s).catch(() => prompt('Copy:', s));
+  else prompt('Copy:', s);
+}
+function toggleRecord(){
+  const btn = $('b_rec');
+  if (recorder){ recorder.stop(); return; }
+  const mime = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'].find(m => window.MediaRecorder && MediaRecorder.isTypeSupported(m));
+  if (!mime){ errBox.textContent = 'MediaRecorder / WebM not supported in this browser.'; return; }
+  chunks = [];
+  recorder = new MediaRecorder(canvas.captureStream(60), {mimeType: mime, videoBitsPerSecond: 12e6});
+  recorder.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
+  recorder.onstop = () => { download(new Blob(chunks, {type: 'video/webm'}), 'rd_lab_' + stamp() + '.webm'); recorder = null; btn.textContent = 'Record WebM'; btn.classList.remove('rec'); };
+  recorder.start(250);
+  btn.textContent = 'Stop recording'; btn.classList.add('rec');
+}
+function buildButtons(){
+  const bar = $('mainbtns');
+  const mk = (id, label, fn, title) => { const b = document.createElement('button'); b.id = id; b.textContent = label; b.onclick = fn; if (title) b.title = title; bar.appendChild(b); return b; };
+  const play = mk('b_play', 'Pause', () => { running = !running; stepsDue = 0; play.textContent = running ? 'Pause' : 'Play'; play.classList.toggle('on', !running); }, 'Space');
+  mk('b_step', 'Step', () => { bindSim(main); stepSim(main); }, 'Advance exactly one step (S)');
+  mk('b_reset', 'Reseed / t=0', reseed, 'Rebuild the seed and restart time (R)');
+  mk('b_png', 'Snapshot PNG', () => { snap = true; }, 'Save the current frame');
+  mk('b_rec', 'Record WebM', toggleRecord, 'Record the canvas until pressed again');
+  mk('b_link', 'Copy link', () => copyText(shareLink()), 'Copies this page URL with every non-default parameter in the #hash. Opening it restores the experiment exactly.');
+  mk('b_json', 'Copy JSON', () => copyText(JSON.stringify(V)), 'All parameters as JSON, for notes or for Load');
+  mk('b_load', 'Load...', loadParams, 'Paste a link, hash or JSON to restore an experiment');
+  const sel = document.createElement('select');
+  const first = document.createElement('option'); first.textContent = 'Presets...'; first.disabled = true; first.selected = true; sel.appendChild(first);
+  for (const name in PRESETS){ const op = document.createElement('option'); op.textContent = name; sel.appendChild(op); }
+  sel.onchange = () => { applyPreset(sel.value); sel.selectedIndex = 0; };
+  bar.appendChild(sel);
+  document.addEventListener('keydown', e => {
+    if (/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+    if (e.code === 'Space'){ e.preventDefault(); play.click(); }
+    else if (e.key === 's' || e.key === 'S') $('b_step').click();
+    else if (e.key === 'r' || e.key === 'R') reseed();
+  });
+}
+
+// ---------- main loop ----------
+const status = $('status');
+let frames = 0, fps = 0, last = performance.now(), lastStepsPerSec = 0, stepAcc = 0, stepClock = last;
+function updateStatus(){
+  const s = lastStats;
+  status.innerHTML =
+    '<span>t <b>' + main.t + '</b></span>' +
+    '<span>h(t) <b>' + hOf(main.t).toFixed(4) + '</b></span>' +
+    '<span>fps <b>' + fps.toFixed(0) + '</b></span>' +
+    '<span>steps/s <b>' + lastStepsPerSec.toFixed(lastStepsPerSec < 10 ? 1 : 0) + '</b> / ' + V.speed + '</span>' +
+    '<span>grid <b>' + main.w + 'x' + main.h + '</b></span>' +
+    '<span>range <b>' + (V.range === 0 ? V.vmin : range[0].toFixed(2)) + ' .. ' + (V.range === 0 ? V.vmax : range[1].toFixed(2)) + '</b></span>' +
+    (s ? '<span>mean <b>' + s.mean.toFixed(4) + '</b></span><span>min <b>' + s.min.toFixed(3) + '</b></span><span>max <b>' + s.max.toFixed(3) + '</b></span>' +
+         '<span title="Shannon entropy of the state histogram, 64 bins over [-2, 2]">entropy <b>' + s.entropy.toFixed(2) + ' bits</b></span>' +
+         '<span title="mean |state change| per step between readbacks">activity <b>' + (s.activity === s.activity ? s.activity.toFixed(4) : '-') + '</b></span>' +
+         '<span title="mean |s(x,y) - s(w-1-x,y)|">LR asym <b>' + s.lr.toExponential(1) + '</b></span>' +
+         '<span title="mean |s(x,y) - s(x,h-1-y)|">UD asym <b>' + s.ud.toExponential(1) + '</b></span>' +
+         (s.bad ? '<span style="color:var(--warn)">NaN cells <b>' + s.bad + '</b></span>' : '') : '');
+}
+function frame(now){
+  const dt = now - last; last = now;
+  if (dt > 0) fps = fps ? fps * 0.9 + (1000 / dt) * 0.1 : 1000 / dt;
+  if (sweep) sweepTick();
+  if (running){
+    stepsDue += V.speed * Math.min(dt, 250) / 1000;          // real-time pacing, robust to tab switches
+    const k = Math.min(Math.floor(stepsDue), V.maxSpf);
+    if (k > 0){ bindSim(main); for (let i = 0; i < k; i++) stepSim(main); stepAcc += k; }
+    stepsDue = Math.min(stepsDue - k, 1);                     // drop the backlog instead of bursting later
+  }
+  if (now - stepClock >= 1000){ lastStepsPerSec = stepAcc * 1000 / (now - stepClock); stepAcc = 0; stepClock = now; }
+  if (V.stats && frames % 15 === 0) readStats();
+  drawSim(main);
+  if (snap){ snap = false; canvas.toBlob(b => download(b, 'rd_lab_t' + main.t + '_' + stamp() + '.png')); }
+  pushHist(hOf(main.t), lastStats ? lastStats.mean : NaN, lastStats ? lastStats.entropy : NaN, lastStats ? lastStats.activity : NaN);
+  drawChart();
+  if (frames % 5 === 0) updateStatus();
+  frames++;
+  requestAnimationFrame(frame);
+}
+
+Object.assign(V, parseParamString(location.hash));
+buildUI();
+buildButtons();
+range = [V.vmin, V.vmax];
+allocate();
+buildKernel();
+buildPalette();
+reseed();
+updateVisibility();
+updateHash();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
