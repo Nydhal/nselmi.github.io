@@ -4,7 +4,10 @@ const vm=require('node:vm');
 const W=require('./ca-world.js');
 async function main(){
   const data=JSON.parse(fs.readFileSync(__dirname+'/catalogue/index.json'));
-  for(const e of data.entries){const w=await W.verify(e.world);assert.deepEqual(W.run(w.dynamics,w.observation.rowCount).rows,e.rows);assert.deepEqual(await W.verify(JSON.parse(JSON.stringify(w))),w);}
+  for(const e of data.entries){const w=await W.verify(e.world);assert.deepEqual(W.run(w.dynamics,w.observation.rowCount).rows,e.rows);assert.deepEqual(await W.verify(JSON.parse(JSON.stringify(w))),w);
+    const c=w.metadata?.orbitCertificate;if(c){const rows=W.run(w.dynamics,c.checkedRows).rows;assert.equal(await W.hash(rows),c.gridSha256);assert.equal(rows[c.firstRepeatedFrom],rows[c.firstRepeatedAt]);assert.equal(new Set(rows.slice(0,c.firstRepeatedAt)).size,c.firstRepeatedAt);assert.ok(rows.every(r=>!r.includes('K')));}
+  }
+  assert.equal(data.entries.filter(e=>e.name.startsWith('Kitaoka')).length,1);
   const terrace=data.entries.find(e=>e.name==='Slotted terraces').world;
   const changed=structuredClone(terrace);changed.dynamics.diagnosticPropagation='output-K';
   assert.notDeepEqual(W.run(changed.dynamics,42).rows,W.run(terrace.dynamics,42).rows);

@@ -940,9 +940,9 @@ function importRules() {
 // =============================================================================
 (function init() {
   const extras=window.CA_RECOVERED;
-  const kitaoka=extras.find(e=>e.key==='entry-020');PRESETS[1].variants=[{...PRESETS[1],name:'Standard / 117 cells'},{name:'Compact / 88 cells',key:kitaoka.key,world:kitaoka.world}];
   const field=extras.find(e=>e.key==='entry-009'),wide=extras.find(e=>e.key==='entry-011');
-  PRESETS.push(...extras.filter(e=>!['entry-020','entry-011'].includes(e.key)).map(e=>e.key===field.key?{name:'Slotted field',variants:[{name:'156 cells',key:e.key,world:e.world},{name:'308 cells',key:wide.key,world:wide.world}]}:{name:e.name,key:e.key,world:e.world}));
+  const offset=extras.find(e=>e.key==='entry-022');
+  PRESETS.push(...extras.filter(e=>!['entry-022','entry-011'].includes(e.key)).map(e=>e.key===field.key?{name:'Slotted field',variants:[{name:'156 cells',key:e.key,world:e.world},{name:'308 cells',key:wide.key,world:wide.world}]}:e.key==='entry-019'&&offset?{name:'Slotted terraces',variants:[{name:'Offset seed (+2 cells)',key:offset.key,world:offset.world},{name:'Original seed',key:e.key,world:e.world}]}:{name:e.name,key:e.key,world:e.world}));
   // Populate preset dropdown (rule + seed configurations)
   const presetSel = $('preset');
   PRESETS.forEach((p, i) => {

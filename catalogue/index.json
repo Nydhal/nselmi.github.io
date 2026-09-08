@@ -391,7 +391,7 @@
           "name": "Selmi 2009",
           "evidence": {
             "source": "impossible-fractal-ca.html",
-            "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+            "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
             "note": "35 rows include generation zero; no historical image match asserted."
           },
           "status": "saved-preset"
@@ -806,7 +806,7 @@
           "name": "Kitaoka 2010",
           "evidence": {
             "source": "impossible-fractal-ca.html",
-            "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+            "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
             "note": "35 rows include generation zero; no historical image match asserted."
           },
           "status": "saved-preset"
@@ -1209,7 +1209,7 @@
           "name": "Selmi 2019",
           "evidence": {
             "source": "impossible-fractal-ca.html",
-            "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+            "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
             "note": "35 rows include generation zero; no historical image match asserted."
           },
           "status": "saved-preset"
@@ -1560,7 +1560,7 @@
           "name": "Zigzag chain",
           "evidence": {
             "source": "impossible-fractal-ca.html",
-            "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+            "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
             "note": "35 rows include generation zero; no historical image match asserted."
           },
           "status": "saved-preset"
@@ -1991,7 +1991,7 @@
           "name": "Braced diagonal strip",
           "evidence": {
             "source": "impossible-fractal-ca.html",
-            "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+            "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
             "note": "35 rows include generation zero; no historical image match asserted."
           },
           "status": "saved-preset"
@@ -2190,7 +2190,7 @@
           "name": "Single cube",
           "evidence": {
             "source": "impossible-fractal-ca.html",
-            "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+            "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
             "note": "35 rows include generation zero; no historical image match asserted."
           },
           "status": "saved-preset"
@@ -2393,7 +2393,7 @@
           "name": "Down-right beam",
           "evidence": {
             "source": "impossible-fractal-ca.html",
-            "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+            "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
             "note": "35 rows include generation zero; no historical image match asserted."
           },
           "status": "saved-preset"
@@ -2584,7 +2584,7 @@
           "name": "Down-left beam",
           "evidence": {
             "source": "impossible-fractal-ca.html",
-            "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+            "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
             "note": "35 rows include generation zero; no historical image match asserted."
           },
           "status": "saved-preset"
@@ -10074,444 +10074,6 @@
       "seamWarning": false
     },
     {
-      "key": "entry-020",
-      "download": "worlds/entry-020.json",
-      "name": "Kitaoka 2010 / 88 cells",
-      "status": "symbolic-replay-verified",
-      "world": {
-        "schema": "ca-world-v1",
-        "dynamics": {
-          "schema": "ca-dynamics-v1",
-          "states": [
-            "W",
-            "R",
-            "G",
-            "B"
-          ],
-          "diagnostic": "K",
-          "offsets": [
-            -3,
-            -2,
-            -1,
-            0,
-            1,
-            2,
-            3
-          ],
-          "rules": [
-            [
-              "BBBBBBB",
-              "W"
-            ],
-            [
-              "BBBBBBR",
-              "W"
-            ],
-            [
-              "BBBBBRG",
-              "W"
-            ],
-            [
-              "BBBBRGG",
-              "R"
-            ],
-            [
-              "BBBRGGW",
-              "R"
-            ],
-            [
-              "BBGGWRR",
-              "G"
-            ],
-            [
-              "BBGGWWW",
-              "G"
-            ],
-            [
-              "BBGRRRR",
-              "B"
-            ],
-            [
-              "BBRGGWW",
-              "G"
-            ],
-            [
-              "BGGWRRG",
-              "R"
-            ],
-            [
-              "BGGWWWR",
-              "G"
-            ],
-            [
-              "BGGWWWW",
-              "G"
-            ],
-            [
-              "BGRRRRR",
-              "B"
-            ],
-            [
-              "BRGGWWW",
-              "G"
-            ],
-            [
-              "GBBBBBB",
-              "W"
-            ],
-            [
-              "GBGGWWW",
-              "G"
-            ],
-            [
-              "GGBGGWW",
-              "B"
-            ],
-            [
-              "GGGWWWW",
-              "G"
-            ],
-            [
-              "GGWBBGG",
-              "R"
-            ],
-            [
-              "GGWRRGG",
-              "R"
-            ],
-            [
-              "GGWWWRR",
-              "W"
-            ],
-            [
-              "GGWWWWW",
-              "W"
-            ],
-            [
-              "GRRRRRR",
-              "B"
-            ],
-            [
-              "GWBBGGW",
-              "B"
-            ],
-            [
-              "GWRRGGW",
-              "R"
-            ],
-            [
-              "GWWWRRG",
-              "R"
-            ],
-            [
-              "GWWWWWR",
-              "W"
-            ],
-            [
-              "GWWWWWW",
-              "W"
-            ],
-            [
-              "RBBGGWW",
-              "R"
-            ],
-            [
-              "RBBGRRR",
-              "B"
-            ],
-            [
-              "RGBBBBB",
-              "W"
-            ],
-            [
-              "RGGBGGW",
-              "B"
-            ],
-            [
-              "RGGGWWW",
-              "G"
-            ],
-            [
-              "RGGWBBG",
-              "R"
-            ],
-            [
-              "RGGWWWW",
-              "G"
-            ],
-            [
-              "RGWWWWW",
-              "W"
-            ],
-            [
-              "RRBBGGW",
-              "B"
-            ],
-            [
-              "RRBBGRR",
-              "B"
-            ],
-            [
-              "RRGBBBB",
-              "G"
-            ],
-            [
-              "RRGGBGG",
-              "W"
-            ],
-            [
-              "RRGGGWW",
-              "B"
-            ],
-            [
-              "RRGGWBB",
-              "R"
-            ],
-            [
-              "RRGWWWW",
-              "G"
-            ],
-            [
-              "RRRBBGG",
-              "B"
-            ],
-            [
-              "RRRBBGR",
-              "B"
-            ],
-            [
-              "RRRRBBG",
-              "B"
-            ],
-            [
-              "RRRRRBB",
-              "B"
-            ],
-            [
-              "RRRRRRB",
-              "B"
-            ],
-            [
-              "RRRRRRR",
-              "B"
-            ],
-            [
-              "WBBGGWR",
-              "B"
-            ],
-            [
-              "WBBGGWW",
-              "B"
-            ],
-            [
-              "WRRGBBB",
-              "G"
-            ],
-            [
-              "WRRGGBG",
-              "G"
-            ],
-            [
-              "WRRGGGW",
-              "G"
-            ],
-            [
-              "WRRGGWB",
-              "R"
-            ],
-            [
-              "WRRGWWW",
-              "G"
-            ],
-            [
-              "WRRRRRR",
-              "B"
-            ],
-            [
-              "WWRRGBB",
-              "G"
-            ],
-            [
-              "WWRRGGB",
-              "G"
-            ],
-            [
-              "WWRRGGG",
-              "G"
-            ],
-            [
-              "WWRRGGW",
-              "R"
-            ],
-            [
-              "WWRRGWW",
-              "G"
-            ],
-            [
-              "WWRRRRR",
-              "G"
-            ],
-            [
-              "WWWRRGB",
-              "R"
-            ],
-            [
-              "WWWRRGG",
-              "R"
-            ],
-            [
-              "WWWRRGW",
-              "R"
-            ],
-            [
-              "WWWRRRR",
-              "R"
-            ],
-            [
-              "WWWWRRG",
-              "R"
-            ],
-            [
-              "WWWWRRR",
-              "R"
-            ],
-            [
-              "WWWWWRR",
-              "W"
-            ],
-            [
-              "WWWWWWR",
-              "W"
-            ],
-            [
-              "WWWWWWW",
-              "W"
-            ]
-          ],
-          "seed": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-          "width": 88,
-          "boundary": "fixed-W",
-          "update": "synchronous",
-          "missing": "output-K",
-          "diagnosticPropagation": "output-K"
-        },
-        "geometry": {
-          "schema": "ca-geometry-v1",
-          "dynamicsId": "08bbfebcac1964187fef81eeb1ecc0f53ce6feb6ddb9f21e6b7f1b5c41a80349",
-          "tessellation": "triangular-strip",
-          "phase": 0,
-          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
-          "horizontalUnit": 10,
-          "verticalUnit": 17,
-          "seam": "unjoined-planar-view"
-        },
-        "appearance": {
-          "schema": "ca-appearance-v1",
-          "geometryId": "a48952c41e1bd38aa1ebcfcbf393851a2f030a1f89b0f31f6c5431d168c7a78b",
-          "colorSpace": "srgb",
-          "palette": {
-            "W": "#ffffffff",
-            "R": "#e8a0a0ff",
-            "G": "#a0e8a0ff",
-            "B": "#a0a0e8ff",
-            "K": "#333333ff"
-          },
-          "canvasBackground": "#ffffffff",
-          "borders": "different-state-and-support-boundary",
-          "borderColor": "#000000ff",
-          "borderWidth": 1
-        },
-        "ids": {
-          "dynamics": "08bbfebcac1964187fef81eeb1ecc0f53ce6feb6ddb9f21e6b7f1b5c41a80349",
-          "geometry": "a48952c41e1bd38aa1ebcfcbf393851a2f030a1f89b0f31f6c5431d168c7a78b",
-          "appearance": "61fc14a65221256bd6d4e4da8a8b5561a3fe039475e03949d1ceb5c25d0dccc5",
-          "observation": "e87f51257aae050ddf6ed3f85a30944f5716d633bcae469010602f77780f5ca7"
-        },
-        "observation": {
-          "schema": "ca-observation-v1",
-          "appearanceId": "61fc14a65221256bd6d4e4da8a8b5561a3fe039475e03949d1ceb5c25d0dccc5",
-          "firstGeneration": 0,
-          "rowCount": 42,
-          "renderer": "catalogue-canvas-v1",
-          "crop": "full-domain",
-          "gridSha256": "4a66e5adb2da9428f3817f36482bfd31619892dbf336683507db9872253434b3"
-        },
-        "metadata": {
-          "name": "Kitaoka 2010 / 88 cells",
-          "status": "symbolic-replay-verified",
-          "evidence": {
-            "source": "Triangular_Cellular_Automata\\svg\\_ca (10).svg",
-            "sha256": "1af8f1ebf0a91cadc5cd69209c4e913511d342921646987196d43fd15a8ba4dd",
-            "image": "evidence/1af8f1ebf0a91cadc5cd69209c4e913511d342921646987196d43fd15a8ba4dd.svg",
-            "comparedCells": 3696,
-            "mismatches": 0,
-            "rulesProvenance": "saved-compatible",
-            "ruleSource": "Kitaoka_2010.json",
-            "ruleConvention": "as-saved",
-            "boundaryCandidates": [
-              {
-                "boundary": "fixed-W",
-                "diagnosticMode": "propagate-K"
-              },
-              {
-                "boundary": "periodic",
-                "diagnosticMode": "propagate-K"
-              }
-            ],
-            "note": "Every decoded cell replays over the recorded horizon. Unobserved rules and alternative boundaries may remain undetermined. Source borders may differ."
-          }
-        }
-      },
-      "rows": [
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGWBBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRRRRRRBBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGBBBBBBBRGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGGWWWWWRRGGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGBGGWWWRRGGBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGWBBGGWRRGGWBBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRRRRRRBBGRRRRRRRBBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGBBBBBBBBBBBBBBBBBRGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGGWWWWWWWWWWWWWWWRRGGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGBGGWWWWWWWWWWWWWRRGGBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGWBBGGWWWWWWWWWWWRRGGWBBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWRRRRRRRBBGGWWWWWWWWWRRRRRRRBBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWWRRGBBBBBBBRGGWWWWWWWRRGBBBBBBBRGGWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWWRRGGGWWWWWRRGGGWWWWWRRGGGWWWWWRRGGGWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWWRRGGBGGWWWRRGGBGGWWWRRGGBGGWWWRRGGBGGWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWWRRGGWBBGGWRRGGWBBGGWRRGGWBBGGWRRGGWBBGGWWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWWRRRRRRRBBGRRRRRRRBBGRRRRRRRBBGRRRRRRRBBGGWWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWWRRGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBRGGWWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWWRRGGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGGWWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWWRRGGBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGBGGWWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWWRRGGWBBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGWBBGGWWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWWRRRRRRRBBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRRRRRRBBGGWWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWWRRGBBBBBBBRGGWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGBBBBBBBRGGWWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWWRRGGGWWWWWRRGGGWWWWWWWWWWWWWWWWWWWWWWWWWRRGGGWWWWWRRGGGWWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWWRRGGBGGWWWRRGGBGGWWWWWWWWWWWWWWWWWWWWWWWRRGGBGGWWWRRGGBGGWWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWWRRGGWBBGGWRRGGWBBGGWWWWWWWWWWWWWWWWWWWWWRRGGWBBGGWRRGGWBBGGWWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWWRRRRRRRBBGRRRRRRRBBGGWWWWWWWWWWWWWWWWWWWRRRRRRRBBGRRRRRRRBBGGWWWWWWWWWWWWWW",
-        "WWWWWWWWWWWWRRGBBBBBBBBBBBBBBBBBRGGWWWWWWWWWWWWWWWWWRRGBBBBBBBBBBBBBBBBBRGGWWWWWWWWWWWWW",
-        "WWWWWWWWWWWRRGGGWWWWWWWWWWWWWWWRRGGGWWWWWWWWWWWWWWWRRGGGWWWWWWWWWWWWWWWRRGGGWWWWWWWWWWWW",
-        "WWWWWWWWWWRRGGBGGWWWWWWWWWWWWWRRGGBGGWWWWWWWWWWWWWRRGGBGGWWWWWWWWWWWWWRRGGBGGWWWWWWWWWWW",
-        "WWWWWWWWWRRGGWBBGGWWWWWWWWWWWRRGGWBBGGWWWWWWWWWWWRRGGWBBGGWWWWWWWWWWWRRGGWBBGGWWWWWWWWWW",
-        "WWWWWWWWRRRRRRRBBGGWWWWWWWWWRRRRRRRBBGGWWWWWWWWWRRRRRRRBBGGWWWWWWWWWRRRRRRRBBGGWWWWWWWWW",
-        "WWWWWWWRRGBBBBBBBRGGWWWWWWWRRGBBBBBBBRGGWWWWWWWRRGBBBBBBBRGGWWWWWWWRRGBBBBBBBRGGWWWWWWWW",
-        "WWWWWWRRGGGWWWWWRRGGGWWWWWRRGGGWWWWWRRGGGWWWWWRRGGGWWWWWRRGGGWWWWWRRGGGWWWWWRRGGGWWWWWWW",
-        "WWWWWRRGGBGGWWWRRGGBGGWWWRRGGBGGWWWRRGGBGGWWWRRGGBGGWWWRRGGBGGWWWRRGGBGGWWWRRGGBGGWWWWWW",
-        "WWWWRRGGWBBGGWRRGGWBBGGWRRGGWBBGGWRRGGWBBGGWRRGGWBBGGWRRGGWBBGGWRRGGWBBGGWRRGGWBBGGWWWWW",
-        "WWWRRRRRRRBBGRRRRRRRBBGRRRRRRRBBGRRRRRRRBBGRRRRRRRBBGRRRRRRRBBGRRRRRRRBBGRRRRRRRBBGGWWWW",
-        "WWRRGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBRGGWWW",
-        "WRRGGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGGGWW"
-      ],
-      "ruleCount": 72,
-      "diagnostics": 0,
-      "ruleFamilyId": "ab79bfd7f982bdeff0869f8330fb2b23c7095255eb1ba93638924ebaf65b468b",
-      "seamWarning": false
-    },
-    {
       "key": "entry-021",
       "download": "worlds/entry-021.json",
       "name": "Paired hexagonal columns",
@@ -11041,6 +10603,1284 @@
       "ruleCount": 102,
       "diagnostics": 0,
       "ruleFamilyId": "e612b17e3f13a935f9dbdbd58e28331086e33593b5843574b59fa47453bd3602",
+      "seamWarning": false
+    },
+    {
+      "key": "entry-022",
+      "download": "worlds/entry-022.json",
+      "name": "Slotted terraces / offset seed",
+      "status": "certified-K-free-orbit",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBBBB",
+              "G"
+            ],
+            [
+              "BBBBBBG",
+              "G"
+            ],
+            [
+              "BBBBBBR",
+              "G"
+            ],
+            [
+              "BBBBBGG",
+              "R"
+            ],
+            [
+              "BBBBBGW",
+              "W"
+            ],
+            [
+              "BBBBBRG",
+              "W"
+            ],
+            [
+              "BBBBBRR",
+              "G"
+            ],
+            [
+              "BBBBGGW",
+              "R"
+            ],
+            [
+              "BBBBGRR",
+              "B"
+            ],
+            [
+              "BBBBGWB",
+              "W"
+            ],
+            [
+              "BBBBGWW",
+              "W"
+            ],
+            [
+              "BBBBRGG",
+              "R"
+            ],
+            [
+              "BBBBRRG",
+              "R"
+            ],
+            [
+              "BBBBRRR",
+              "B"
+            ],
+            [
+              "BBBGGWW",
+              "G"
+            ],
+            [
+              "BBBGRRR",
+              "B"
+            ],
+            [
+              "BBBGWBB",
+              "W"
+            ],
+            [
+              "BBBGWWW",
+              "W"
+            ],
+            [
+              "BBBRGGW",
+              "R"
+            ],
+            [
+              "BBBRRGG",
+              "B"
+            ],
+            [
+              "BBBRRRR",
+              "B"
+            ],
+            [
+              "BBGGBBB",
+              "G"
+            ],
+            [
+              "BBGGGWW",
+              "G"
+            ],
+            [
+              "BBGGRGG",
+              "G"
+            ],
+            [
+              "BBGGRRR",
+              "G"
+            ],
+            [
+              "BBGGWRR",
+              "G"
+            ],
+            [
+              "BBGGWWB",
+              "G"
+            ],
+            [
+              "BBGGWWR",
+              "G"
+            ],
+            [
+              "BBGGWWW",
+              "G"
+            ],
+            [
+              "BBGRRGG",
+              "R"
+            ],
+            [
+              "BBGRRRB",
+              "B"
+            ],
+            [
+              "BBGRRRR",
+              "B"
+            ],
+            [
+              "BBGWBBG",
+              "W"
+            ],
+            [
+              "BBGWWWW",
+              "W"
+            ],
+            [
+              "BBRGGWW",
+              "G"
+            ],
+            [
+              "BBRRGGB",
+              "G"
+            ],
+            [
+              "BBRRGGG",
+              "B"
+            ],
+            [
+              "BBRRGGW",
+              "G"
+            ],
+            [
+              "BBRRRRB",
+              "B"
+            ],
+            [
+              "BGGBBBB",
+              "B"
+            ],
+            [
+              "BGGGWWR",
+              "G"
+            ],
+            [
+              "BGGGWWW",
+              "G"
+            ],
+            [
+              "BGGRGGW",
+              "G"
+            ],
+            [
+              "BGGRRRR",
+              "G"
+            ],
+            [
+              "BGGWRRG",
+              "G"
+            ],
+            [
+              "BGGWRRR",
+              "W"
+            ],
+            [
+              "BGGWWBB",
+              "W"
+            ],
+            [
+              "BGGWWRR",
+              "W"
+            ],
+            [
+              "BGGWWWR",
+              "G"
+            ],
+            [
+              "BGGWWWW",
+              "G"
+            ],
+            [
+              "BGRBBBB",
+              "B"
+            ],
+            [
+              "BGRRGGG",
+              "G"
+            ],
+            [
+              "BGRRGGW",
+              "G"
+            ],
+            [
+              "BGRRRBB",
+              "B"
+            ],
+            [
+              "BGRRRRR",
+              "B"
+            ],
+            [
+              "BGWBBGG",
+              "R"
+            ],
+            [
+              "BGWWWWR",
+              "W"
+            ],
+            [
+              "BGWWWWW",
+              "W"
+            ],
+            [
+              "BRGGWWW",
+              "G"
+            ],
+            [
+              "BRRGGBG",
+              "G"
+            ],
+            [
+              "BRRGGGR",
+              "G"
+            ],
+            [
+              "BRRGGGW",
+              "G"
+            ],
+            [
+              "BRRGGWB",
+              "G"
+            ],
+            [
+              "BRRGGWW",
+              "G"
+            ],
+            [
+              "BRRRRBB",
+              "B"
+            ],
+            [
+              "BWWBBBB",
+              "B"
+            ],
+            [
+              "GBBBBBB",
+              "W"
+            ],
+            [
+              "GBBBBBR",
+              "G"
+            ],
+            [
+              "GBBGGWR",
+              "G"
+            ],
+            [
+              "GBBGGWW",
+              "G"
+            ],
+            [
+              "GBBGRRG",
+              "R"
+            ],
+            [
+              "GBGGGRR",
+              "G"
+            ],
+            [
+              "GBGGGWW",
+              "G"
+            ],
+            [
+              "GBGGRGG",
+              "G"
+            ],
+            [
+              "GBGGWRR",
+              "G"
+            ],
+            [
+              "GBGGWWW",
+              "G"
+            ],
+            [
+              "GBGRBBB",
+              "B"
+            ],
+            [
+              "GGBBBBB",
+              "G"
+            ],
+            [
+              "GGBBGRR",
+              "W"
+            ],
+            [
+              "GGBGGGR",
+              "B"
+            ],
+            [
+              "GGBGGGW",
+              "B"
+            ],
+            [
+              "GGBGGRG",
+              "B"
+            ],
+            [
+              "GGBGGWR",
+              "B"
+            ],
+            [
+              "GGBGGWW",
+              "B"
+            ],
+            [
+              "GGBGRBB",
+              "B"
+            ],
+            [
+              "GGGBBGR",
+              "G"
+            ],
+            [
+              "GGGRGGW",
+              "G"
+            ],
+            [
+              "GGGWRRG",
+              "G"
+            ],
+            [
+              "GGGWRRR",
+              "R"
+            ],
+            [
+              "GGGWWRB",
+              "W"
+            ],
+            [
+              "GGGWWRR",
+              "W"
+            ],
+            [
+              "GGGWWWB",
+              "W"
+            ],
+            [
+              "GGGWWWR",
+              "G"
+            ],
+            [
+              "GGGWWWW",
+              "G"
+            ],
+            [
+              "GGRGGWB",
+              "G"
+            ],
+            [
+              "GGRGGWW",
+              "G"
+            ],
+            [
+              "GGRRRRR",
+              "B"
+            ],
+            [
+              "GGWBBBB",
+              "R"
+            ],
+            [
+              "GGWBBGG",
+              "R"
+            ],
+            [
+              "GGWRRGB",
+              "B"
+            ],
+            [
+              "GGWRRGG",
+              "R"
+            ],
+            [
+              "GGWRRRR",
+              "B"
+            ],
+            [
+              "GGWWBBB",
+              "W"
+            ],
+            [
+              "GGWWRBB",
+              "R"
+            ],
+            [
+              "GGWWRRG",
+              "R"
+            ],
+            [
+              "GGWWRRR",
+              "W"
+            ],
+            [
+              "GGWWWBB",
+              "W"
+            ],
+            [
+              "GGWWWRR",
+              "W"
+            ],
+            [
+              "GGWWWWB",
+              "W"
+            ],
+            [
+              "GGWWWWR",
+              "W"
+            ],
+            [
+              "GGWWWWW",
+              "W"
+            ],
+            [
+              "GRBBBBB",
+              "B"
+            ],
+            [
+              "GRGGWBB",
+              "W"
+            ],
+            [
+              "GRGGWWR",
+              "W"
+            ],
+            [
+              "GRGGWWW",
+              "W"
+            ],
+            [
+              "GRRGGBG",
+              "G"
+            ],
+            [
+              "GRRGGGB",
+              "G"
+            ],
+            [
+              "GRRGGGR",
+              "G"
+            ],
+            [
+              "GRRGGWW",
+              "G"
+            ],
+            [
+              "GRRRBBG",
+              "B"
+            ],
+            [
+              "GRRRRRB",
+              "B"
+            ],
+            [
+              "GRRRRRR",
+              "B"
+            ],
+            [
+              "GWBBBBB",
+              "B"
+            ],
+            [
+              "GWBBGGG",
+              "R"
+            ],
+            [
+              "GWBBGGR",
+              "B"
+            ],
+            [
+              "GWBBGGW",
+              "R"
+            ],
+            [
+              "GWGGGWW",
+              "G"
+            ],
+            [
+              "GWRRGBB",
+              "B"
+            ],
+            [
+              "GWRRGGB",
+              "G"
+            ],
+            [
+              "GWRRGGR",
+              "G"
+            ],
+            [
+              "GWRRGGW",
+              "G"
+            ],
+            [
+              "GWRRRRR",
+              "B"
+            ],
+            [
+              "GWWBBBB",
+              "W"
+            ],
+            [
+              "GWWBBGG",
+              "R"
+            ],
+            [
+              "GWWRBBG",
+              "R"
+            ],
+            [
+              "GWWRRGB",
+              "B"
+            ],
+            [
+              "GWWRRGG",
+              "R"
+            ],
+            [
+              "GWWRRGW",
+              "R"
+            ],
+            [
+              "GWWRRRR",
+              "B"
+            ],
+            [
+              "GWWWBBB",
+              "W"
+            ],
+            [
+              "GWWWBBG",
+              "W"
+            ],
+            [
+              "GWWWRRG",
+              "R"
+            ],
+            [
+              "GWWWRRR",
+              "W"
+            ],
+            [
+              "GWWWWBB",
+              "W"
+            ],
+            [
+              "GWWWWRB",
+              "W"
+            ],
+            [
+              "GWWWWRR",
+              "W"
+            ],
+            [
+              "GWWWWWB",
+              "W"
+            ],
+            [
+              "GWWWWWR",
+              "W"
+            ],
+            [
+              "GWWWWWW",
+              "W"
+            ],
+            [
+              "RBBBBBB",
+              "B"
+            ],
+            [
+              "RBBGGBB",
+              "G"
+            ],
+            [
+              "RBBGGGW",
+              "B"
+            ],
+            [
+              "RBBGGWR",
+              "G"
+            ],
+            [
+              "RBBGGWW",
+              "G"
+            ],
+            [
+              "RBBGRRG",
+              "R"
+            ],
+            [
+              "RBBGRRR",
+              "B"
+            ],
+            [
+              "RBBGWWW",
+              "W"
+            ],
+            [
+              "RGBBBBB",
+              "W"
+            ],
+            [
+              "RGBBGGW",
+              "R"
+            ],
+            [
+              "RGGBGGG",
+              "B"
+            ],
+            [
+              "RGGBGGR",
+              "B"
+            ],
+            [
+              "RGGBGGW",
+              "B"
+            ],
+            [
+              "RGGBGRB",
+              "B"
+            ],
+            [
+              "RGGGBBG",
+              "G"
+            ],
+            [
+              "RGGGRGG",
+              "G"
+            ],
+            [
+              "RGGGWRR",
+              "G"
+            ],
+            [
+              "RGGGWWW",
+              "G"
+            ],
+            [
+              "RGGWBBB",
+              "W"
+            ],
+            [
+              "RGGWBBG",
+              "W"
+            ],
+            [
+              "RGGWWBB",
+              "W"
+            ],
+            [
+              "RGGWWRB",
+              "W"
+            ],
+            [
+              "RGGWWRR",
+              "W"
+            ],
+            [
+              "RGGWWWB",
+              "W"
+            ],
+            [
+              "RGGWWWW",
+              "W"
+            ],
+            [
+              "RGWWBBG",
+              "R"
+            ],
+            [
+              "RGWWWRR",
+              "W"
+            ],
+            [
+              "RGWWWWW",
+              "W"
+            ],
+            [
+              "RRBBGGB",
+              "R"
+            ],
+            [
+              "RRBBGGW",
+              "R"
+            ],
+            [
+              "RRBBGRR",
+              "B"
+            ],
+            [
+              "RRGBBBB",
+              "G"
+            ],
+            [
+              "RRGBBGG",
+              "R"
+            ],
+            [
+              "RRGGBGG",
+              "W"
+            ],
+            [
+              "RRGGBGR",
+              "W"
+            ],
+            [
+              "RRGGGBB",
+              "B"
+            ],
+            [
+              "RRGGGRG",
+              "B"
+            ],
+            [
+              "RRGGGWR",
+              "B"
+            ],
+            [
+              "RRGGGWW",
+              "B"
+            ],
+            [
+              "RRGGWBB",
+              "W"
+            ],
+            [
+              "RRGGWWB",
+              "W"
+            ],
+            [
+              "RRGGWWR",
+              "W"
+            ],
+            [
+              "RRGGWWW",
+              "W"
+            ],
+            [
+              "RRGWWBB",
+              "R"
+            ],
+            [
+              "RRGWWWR",
+              "W"
+            ],
+            [
+              "RRGWWWW",
+              "G"
+            ],
+            [
+              "RRRBBGG",
+              "R"
+            ],
+            [
+              "RRRBBGR",
+              "B"
+            ],
+            [
+              "RRRGGBG",
+              "G"
+            ],
+            [
+              "RRRGGWW",
+              "G"
+            ],
+            [
+              "RRRGWWB",
+              "G"
+            ],
+            [
+              "RRRRBBG",
+              "B"
+            ],
+            [
+              "RRRRGGB",
+              "B"
+            ],
+            [
+              "RRRRGGW",
+              "B"
+            ],
+            [
+              "RRRRGWW",
+              "B"
+            ],
+            [
+              "RRRRRBB",
+              "B"
+            ],
+            [
+              "RRRRRGG",
+              "B"
+            ],
+            [
+              "RRRRRRB",
+              "B"
+            ],
+            [
+              "RRRRRRG",
+              "B"
+            ],
+            [
+              "RRRRRRR",
+              "B"
+            ],
+            [
+              "RRRRRWW",
+              "B"
+            ],
+            [
+              "RRRRWWB",
+              "B"
+            ],
+            [
+              "RRRWWBB",
+              "R"
+            ],
+            [
+              "RRWWBBG",
+              "R"
+            ],
+            [
+              "RWWBBGG",
+              "R"
+            ],
+            [
+              "WBBBBBB",
+              "B"
+            ],
+            [
+              "WBBBBBR",
+              "B"
+            ],
+            [
+              "WBBBBGR",
+              "R"
+            ],
+            [
+              "WBBGGGW",
+              "G"
+            ],
+            [
+              "WBBGGRG",
+              "B"
+            ],
+            [
+              "WBBGGRR",
+              "B"
+            ],
+            [
+              "WBBGGWR",
+              "G"
+            ],
+            [
+              "WBBGGWW",
+              "G"
+            ],
+            [
+              "WBBGWWW",
+              "G"
+            ],
+            [
+              "WBWWBBB",
+              "B"
+            ],
+            [
+              "WGGGWWR",
+              "W"
+            ],
+            [
+              "WRBBGGG",
+              "B"
+            ],
+            [
+              "WRBBGRR",
+              "R"
+            ],
+            [
+              "WRBBGWW",
+              "W"
+            ],
+            [
+              "WRRGBBB",
+              "G"
+            ],
+            [
+              "WRRGBBG",
+              "G"
+            ],
+            [
+              "WRRGGBG",
+              "G"
+            ],
+            [
+              "WRRGGGB",
+              "G"
+            ],
+            [
+              "WRRGGGR",
+              "G"
+            ],
+            [
+              "WRRGGGW",
+              "G"
+            ],
+            [
+              "WRRGGRR",
+              "G"
+            ],
+            [
+              "WRRGGWB",
+              "G"
+            ],
+            [
+              "WRRGGWW",
+              "G"
+            ],
+            [
+              "WRRGWWW",
+              "G"
+            ],
+            [
+              "WRRRRGW",
+              "B"
+            ],
+            [
+              "WRRRRRR",
+              "B"
+            ],
+            [
+              "WRRRRRW",
+              "B"
+            ],
+            [
+              "WWBBBBB",
+              "B"
+            ],
+            [
+              "WWBBBBG",
+              "W"
+            ],
+            [
+              "WWBBGGG",
+              "R"
+            ],
+            [
+              "WWBBGGR",
+              "B"
+            ],
+            [
+              "WWBBGGW",
+              "R"
+            ],
+            [
+              "WWBBGWW",
+              "R"
+            ],
+            [
+              "WWRBBGG",
+              "G"
+            ],
+            [
+              "WWRBBGR",
+              "R"
+            ],
+            [
+              "WWRBBGW",
+              "G"
+            ],
+            [
+              "WWRRGBB",
+              "B"
+            ],
+            [
+              "WWRRGGB",
+              "G"
+            ],
+            [
+              "WWRRGGG",
+              "G"
+            ],
+            [
+              "WWRRGGW",
+              "G"
+            ],
+            [
+              "WWRRGWW",
+              "G"
+            ],
+            [
+              "WWRRRRG",
+              "B"
+            ],
+            [
+              "WWRRRRR",
+              "B"
+            ],
+            [
+              "WWWBBBB",
+              "W"
+            ],
+            [
+              "WWWBBGG",
+              "R"
+            ],
+            [
+              "WWWBBGW",
+              "R"
+            ],
+            [
+              "WWWRBBG",
+              "R"
+            ],
+            [
+              "WWWRRGB",
+              "B"
+            ],
+            [
+              "WWWRRGG",
+              "R"
+            ],
+            [
+              "WWWRRGW",
+              "R"
+            ],
+            [
+              "WWWRRRR",
+              "B"
+            ],
+            [
+              "WWWWBBB",
+              "W"
+            ],
+            [
+              "WWWWBBG",
+              "W"
+            ],
+            [
+              "WWWWRBB",
+              "R"
+            ],
+            [
+              "WWWWRRG",
+              "R"
+            ],
+            [
+              "WWWWRRR",
+              "W"
+            ],
+            [
+              "WWWWWBB",
+              "W"
+            ],
+            [
+              "WWWWWRB",
+              "W"
+            ],
+            [
+              "WWWWWRR",
+              "W"
+            ],
+            [
+              "WWWWWWB",
+              "W"
+            ],
+            [
+              "WWWWWWR",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWWWWWRRGWWWWWWWWWRRGWWWWWRRGWWWWWWWRRGWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+          "width": 88,
+          "boundary": "periodic",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "ffece35e342e4fbecaeb43ed37f000d914b800e297dae76d0a0f73b54df335c1",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "11e755c2f399bb0e77a39d3512de8c65cbcf67fb1726b57df11f94df2cba5cb7",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#333333ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "ffece35e342e4fbecaeb43ed37f000d914b800e297dae76d0a0f73b54df335c1",
+          "geometry": "11e755c2f399bb0e77a39d3512de8c65cbcf67fb1726b57df11f94df2cba5cb7",
+          "appearance": "eb7047e31b95c5121d7611ce063d94f39521f03b395c25d6e703332a4ac28cbb",
+          "observation": "485652e59d8d094b2f05e5521789c9c3b1b8f2d0762e6f741a737debbe30ce3e"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "eb7047e31b95c5121d7611ce063d94f39521f03b395c25d6e703332a4ac28cbb",
+          "firstGeneration": 0,
+          "rowCount": 64,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "4371104f45cbd90e13cb59dd40f5cf0afa0328e827ea6aa82876f5d59dfb2ecc"
+        },
+        "metadata": {
+          "name": "Slotted terraces / offset seed",
+          "status": "certified-K-free-orbit",
+          "evidence": {
+            "source": "Seed experiment: fourth RRG moves from column 40 to column 42",
+            "sha256": "a7dc08429d1141b7f0684343aa45b3e5969820da63ba72a57b4c9b6ba6549cfa",
+            "note": "Same 276 rules and width 88. Only the fourth triplet moves two cells right. The orbit repeats after 21 generations with period 264 and never produces K. Geometric coherence is assessed visually, not implied by that certificate.",
+            "image": "evidence/terraces-offset-seed.png"
+          },
+          "orbitCertificate": {
+            "schema": "ca-orbit-certificate-v1",
+            "width": 88,
+            "boundary": "periodic",
+            "diagnosticPropagation": "output-K",
+            "seed": "WWWWWWWWWWWWRRGWWWWWWWWWRRGWWWWWRRGWWWWWWWRRGWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+            "ruleTableId": "74808e906ef46b0c6e6261302a9359c16f161726a40b4e9fc99683a4510f664f",
+            "firstRepeatedFrom": 21,
+            "firstRepeatedAt": 285,
+            "period": 264,
+            "repeatedRow": "GWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWRRGGWWRRG",
+            "checkedRows": 286,
+            "gridSha256": "eb216f4e3f3c39e2916ecd20e1a90855d9fb49ea26632f5a9ef24c20601a1865",
+            "conclusion": "The run has a transient of 21 and a least eventual period of 264. It never encounters an undefined neighborhood.",
+            "proof": "All rows 0 through 285 were replayed independently. Rows 0 through 284 are distinct; row 285 equals row 21. Determinism repeats the 264-row cycle forever. Every checked row is in WRGB, so no later K can occur.",
+            "limitation": "This certifies rule coverage and temporal periodicity, not spatial/geometric realizability or visual coherence at every junction."
+          }
+        }
+      },
+      "rows": [
+        "WWWWWWWWWWWWRRGWWWWWWWWWRRGWWWWWRRGWWWWWWWRRGWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWRRGGGWWWWWWWRRGGGWWWRRGGGWWWWWRRGGGWWWWWWWRRGGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWRRGGBGGWWWWWRRGGBGGWRRGGBGGWWWRRGGBGGWWWWWRRGGBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWRRGGWBBGGWWWRRGGWBBGGRGGWBBGGWRRGGWBBGGWWWRRGGWBBGGWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWRRGGWWRRGGGWRRGGWWRBBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGGWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWRRGGWWRRGGBGGRGGWWRRGBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWRRGGWWRRGGWBBGGGWWRBBGRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWRRGGWWRRGGWWRRGGGWRRRRRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGGWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWRRGGWWRRGGWWRRGGBGRBBBBBBGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWRRGGWWRRGGWWRRGGWBBBBBBGWWWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWWWWWWWWWWWWWWWWWWWWWW",
+        "WWRRGGWWRRGGWWRRGGWWRBBGWWWWWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGGWWWWWWWWWWWWWWWWWWWWW",
+        "WRRGGWWRRGGWWRRGGWWRRGWWWWWWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGWWWWWWWWWWWWWWWWWWWW",
+        "RRGGWWRRGGWWRRGGWWRRGGGWWWWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWWWWWWWWWWWWWWWWWWW",
+        "RGGWWRRGGWWRRGGWWRRGGBGGWWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGGWWWWWWWWWWWWWWWWWR",
+        "GGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGWWWWWWWWWWWWWWWRR",
+        "GWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWWWWWWWWWWWWWRRG",
+        "WWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGGWWWWWWWWWWWRRGG",
+        "WRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGWWWWWWWWWRRGGW",
+        "RRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWWWWWWWRRGGWW",
+        "RGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGGWWWWWRRGGWWR",
+        "GGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGWWWRRGGWWRR",
+        "GWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWRRGGWWRRG",
+        "WWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGGRGGWWRRGG",
+        "WRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGGWWRRGGW",
+        "RRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWRRGGWW",
+        "RGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGGRGGWWR",
+        "GGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGGWWRR",
+        "GWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWRRG",
+        "WWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGGRGG",
+        "WRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGGW",
+        "RRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGW",
+        "RGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRRGGG",
+        "GGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRGGBG",
+        "GGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGGWBB",
+        "GGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGWWRR",
+        "GBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWWRRG",
+        "WBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWRRGG",
+        "WRRGGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRRGGW",
+        "RRGGBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRGGWW",
+        "RGGWBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGGWWR",
+        "GGWWRRGGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGGWRR",
+        "GWWRRGGBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBGGRG",
+        "WWRRGGWBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBBGGG",
+        "WRRGGWWRRGGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRRGGG",
+        "GRGGWWRRGGBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRGGBG",
+        "GGGWWRRGGWBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGGWBB",
+        "GGGWRRGGWWRRGGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGWWRR",
+        "GBGGRGGWWRRGGBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWWRRG",
+        "WBBGGGWWRRGGWBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWRRGG",
+        "WRRGGGWRRGGWWRRGGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGRGGW",
+        "RRGGBGGRGGWWRRGGBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGGGWW",
+        "RGGWBBGGGWWRRGGWBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBGGWR",
+        "GGWWRRGGGWRRGGWWRRGGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRGGGR",
+        "GWWRRGGBGGRGGWWRRGGBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGGBGG",
+        "GWRRGGWBBGGGWWRRGGWBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGWBBG",
+        "GGRGGWWRRGGGWRRGGWWRRGGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWWRRG",
+        "BGGGWWRRGGBGGRGGWWRRGGBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWRRGG",
+        "BBGGWRRGGWBBGGGWWRRGGWBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGRGGW",
+        "RRGGGRGGWWRRGGGWRRGGWWRRGGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGGGWW",
+        "RGGBGGGWWRRGGBGGRGGWWRRGGBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBGGWR",
+        "GGWBBGGWRRGGWBBGGGWWRRGGWBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRGGGR",
+        "GWWRRGGGRGGWWRRGGGWRRGGWWRRGGGRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGBGGGWWRRGGWWRRGGBGG",
+        "GWRRGGBGGGWWRRGGBGGRGGWWRRGGBGGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWBBGGWRRGGWWRRGGWBBG",
+        "GGRGGWBBGGWRRGGWBBGGGWWRRGGWBBGGWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGWWRRGGGRGGWWRRGGWWRRG"
+      ],
+      "ruleCount": 276,
+      "diagnostics": 0,
+      "ruleFamilyId": "74808e906ef46b0c6e6261302a9359c16f161726a40b4e9fc99683a4510f664f",
       "seamWarning": false
     }
   ],

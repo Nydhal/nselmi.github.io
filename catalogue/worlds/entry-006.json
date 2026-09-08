@@ -144,7 +144,7 @@
     "name": "Single cube",
     "evidence": {
       "source": "impossible-fractal-ca.html",
-      "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+      "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
       "note": "35 rows include generation zero; no historical image match asserted."
     },
     "status": "saved-preset"

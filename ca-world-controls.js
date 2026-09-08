@@ -28,6 +28,8 @@ function updateWorldNotice() {
   $('worldNotice').textContent=[same?'Replaying the recorded dynamics and row count.':loadedWorld?'Exploratory settings: the original evidence covers the recorded configuration.':'',d.boundary==='periodic'&&d.width%2&&current.geometry.tessellation==='triangular-strip'?'Odd-width wrapping evolves symbolically, but alternating triangles cannot join as a seamless same-row cylinder.':'',d.diagnosticPropagation==='legacy-K-as-W'?'Historical behavior: K is treated as W in the next lookup.':''].filter(Boolean).join(' ');
   $('worldEvidence').textContent=ev?[ev.comparedCells?`${ev.comparedCells.toLocaleString()} saved cells verified.`:'',ev.comparedSamples?`${ev.comparedSamples.toLocaleString()} screenshot samples verified.`:'',ev.rulesProvenance==='inferred-partial'?'Rules inferred only for the observed neighborhoods.':'',ev.note||''].filter(Boolean).join(' '):'';
   $('comparisonDetails').hidden=!ev?.comparison;
+  const firstK=result?.rows.findIndex(row=>row.includes('K'))??-1;
+  if(firstK>=0){const col=result.rows[firstK].indexOf('K');$('worldNotice').textContent+=` First diagnostic K: generation ${firstK}, column ${col} (zero-based).`;}
 }
 async function exportWorld() {
   try {if(!generate())return;const w=await CAWorld.seal(currentWorld());download(JSON.stringify(w,null,2),'ca-world-'+w.ids.appearance.slice(0,12)+'.json','application/json');}
