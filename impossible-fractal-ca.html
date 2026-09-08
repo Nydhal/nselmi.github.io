@@ -240,13 +240,7 @@
       When rendered on a triangular tessellation, its output is perceived as impossible 3D fractal geometry under isometric projection.
       Among its outputs is the <a href="https://www.deviantart.com/nydhalo/art/Selmi-Triangle-136342456">fractal Penrose tribar</a>, with self-similar structure at every scale.
     </p>
-    <p style="margin-top:10px;">
-      <strong>Presets:</strong>
-      Explore <em>Selmi 2009</em> and <em>Selmi 2019</em>, <em>Zigzag chain</em>, and <em>Braced diagonal strip</em>, alongside multi-seed constructions.
-      The Selmi worlds were discovered and created by Nidhal Selmi; the Kitaoka 2010 variant retains its source attribution in the catalogue.
-      Each world loads its seed, rules, boundaries, and palette together. Variants can share a rule family while using different seeds.
-    </p>
-    <p style="margin-top:10px;"><a href="catalogue/">Browse the research catalogue</a> for seeds, reproducible worlds, palettes, and source images.</p>
+    <p style="margin-top:10px;">Constructions by Nidhal Selmi, with the attributed Kitaoka 2010 variant. <a href="catalogue/">Browse constructions</a>.</p>
     <div class="instructions">
       <strong>How to use:</strong>
       Press <strong>Generate</strong> to run the automaton.
@@ -308,7 +302,7 @@
   </div>
 </div>
 
-<div class="init-row" style="display:block"><p id="worldNotice" role="status" style="margin:4px 0"></p><p id="worldEvidence" style="margin:4px 0"></p><details id="comparisonDetails" hidden><summary>Original artwork and replay</summary><img src="catalogue/evidence/dumpstack-comparison.png" alt="Slotted terraces: original rotated for viewing above, replay below" loading="lazy" style="max-width:100%;width:720px"></details></div>
+<p id="worldNotice" role="status" style="margin:4px 0"></p>
 
 <!-- Init String -->
 <div class="init-row">
@@ -941,8 +935,7 @@ function importRules() {
 (function init() {
   const extras=window.CA_RECOVERED;
   const field=extras.find(e=>e.key==='entry-009'),wide=extras.find(e=>e.key==='entry-011');
-  const offset=extras.find(e=>e.key==='entry-022');
-  PRESETS.push(...extras.filter(e=>!['entry-022','entry-011'].includes(e.key)).map(e=>e.key===field.key?{name:'Slotted field',variants:[{name:'156 cells',key:e.key,world:e.world},{name:'308 cells',key:wide.key,world:wide.world}]}:e.key==='entry-019'&&offset?{name:'Slotted terraces',variants:[{name:'Offset seed (+2 cells)',key:offset.key,world:offset.world},{name:'Original seed',key:e.key,world:e.world}]}:{name:e.name,key:e.key,world:e.world}));
+  PRESETS.push(...extras.filter(e=>e.key!=='entry-011').map(e=>e.key===field.key?{name:'Sierpiński lattice',variants:[{name:'156 cells',key:e.key,world:e.world},{name:'308 cells',key:wide.key,world:wide.world}]}:{name:e.name,key:e.key,world:e.world}));
   // Populate preset dropdown (rule + seed configurations)
   const presetSel = $('preset');
   PRESETS.forEach((p, i) => {

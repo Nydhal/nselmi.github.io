@@ -597,7 +597,7 @@
     "gridSha256": "e731587cf72797812844028cbecf3af246e8652a0e931c7040da76c470fe7821"
   },
   "metadata": {
-    "name": "Slotted field / 308 cells",
+    "name": "Sierpi\u0144ski lattice / 308 cells",
     "status": "symbolic-replay-verified",
     "evidence": {
       "source": "Triangular_Cellular_Automata\\svg\\board_ca.svg",

@@ -136,7 +136,7 @@
     "name": "Down-left beam",
     "evidence": {
       "source": "impossible-fractal-ca.html",
-      "sha256": "5b380ca9e8ab0a85ee5f96622852428268f608f3d78b2f840d23e1cece8122dd",
+      "sha256": "d12c81f0e2d0fca480d4f45a113aa992d6acbc042e572886ee4d52960c2336da",
       "note": "35 rows include generation zero; no historical image match asserted."
     },
     "status": "saved-preset"
