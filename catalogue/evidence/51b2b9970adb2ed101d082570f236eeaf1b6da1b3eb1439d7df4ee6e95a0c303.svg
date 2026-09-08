@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 180 112"
+   width="180"
+   height="112"
+   version="1.1"
+   id="svg47"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs47" />
+  <polygon
+     points="70,0 80,17 60,17 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="0"
+     data-col="6"
+     id="polygon1"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="80,17 90,0 70,0 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="0"
+     data-col="7"
+     id="polygon2"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="90,0 100,17 80,17 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="0"
+     data-col="8"
+     id="polygon3"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="60,17 70,34 50,34 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="1"
+     data-col="5"
+     id="polygon4"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="70,34 80,17 60,17 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="1"
+     data-col="6"
+     id="polygon5"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="80,17 90,34 70,34 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="1"
+     data-col="7"
+     id="polygon6"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="90,34 100,17 80,17 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="1"
+     data-col="8"
+     id="polygon7"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="100,17 110,34 90,34 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="1"
+     data-col="9"
+     id="polygon8"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="50,34 60,51 40,51 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="2"
+     data-col="4"
+     id="polygon9"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="60,51 70,34 50,34 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="2"
+     data-col="5"
+     id="polygon10"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="70,34 80,51 60,51 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="2"
+     data-col="6"
+     id="polygon11"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="80,51 90,34 70,34 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="2"
+     data-col="7"
+     id="polygon12"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="90,34 100,51 80,51 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="2"
+     data-col="8"
+     id="polygon13"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="100,51 110,34 90,34 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="2"
+     data-col="9"
+     id="polygon14"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="110,34 120,51 100,51 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="2"
+     data-col="10"
+     id="polygon15"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="40,51 50,68 30,68 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="3"
+     data-col="3"
+     id="polygon16"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="50,68 60,51 40,51 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="3"
+     data-col="4"
+     id="polygon17"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="60,51 70,68 50,68 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="3"
+     data-col="5"
+     id="polygon18"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="70,68 80,51 60,51 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="3"
+     data-col="6"
+     id="polygon19"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="90,68 100,51 80,51 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="3"
+     data-col="8"
+     id="polygon20"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="100,51 110,68 90,68 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="3"
+     data-col="9"
+     id="polygon21"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="110,68 120,51 100,51 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="3"
+     data-col="10"
+     id="polygon22"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="120,51 130,68 110,68 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="3"
+     data-col="11"
+     id="polygon23"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="30,68 40,85 20,85 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="2"
+     id="polygon24"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="40,85 50,68 30,68 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="3"
+     id="polygon25"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="50,68 60,85 40,85 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="4"
+     id="polygon26"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="60,85 70,68 50,68 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="5"
+     id="polygon27"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="70,68 80,85 60,85 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="6"
+     id="polygon28"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="80,85 90,68 70,68 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="7"
+     id="polygon29"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="90,68 100,85 80,85 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="8"
+     id="polygon30"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="100,85 110,68 90,68 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="9"
+     id="polygon31"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="110,68 120,85 100,85 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="10"
+     id="polygon32"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="120,85 130,68 110,68 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="11"
+     id="polygon33"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="130,68 140,85 120,85 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="4"
+     data-col="12"
+     id="polygon34"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="30,102 40,85 20,85 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="2"
+     id="polygon36"
+     transform="translate(9.3544018,4.5507901)"
+     style="fill:#a0a0e8;stroke:none;stroke-width:0" />
+  <polygon
+     points="40,85 50,102 30,102 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="3"
+     id="polygon37"
+     transform="translate(9.3544018,4.5507901)"
+     style="fill:#a0a0e8;stroke:none;stroke-width:0" />
+  <polygon
+     points="50,102 60,85 40,85 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="4"
+     id="polygon38"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="60,85 70,102 50,102 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="5"
+     id="polygon39"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="70,102 80,85 60,85 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="6"
+     id="polygon40"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="80,85 90,102 70,102 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="7"
+     id="polygon41"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="90,102 100,85 80,85 "
+     fill="#a0a0e8"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="8"
+     id="polygon42"
+     transform="translate(9.3544018,4.5507901)" />
+  <polygon
+     points="100,85 110,102 90,102 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="9"
+     id="polygon43"
+     transform="translate(9.3544018,4.5507901)"
+     style="fill:#a0a0e8;stroke:none;stroke-width:0" />
+  <polygon
+     points="110,102 120,85 100,85 "
+     fill="#e8a0a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="10"
+     id="polygon44"
+     transform="translate(9.3544018,4.5507901)"
+     style="fill:#a0a0e8;stroke:none;stroke-width:0" />
+  <polygon
+     points="120,85 130,102 110,102 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="11"
+     id="polygon45"
+     transform="translate(9.3544018,4.5507901)"
+     style="fill:#a0a0e8;stroke:none;stroke-width:0" />
+  <polygon
+     points="130,102 140,85 120,85 "
+     fill="#a0e8a0"
+     stroke="none"
+     stroke-width="0"
+     data-row="5"
+     data-col="12"
+     id="polygon46"
+     transform="translate(9.3544018,4.5507901)" />
+</svg>

@@ -1,0 +1,144 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "GGWWWWW",
+        "W"
+      ],
+      [
+        "GWWWWWW",
+        "W"
+      ],
+      [
+        "RGGWWWW",
+        "W"
+      ],
+      [
+        "RGWWWWW",
+        "W"
+      ],
+      [
+        "RRGGWWW",
+        "W"
+      ],
+      [
+        "RRGWWWW",
+        "W"
+      ],
+      [
+        "WRRGGWW",
+        "G"
+      ],
+      [
+        "WRRGWWW",
+        "G"
+      ],
+      [
+        "WWRRGGW",
+        "G"
+      ],
+      [
+        "WWRRGWW",
+        "G"
+      ],
+      [
+        "WWWRRGG",
+        "R"
+      ],
+      [
+        "WWWRRGW",
+        "R"
+      ],
+      [
+        "WWWWRRG",
+        "R"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "width": 117,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "91301e62c5d7d1dbc4aadc9ec86f59eb1c1e6f74cb2433d34d6b785381f07614",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "ba6a2cf9d32fb14c840a40c5cb094c3e911fb7c1e4b43b7bd3c7fd52de8e8e53",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#e8a0a0ff",
+      "G": "#b8f0b8ff",
+      "B": "#7878b8ff",
+      "K": "#333333ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "91301e62c5d7d1dbc4aadc9ec86f59eb1c1e6f74cb2433d34d6b785381f07614",
+    "geometry": "ba6a2cf9d32fb14c840a40c5cb094c3e911fb7c1e4b43b7bd3c7fd52de8e8e53",
+    "appearance": "976cfe25673999b5128439b0f8aa6e5ad05305fd6477cccd535ae6ca78094a66",
+    "observation": "c33c44290fd51cdf4069e7722010b238fde4abd89015485255e5df1e64df8872"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "976cfe25673999b5128439b0f8aa6e5ad05305fd6477cccd535ae6ca78094a66",
+    "firstGeneration": 0,
+    "rowCount": 35,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "6489ccfe6e65d9f139d5c2870940f6658b4ae4a436d94557d3ca0b90058a06b9"
+  },
+  "metadata": {
+    "name": "Down-left beam",
+    "evidence": {
+      "source": "impossible-fractal-ca.html",
+      "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+      "note": "35 rows include generation zero; no historical image match asserted."
+    },
+    "status": "saved-preset"
+  }
+}

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Emergent Impossible Fractal Geometry | Nidhal Selmi</title>
-  <meta name="description" content="Interactive explorer for a 4-state cellular automaton that generates impossible fractal geometry on triangular tessellations. Includes the Selmi triangle, a fractal Penrose tribar.">
+  <meta name="description" content="Interactive explorer for a 4-state cellular automaton that generates impossible fractal geometry on triangular tessellations. Includes a fractal Penrose tribar.">
   <meta name="author" content="Nidhal Selmi">
-  <meta name="keywords" content="cellular automaton, impossible geometry, fractal, Penrose triangle, tribar, triangular tessellation, isometric, Selmi triangle, generative art, computational geometry">
+  <meta name="keywords" content="cellular automaton, impossible geometry, fractal, Penrose triangle, tribar, triangular tessellation, isometric, generative art, computational geometry">
   <meta property="og:title" content="Emergent Impossible Fractal Geometry | Nidhal Selmi">
   <meta property="og:description" content="Interactive 4-state cellular automaton that generates impossible fractal geometry on triangular tessellations.">
   <meta property="og:type" content="website">
@@ -23,7 +23,7 @@
     "author": { "@type": "Person", "name": "Nidhal Selmi", "url": "https://nselmi.com" },
     "description": "A 4-state cellular automaton with 78 transition rules whose output, rendered on a triangular tessellation, produces impossible fractal geometry under isometric projection.",
     "url": "https://nselmi.com/impossible-fractal-ca.html",
-    "keywords": ["cellular automaton", "impossible geometry", "fractal", "Penrose triangle", "triangular tessellation", "Selmi triangle"]
+    "keywords": ["cellular automaton", "impossible geometry", "fractal", "Penrose triangle", "triangular tessellation"]
   }
   </script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -238,23 +238,23 @@
     <p>
       A 4-state cellular automaton with 78 transition rules over a 7-cell neighborhood.
       When rendered on a triangular tessellation, its output is perceived as impossible 3D fractal geometry under isometric projection.
-      Among its outputs is the <a href="https://www.deviantart.com/nydhalo/art/Selmi-Triangle-136342456">Selmi triangle</a>, a fractal Penrose tribar with self-similar structure at every scale.
+      Among its outputs is the <a href="https://www.deviantart.com/nydhalo/art/Selmi-Triangle-136342456">fractal Penrose tribar</a>, with self-similar structure at every scale.
     </p>
     <p style="margin-top:10px;">
       <strong>Presets:</strong>
-      The original rule set is <em>Selmi (2009)</em>, producing the fractal Penrose tribar.
-      <em>Kitaoka 2010</em> and <em>Selmi (2019)</em> are variants with different beam crossing behavior.
-      <em>Right Stairs</em> produces a descending staircase of impossible cubes.
-      The remaining presets generate non-interacting geometric primitives (single beams, cubes, ladders).
+      Explore <em>Selmi 2009</em> and <em>Selmi 2019</em>, <em>Zigzag chain</em>, and <em>Braced diagonal strip</em>, alongside multi-seed constructions.
+      The Selmi worlds were discovered and created by Nidhal Selmi; the Kitaoka 2010 variant retains its source attribution in the catalogue.
+      Each world loads its seed, rules, boundaries, and palette together. Variants can share a rule family while using different seeds.
     </p>
+    <p style="margin-top:10px;"><a href="catalogue/">Browse the research catalogue</a> for seeds, reproducible worlds, palettes, and source images.</p>
     <div class="instructions">
       <strong>How to use:</strong>
       Press <strong>Generate</strong> to run the automaton.
-      Edit the <strong>Init</strong> string to change the seed (W=white, R=red, G=green, B=blue).
+      Edit the <strong>Init</strong> string to change the seed (W is the background state; the palette assigns colors to W, R, G, B, and diagnostic K).
       Adjust <strong>Rows</strong> to control evolution depth.
       Hover over any triangle to inspect its neighborhood and matching rule.
       Click a triangle to load its rule into the editor.
-      Use <strong>Export</strong> to download the output as SVG.
+      Use <strong>Export SVG</strong> for the drawing, or <strong>Export world</strong> to save every setting for <strong>Import world</strong>.
     </div>
   </div>
 </article>
@@ -266,17 +266,22 @@
   <div class="toolbar-section">
     <button class="primary" onclick="generate()">Generate</button>
     <button onclick="exportSVG()">Export SVG</button>
-    <select id="preset" onchange="applyPreset()"></select>
+    <button onclick="exportWorld()">Export world</button>
+    <button onclick="importWorld()">Import world</button>
+    <select id="preset" onchange="applyPreset()" aria-label="World"></select>
+    <select id="worldVariant" onchange="applyVariant()" aria-label="Seed variant" hidden></select>
   </div>
   <div class="divider"></div>
   <div class="toolbar-section">
-    <label>Rows <input type="number" id="numRows" value="34" min="1" max="200"></label>
+    <label>Rows <input type="number" id="numRows" value="34" min="1" max="512"></label>
     <label>Cols <input type="number" id="numCols" value="115" min="1" max="300" disabled></label>
   </div>
   <div class="divider"></div>
   <div class="toolbar-section">
     <label><input type="checkbox" id="skipWhite" checked> Skip W</label>
     <label><input type="checkbox" id="wrapAround"> Wrap</label>
+    <label>Phase <select id="phase"><option value="0">0</option><option value="1">1</option></select></label>
+    <label>K behavior <select id="diagnosticMode"><option value="output-K">Propagate K</option><option value="legacy-K-as-W">Historical: K as W</option></select></label>
   </div>
   <div class="divider"></div>
   <div class="toolbar-section">
@@ -290,7 +295,7 @@
       <option value="edges">Edge Borders</option>
     </select>
     <input type="color" id="borderColor" value="#000000" title="Border color">
-    <input type="number" id="borderWidth" value="1" min="0.5" max="5" step="0.5" style="width:40px;" title="Border width">
+    <input type="number" id="borderWidth" value="1" min="0" max="5" step="0.5" style="width:40px;" title="Border width">
   </div>
   <div class="divider"></div>
   <div class="toolbar-section colors">
@@ -303,10 +308,12 @@
   </div>
 </div>
 
+<div class="init-row" style="display:block"><p id="worldNotice" role="status" style="margin:4px 0"></p><p id="worldEvidence" style="margin:4px 0"></p><details id="comparisonDetails" hidden><summary>Original artwork and replay</summary><img src="catalogue/evidence/dumpstack-comparison.png" alt="Slotted terraces: original rotated for viewing above, replay below" loading="lazy" style="max-width:100%;width:720px"></details></div>
+
 <!-- Init String -->
 <div class="init-row">
   <span style="font-size:11px;color:#888;">Init:</span>
-  <input type="text" id="initString" value="WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW" placeholder="WRGB characters only">
+  <input type="text" id="initString" value="WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW" placeholder="WRGBK characters only">
 </div>
 
 <!-- Rule Editor -->
@@ -347,6 +354,9 @@
   <div class="click-hint">Click to edit this rule</div>
 </div>
 
+<script src="ca-palettes.js"></script>
+<script src="ca-world.js"></script>
+<script src="recovered-worlds.js"></script>
 <script>
 // =============================================================================
 // EMERGENT IMPOSSIBLE FRACTAL GEOMETRY
@@ -467,21 +477,21 @@ const LEFT_BEAM_RULES = [
 // =============================================================================
 // PRESETS: rule + seed + row count configurations
 // =============================================================================
-// All presets share the same minimal asymmetric seed: "RRG" centered in white.
+// The original eight presets share the minimal asymmetric seed: "RRG" centered in white.
 // The two R's and one G break bilateral symmetry. Each rule set produces a
 // different impossible object or geometric primitive from this same seed.
 const DEFAULT_INIT = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW";
 const DEFAULT_ROWS = 34;
 
 const PRESETS = [
-  { name: "Selmi (2009)",                 rules: SELMI_RULES,        init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Selmi 2009",                 rules: SELMI_RULES,        init: DEFAULT_INIT, rows: DEFAULT_ROWS },
   { name: "Kitaoka 2010",               rules: KITAOKA_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Selmi (2019)",               rules: SELMI_2_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Right Stairs",               rules: RIGHT_STAIRS_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Right Ladder (non-interact)", rules: RIGHT_LADDER_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Cube (non-interact)",         rules: CUBE_RULES,         init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Right Beam (non-interact)",   rules: RIGHT_BEAM_RULES,   init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Left Beam (non-interact)",    rules: LEFT_BEAM_RULES,    init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Selmi 2019",               rules: SELMI_2_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Zigzag chain",               rules: RIGHT_STAIRS_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Braced diagonal strip", rules: RIGHT_LADDER_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Single cube",         rules: CUBE_RULES,         init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Down-right beam",   rules: RIGHT_BEAM_RULES,   init: DEFAULT_INIT, rows: DEFAULT_ROWS },
+  { name: "Down-left beam",    rules: LEFT_BEAM_RULES,    init: DEFAULT_INIT, rows: DEFAULT_ROWS },
 ];
 
 // =============================================================================
@@ -491,18 +501,8 @@ const PRESETS = [
 // is brightest, R (top face) sits at intermediate illumination, B (right face)
 // falls in shadow and is darkest. This perceptual mapping is what makes the
 // visual system interpret flat 2D tessellations as 3D impossible geometry.
-// Luminance order enforced across all palettes: G > R > B.
-const COLOR_PRESETS = [
-  { name:"Pastel",    W:"#ffffff", R:"#e8a0a0", G:"#b8f0b8", B:"#7878b8", K:"#333333" },
-  { name:"Mondrian",  W:"#ffffff", R:"#e60000", G:"#ffd700", B:"#003580", K:"#222222" },
-  { name:"Monokai",   W:"#272822", R:"#f92672", G:"#a6e22e", B:"#665c80", K:"#f8f8f2" },
-  { name:"Solarized", W:"#fdf6e3", R:"#cb4b16", G:"#859900", B:"#073642", K:"#dc322f" },
-  { name:"Dracula",   W:"#282a36", R:"#ff79c6", G:"#50fa7b", B:"#6c5b8d", K:"#f8f8f2" },
-  { name:"Vaporwave", W:"#1a1a2e", R:"#ff6ec7", G:"#00ffcc", B:"#5b3d9e", K:"#e0e0e0" },
-  { name:"Bauhaus",   W:"#f5f1e0", R:"#be1e2d", G:"#f0ab00", B:"#13286a", K:"#1a1a1a" },
-  { name:"Lavender",  W:"#f5f0fa", R:"#b89cc8", G:"#d4bfe8", B:"#7b6899", K:"#4a3660" },
-  { name:"Ink",       W:"#ffffff", R:"#555555", G:"#999999", B:"#1a1a1a", K:"#ff0000" },
-];
+// Palette choices can change perceived lighting without changing the states.
+const COLOR_PRESETS = window.CA_PALETTES;
 
 // =============================================================================
 // STATE
@@ -537,21 +537,9 @@ function parseRuleStrings(arr) {
 // output signals that the rule table is incomplete for that seed/boundary combo.
 // Wrap mode switches between infinite white padding (finite object floating in
 // space) and periodic/toroidal boundaries (tileable patterns from the same rules).
-function evolve(init, ruleMap, steps, wrap) {
-  const rows = [init], used = new Set(), w = init.length;
-  for (let s = 0; s < steps; s++) {
-    const prev = rows[rows.length - 1], next = [];
-    for (let c = 0; c < w; c++) {
-      // Boundary: wrap uses modular arithmetic for toroidal topology;
-      // pad returns 'W' beyond edges — as if the row extends to white infinity.
-      const g = i => wrap ? prev[((i % w) + w) % w] : (i < 0 || i >= w) ? 'W' : prev[i];
-      const key = g(c-3)+g(c-2)+g(c-1)+g(c)+g(c+1)+g(c+2)+g(c+3);
-      const out = ruleMap.get(key);
-      if (out) { used.add(key); next.push(out); } else next.push('K');
-    }
-    rows.push(next);
-  }
-  return { rows, used };
+function evolve(init, ruleMap, steps, wrap, diagnosticMode = 'output-K') {
+  const generated = CAWorld.run({seed:init.join(''), width:init.length, rules:[...ruleMap], boundary:wrap?'periodic':'fixed-W', diagnosticPropagation:diagnosticMode},steps+1);
+  return {rows:generated.rows.map(row=>[...row]),used:generated.used};
 }
 
 // Reconstructs the 7-cell neighborhood from the parent row on demand.
@@ -561,7 +549,8 @@ function getNeighborhood(rows, r, c, wrap) {
   if (r === 0) return null;
   const prev = rows[r - 1], w = prev.length;
   const g = i => wrap ? prev[((i % w) + w) % w] : (i < 0 || i >= w) ? 'W' : prev[i];
-  return g(c-3)+g(c-2)+g(c-1)+g(c)+g(c+1)+g(c+2)+g(c+3);
+  const key=g(c-3)+g(c-2)+g(c-1)+g(c)+g(c+1)+g(c+2)+g(c+3);
+  return $('diagnosticMode').value==='legacy-K-as-W'?key.replaceAll('K','W'):key;
 }
 
 // =============================================================================
@@ -610,7 +599,7 @@ function render(rows, containerId, colors, opts) {
   const counts = { W: 0, R: 0, G: 0, B: 0, K: 0, drawn: 0 };
   const borderMode = opts.borderMode || 'none';
   const borderColor = opts.borderColor || '#000000';
-  const borderWidth = opts.borderWidth || 1;
+  const borderWidth = opts.borderWidth ?? 1;
 
   for (let r = 0; r < nRows; r++) {
     for (let c = 0; c < nCols; c++) {
@@ -620,7 +609,7 @@ function render(rows, containerId, colors, opts) {
       if (sq) {
         cellData.push({ r, c, state, x: c * SQ_SIZE, y: r * SQ_SIZE, color: colors[state] || colors.K });
       } else {
-        const up = (r + c) % 2 === 0;
+        const up = (r + c + (opts.phase || 0)) % 2 === 0;
         const x = c * (TRI_W / 2), y = r * TRI_H;
         const pts = up
           ? `${x},${y+TRI_H} ${x+TRI_W/2},${y} ${x+TRI_W},${y+TRI_H}`
@@ -641,6 +630,7 @@ function render(rows, containerId, colors, opts) {
         .attr('points', d => d.pts);
 
   cells
+    .attr('data-row', d => d.r).attr('data-col', d => d.c)
     .attr('fill', d => d.color)
     .attr('stroke', borderMode === 'all' ? borderColor : 'none')
     .attr('stroke-width', borderMode === 'all' ? borderWidth : 0)
@@ -652,7 +642,7 @@ function render(rows, containerId, colors, opts) {
   // Edge borders are computed post-render because they depend on pairwise
   // state comparison across the full grid, not on individual triangles.
   if (borderMode === 'edges') {
-    drawEdgeBorders(svgEl, rows, borderColor, borderWidth, sq);
+    drawEdgeBorders(svgEl, rows, borderColor, borderWidth, sq, opts.phase || 0);
   }
 
   return { svgEl, counts };
@@ -669,7 +659,7 @@ function render(rows, containerId, colors, opts) {
 //
 // Squares: 4 neighbors (up, down, left, right). Process rightward (c→c+1)
 // and downward (r→r+1) edges to avoid duplicates.
-function drawEdgeBorders(svgEl, rows, color, width, sq) {
+function drawEdgeBorders(svgEl, rows, color, width, sq, phase=0) {
   const nRows = rows.length, nCols = rows[0].length;
   const lines = [];
 
@@ -697,7 +687,7 @@ function drawEdgeBorders(svgEl, rows, color, width, sq) {
     for (let r = 0; r < nRows; r++) {
       for (let c = 0; c < nCols; c++) {
         const state = rows[r][c];
-        const up = (r + c) % 2 === 0;
+        const up = (r + c + phase) % 2 === 0;
         const x = c * (TRI_W / 2), y = r * TRI_H;
 
         if (c + 1 < nCols && rows[r][c + 1] !== state) {
@@ -715,7 +705,7 @@ function drawEdgeBorders(svgEl, rows, color, width, sq) {
     }
     // Top boundary: ▼ triangles in row 0 against padding (state 'W').
     for (let c = 0; c < nCols; c++) {
-      if (c % 2 !== 0 && rows[0][c] !== 'W') {
+      if ((c + phase) % 2 !== 0 && rows[0][c] !== 'W') {
         const x = c * (TRI_W / 2);
         lines.push({ x1: x, y1: 0, x2: x + TRI_W, y2: 0 });
       }
@@ -788,20 +778,23 @@ function onClick(ev, d, rows, wrap, svgEl) {
 // =============================================================================
 function generate() {
   const colors = getColors();
-  const numRows = parseInt($('numRows').value) || 34;
+  const numRows = Number($('numRows').value);
   const wrap = $('wrapAround').checked;
-  const init = [...$('initString').value.toUpperCase()].filter(c => 'WRGB'.includes(c));
+  const seed = $('initString').value.toUpperCase().trim();
+  if(!/^[WRGBK]+$/.test(seed)||seed.length>1000||!Number.isInteger(numRows)||numRows<1||numRows>512||numRows*seed.length>200000){$('worldNotice').textContent='Use a seed of 1–1000 WRGBK cells and 1–512 rows, up to 200,000 cells.';return false;}
+  const init = [...seed];
   $('numCols').value = init.length;
 
-  result = evolve(init, rules, numRows - 1, wrap);
+  result = evolve(init, rules, numRows - 1, wrap, $('diagnosticMode').value);
 
   const borderMode = $('borderMode').value;
   const borderColor = $('borderColor').value;
-  const borderWidth = parseFloat($('borderWidth').value) || 1;
+  const borderWidth = Number($('borderWidth').value);
+  if(!Number.isFinite(borderWidth)||borderWidth<0||borderWidth>5){$('worldNotice').textContent='Border width must be between 0 and 5.';return false;}
   const gridMode = $('gridMode').value;
 
   const { svgEl, counts } = render(result.rows, 'canvas-container', colors, {
-    skipWhite: $('skipWhite').checked, borderMode, borderColor, borderWidth, wrap, gridMode
+    skipWhite: $('skipWhite').checked, borderMode, borderColor, borderWidth, wrap, gridMode, phase:Number($('phase').value)
   });
   svg = svgEl;
 
@@ -818,6 +811,8 @@ function generate() {
 
   updateRuleStatus();
   updateRuleList();
+  updateWorldNotice();
+  return true;
 }
 
 // =============================================================================
@@ -842,7 +837,7 @@ function exportRules() {
 function download(content, name, type) {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([content], { type }));
-  a.download = name; a.click();
+  a.download = name; a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
 
 // =============================================================================
@@ -869,13 +864,21 @@ function loadPreset() { applyPreset(); }
 
 // Applies the preset selected in the dropdown: loads its rules, seed, and row count.
 function applyPreset() {
-  const p = PRESETS[$('preset').selectedIndex];
-  if (!p) return;
-  rules = parseRuleStrings(p.rules);
-  baseKeys = new Set(rules.keys());
-  $('initString').value = p.init;
-  $('numRows').value = p.rows;
-  updateRuleStatus(); updateRuleList(); generate();
+  const p=PRESETS[Number($('preset').value)];if(!p)return;
+  const selector=$('worldVariant');selector.replaceChildren();selector.hidden=!p.variants;
+  if(p.variants)p.variants.forEach((v,i)=>selector.add(new Option(v.name,i)));
+  applyVariant();
+}
+function applyVariant() {
+  const base=PRESETS[Number($('preset').value)];if(!base)return;
+  const p=base.variants?base.variants[Number($('worldVariant').value)||0]:base;
+  if(p.world){loadWorld(p.world);return;}
+  loadedWorld=null;
+  $('wrapAround').checked=false;$('phase').value='0';$('diagnosticMode').value='output-K';
+  $('gridMode').value='triangles';$('skipWhite').checked=true;$('borderMode').value='edges';$('borderWidth').value=1;$('borderColor').value='#000000';
+  setColors(COLOR_PRESETS[0]);$('colorPreset').value='0';
+  rules=parseRuleStrings(p.rules);baseKeys=new Set(rules.keys());$('initString').value=p.init;$('numRows').value=p.rows;
+  updateRuleStatus();generate();
 }
 
 function updateRuleStatus() {
@@ -929,10 +932,17 @@ function importRules() {
   input.click();
 }
 
+</script>
+<script src="ca-world-controls.js"></script>
+<script>
 // =============================================================================
 // INIT
 // =============================================================================
 (function init() {
+  const extras=window.CA_RECOVERED;
+  const kitaoka=extras.find(e=>e.key==='entry-020');PRESETS[1].variants=[{...PRESETS[1],name:'Standard / 117 cells'},{name:'Compact / 88 cells',key:kitaoka.key,world:kitaoka.world}];
+  const field=extras.find(e=>e.key==='entry-009'),wide=extras.find(e=>e.key==='entry-011');
+  PRESETS.push(...extras.filter(e=>!['entry-020','entry-011'].includes(e.key)).map(e=>e.key===field.key?{name:'Slotted field',variants:[{name:'156 cells',key:e.key,world:e.world},{name:'308 cells',key:wide.key,world:wide.world}]}:{name:e.name,key:e.key,world:e.world}));
   // Populate preset dropdown (rule + seed configurations)
   const presetSel = $('preset');
   PRESETS.forEach((p, i) => {
@@ -949,8 +959,15 @@ function importRules() {
     colorSel.appendChild(o);
   });
 
+  colorSel.add(new Option('Recorded / custom','custom'));
   setColors(COLOR_PRESETS[0]);
+  const requested=new URLSearchParams(location.search).get('world');
+  const index=PRESETS.findIndex(p=>p.key===requested||p.variants?.some(v=>v.key===requested));
+  if(index>=0)presetSel.value=index;
   applyPreset();
+  if(index>=0&&PRESETS[index].variants){$('worldVariant').value=PRESETS[index].variants.findIndex(v=>v.key===requested);applyVariant();}
+  else if(requested&&index<0&&/^entry-[0-9]{3}$/.test(requested)){fetch('catalogue/worlds/'+requested+'.json').then(r=>{if(!r.ok)throw Error('World not found');return r.json();}).then(CAWorld.verify).then(w=>{loadWorld(w);presetSel.selectedIndex=-1;$('worldVariant').hidden=true;}).catch(e=>{$('worldNotice').textContent=e.message;});}
+
 })();
 </script>
 </body>

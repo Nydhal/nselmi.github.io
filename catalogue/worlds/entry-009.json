@@ -1,0 +1,612 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BGGGBGG",
+        "R"
+      ],
+      [
+        "BGGGGGG",
+        "G"
+      ],
+      [
+        "BGGGGGR",
+        "G"
+      ],
+      [
+        "BGGGRRG",
+        "G"
+      ],
+      [
+        "BGGRGGB",
+        "G"
+      ],
+      [
+        "BGGRRRG",
+        "G"
+      ],
+      [
+        "BGGRRRR",
+        "G"
+      ],
+      [
+        "BGGWRRR",
+        "G"
+      ],
+      [
+        "BGGWWWR",
+        "G"
+      ],
+      [
+        "BGGWWWW",
+        "G"
+      ],
+      [
+        "BRRGGGR",
+        "G"
+      ],
+      [
+        "BRRGGGW",
+        "G"
+      ],
+      [
+        "GBGGGBG",
+        "G"
+      ],
+      [
+        "GBGGGGG",
+        "G"
+      ],
+      [
+        "GBGGGRR",
+        "G"
+      ],
+      [
+        "GBGGRGG",
+        "G"
+      ],
+      [
+        "GBGGRRR",
+        "G"
+      ],
+      [
+        "GBGGWRR",
+        "G"
+      ],
+      [
+        "GBGGWWW",
+        "G"
+      ],
+      [
+        "GBRRGGG",
+        "G"
+      ],
+      [
+        "GGBGGGB",
+        "G"
+      ],
+      [
+        "GGBGGGG",
+        "G"
+      ],
+      [
+        "GGBGGGR",
+        "G"
+      ],
+      [
+        "GGBGGRG",
+        "G"
+      ],
+      [
+        "GGBGGRR",
+        "G"
+      ],
+      [
+        "GGBGGWR",
+        "G"
+      ],
+      [
+        "GGBGGWW",
+        "G"
+      ],
+      [
+        "GGBRRGG",
+        "R"
+      ],
+      [
+        "GGGBGGG",
+        "R"
+      ],
+      [
+        "GGGBGGR",
+        "R"
+      ],
+      [
+        "GGGBGGW",
+        "R"
+      ],
+      [
+        "GGGBRRG",
+        "G"
+      ],
+      [
+        "GGGGBGG",
+        "G"
+      ],
+      [
+        "GGGGGBG",
+        "G"
+      ],
+      [
+        "GGGGGGB",
+        "G"
+      ],
+      [
+        "GGGGGGG",
+        "G"
+      ],
+      [
+        "GGGGGGR",
+        "G"
+      ],
+      [
+        "GGGGGRG",
+        "G"
+      ],
+      [
+        "GGGGGRR",
+        "G"
+      ],
+      [
+        "GGGGRGG",
+        "G"
+      ],
+      [
+        "GGGGRRG",
+        "G"
+      ],
+      [
+        "GGGRGBR",
+        "G"
+      ],
+      [
+        "GGGRGGG",
+        "G"
+      ],
+      [
+        "GGGRGGR",
+        "G"
+      ],
+      [
+        "GGGRRGG",
+        "R"
+      ],
+      [
+        "GGGWRRG",
+        "G"
+      ],
+      [
+        "GGGWWWR",
+        "G"
+      ],
+      [
+        "GGGWWWW",
+        "G"
+      ],
+      [
+        "GGRGBRR",
+        "R"
+      ],
+      [
+        "GGRGGBG",
+        "G"
+      ],
+      [
+        "GGRGGGB",
+        "G"
+      ],
+      [
+        "GGRGGGG",
+        "G"
+      ],
+      [
+        "GGRGGGR",
+        "G"
+      ],
+      [
+        "GGRGGGW",
+        "G"
+      ],
+      [
+        "GGRGGRR",
+        "G"
+      ],
+      [
+        "GGRRGGB",
+        "G"
+      ],
+      [
+        "GGRRGGG",
+        "G"
+      ],
+      [
+        "GGRRGGR",
+        "G"
+      ],
+      [
+        "GGRRRGG",
+        "R"
+      ],
+      [
+        "GGRRRRR",
+        "B"
+      ],
+      [
+        "GGWRRGB",
+        "R"
+      ],
+      [
+        "GGWRRRR",
+        "R"
+      ],
+      [
+        "GGWWWRR",
+        "W"
+      ],
+      [
+        "GGWWWWW",
+        "W"
+      ],
+      [
+        "GRGBRRG",
+        "R"
+      ],
+      [
+        "GRGGBGG",
+        "G"
+      ],
+      [
+        "GRGGGBR",
+        "B"
+      ],
+      [
+        "GRGGGGG",
+        "G"
+      ],
+      [
+        "GRGGGRG",
+        "B"
+      ],
+      [
+        "GRGGGWR",
+        "B"
+      ],
+      [
+        "GRGGGWW",
+        "B"
+      ],
+      [
+        "GRGGRRG",
+        "R"
+      ],
+      [
+        "GRRGGBG",
+        "G"
+      ],
+      [
+        "GRRGGGB",
+        "G"
+      ],
+      [
+        "GRRGGGG",
+        "G"
+      ],
+      [
+        "GRRGGGR",
+        "G"
+      ],
+      [
+        "GRRGGGW",
+        "G"
+      ],
+      [
+        "GRRGGRR",
+        "G"
+      ],
+      [
+        "GRRRGGB",
+        "G"
+      ],
+      [
+        "GRRRRRG",
+        "R"
+      ],
+      [
+        "GWRRGBR",
+        "R"
+      ],
+      [
+        "GWRRRRR",
+        "G"
+      ],
+      [
+        "GWWWRRG",
+        "R"
+      ],
+      [
+        "GWWWRRR",
+        "R"
+      ],
+      [
+        "GWWWWWR",
+        "W"
+      ],
+      [
+        "GWWWWWW",
+        "W"
+      ],
+      [
+        "RGBRRGG",
+        "R"
+      ],
+      [
+        "RGGBGGG",
+        "R"
+      ],
+      [
+        "RGGBGGR",
+        "R"
+      ],
+      [
+        "RGGBGGW",
+        "R"
+      ],
+      [
+        "RGGGBRR",
+        "G"
+      ],
+      [
+        "RGGGGGG",
+        "G"
+      ],
+      [
+        "RGGGGGR",
+        "G"
+      ],
+      [
+        "RGGGRGB",
+        "G"
+      ],
+      [
+        "RGGGRGG",
+        "G"
+      ],
+      [
+        "RGGGWRR",
+        "G"
+      ],
+      [
+        "RGGGWWW",
+        "G"
+      ],
+      [
+        "RGGRRGG",
+        "R"
+      ],
+      [
+        "RGWRRRR",
+        "R"
+      ],
+      [
+        "RGWWWRR",
+        "W"
+      ],
+      [
+        "RGWWWWW",
+        "W"
+      ],
+      [
+        "RRGBRRG",
+        "R"
+      ],
+      [
+        "RRGGBGG",
+        "G"
+      ],
+      [
+        "RRGGGBR",
+        "B"
+      ],
+      [
+        "RRGGGGG",
+        "B"
+      ],
+      [
+        "RRGGGRG",
+        "B"
+      ],
+      [
+        "RRGGGWR",
+        "B"
+      ],
+      [
+        "RRGGGWW",
+        "B"
+      ],
+      [
+        "RRGGRRG",
+        "R"
+      ],
+      [
+        "RRGWRRR",
+        "G"
+      ],
+      [
+        "RRGWWWR",
+        "G"
+      ],
+      [
+        "RRGWWWW",
+        "G"
+      ],
+      [
+        "RRRGGBG",
+        "G"
+      ],
+      [
+        "RRRGWRR",
+        "G"
+      ],
+      [
+        "RRRGWWW",
+        "G"
+      ],
+      [
+        "RRRRGGB",
+        "G"
+      ],
+      [
+        "RRRRGWR",
+        "G"
+      ],
+      [
+        "RRRRGWW",
+        "G"
+      ],
+      [
+        "RRRRRGG",
+        "R"
+      ],
+      [
+        "RRRRRGW",
+        "R"
+      ],
+      [
+        "RRRRRRG",
+        "R"
+      ],
+      [
+        "WRRGBRR",
+        "R"
+      ],
+      [
+        "WRRRRRR",
+        "B"
+      ],
+      [
+        "WWRRGBR",
+        "R"
+      ],
+      [
+        "WWRRRRR",
+        "G"
+      ],
+      [
+        "WWWRRGB",
+        "R"
+      ],
+      [
+        "WWWRRRR",
+        "R"
+      ],
+      [
+        "WWWWRRG",
+        "R"
+      ],
+      [
+        "WWWWRRR",
+        "R"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRRRRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "width": 156,
+    "boundary": "periodic",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "3efab5d4305206efc10e403da6f512e2314a754d6de8896c604f7cb0494eec61",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "52814059da17b1eb90ddbed6bcd251de5a6f5b284e0048bde5f64a494b8b7e63",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#272822ff",
+      "R": "#f92672ff",
+      "G": "#a6e22eff",
+      "B": "#665c80ff",
+      "K": "#333333ff"
+    },
+    "canvasBackground": "#272822ff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "3efab5d4305206efc10e403da6f512e2314a754d6de8896c604f7cb0494eec61",
+    "geometry": "52814059da17b1eb90ddbed6bcd251de5a6f5b284e0048bde5f64a494b8b7e63",
+    "appearance": "a66e284ff70a99e28c4927aad7fba2d2163315503b58b8a9fa71bb51e6ed6b4e",
+    "observation": "e62b3fd2667f11458c322a3b71e3a894cf637a88e6139518f55c8dc0c701768f"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "a66e284ff70a99e28c4927aad7fba2d2163315503b58b8a9fa71bb51e6ed6b4e",
+    "firstGeneration": 0,
+    "rowCount": 80,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "cccbd6c632e4cef0d4e7987f351a5b008a515376ff9785130f6e39fa4edf5324"
+  },
+  "metadata": {
+    "name": "Slotted field / 156 cells",
+    "evidence": {
+      "source": "Triangular_Cellular_Automata/Screenshot 2026-03-01 234932.png",
+      "sha256": "a5a4638398d281bdab10d11a621a97a1266b7579c187c92fdc12b0d85fa5391f",
+      "comparedSamples": 7134,
+      "mismatches": 0,
+      "verifiedRows": 78,
+      "image": "evidence/a5a4638398d281bdab10d11a621a97a1266b7579c187c92fdc12b0d85fa5391f.png",
+      "note": "Previous registered exact-color centroid comparison. 80 rows is a preview choice. K color is a convention, not observed."
+    },
+    "status": "screenshot-verified"
+  }
+}

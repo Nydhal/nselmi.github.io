@@ -1,0 +1,404 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBBBB",
+        "W"
+      ],
+      [
+        "BBBBBBR",
+        "W"
+      ],
+      [
+        "BBBBBRR",
+        "W"
+      ],
+      [
+        "BBBBRRG",
+        "R"
+      ],
+      [
+        "BBBRRGG",
+        "R"
+      ],
+      [
+        "BBGGRGG",
+        "G"
+      ],
+      [
+        "BBGGWWW",
+        "G"
+      ],
+      [
+        "BBGRRRR",
+        "B"
+      ],
+      [
+        "BBRRGGG",
+        "G"
+      ],
+      [
+        "BGGRGGW",
+        "R"
+      ],
+      [
+        "BGGWRRG",
+        "G"
+      ],
+      [
+        "BGGWWWW",
+        "G"
+      ],
+      [
+        "BGRRRRR",
+        "B"
+      ],
+      [
+        "BRRGGGW",
+        "G"
+      ],
+      [
+        "GBBBBBB",
+        "G"
+      ],
+      [
+        "GBBBBBR",
+        "G"
+      ],
+      [
+        "GBGGWRR",
+        "G"
+      ],
+      [
+        "GBGGWWW",
+        "G"
+      ],
+      [
+        "GGBGGWR",
+        "B"
+      ],
+      [
+        "GGBGGWW",
+        "B"
+      ],
+      [
+        "GGGWWWR",
+        "G"
+      ],
+      [
+        "GGGWWWW",
+        "G"
+      ],
+      [
+        "GGRGGWB",
+        "R"
+      ],
+      [
+        "GGWBBGG",
+        "R"
+      ],
+      [
+        "GGWRRGG",
+        "R"
+      ],
+      [
+        "GGWWWRR",
+        "W"
+      ],
+      [
+        "GGWWWWW",
+        "W"
+      ],
+      [
+        "GRGGWBB",
+        "R"
+      ],
+      [
+        "GRRRRRB",
+        "B"
+      ],
+      [
+        "GWBBGGR",
+        "B"
+      ],
+      [
+        "GWBBGGW",
+        "B"
+      ],
+      [
+        "GWRRGGB",
+        "G"
+      ],
+      [
+        "GWWWRRG",
+        "R"
+      ],
+      [
+        "GWWWWWR",
+        "W"
+      ],
+      [
+        "GWWWWWW",
+        "W"
+      ],
+      [
+        "RBBGGWW",
+        "G"
+      ],
+      [
+        "RBBGRRR",
+        "B"
+      ],
+      [
+        "RGBBBBB",
+        "G"
+      ],
+      [
+        "RGGBGGW",
+        "B"
+      ],
+      [
+        "RGGGWWW",
+        "G"
+      ],
+      [
+        "RGGWBBG",
+        "R"
+      ],
+      [
+        "RGWWWWW",
+        "W"
+      ],
+      [
+        "RRBBGGW",
+        "R"
+      ],
+      [
+        "RRBBGRR",
+        "B"
+      ],
+      [
+        "RRGBBBB",
+        "B"
+      ],
+      [
+        "RRGGBGG",
+        "W"
+      ],
+      [
+        "RRGGGWW",
+        "B"
+      ],
+      [
+        "RRGGWBB",
+        "R"
+      ],
+      [
+        "RRGWWWW",
+        "G"
+      ],
+      [
+        "RRRBBGG",
+        "R"
+      ],
+      [
+        "RRRBBGR",
+        "B"
+      ],
+      [
+        "RRRRBBG",
+        "B"
+      ],
+      [
+        "RRRRRBB",
+        "B"
+      ],
+      [
+        "RRRRRRB",
+        "B"
+      ],
+      [
+        "RRRRRRR",
+        "B"
+      ],
+      [
+        "WBBGGRG",
+        "B"
+      ],
+      [
+        "WBBGGWW",
+        "B"
+      ],
+      [
+        "WRRGBBB",
+        "G"
+      ],
+      [
+        "WRRGGBG",
+        "G"
+      ],
+      [
+        "WRRGGGW",
+        "G"
+      ],
+      [
+        "WRRGGWB",
+        "R"
+      ],
+      [
+        "WRRGWWW",
+        "G"
+      ],
+      [
+        "WRRRRRR",
+        "B"
+      ],
+      [
+        "WWRRGBB",
+        "G"
+      ],
+      [
+        "WWRRGGB",
+        "G"
+      ],
+      [
+        "WWRRGGG",
+        "G"
+      ],
+      [
+        "WWRRGGW",
+        "R"
+      ],
+      [
+        "WWRRGWW",
+        "G"
+      ],
+      [
+        "WWRRRRR",
+        "G"
+      ],
+      [
+        "WWWRRGB",
+        "R"
+      ],
+      [
+        "WWWRRGG",
+        "R"
+      ],
+      [
+        "WWWRRGW",
+        "R"
+      ],
+      [
+        "WWWRRRR",
+        "R"
+      ],
+      [
+        "WWWWRRG",
+        "R"
+      ],
+      [
+        "WWWWRRR",
+        "R"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "width": 64,
+    "boundary": "periodic",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "8ef1b2c2387b8ac2737b9ac56e3d13d6cb5a15ab3091d4cbc6777208a7f1f936",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "cde66b73f38cc9a0aadf8cc1181f0712f6bd921d646a7834f2505b9bb9b32ab0",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#e8a0a0ff",
+      "G": "#a0e8a0ff",
+      "B": "#a0a0e8ff",
+      "K": "#333333ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "8ef1b2c2387b8ac2737b9ac56e3d13d6cb5a15ab3091d4cbc6777208a7f1f936",
+    "geometry": "cde66b73f38cc9a0aadf8cc1181f0712f6bd921d646a7834f2505b9bb9b32ab0",
+    "appearance": "a57808c925cdfce4ba3f2c4a59a775dcf57beed7850bf4873cb72430c0b25492",
+    "observation": "ce7f334019c372a81abd7801c66881a4a24bd978a7ccf5a00ac581dcf4a17989"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "a57808c925cdfce4ba3f2c4a59a775dcf57beed7850bf4873cb72430c0b25492",
+    "firstGeneration": 0,
+    "rowCount": 34,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "f259fddc18ccf5e32417d0a9e4ab23e89f3e03e2fad6455fc39b4561f2aee871"
+  },
+  "metadata": {
+    "name": "Nested tribar lattice / 34-row observation",
+    "status": "symbolic-replay-verified",
+    "evidence": {
+      "source": "Triangular_Cellular_Automata\\svg\\ca (6).svg",
+      "sha256": "9b14036165b8b24648a2deaeb31d206fe69324238f333e46433384d97a5dea98",
+      "image": "evidence/9b14036165b8b24648a2deaeb31d206fe69324238f333e46433384d97a5dea98.svg",
+      "comparedCells": 2176,
+      "mismatches": 0,
+      "rulesProvenance": "saved-compatible",
+      "ruleSource": "ca_d3_v3.html#BASE_RULES",
+      "ruleConvention": "as-saved",
+      "boundaryCandidates": [
+        {
+          "boundary": "periodic",
+          "diagnosticMode": "propagate-K"
+        }
+      ],
+      "note": "Every decoded cell replays over the recorded horizon. Unobserved rules and alternative boundaries may remain undetermined. Source borders may differ."
+    }
+  }
+}

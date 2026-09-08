@@ -1,0 +1,152 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBGWWWW",
+        "W"
+      ],
+      [
+        "BGWWWWW",
+        "W"
+      ],
+      [
+        "GWWWWWW",
+        "W"
+      ],
+      [
+        "RGWWWWW",
+        "W"
+      ],
+      [
+        "RRGWWWW",
+        "W"
+      ],
+      [
+        "WBBGWWW",
+        "W"
+      ],
+      [
+        "WRRGWWW",
+        "G"
+      ],
+      [
+        "WWBBGWW",
+        "W"
+      ],
+      [
+        "WWRRGWW",
+        "B"
+      ],
+      [
+        "WWWBBGW",
+        "W"
+      ],
+      [
+        "WWWRRGW",
+        "B"
+      ],
+      [
+        "WWWWBBG",
+        "W"
+      ],
+      [
+        "WWWWRRG",
+        "W"
+      ],
+      [
+        "WWWWWBB",
+        "W"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWB",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "width": 117,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "62255cea697c28d430ea1a77b70957f3f21aba2fa058c73f11d06a4cc0cdd14a",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "a75de02397d778664e378f86d4f9bb395fcc8eb29246725209009266fa767a6d",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#e8a0a0ff",
+      "G": "#b8f0b8ff",
+      "B": "#7878b8ff",
+      "K": "#333333ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "62255cea697c28d430ea1a77b70957f3f21aba2fa058c73f11d06a4cc0cdd14a",
+    "geometry": "a75de02397d778664e378f86d4f9bb395fcc8eb29246725209009266fa767a6d",
+    "appearance": "d789b4dcad27ed9c5248ab6ab2c5dfab04ee15d915c1e9a1c126f5a6ab16a05e",
+    "observation": "73c3156482b63564929f9f7d6e657019c1019206582d33c630c58520651fd9cc"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "d789b4dcad27ed9c5248ab6ab2c5dfab04ee15d915c1e9a1c126f5a6ab16a05e",
+    "firstGeneration": 0,
+    "rowCount": 35,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "930be2c989787f9630e8435aab44b685d53da032d8d747e7954b36c95f8a2909"
+  },
+  "metadata": {
+    "name": "Single cube",
+    "evidence": {
+      "source": "impossible-fractal-ca.html",
+      "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+      "note": "35 rows include generation zero; no historical image match asserted."
+    },
+    "status": "saved-preset"
+  }
+}

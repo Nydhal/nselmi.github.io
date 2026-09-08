@@ -1,0 +1,368 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBBBB",
+        "W"
+      ],
+      [
+        "BBBBBBR",
+        "W"
+      ],
+      [
+        "BBBBBRG",
+        "W"
+      ],
+      [
+        "BBBBRGG",
+        "R"
+      ],
+      [
+        "BBBRGGW",
+        "R"
+      ],
+      [
+        "BBGGWRR",
+        "G"
+      ],
+      [
+        "BBGGWWW",
+        "G"
+      ],
+      [
+        "BBGRRRR",
+        "B"
+      ],
+      [
+        "BBRGGWW",
+        "G"
+      ],
+      [
+        "BGGWRRG",
+        "R"
+      ],
+      [
+        "BGGWWWR",
+        "G"
+      ],
+      [
+        "BGGWWWW",
+        "G"
+      ],
+      [
+        "BGRRRRR",
+        "B"
+      ],
+      [
+        "BRGGWWW",
+        "G"
+      ],
+      [
+        "GBBBBBB",
+        "W"
+      ],
+      [
+        "GBGGWWW",
+        "G"
+      ],
+      [
+        "GGBGGWW",
+        "B"
+      ],
+      [
+        "GGGWWWW",
+        "G"
+      ],
+      [
+        "GGWBBGG",
+        "R"
+      ],
+      [
+        "GGWRRGG",
+        "R"
+      ],
+      [
+        "GGWWWRR",
+        "W"
+      ],
+      [
+        "GGWWWWW",
+        "W"
+      ],
+      [
+        "GRRRRRR",
+        "B"
+      ],
+      [
+        "GWBBGGW",
+        "B"
+      ],
+      [
+        "GWRRGGW",
+        "R"
+      ],
+      [
+        "GWWWRRG",
+        "R"
+      ],
+      [
+        "GWWWWWR",
+        "W"
+      ],
+      [
+        "GWWWWWW",
+        "W"
+      ],
+      [
+        "RBBGGWW",
+        "R"
+      ],
+      [
+        "RBBGRRR",
+        "B"
+      ],
+      [
+        "RGBBBBB",
+        "W"
+      ],
+      [
+        "RGGBGGW",
+        "B"
+      ],
+      [
+        "RGGGWWW",
+        "G"
+      ],
+      [
+        "RGGWBBG",
+        "R"
+      ],
+      [
+        "RGGWWWW",
+        "G"
+      ],
+      [
+        "RGWWWWW",
+        "W"
+      ],
+      [
+        "RRBBGGW",
+        "B"
+      ],
+      [
+        "RRBBGRR",
+        "B"
+      ],
+      [
+        "RRGBBBB",
+        "G"
+      ],
+      [
+        "RRGGBGG",
+        "W"
+      ],
+      [
+        "RRGGGWW",
+        "B"
+      ],
+      [
+        "RRGGWBB",
+        "R"
+      ],
+      [
+        "RRGWWWW",
+        "G"
+      ],
+      [
+        "RRRBBGG",
+        "B"
+      ],
+      [
+        "RRRBBGR",
+        "B"
+      ],
+      [
+        "RRRRBBG",
+        "B"
+      ],
+      [
+        "RRRRRBB",
+        "B"
+      ],
+      [
+        "RRRRRRB",
+        "B"
+      ],
+      [
+        "RRRRRRR",
+        "B"
+      ],
+      [
+        "WBBGGWR",
+        "B"
+      ],
+      [
+        "WBBGGWW",
+        "B"
+      ],
+      [
+        "WRRGBBB",
+        "G"
+      ],
+      [
+        "WRRGGBG",
+        "G"
+      ],
+      [
+        "WRRGGGW",
+        "G"
+      ],
+      [
+        "WRRGGWB",
+        "R"
+      ],
+      [
+        "WRRGWWW",
+        "G"
+      ],
+      [
+        "WRRRRRR",
+        "B"
+      ],
+      [
+        "WWRRGBB",
+        "G"
+      ],
+      [
+        "WWRRGGB",
+        "G"
+      ],
+      [
+        "WWRRGGG",
+        "G"
+      ],
+      [
+        "WWRRGGW",
+        "R"
+      ],
+      [
+        "WWRRGWW",
+        "G"
+      ],
+      [
+        "WWRRRRR",
+        "G"
+      ],
+      [
+        "WWWRRGB",
+        "R"
+      ],
+      [
+        "WWWRRGG",
+        "R"
+      ],
+      [
+        "WWWRRGW",
+        "R"
+      ],
+      [
+        "WWWRRRR",
+        "R"
+      ],
+      [
+        "WWWWRRG",
+        "R"
+      ],
+      [
+        "WWWWRRR",
+        "R"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "width": 117,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "df71646fb1b806bdab2b46ab36f4fdb32367c0e81f371490f47f3c2048e37c03",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "e653a6de03f7b431ade9591f9ca7254087819c820722a2326293f8d5154b07af",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#e8a0a0ff",
+      "G": "#b8f0b8ff",
+      "B": "#7878b8ff",
+      "K": "#333333ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "df71646fb1b806bdab2b46ab36f4fdb32367c0e81f371490f47f3c2048e37c03",
+    "geometry": "e653a6de03f7b431ade9591f9ca7254087819c820722a2326293f8d5154b07af",
+    "appearance": "43f4d1cbcb3a2660f655dec08d16aa90a64a3f3c755b6b76b4be126568389841",
+    "observation": "b9bfc1555b80d7ea65594181a30323edf400e5a008ded80a7f807e29828f547d"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "43f4d1cbcb3a2660f655dec08d16aa90a64a3f3c755b6b76b4be126568389841",
+    "firstGeneration": 0,
+    "rowCount": 35,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "83ea6fd4bda7e84af4abc1c278380a8af1db38b70fa2fc34fc5df71fd8c9fe0d"
+  },
+  "metadata": {
+    "name": "Kitaoka 2010",
+    "evidence": {
+      "source": "impossible-fractal-ca.html",
+      "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+      "note": "35 rows include generation zero; no historical image match asserted."
+    },
+    "status": "saved-preset"
+  }
+}

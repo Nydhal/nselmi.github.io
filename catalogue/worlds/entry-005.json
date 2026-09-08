@@ -1,0 +1,384 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBBBB",
+        "G"
+      ],
+      [
+        "BBBBBBR",
+        "G"
+      ],
+      [
+        "BBBBBRR",
+        "W"
+      ],
+      [
+        "BBBBRRG",
+        "R"
+      ],
+      [
+        "BBBRRGG",
+        "R"
+      ],
+      [
+        "BBGGRGG",
+        "G"
+      ],
+      [
+        "BBGGWRR",
+        "G"
+      ],
+      [
+        "BBGGWWW",
+        "G"
+      ],
+      [
+        "BBGRRRR",
+        "B"
+      ],
+      [
+        "BBRRGGG",
+        "G"
+      ],
+      [
+        "BGGRGGW",
+        "R"
+      ],
+      [
+        "BGGWRRG",
+        "G"
+      ],
+      [
+        "BGGWWWW",
+        "G"
+      ],
+      [
+        "BGRRRRR",
+        "B"
+      ],
+      [
+        "BRRGGGW",
+        "G"
+      ],
+      [
+        "GBGGWWW",
+        "G"
+      ],
+      [
+        "GGBGGWW",
+        "B"
+      ],
+      [
+        "GGGWWWW",
+        "G"
+      ],
+      [
+        "GGRGGWB",
+        "R"
+      ],
+      [
+        "GGWBBGG",
+        "R"
+      ],
+      [
+        "GGWRRGG",
+        "R"
+      ],
+      [
+        "GGWWWWW",
+        "W"
+      ],
+      [
+        "GRGGWBB",
+        "R"
+      ],
+      [
+        "GRRRRRB",
+        "B"
+      ],
+      [
+        "GWBBGGW",
+        "B"
+      ],
+      [
+        "GWRRGGB",
+        "G"
+      ],
+      [
+        "GWWWWWW",
+        "W"
+      ],
+      [
+        "RBBGGWW",
+        "G"
+      ],
+      [
+        "RGGBGGW",
+        "B"
+      ],
+      [
+        "RGGGWWW",
+        "G"
+      ],
+      [
+        "RGGWBBG",
+        "R"
+      ],
+      [
+        "RGWWWWW",
+        "W"
+      ],
+      [
+        "RRBBGGW",
+        "R"
+      ],
+      [
+        "RRGGBGG",
+        "W"
+      ],
+      [
+        "RRGGGWW",
+        "B"
+      ],
+      [
+        "RRGGWBB",
+        "R"
+      ],
+      [
+        "RRGWWWW",
+        "G"
+      ],
+      [
+        "RRRBBGG",
+        "R"
+      ],
+      [
+        "RRRRBBG",
+        "B"
+      ],
+      [
+        "RRRRRBB",
+        "B"
+      ],
+      [
+        "RRRRRRB",
+        "B"
+      ],
+      [
+        "RRRRRRR",
+        "B"
+      ],
+      [
+        "WBBBBBB",
+        "B"
+      ],
+      [
+        "WBBGGRG",
+        "B"
+      ],
+      [
+        "WBBGGWR",
+        "B"
+      ],
+      [
+        "WBBGGWW",
+        "B"
+      ],
+      [
+        "WBBGRRR",
+        "B"
+      ],
+      [
+        "WRRGGBG",
+        "G"
+      ],
+      [
+        "WRRGGGW",
+        "G"
+      ],
+      [
+        "WRRGGWB",
+        "R"
+      ],
+      [
+        "WRRGWWW",
+        "G"
+      ],
+      [
+        "WRRRRRR",
+        "B"
+      ],
+      [
+        "WWBBBBB",
+        "B"
+      ],
+      [
+        "WWBBGGR",
+        "B"
+      ],
+      [
+        "WWBBGGW",
+        "B"
+      ],
+      [
+        "WWBBGRR",
+        "B"
+      ],
+      [
+        "WWRRGGB",
+        "G"
+      ],
+      [
+        "WWRRGGG",
+        "G"
+      ],
+      [
+        "WWRRGGW",
+        "R"
+      ],
+      [
+        "WWRRGWW",
+        "G"
+      ],
+      [
+        "WWRRRRR",
+        "B"
+      ],
+      [
+        "WWWBBBB",
+        "W"
+      ],
+      [
+        "WWWBBGG",
+        "W"
+      ],
+      [
+        "WWWBBGR",
+        "W"
+      ],
+      [
+        "WWWRRGG",
+        "R"
+      ],
+      [
+        "WWWRRGW",
+        "R"
+      ],
+      [
+        "WWWRRRR",
+        "B"
+      ],
+      [
+        "WWWWBBB",
+        "W"
+      ],
+      [
+        "WWWWBBG",
+        "W"
+      ],
+      [
+        "WWWWRRG",
+        "R"
+      ],
+      [
+        "WWWWRRR",
+        "W"
+      ],
+      [
+        "WWWWWBB",
+        "W"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWB",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "width": 117,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "0b6a0f8f7a752db780b5edf4a709165ba21660345aaf1dd16f377d7e0346a20c",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "0dcc4897472a544c59b51895de95ceb4c3cfa873062090a0f2ded418a832d1ac",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#e8a0a0ff",
+      "G": "#b8f0b8ff",
+      "B": "#7878b8ff",
+      "K": "#333333ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "0b6a0f8f7a752db780b5edf4a709165ba21660345aaf1dd16f377d7e0346a20c",
+    "geometry": "0dcc4897472a544c59b51895de95ceb4c3cfa873062090a0f2ded418a832d1ac",
+    "appearance": "e5439324b8806005271c12be679e07c870d222f699669d67ec2892a7332e7b18",
+    "observation": "4aaa40fcd446994889e1f089814d0d468b6e45ba638cd8cc568c128181b0acd6"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "e5439324b8806005271c12be679e07c870d222f699669d67ec2892a7332e7b18",
+    "firstGeneration": 0,
+    "rowCount": 35,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "eca836d23b97e96dbd29bfe6cdaaef24fa6a383c589590123db6f8547d465b3e"
+  },
+  "metadata": {
+    "name": "Braced diagonal strip",
+    "evidence": {
+      "source": "impossible-fractal-ca.html",
+      "sha256": "a5059b0b81347ae35cde205b04048cdc09b0e805d57c5a4e7fe3c8c4a0c71f45",
+      "note": "35 rows include generation zero; no historical image match asserted."
+    },
+    "status": "saved-preset"
+  }
+}

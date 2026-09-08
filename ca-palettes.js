@@ -1,0 +1,26 @@
+/* Symbolic states keep their meaning when colors change. */
+window.CA_PALETTES = [
+  {name:'Pastel', W:'#ffffff',R:'#e8a0a0',G:'#b8f0b8',B:'#7878b8',K:'#333333'},
+  {name:'Terracotta & cobalt',W:'#ffffff',R:'#eaa27a',G:'#537de3',B:'#f9d974',K:'#333333'},
+  {name:'Monokai',W:'#272822',R:'#f92672',G:'#a6e22e',B:'#665c80',K:'#333333'},
+  {name:'Bauhaus',W:'#f5f1e0',R:'#be1e2d',G:'#f0ab00',B:'#13286a',K:'#1a1a1a'},
+  {name:'Mondrian',W:'#ffffff',R:'#e60000',G:'#ffd700',B:'#003580',K:'#222222'},
+  {name:'Solarized',W:'#fdf6e3',R:'#cb4b16',G:'#859900',B:'#073642',K:'#dc322f'},
+  {name:'Dracula',W:'#282a36',R:'#ff79c6',G:'#50fa7b',B:'#6c5b8d',K:'#f8f8f2'},
+  {name:'Vaporwave',W:'#1a1a2e',R:'#ff6ec7',G:'#00ffcc',B:'#5b3d9e',K:'#e0e0e0'},
+  {name:'Lavender',W:'#f5f0fa',R:'#b89cc8',G:'#d4bfe8',B:'#7b6899',K:'#4a3660'},
+  {name:'Ink',W:'#ffffff',R:'#555555',G:'#999999',B:'#1a1a1a',K:'#ff0000'},
+  {name:'Desert dusk',W:'#f7edda',R:'#ca7053',G:'#e9b96e',B:'#594b74',K:'#242132'},
+  {name:'Glacier',W:'#edf7fa',R:'#529bb2',G:'#a9dfe6',B:'#284e72',K:'#e04f72'},
+  {name:'Forest',W:'#f0f0dc',R:'#78804d',G:'#c0cf80',B:'#254f47',K:'#ca4264'},
+  {name:'Copper patina',W:'#faf3e8',R:'#b76c46',G:'#79bdb0',B:'#254d58',K:'#d32972'},
+  {name:'Plum & gold',W:'#faf3e0',R:'#9c557b',G:'#e7bc58',B:'#423553',K:'#d92340'},
+  {name:'Midnight neon',W:'#101522',R:'#ed5b91',G:'#57e0c0',B:'#6561bf',K:'#ffdf52'},
+  {name:'Ocean coral',W:'#f4faf8',R:'#ec806b',G:'#73c7be',B:'#28637c',K:'#41284f'},
+  {name:'Saffron & indigo',W:'#fcf5e5',R:'#dc7640',G:'#efc84a',B:'#394785',K:'#bd1761'},
+  {name:'Blueprint',W:'#102f54',R:'#719bc1',G:'#d2e8ed',B:'#34628c',K:'#ffbd64'},
+  {name:'Graphite',W:'#f4f1eb',R:'#85817c',G:'#c9c4bc',B:'#3d3c3b',K:'#db3c47'},
+  {name:'Rose quartz',W:'#fcf5f5',R:'#c78393',G:'#ebc1b7',B:'#766382',K:'#292238'},
+  {name:'Citrus',W:'#f9f9e7',R:'#ef9952',G:'#c9d969',B:'#477773',K:'#ad3675'},
+  {name:'Electric blue & amber',W:'#151b2d',R:'#ee9b41',G:'#52bbec',B:'#6662ad',K:'#ff5179'}
+];

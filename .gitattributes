@@ -1,0 +1,2 @@
+# Source evidence filenames are SHA-256 hashes of the original bytes.
+catalogue/evidence/* -text

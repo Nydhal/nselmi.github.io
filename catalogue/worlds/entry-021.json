@@ -1,0 +1,504 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBGGG",
+        "R"
+      ],
+      [
+        "BBBBGGW",
+        "R"
+      ],
+      [
+        "BBBBWWW",
+        "R"
+      ],
+      [
+        "BBBGGGB",
+        "G"
+      ],
+      [
+        "BBBGGWW",
+        "G"
+      ],
+      [
+        "BBBWWWW",
+        "W"
+      ],
+      [
+        "BBGBBBB",
+        "R"
+      ],
+      [
+        "BBGBBGG",
+        "G"
+      ],
+      [
+        "BBGGGBB",
+        "G"
+      ],
+      [
+        "BBGGRRG",
+        "G"
+      ],
+      [
+        "BBGGWWW",
+        "G"
+      ],
+      [
+        "BBGRRGR",
+        "B"
+      ],
+      [
+        "BBGRRGW",
+        "B"
+      ],
+      [
+        "BBGRRWW",
+        "B"
+      ],
+      [
+        "BBGWWWW",
+        "W"
+      ],
+      [
+        "BBWWWWW",
+        "W"
+      ],
+      [
+        "BGBBBBG",
+        "R"
+      ],
+      [
+        "BGBBBBW",
+        "R"
+      ],
+      [
+        "BGBBGGR",
+        "B"
+      ],
+      [
+        "BGGGBBG",
+        "G"
+      ],
+      [
+        "BGGRRGB",
+        "B"
+      ],
+      [
+        "BGGWWWW",
+        "W"
+      ],
+      [
+        "BGRRGRR",
+        "B"
+      ],
+      [
+        "BGRRGWW",
+        "B"
+      ],
+      [
+        "BGRRWWW",
+        "B"
+      ],
+      [
+        "BGWWWWW",
+        "W"
+      ],
+      [
+        "BWWWWWW",
+        "W"
+      ],
+      [
+        "GBBBBGG",
+        "R"
+      ],
+      [
+        "GBBBBWW",
+        "R"
+      ],
+      [
+        "GBBGBBB",
+        "G"
+      ],
+      [
+        "GBBGBBG",
+        "G"
+      ],
+      [
+        "GBBGGRR",
+        "B"
+      ],
+      [
+        "GBBGRRG",
+        "G"
+      ],
+      [
+        "GBBGRRW",
+        "G"
+      ],
+      [
+        "GBBGWWW",
+        "G"
+      ],
+      [
+        "GBBWWWW",
+        "W"
+      ],
+      [
+        "GGBBBBG",
+        "R"
+      ],
+      [
+        "GGBBGBB",
+        "R"
+      ],
+      [
+        "GGBBGRR",
+        "R"
+      ],
+      [
+        "GGGBBGB",
+        "R"
+      ],
+      [
+        "GGGRRGR",
+        "R"
+      ],
+      [
+        "GGRRGBB",
+        "B"
+      ],
+      [
+        "GGRRGRR",
+        "G"
+      ],
+      [
+        "GGRRRRG",
+        "B"
+      ],
+      [
+        "GGWWWWW",
+        "W"
+      ],
+      [
+        "GRRGBBG",
+        "B"
+      ],
+      [
+        "GRRGBBW",
+        "B"
+      ],
+      [
+        "GRRGGBB",
+        "G"
+      ],
+      [
+        "GRRGRRG",
+        "G"
+      ],
+      [
+        "GRRGRRR",
+        "G"
+      ],
+      [
+        "GRRGWWW",
+        "G"
+      ],
+      [
+        "GRRRRGG",
+        "G"
+      ],
+      [
+        "GRRRRWW",
+        "G"
+      ],
+      [
+        "GRRWWWW",
+        "W"
+      ],
+      [
+        "GWWWWWW",
+        "W"
+      ],
+      [
+        "RGBBGBB",
+        "G"
+      ],
+      [
+        "RGBBGWW",
+        "G"
+      ],
+      [
+        "RGBBWWW",
+        "W"
+      ],
+      [
+        "RGGBBGR",
+        "R"
+      ],
+      [
+        "RGGGRRG",
+        "R"
+      ],
+      [
+        "RGGWWWW",
+        "W"
+      ],
+      [
+        "RGRRGGB",
+        "B"
+      ],
+      [
+        "RGRRRRG",
+        "B"
+      ],
+      [
+        "RGRRRRW",
+        "B"
+      ],
+      [
+        "RGWWWWW",
+        "W"
+      ],
+      [
+        "RRGBBGB",
+        "B"
+      ],
+      [
+        "RRGBBGW",
+        "B"
+      ],
+      [
+        "RRGBBWW",
+        "B"
+      ],
+      [
+        "RRGGBBG",
+        "G"
+      ],
+      [
+        "RRGGGRR",
+        "G"
+      ],
+      [
+        "RRGGWWW",
+        "G"
+      ],
+      [
+        "RRGRRGG",
+        "B"
+      ],
+      [
+        "RRGRRRR",
+        "B"
+      ],
+      [
+        "RRGWWWW",
+        "W"
+      ],
+      [
+        "RRRGGGR",
+        "R"
+      ],
+      [
+        "RRRGGWW",
+        "R"
+      ],
+      [
+        "RRRRGGG",
+        "R"
+      ],
+      [
+        "RRRRGGW",
+        "R"
+      ],
+      [
+        "RRRRWWW",
+        "R"
+      ],
+      [
+        "RRRWWWW",
+        "R"
+      ],
+      [
+        "RRWWWWW",
+        "W"
+      ],
+      [
+        "RWWWWWW",
+        "W"
+      ],
+      [
+        "WGGBBBB",
+        "R"
+      ],
+      [
+        "WGGBBGR",
+        "R"
+      ],
+      [
+        "WGGRRGB",
+        "B"
+      ],
+      [
+        "WGGRRRR",
+        "B"
+      ],
+      [
+        "WGRRRRG",
+        "B"
+      ],
+      [
+        "WWGGBBB",
+        "G"
+      ],
+      [
+        "WWGGBBG",
+        "G"
+      ],
+      [
+        "WWGGRRG",
+        "G"
+      ],
+      [
+        "WWGGRRR",
+        "G"
+      ],
+      [
+        "WWGRRRR",
+        "B"
+      ],
+      [
+        "WWWGGBB",
+        "G"
+      ],
+      [
+        "WWWGGRR",
+        "G"
+      ],
+      [
+        "WWWGRRR",
+        "G"
+      ],
+      [
+        "WWWWGGB",
+        "W"
+      ],
+      [
+        "WWWWGGR",
+        "W"
+      ],
+      [
+        "WWWWGRR",
+        "G"
+      ],
+      [
+        "WWWWWGG",
+        "W"
+      ],
+      [
+        "WWWWWGR",
+        "W"
+      ],
+      [
+        "WWWWWWG",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWWWGRRRRGGGRRGRRRRGGWWWWWWWGRRRRGGGRRGRRRRWWWWWWWWW",
+    "width": 58,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "1d0f33817b3c33bc903a885e83ef5adabeb8ee6e5ed7ef03cc2844e2de0fb768",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "f74ab9640298e928b3ad3dbf28e8057ee0edf1839019eb7e8cee4d1947501051",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#e8a0a0ff",
+      "G": "#b8f0b8ff",
+      "B": "#7878b8ff",
+      "K": "#333333ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "1d0f33817b3c33bc903a885e83ef5adabeb8ee6e5ed7ef03cc2844e2de0fb768",
+    "geometry": "f74ab9640298e928b3ad3dbf28e8057ee0edf1839019eb7e8cee4d1947501051",
+    "appearance": "a796f12749d6c386dcdae874de7134cbf548a1b30589d87c9ae8dde26033e452",
+    "observation": "1bf33961c9f8dd784148f67d0bfcc0886bd32d30057944cd88c174a0f247ee0f"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "a796f12749d6c386dcdae874de7134cbf548a1b30589d87c9ae8dde26033e452",
+    "firstGeneration": 0,
+    "rowCount": 16,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "26145af156111c85fcf4ebaed35c688fbf82ec9a7bb42f5a03a5b00e315d179f"
+  },
+  "metadata": {
+    "name": "Paired hexagonal columns",
+    "status": "symbolic-replay-verified",
+    "evidence": {
+      "source": "Triangular_Cellular_Automata\\svg\\pattern.svg",
+      "sha256": "a91da7286bffee9eae0916f64a93d1d72bdbcbbf78c1e2e530d641e5f52b1521",
+      "image": "evidence/a91da7286bffee9eae0916f64a93d1d72bdbcbbf78c1e2e530d641e5f52b1521.svg",
+      "comparedCells": 928,
+      "mismatches": 0,
+      "rulesProvenance": "inferred-partial",
+      "ruleSource": null,
+      "ruleConvention": null,
+      "boundaryCandidates": [
+        {
+          "boundary": "fixed-W",
+          "diagnosticMode": "propagate-K"
+        },
+        {
+          "boundary": "periodic",
+          "diagnosticMode": "propagate-K"
+        }
+      ],
+      "note": "Every decoded cell replays over the recorded horizon. Unobserved rules and alternative boundaries may remain undetermined. Source borders may differ."
+    }
+  }
+}
