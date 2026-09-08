@@ -1,0 +1,560 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBBBG",
+        "W"
+      ],
+      [
+        "BBBBBBW",
+        "B"
+      ],
+      [
+        "BBBBBGW",
+        "W"
+      ],
+      [
+        "BBBBBWW",
+        "B"
+      ],
+      [
+        "BBBBGWW",
+        "W"
+      ],
+      [
+        "BBBBRWW",
+        "R"
+      ],
+      [
+        "BBBBWWW",
+        "R"
+      ],
+      [
+        "BBBGWWW",
+        "W"
+      ],
+      [
+        "BBBRWWW",
+        "W"
+      ],
+      [
+        "BBBWWWW",
+        "W"
+      ],
+      [
+        "BBGGWWW",
+        "G"
+      ],
+      [
+        "BBGRBBG",
+        "B"
+      ],
+      [
+        "BBGRRBW",
+        "G"
+      ],
+      [
+        "BBGRRGG",
+        "B"
+      ],
+      [
+        "BBGWWWW",
+        "W"
+      ],
+      [
+        "BBRWWWW",
+        "W"
+      ],
+      [
+        "BBWWWWW",
+        "W"
+      ],
+      [
+        "BGGWWWW",
+        "W"
+      ],
+      [
+        "BGRBBGG",
+        "B"
+      ],
+      [
+        "BGRRBWW",
+        "R"
+      ],
+      [
+        "BGRRGGW",
+        "B"
+      ],
+      [
+        "BGWWWWW",
+        "W"
+      ],
+      [
+        "BRWWWWW",
+        "W"
+      ],
+      [
+        "BWWWWWW",
+        "W"
+      ],
+      [
+        "GBBBBBB",
+        "B"
+      ],
+      [
+        "GBBBBRW",
+        "B"
+      ],
+      [
+        "GBBGGWW",
+        "G"
+      ],
+      [
+        "GBBGRRB",
+        "G"
+      ],
+      [
+        "GBBRWWW",
+        "W"
+      ],
+      [
+        "GBBWWWW",
+        "W"
+      ],
+      [
+        "GGBBBBR",
+        "B"
+      ],
+      [
+        "GGBBRWW",
+        "R"
+      ],
+      [
+        "GGRRWWW",
+        "B"
+      ],
+      [
+        "GGWWWWW",
+        "W"
+      ],
+      [
+        "GRBBGGW",
+        "B"
+      ],
+      [
+        "GRRBWWW",
+        "R"
+      ],
+      [
+        "GRRGGWW",
+        "G"
+      ],
+      [
+        "GRRRRRR",
+        "G"
+      ],
+      [
+        "GRRWWWW",
+        "W"
+      ],
+      [
+        "GWRRGWW",
+        "B"
+      ],
+      [
+        "GWWWWWW",
+        "W"
+      ],
+      [
+        "RBBGGWW",
+        "B"
+      ],
+      [
+        "RBWWWWW",
+        "W"
+      ],
+      [
+        "RGBBGGW",
+        "R"
+      ],
+      [
+        "RGGWWWW",
+        "W"
+      ],
+      [
+        "RGWRRGW",
+        "B"
+      ],
+      [
+        "RGWWWWW",
+        "W"
+      ],
+      [
+        "RRBWWWW",
+        "W"
+      ],
+      [
+        "RRGBBGG",
+        "R"
+      ],
+      [
+        "RRGGWWW",
+        "W"
+      ],
+      [
+        "RRGWRRG",
+        "R"
+      ],
+      [
+        "RRGWWWW",
+        "G"
+      ],
+      [
+        "RRRGWWW",
+        "G"
+      ],
+      [
+        "RRRRGWW",
+        "B"
+      ],
+      [
+        "RRRRRRW",
+        "R"
+      ],
+      [
+        "RRRRRWW",
+        "R"
+      ],
+      [
+        "RRRRWWW",
+        "B"
+      ],
+      [
+        "RRRWWWW",
+        "W"
+      ],
+      [
+        "RRWWWWW",
+        "W"
+      ],
+      [
+        "RWWWWWW",
+        "W"
+      ],
+      [
+        "WBBBBBB",
+        "W"
+      ],
+      [
+        "WBBBBGW",
+        "W"
+      ],
+      [
+        "WBBGRBB",
+        "B"
+      ],
+      [
+        "WBBGRRG",
+        "B"
+      ],
+      [
+        "WGBBBBB",
+        "B"
+      ],
+      [
+        "WGBBGRR",
+        "W"
+      ],
+      [
+        "WGBBWWW",
+        "W"
+      ],
+      [
+        "WGGBBBB",
+        "G"
+      ],
+      [
+        "WGGBBRW",
+        "R"
+      ],
+      [
+        "WGGRRWW",
+        "B"
+      ],
+      [
+        "WGRRRRR",
+        "B"
+      ],
+      [
+        "WGRRWWW",
+        "W"
+      ],
+      [
+        "WRRGBBG",
+        "G"
+      ],
+      [
+        "WRRGWRR",
+        "G"
+      ],
+      [
+        "WRRGWWW",
+        "G"
+      ],
+      [
+        "WRRRRGW",
+        "B"
+      ],
+      [
+        "WWBBBBB",
+        "W"
+      ],
+      [
+        "WWBBBBG",
+        "W"
+      ],
+      [
+        "WWBBGRB",
+        "B"
+      ],
+      [
+        "WWBBGRR",
+        "B"
+      ],
+      [
+        "WWGBBBB",
+        "G"
+      ],
+      [
+        "WWGBBGR",
+        "W"
+      ],
+      [
+        "WWGBBWW",
+        "W"
+      ],
+      [
+        "WWGGBBB",
+        "G"
+      ],
+      [
+        "WWGGBBR",
+        "G"
+      ],
+      [
+        "WWGGRRW",
+        "G"
+      ],
+      [
+        "WWGRRRR",
+        "B"
+      ],
+      [
+        "WWGRRWW",
+        "W"
+      ],
+      [
+        "WWRRGBB",
+        "B"
+      ],
+      [
+        "WWRRGWR",
+        "B"
+      ],
+      [
+        "WWRRRRG",
+        "G"
+      ],
+      [
+        "WWWBBBB",
+        "W"
+      ],
+      [
+        "WWWBBGR",
+        "W"
+      ],
+      [
+        "WWWGBBB",
+        "G"
+      ],
+      [
+        "WWWGBBG",
+        "W"
+      ],
+      [
+        "WWWGBBW",
+        "W"
+      ],
+      [
+        "WWWGGBB",
+        "W"
+      ],
+      [
+        "WWWGGRR",
+        "W"
+      ],
+      [
+        "WWWGRRR",
+        "G"
+      ],
+      [
+        "WWWGRRW",
+        "W"
+      ],
+      [
+        "WWWRRGB",
+        "B"
+      ],
+      [
+        "WWWRRGW",
+        "B"
+      ],
+      [
+        "WWWRRRR",
+        "R"
+      ],
+      [
+        "WWWWBBB",
+        "W"
+      ],
+      [
+        "WWWWBBG",
+        "W"
+      ],
+      [
+        "WWWWGBB",
+        "W"
+      ],
+      [
+        "WWWWGGB",
+        "W"
+      ],
+      [
+        "WWWWGGR",
+        "W"
+      ],
+      [
+        "WWWWGRR",
+        "W"
+      ],
+      [
+        "WWWWRRG",
+        "W"
+      ],
+      [
+        "WWWWRRR",
+        "R"
+      ],
+      [
+        "WWWWWBB",
+        "W"
+      ],
+      [
+        "WWWWWGB",
+        "W"
+      ],
+      [
+        "WWWWWGG",
+        "W"
+      ],
+      [
+        "WWWWWGR",
+        "W"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWB",
+        "W"
+      ],
+      [
+        "WWWWWWG",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWGBBBBBBWWWWWWW",
+    "width": 20,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "1c13018de71af07bf4f498fded726d197d3f5fb8aac13442c43511f22f87a5e0",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "08fe88a959b686c1d62c5eddb55ab8c15d8fdb66f35f9654f337e00524cd9df4",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#eaa27aff",
+      "G": "#537de3ff",
+      "B": "#f9d974ff",
+      "K": "#ee0055ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "1c13018de71af07bf4f498fded726d197d3f5fb8aac13442c43511f22f87a5e0",
+    "geometry": "08fe88a959b686c1d62c5eddb55ab8c15d8fdb66f35f9654f337e00524cd9df4",
+    "appearance": "1e6f7487636c984b44c3f9f02c96c36f7561c2fe7799f9241b376f96b1b23ae4",
+    "observation": "1522dd657974433e268cc26271c95d3481ed593f6e0a67b6dbff7b50b0bf192e"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "1e6f7487636c984b44c3f9f02c96c36f7561c2fe7799f9241b376f96b1b23ae4",
+    "firstGeneration": 0,
+    "rowCount": 6,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "9514849f72f96fad76f4215bd638ac1ad9fb9bda9a72e075ca2dc8f9ffc843a6"
+  },
+  "metadata": {
+    "name": "Letterforms / Stair form",
+    "status": "finite-target-certified",
+    "ruleFamily": "Letterforms",
+    "evidence": {
+      "method": "Exact seven-input replay; permanent white continuation.",
+      "interpretation": "Possible objects from unit-cube constructions; letter-like appearance is a visual reading."
+    }
+  }
+}

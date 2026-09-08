@@ -1,0 +1,497 @@
+{
+  "discovery": "DISC-010",
+  "construction": "Selmi 2009",
+  "seed": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+  "boundary": "fixed-W",
+  "paddingEachSide": 772,
+  "rowCount": 258,
+  "ruleTableSha256": "9a2b2f5b2984c6fd327e96275841ec9f33418300a3a17fd83da59e2b55bcb238",
+  "gridSha256": "be74400b5fe6415ca25959461afd7814f7ef2f77a1887d9f5b35fd869e644ab3",
+  "ruleCount": 78,
+  "usedRuleCount": 78,
+  "activationHistogram": {
+    "1": 10,
+    "2": 7,
+    "3": 7,
+    "4": 8,
+    "5": 11,
+    "6": 11,
+    "7": 5,
+    "8": 6,
+    "9": 6,
+    "10": 3,
+    "13": 1,
+    "14": 3
+  },
+  "firstActivation": [
+    {
+      "input": "BBBBBBB",
+      "output": "W",
+      "row": 10,
+      "column": 811
+    },
+    {
+      "input": "BBBBBBR",
+      "output": "W",
+      "row": 10,
+      "column": 818
+    },
+    {
+      "input": "BBBBBRR",
+      "output": "W",
+      "row": 6,
+      "column": 815
+    },
+    {
+      "input": "BBBBRRG",
+      "output": "R",
+      "row": 6,
+      "column": 816
+    },
+    {
+      "input": "BBBRRGG",
+      "output": "R",
+      "row": 6,
+      "column": 817
+    },
+    {
+      "input": "BBGGRGG",
+      "output": "G",
+      "row": 8,
+      "column": 815
+    },
+    {
+      "input": "BBGGWWW",
+      "output": "G",
+      "row": 4,
+      "column": 819
+    },
+    {
+      "input": "BBGRRRR",
+      "output": "B",
+      "row": 9,
+      "column": 816
+    },
+    {
+      "input": "BBRRGGG",
+      "output": "G",
+      "row": 6,
+      "column": 818
+    },
+    {
+      "input": "BGGRGGW",
+      "output": "R",
+      "row": 8,
+      "column": 816
+    },
+    {
+      "input": "BGGWRRG",
+      "output": "G",
+      "row": 7,
+      "column": 815
+    },
+    {
+      "input": "BGGWWWW",
+      "output": "G",
+      "row": 3,
+      "column": 819
+    },
+    {
+      "input": "BGRRRRR",
+      "output": "B",
+      "row": 9,
+      "column": 817
+    },
+    {
+      "input": "BRRGGGW",
+      "output": "G",
+      "row": 6,
+      "column": 819
+    },
+    {
+      "input": "GBBBBBB",
+      "output": "G",
+      "row": 10,
+      "column": 810
+    },
+    {
+      "input": "GBBBBBR",
+      "output": "G",
+      "row": 6,
+      "column": 814
+    },
+    {
+      "input": "GBGGWRR",
+      "output": "G",
+      "row": 7,
+      "column": 814
+    },
+    {
+      "input": "GBGGWWW",
+      "output": "G",
+      "row": 3,
+      "column": 818
+    },
+    {
+      "input": "GGBGGWR",
+      "output": "B",
+      "row": 7,
+      "column": 813
+    },
+    {
+      "input": "GGBGGWW",
+      "output": "B",
+      "row": 3,
+      "column": 817
+    },
+    {
+      "input": "GGGWWWR",
+      "output": "G",
+      "row": 14,
+      "column": 814
+    },
+    {
+      "input": "GGGWWWW",
+      "output": "G",
+      "row": 2,
+      "column": 818
+    },
+    {
+      "input": "GGRGGWB",
+      "output": "R",
+      "row": 8,
+      "column": 817
+    },
+    {
+      "input": "GGWBBGG",
+      "output": "R",
+      "row": 4,
+      "column": 816
+    },
+    {
+      "input": "GGWRRGG",
+      "output": "R",
+      "row": 7,
+      "column": 816
+    },
+    {
+      "input": "GGWWWRR",
+      "output": "W",
+      "row": 14,
+      "column": 815
+    },
+    {
+      "input": "GGWWWWW",
+      "output": "W",
+      "row": 2,
+      "column": 819
+    },
+    {
+      "input": "GRGGWBB",
+      "output": "R",
+      "row": 8,
+      "column": 818
+    },
+    {
+      "input": "GRRRRRB",
+      "output": "B",
+      "row": 9,
+      "column": 818
+    },
+    {
+      "input": "GWBBGGR",
+      "output": "B",
+      "row": 8,
+      "column": 813
+    },
+    {
+      "input": "GWBBGGW",
+      "output": "B",
+      "row": 4,
+      "column": 817
+    },
+    {
+      "input": "GWRRGGB",
+      "output": "G",
+      "row": 7,
+      "column": 817
+    },
+    {
+      "input": "GWWWRRG",
+      "output": "R",
+      "row": 14,
+      "column": 816
+    },
+    {
+      "input": "GWWWWWR",
+      "output": "W",
+      "row": 13,
+      "column": 815
+    },
+    {
+      "input": "GWWWWWW",
+      "output": "W",
+      "row": 1,
+      "column": 819
+    },
+    {
+      "input": "RBBGGWW",
+      "output": "G",
+      "row": 5,
+      "column": 819
+    },
+    {
+      "input": "RBBGRRR",
+      "output": "B",
+      "row": 9,
+      "column": 815
+    },
+    {
+      "input": "RGBBBBB",
+      "output": "G",
+      "row": 6,
+      "column": 813
+    },
+    {
+      "input": "RGGBGGW",
+      "output": "B",
+      "row": 3,
+      "column": 816
+    },
+    {
+      "input": "RGGGWWW",
+      "output": "G",
+      "row": 2,
+      "column": 817
+    },
+    {
+      "input": "RGGWBBG",
+      "output": "R",
+      "row": 4,
+      "column": 815
+    },
+    {
+      "input": "RGWWWWW",
+      "output": "W",
+      "row": 1,
+      "column": 818
+    },
+    {
+      "input": "RRBBGGW",
+      "output": "R",
+      "row": 5,
+      "column": 818
+    },
+    {
+      "input": "RRBBGRR",
+      "output": "B",
+      "row": 9,
+      "column": 814
+    },
+    {
+      "input": "RRGBBBB",
+      "output": "B",
+      "row": 6,
+      "column": 812
+    },
+    {
+      "input": "RRGGBGG",
+      "output": "W",
+      "row": 3,
+      "column": 815
+    },
+    {
+      "input": "RRGGGWW",
+      "output": "B",
+      "row": 2,
+      "column": 816
+    },
+    {
+      "input": "RRGGWBB",
+      "output": "R",
+      "row": 4,
+      "column": 814
+    },
+    {
+      "input": "RRGWWWW",
+      "output": "G",
+      "row": 1,
+      "column": 817
+    },
+    {
+      "input": "RRRBBGG",
+      "output": "R",
+      "row": 5,
+      "column": 817
+    },
+    {
+      "input": "RRRBBGR",
+      "output": "B",
+      "row": 9,
+      "column": 813
+    },
+    {
+      "input": "RRRRBBG",
+      "output": "B",
+      "row": 5,
+      "column": 816
+    },
+    {
+      "input": "RRRRRBB",
+      "output": "B",
+      "row": 5,
+      "column": 815
+    },
+    {
+      "input": "RRRRRRB",
+      "output": "B",
+      "row": 5,
+      "column": 814
+    },
+    {
+      "input": "RRRRRRR",
+      "output": "B",
+      "row": 5,
+      "column": 813
+    },
+    {
+      "input": "WBBGGRG",
+      "output": "B",
+      "row": 8,
+      "column": 814
+    },
+    {
+      "input": "WBBGGWW",
+      "output": "B",
+      "row": 4,
+      "column": 818
+    },
+    {
+      "input": "WRRGBBB",
+      "output": "G",
+      "row": 6,
+      "column": 811
+    },
+    {
+      "input": "WRRGGBG",
+      "output": "G",
+      "row": 3,
+      "column": 814
+    },
+    {
+      "input": "WRRGGGW",
+      "output": "G",
+      "row": 2,
+      "column": 815
+    },
+    {
+      "input": "WRRGGWB",
+      "output": "R",
+      "row": 4,
+      "column": 813
+    },
+    {
+      "input": "WRRGWWW",
+      "output": "G",
+      "row": 1,
+      "column": 816
+    },
+    {
+      "input": "WRRRRRR",
+      "output": "B",
+      "row": 5,
+      "column": 812
+    },
+    {
+      "input": "WWRRGBB",
+      "output": "G",
+      "row": 6,
+      "column": 810
+    },
+    {
+      "input": "WWRRGGB",
+      "output": "G",
+      "row": 3,
+      "column": 813
+    },
+    {
+      "input": "WWRRGGG",
+      "output": "G",
+      "row": 2,
+      "column": 814
+    },
+    {
+      "input": "WWRRGGW",
+      "output": "R",
+      "row": 4,
+      "column": 812
+    },
+    {
+      "input": "WWRRGWW",
+      "output": "G",
+      "row": 1,
+      "column": 815
+    },
+    {
+      "input": "WWRRRRR",
+      "output": "G",
+      "row": 5,
+      "column": 811
+    },
+    {
+      "input": "WWWRRGB",
+      "output": "R",
+      "row": 6,
+      "column": 809
+    },
+    {
+      "input": "WWWRRGG",
+      "output": "R",
+      "row": 2,
+      "column": 813
+    },
+    {
+      "input": "WWWRRGW",
+      "output": "R",
+      "row": 1,
+      "column": 814
+    },
+    {
+      "input": "WWWRRRR",
+      "output": "R",
+      "row": 5,
+      "column": 810
+    },
+    {
+      "input": "WWWWRRG",
+      "output": "R",
+      "row": 1,
+      "column": 813
+    },
+    {
+      "input": "WWWWRRR",
+      "output": "R",
+      "row": 5,
+      "column": 809
+    },
+    {
+      "input": "WWWWWRR",
+      "output": "W",
+      "row": 1,
+      "column": 812
+    },
+    {
+      "input": "WWWWWWR",
+      "output": "W",
+      "row": 1,
+      "column": 811
+    },
+    {
+      "input": "WWWWWWW",
+      "output": "W",
+      "row": 1,
+      "column": 0
+    }
+  ],
+  "scope": "Finite padded single-seed observation; seed is generation zero."
+}

@@ -236,11 +236,11 @@
     <h1>Emergent Impossible Fractal Geometry</h1>
     <h2 class="subtitle">A 4-State Cellular Automaton on Triangular Tessellations</h2>
     <p>
-      A 4-state cellular automaton with 78 transition rules over a 7-cell neighborhood.
-      When rendered on a triangular tessellation, its output is perceived as impossible 3D fractal geometry under isometric projection.
-      Among its outputs is the <a href="https://www.deviantart.com/nydhalo/art/Selmi-Triangle-136342456">fractal Penrose tribar</a>, with self-similar structure at every scale.
+      A four-state cellular automaton using seven consecutive cells from the preceding row. The Selmi 2009 rule table has 78 transitions.
+      Rendering the rows on a triangular tessellation can suggest solid forms and impossible geometry under isometric projection.
+      Among its outputs is the <a href="https://www.deviantart.com/nydhalo/art/Selmi-Triangle-136342456">fractal Penrose tribar</a>, with recurring triangular structure.
     </p>
-    <p style="margin-top:10px;">Constructions by Nidhal Selmi, with the attributed Kitaoka 2010 variant. <a href="catalogue/">Browse constructions</a>.</p>
+    <p style="margin-top:10px;">Constructions by Nidhal Selmi, with the attributed Kitaoka 2010 variant. <a href="catalogue/">Browse constructions</a> · <a href="drawing-test/">Test a drawing</a> · <a href="research.html">Research findings</a>.</p>
     <div class="instructions">
       <strong>How to use:</strong>
       Press <strong>Generate</strong> to run the automaton.
@@ -262,6 +262,8 @@
     <button onclick="exportSVG()">Export SVG</button>
     <button onclick="exportWorld()">Export world</button>
     <button onclick="importWorld()">Import world</button>
+    <button onclick="mirrorCurrentWorld()">Mirror</button>
+    <button onclick="testCurrentDrawing()">Test drawing</button>
     <select id="preset" onchange="applyPreset()" aria-label="World"></select>
     <select id="worldVariant" onchange="applyVariant()" aria-label="Seed variant" hidden></select>
   </div>
@@ -350,7 +352,9 @@
 
 <script src="ca-palettes.js"></script>
 <script src="ca-world.js"></script>
+<script src="ca-target.js"></script>
 <script src="recovered-worlds.js"></script>
+<script src="letterform-worlds.js"></script>
 <script>
 // =============================================================================
 // EMERGENT IMPOSSIBLE FRACTAL GEOMETRY
@@ -584,7 +588,10 @@ function render(rows, containerId, colors, opts) {
   const svgEl = container.append('svg')
     .attr('xmlns', 'http://www.w3.org/2000/svg')
     .attr('viewBox', `0 ${-PAD_TOP} ${w} ${h}`)
-    .attr('width', w).attr('height', h);
+    .attr('width', w).attr('height', h)
+    .attr('data-ca-drawing', sq ? null : 'v1').attr('data-ca-cols',nCols).attr('data-ca-rows',nRows)
+    .attr('data-ca-phase',opts.phase||0).attr('data-ca-boundary',opts.wrap?'periodic':'fixed-W')
+    .attr('data-ca-palette',JSON.stringify(colors));
 
   svgEl.append('rect').attr('x', 0).attr('y', -PAD_TOP)
     .attr('width', w).attr('height', h).attr('fill', colors.W);
@@ -624,7 +631,7 @@ function render(rows, containerId, colors, opts) {
         .attr('points', d => d.pts);
 
   cells
-    .attr('data-row', d => d.r).attr('data-col', d => d.c)
+    .attr('data-row', d => d.r).attr('data-col', d => d.c).attr('data-state', d => d.state)
     .attr('fill', d => d.color)
     .attr('stroke', borderMode === 'all' ? borderColor : 'none')
     .attr('stroke-width', borderMode === 'all' ? borderWidth : 0)
@@ -936,6 +943,7 @@ function importRules() {
   const extras=window.CA_RECOVERED;
   const field=extras.find(e=>e.key==='entry-009'),wide=extras.find(e=>e.key==='entry-011');
   PRESETS.push(...extras.filter(e=>e.key!=='entry-011').map(e=>e.key===field.key?{name:'Sierpiński lattice',variants:[{name:'156 cells',key:e.key,world:e.world},{name:'308 cells',key:wide.key,world:wide.world}]}:{name:e.name,key:e.key,world:e.world}));
+  PRESETS.push({name:'Letterforms',variants:window.LETTERFORM_WORLDS});
   // Populate preset dropdown (rule + seed configurations)
   const presetSel = $('preset');
   PRESETS.forEach((p, i) => {
@@ -954,6 +962,7 @@ function importRules() {
 
   colorSel.add(new Option('Recorded / custom','custom'));
   setColors(COLOR_PRESETS[0]);
+  if(new URLSearchParams(location.search).get('drawing')==='local')receiveDrawingWorld();
   const requested=new URLSearchParams(location.search).get('world');
   const index=PRESETS.findIndex(p=>p.key===requested||p.variants?.some(v=>v.key===requested));
   if(index>=0)presetSel.value=index;
