@@ -41,10 +41,6 @@ async function mirrorCurrentWorld(){
   try {const world=await CellularTarget.mirrorWorld(currentWorld());loadWorld(world);$('preset').selectedIndex=-1;$('worldVariant').hidden=true;$('worldNotice').textContent+=' Mirrored seed, rule inputs and triangle orientation.';}
   catch(error){$('worldNotice').textContent=error.message;}
 }
-async function testCurrentDrawing(){
-  try {const world=await CAWorld.seal(currentWorld());if(world.geometry.tessellation!=='triangular-strip')throw Error('Choose the triangle grid first.');sessionStorage.setItem('ca-drawing-transfer',JSON.stringify(world));location.href='drawing-test/?drawing=local';}
-  catch(error){$('worldNotice').textContent=error.message;}
-}
 async function receiveDrawingWorld(){
   try {const content=sessionStorage.getItem('ca-world-transfer');if(!content)throw Error('No drawing world available in this tab.');const world=await CAWorld.verify(JSON.parse(content));loadWorld(world);$('preset').selectedIndex=-1;$('worldVariant').hidden=true;sessionStorage.removeItem('ca-world-transfer');}
   catch(error){$('worldNotice').textContent=error.message;}

@@ -28,6 +28,12 @@
   </script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
+    [hidden] { display:none!important; }
+    .drawing-test { background:#fff;border:1px solid #ddd;border-radius:6px;padding:12px;margin-bottom:10px; }
+    .drawing-test .toolbar-section { flex-wrap:wrap;margin:6px 0; }
+    .drawing-test textarea { width:100%;height:110px;font:12px monospace;margin:8px 0; }
+    .drawing-test summary { cursor:pointer; }
+    .drawing-test p { margin:8px 0 0;color:#555;max-width:95ch; }
     * { box-sizing: border-box; }
     body { margin: 0; padding: 0; font-family: system-ui, sans-serif; background: #f5f5f5; font-size: 13px; }
 
@@ -240,7 +246,7 @@
       Rendering the rows on a triangular tessellation can suggest solid forms and impossible geometry under isometric projection.
       Among its outputs is the <a href="https://www.deviantart.com/nydhalo/art/Selmi-Triangle-136342456">fractal Penrose tribar</a>, with recurring triangular structure.
     </p>
-    <p style="margin-top:10px;">Constructions by Nidhal Selmi, with the attributed Kitaoka 2010 variant. <a href="catalogue/">Browse constructions</a> · <a href="drawing-test/">Test a drawing</a> · <a href="research.html">Research findings</a>.</p>
+    <p style="margin-top:10px;">Constructions by Nidhal Selmi, with the attributed Kitaoka 2010 variant. Choose a construction and seed variant below.</p>
     <div class="instructions">
       <strong>How to use:</strong>
       Press <strong>Generate</strong> to run the automaton.
@@ -334,6 +340,13 @@
 </div>
 <div class="rule-list" id="ruleList"></div>
 
+<section id="drawingTest" hidden class="drawing-test">
+  <div class="toolbar-section"><strong>Drawing test</strong><button onclick="useCurrentDrawing()">Use current drawing</button><label>Import <input id="targetFile" type="file" accept=".json,.svg" onchange="importTargetFile(this)"></label><button onclick="document.getElementById('drawingTest').hidden=true;generate()">Close</button></div>
+  <details><summary>Triangle rows</summary><textarea id="targetRows" aria-label="Triangle rows JSON" spellcheck="false"></textarea></details>
+  <div class="toolbar-section"><label><input id="targetKeepRules" type="checkbox"> Keep current rule assignments</label><button onclick="testTargetDrawing()">Test drawing</button><button id="targetApply" onclick="applyTargetRules()" disabled>Use fitted rules</button></div>
+  <p id="targetNotice" role="status"></p>
+</section>
+
 <!-- Canvas -->
 <div id="canvas-container"></div>
 <div class="stats" id="stats"></div>
@@ -353,8 +366,8 @@
 <script src="ca-palettes.js"></script>
 <script src="ca-world.js"></script>
 <script src="ca-target.js"></script>
-<script src="recovered-worlds.js"></script>
-<script src="letterform-worlds.js"></script>
+<script src="construction-presets.js"></script>
+<script src="ca-svg-drawing.js"></script>
 <script>
 // =============================================================================
 // EMERGENT IMPOSSIBLE FRACTAL GEOMETRY
@@ -378,119 +391,9 @@
 const TRI_W = 20, TRI_H = 17, PAD_TOP = TRI_H;
 const SQ_SIZE = 10;
 
-// =============================================================================
-// TRANSITION RULES
-// =============================================================================
-// Rule sets stored as "PATTERN:OUTPUT" strings. Each set defines a different
-// impossible object or geometric primitive from the same 4-state CA system.
-// "Non-interact" presets produce isolated shapes whose sub-components don't
-// overlap or interleave; interacting presets produce structures where beams
-// pass through and behind each other — the source of impossible geometry.
-
-const SELMI_RULES = [
-  "BBBBBBB:W","BBBBBBR:W","BBBBBRR:W","BBBBRRG:R","BBBRRGG:R","BBGGRGG:G","BBGGWWW:G",
-  "BBGRRRR:B","BBRRGGG:G","BGGRGGW:R","BGGWRRG:G","BGGWWWW:G","BGRRRRR:B","BRRGGGW:G",
-  "GBBBBBB:G","GBBBBBR:G","GBGGWRR:G","GBGGWWW:G","GGBGGWR:B","GGBGGWW:B","GGGWWWR:G",
-  "GGGWWWW:G","GGRGGWB:R","GGWBBGG:R","GGWRRGG:R","GGWWWRR:W","GGWWWWW:W","GRGGWBB:R",
-  "GRRRRRB:B","GWBBGGR:B","GWBBGGW:B","GWRRGGB:G","GWWWRRG:R","GWWWWWR:W","GWWWWWW:W",
-  "RBBGGWW:G","RBBGRRR:B","RGBBBBB:G","RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGWWWWW:W",
-  "RRBBGGW:R","RRBBGRR:B","RRGBBBB:B","RRGGBGG:W","RRGGGWW:B","RRGGWBB:R","RRGWWWW:G",
-  "RRRBBGG:R","RRRBBGR:B","RRRRBBG:B","RRRRRBB:B","RRRRRRB:B","RRRRRRR:B","WBBGGRG:B",
-  "WBBGGWW:B","WRRGBBB:G","WRRGGBG:G","WRRGGGW:G","WRRGGWB:R","WRRGWWW:G","WRRRRRR:B",
-  "WWRRGBB:G","WWRRGGB:G","WWRRGGG:G","WWRRGGW:R","WWRRGWW:G","WWRRRRR:G","WWWRRGB:R",
-  "WWWRRGG:R","WWWRRGW:R","WWWRRRR:R","WWWWRRG:R","WWWWRRR:R","WWWWWRR:W","WWWWWWR:W",
-  "WWWWWWW:W",
-];
-
-const KITAOKA_RULES = [
-  "BBBBBBB:W","BBBBBBR:W","BBBBBRG:W","BBBBRGG:R","BBBRGGW:R","BBGGWRR:G","BBGGWWW:G",
-  "BBGRRRR:B","BBRGGWW:G","BGGWRRG:R","BGGWWWR:G","BGGWWWW:G","BGRRRRR:B","BRGGWWW:G",
-  "GBBBBBB:W","GBGGWWW:G","GGBGGWW:B","GGGWWWW:G","GGWBBGG:R","GGWRRGG:R","GGWWWRR:W",
-  "GGWWWWW:W","GRRRRRR:B","GWBBGGW:B","GWRRGGW:R","GWWWRRG:R","GWWWWWR:W","GWWWWWW:W",
-  "RBBGGWW:R","RBBGRRR:B","RGBBBBB:W","RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGGWWWW:G",
-  "RGWWWWW:W","RRBBGGW:B","RRBBGRR:B","RRGBBBB:G","RRGGBGG:W","RRGGGWW:B","RRGGWBB:R",
-  "RRGWWWW:G","RRRBBGG:B","RRRBBGR:B","RRRRBBG:B","RRRRRBB:B","RRRRRRB:B","RRRRRRR:B",
-  "WBBGGWR:B","WBBGGWW:B","WRRGBBB:G","WRRGGBG:G","WRRGGGW:G","WRRGGWB:R","WRRGWWW:G",
-  "WRRRRRR:B","WWRRGBB:G","WWRRGGB:G","WWRRGGG:G","WWRRGGW:R","WWRRGWW:G","WWRRRRR:G",
-  "WWWRRGB:R","WWWRRGG:R","WWWRRGW:R","WWWRRRR:R","WWWWRRG:R","WWWWRRR:R","WWWWWRR:W",
-  "WWWWWWR:W","WWWWWWW:W",
-];
-
-const SELMI_2_RULES = [
-  "BBBBBBB:W","BBBBBBG:W","BBBBBGG:R","BBBBGGW:R","BBBGGWW:G","BBGGWRR:G","BBGGWWW:G",
-  "BBGRRRR:B","BGGWRRG:R","BGGWWWR:G","BGGWWWW:G","BGRRRRR:B","GBBBBBB:W","GBGGWWW:G",
-  "GGBGGWW:B","GGGWWWW:G","GGWBBGG:R","GGWRRGG:R","GGWWWRR:W","GGWWWWW:W","GRRRRRR:B",
-  "GWBBGGW:B","GWRRGGW:R","GWWWRRG:R","GWWWWWR:W","GWWWWWW:W","RBBGGWW:B","RBBGRRR:B",
-  "RGBBBBB:W","RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGWWWWW:W","RRBBGGW:B","RRBBGRR:B",
-  "RRGBBBB:G","RRGGBGG:W","RRGGGWW:B","RRGGWBB:R","RRGWWWW:G","RRRBBGG:B","RRRBBGR:B",
-  "RRRRBBG:B","RRRRRBB:B","RRRRRRB:B","RRRRRRR:B","WBBGGWR:B","WBBGGWW:B","WRRGBBB:G",
-  "WRRGGBG:G","WRRGGGW:G","WRRGGWB:R","WRRGWWW:G","WRRRRRR:B","WWRRGBB:G","WWRRGGB:G",
-  "WWRRGGG:G","WWRRGGW:R","WWRRGWW:G","WWRRRRR:G","WWWRRGB:R","WWWRRGG:R","WWWRRGW:R",
-  "WWWRRRR:R","WWWWRRG:R","WWWWRRR:R","WWWWWRR:W","WWWWWWR:W","WWWWWWW:W",
-];
-
-const RIGHT_STAIRS_RULES = [
-  "BBBBBBB:W","BBBBBBR:W","BBBBBRR:W","BBBBRRG:R","BBBRRGG:R","BBGGWWW:G","BBRRGGG:G",
-  "BGGWWWW:G","BRRGGGW:G","GBGGWWW:G","GGBGGWW:B","GGGWWWW:G","GGWBBGG:R","GGWWWWW:W",
-  "GWBBGGW:B","GWWWWWW:W","RBBGGWW:G","RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGWWWWW:W",
-  "RRBBGGW:R","RRGGBGG:W","RRGGGWW:B","RRGGWBB:R","RRGWWWW:G","RRRBBGG:R","RRRRBBG:B",
-  "RRRRRBB:B","RRRRRRB:B","RRRRRRR:B","WBBBBBB:W","WBBGGWW:B","WRRGGBG:G","WRRGGGW:G",
-  "WRRGGWB:R","WRRGWWW:G","WRRRRRR:B","WWBBBBB:W","WWRRGGB:G","WWRRGGG:G","WWRRGGW:R",
-  "WWRRGWW:G","WWRRRRR:B","WWWBBBB:W","WWWRRGG:R","WWWRRGW:R","WWWRRRR:B","WWWWBBB:W",
-  "WWWWRRG:R","WWWWRRR:W","WWWWWBB:W","WWWWWRR:W","WWWWWWB:W","WWWWWWR:W","WWWWWWW:W",
-];
-
-const RIGHT_LADDER_RULES = [
-  "BBBBBBB:G","BBBBBBR:G","BBBBBRR:W","BBBBRRG:R","BBBRRGG:R","BBGGRGG:G","BBGGWRR:G",
-  "BBGGWWW:G","BBGRRRR:B","BBRRGGG:G","BGGRGGW:R","BGGWRRG:G","BGGWWWW:G","BGRRRRR:B",
-  "BRRGGGW:G","GBGGWWW:G","GGBGGWW:B","GGGWWWW:G","GGRGGWB:R","GGWBBGG:R","GGWRRGG:R",
-  "GGWWWWW:W","GRGGWBB:R","GRRRRRB:B","GWBBGGW:B","GWRRGGB:G","GWWWWWW:W","RBBGGWW:G",
-  "RGGBGGW:B","RGGGWWW:G","RGGWBBG:R","RGWWWWW:W","RRBBGGW:R","RRGGBGG:W","RRGGGWW:B",
-  "RRGGWBB:R","RRGWWWW:G","RRRBBGG:R","RRRRBBG:B","RRRRRBB:B","RRRRRRB:B","RRRRRRR:B",
-  "WBBBBBB:B","WBBGGRG:B","WBBGGWR:B","WBBGGWW:B","WBBGRRR:B","WRRGGBG:G","WRRGGGW:G",
-  "WRRGGWB:R","WRRGWWW:G","WRRRRRR:B","WWBBBBB:B","WWBBGGR:B","WWBBGGW:B","WWBBGRR:B",
-  "WWRRGGB:G","WWRRGGG:G","WWRRGGW:R","WWRRGWW:G","WWRRRRR:B","WWWBBBB:W","WWWBBGG:W",
-  "WWWBBGR:W","WWWRRGG:R","WWWRRGW:R","WWWRRRR:B","WWWWBBB:W","WWWWBBG:W","WWWWRRG:R",
-  "WWWWRRR:W","WWWWWBB:W","WWWWWRR:W","WWWWWWB:W","WWWWWWR:W","WWWWWWW:W",
-];
-
-const CUBE_RULES = [
-  "BBGWWWW:W","BGWWWWW:W","GWWWWWW:W","RGWWWWW:W","RRGWWWW:W","WBBGWWW:W","WRRGWWW:G",
-  "WWBBGWW:W","WWRRGWW:B","WWWBBGW:W","WWWRRGW:B","WWWWBBG:W","WWWWRRG:W","WWWWWBB:W",
-  "WWWWWRR:W","WWWWWWB:W","WWWWWWR:W","WWWWWWW:W",
-];
-
-const RIGHT_BEAM_RULES = [
-  "BBGGWWW:G","BGGWWWW:G","GGWWWWW:W","GWWWWWW:W","RGWWWWW:W","RRGWWWW:G","WBBGGWW:B",
-  "WRRGWWW:G","WWBBGGW:B","WWRRGWW:B","WWWBBGG:W","WWWRRGW:B","WWWWBBG:W","WWWWRRG:W",
-  "WWWWWBB:W","WWWWWRR:W","WWWWWWB:W","WWWWWWR:W","WWWWWWW:W",
-];
-
-const LEFT_BEAM_RULES = [
-  "GGWWWWW:W","GWWWWWW:W","RGGWWWW:W","RGWWWWW:W","RRGGWWW:W","RRGWWWW:W","WRRGGWW:G",
-  "WRRGWWW:G","WWRRGGW:G","WWRRGWW:G","WWWRRGG:R","WWWRRGW:R","WWWWRRG:R","WWWWWRR:W",
-  "WWWWWWR:W","WWWWWWW:W",
-];
-
-// =============================================================================
-// PRESETS: rule + seed + row count configurations
-// =============================================================================
-// The original eight presets share the minimal asymmetric seed: "RRG" centered in white.
-// The two R's and one G break bilateral symmetry. Each rule set produces a
-// different impossible object or geometric primitive from this same seed.
-const DEFAULT_INIT = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWRRGWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW";
-const DEFAULT_ROWS = 34;
-
-const PRESETS = [
-  { name: "Selmi 2009",                 rules: SELMI_RULES,        init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Kitaoka 2010",               rules: KITAOKA_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Selmi 2019",               rules: SELMI_2_RULES,      init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Zigzag chain",               rules: RIGHT_STAIRS_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Braced diagonal strip", rules: RIGHT_LADDER_RULES, init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Single cube",         rules: CUBE_RULES,         init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Down-right beam",   rules: RIGHT_BEAM_RULES,   init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-  { name: "Down-left beam",    rules: LEFT_BEAM_RULES,    init: DEFAULT_INIT, rows: DEFAULT_ROWS },
-];
+const PRESETS = window.CONSTRUCTION_PRESETS;
+let presetRevision=0;
+const presetCache=new Map();
 
 // =============================================================================
 // COLOR PRESETS
@@ -518,12 +421,6 @@ let baseKeys = new Set();
 let result = null;
 let svg = null;
 let showUsedOnly = false;
-
-function parseRuleStrings(arr) {
-  const m = new Map();
-  for (const s of arr) { const [p, o] = s.split(':'); m.set(p, o); }
-  return m;
-}
 
 // =============================================================================
 // CA ENGINE
@@ -870,16 +767,17 @@ function applyPreset() {
   if(p.variants)p.variants.forEach((v,i)=>selector.add(new Option(v.name,i)));
   applyVariant();
 }
-function applyVariant() {
+async function applyVariant() {
   const base=PRESETS[Number($('preset').value)];if(!base)return;
-  const p=base.variants?base.variants[Number($('worldVariant').value)||0]:base;
-  if(p.world){loadWorld(p.world);return;}
-  loadedWorld=null;
-  $('wrapAround').checked=false;$('phase').value='0';$('diagnosticMode').value='output-K';
-  $('gridMode').value='triangles';$('skipWhite').checked=true;$('borderMode').value='edges';$('borderWidth').value=1;$('borderColor').value='#000000';
-  setColors(COLOR_PRESETS[0]);$('colorPreset').value='0';
-  rules=parseRuleStrings(p.rules);baseKeys=new Set(rules.keys());$('initString').value=p.init;$('numRows').value=p.rows;
-  updateRuleStatus();generate();
+  const preset=base.variants?base.variants[Number($('worldVariant').value)||0]:base;
+  const revision=++presetRevision;
+  $('worldNotice').textContent='Loading '+preset.name+'…';
+  try {
+    let world=presetCache.get(preset.key);
+    if(!world){const response=await fetch(preset.url);if(!response.ok)throw Error('Construction unavailable.');world=await CAWorld.verify(await response.json());presetCache.set(preset.key,world);}
+    if(revision!==presetRevision)return;
+    loadWorld(world);
+  }catch(error){if(revision===presetRevision)$('worldNotice').textContent=error.message;}
 }
 
 function updateRuleStatus() {
@@ -935,15 +833,12 @@ function importRules() {
 
 </script>
 <script src="ca-world-controls.js"></script>
+<script src="ca-drawing-controls.js"></script>
 <script>
 // =============================================================================
 // INIT
 // =============================================================================
 (function init() {
-  const extras=window.CA_RECOVERED;
-  const field=extras.find(e=>e.key==='entry-009'),wide=extras.find(e=>e.key==='entry-011');
-  PRESETS.push(...extras.filter(e=>e.key!=='entry-011').map(e=>e.key===field.key?{name:'Sierpiński lattice',variants:[{name:'156 cells',key:e.key,world:e.world},{name:'308 cells',key:wide.key,world:wide.world}]}:{name:e.name,key:e.key,world:e.world}));
-  PRESETS.push({name:'Letterforms',variants:window.LETTERFORM_WORLDS});
   // Populate preset dropdown (rule + seed configurations)
   const presetSel = $('preset');
   PRESETS.forEach((p, i) => {
@@ -962,10 +857,10 @@ function importRules() {
 
   colorSel.add(new Option('Recorded / custom','custom'));
   setColors(COLOR_PRESETS[0]);
-  if(new URLSearchParams(location.search).get('drawing')==='local')receiveDrawingWorld();
   const requested=new URLSearchParams(location.search).get('world');
   const index=PRESETS.findIndex(p=>p.key===requested||p.variants?.some(v=>v.key===requested));
   if(index>=0)presetSel.value=index;
+  if(new URLSearchParams(location.search).get('drawing')==='local'){receiveDrawingWorld();return;}
   applyPreset();
   if(index>=0&&PRESETS[index].variants){$('worldVariant').value=PRESETS[index].variants.findIndex(v=>v.key===requested);applyVariant();}
   else if(requested&&index<0&&/^entry-[0-9]{3}$/.test(requested)){fetch('catalogue/worlds/'+requested+'.json').then(r=>{if(!r.ok)throw Error('World not found');return r.json();}).then(CAWorld.verify).then(w=>{loadWorld(w);presetSel.selectedIndex=-1;$('worldVariant').hidden=true;}).catch(e=>{$('worldNotice').textContent=e.message;});}

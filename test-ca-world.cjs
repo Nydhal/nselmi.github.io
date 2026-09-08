@@ -18,6 +18,9 @@ async function main(){
   const phased=structuredClone(terrace);phased.geometry.phase=1;await W.seal(phased);assert.equal(phased.ids.dynamics,terrace.ids.dynamics);assert.notEqual(phased.ids.geometry,terrace.ids.geometry);
   const square=structuredClone(terrace);square.geometry.tessellation='square-grid';square.geometry.coordinates='unit squares at (c,r)';square.geometry.verticalUnit=10;square.appearance.borders='none';square.appearance.borderWidth=0;square.appearance.skipWhite=false;square.observation.renderer='explorer-svg-v1';await W.verify(await W.seal(square));
   assert.deepEqual(W.run({seed:'R',width:1,rules:[['RRRRRRR','G'],['GGGGGGG','R']],boundary:'periodic'},3).rows,['R','G','R']);
+  const registry=vm.createContext({window:{}});vm.runInContext(fs.readFileSync(__dirname+'/construction-presets.js','utf8'),registry);
+  const choices=registry.window.CONSTRUCTION_PRESETS.flatMap(item=>item.variants||[item]);assert.equal(choices.length,data.entries.length);assert.equal(new Set(choices.map(item=>item.key)).size,data.entries.length);
+  for(const choice of choices){const entry=data.entries.find(item=>item.key===choice.key);assert(entry);assert.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/'+choice.url)),entry.world);}
   const html=fs.readFileSync(__dirname+'/impossible-fractal-ca.html','utf8');for(const m of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(m[1]);
   // Exercise the actual editor adapter and file callbacks with controlled inputs.
   const controls=new Map(),get=id=>{if(!controls.has(id))controls.set(id,{value:'',checked:false,textContent:'',hidden:false});return controls.get(id);};

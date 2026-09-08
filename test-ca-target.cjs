@@ -25,9 +25,9 @@ async function main(){
   const conflict=Target.fit({rows:['RRR','RGB'],boundary:'periodic'});assert.equal(conflict.conflicts[0].input,'RRRRRRR');
   assert.equal(Target.fit(['WWWWWWW','WWWRWWW']).background.occurrence.column,3);
   assert(Target.fit(['R','G'],[['WWWRWWW','G']]).compatible);assert(!Target.fit(['R','G'],[['WWWRWWW','B']]).compatible);
-  const cubes=JSON.parse(fs.readFileSync(__dirname+'/drawing-test/two-cubes.json'));assert(!Target.fit(cubes).consistent);
+  const cubes=['WWWRRGWWWW','WWWBBGWWWW','WWWWWWWWWW','WWWRRGWWWW'];assert(!Target.fit(cubes).consistent);
   for(const bad of [[],['WR','W'],['WX'],{rows:['R'],phase:2}])assert.throws(()=>Target.normalize(bad));
-  for(const file of ['drawing-test/viewer.js','drawing-test/svg-drawing.js','catalogue/viewer.js'])new vm.Script(fs.readFileSync(__dirname+'/'+file,'utf8'));
+  for(const file of ['ca-drawing-controls.js','ca-svg-drawing.js','construction-presets.js'])new vm.Script(fs.readFileSync(__dirname+'/'+file,'utf8'));
   console.log('Mirror replay across all 25 worlds; shared seed, fitted replay, six rotations, contradictions, background and reference constraints pass.');
   console.log(JSON.stringify(seedOnly,null,2));
 }
