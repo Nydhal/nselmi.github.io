@@ -1,0 +1,152 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBGGB",
+        "R"
+      ],
+      [
+        "BBBGGBB",
+        "G"
+      ],
+      [
+        "BBGGBBB",
+        "G"
+      ],
+      [
+        "BBGRRGB",
+        "B"
+      ],
+      [
+        "BGGBBBB",
+        "R"
+      ],
+      [
+        "BGRRGBB",
+        "B"
+      ],
+      [
+        "GBBBBGG",
+        "R"
+      ],
+      [
+        "GBBGRRG",
+        "B"
+      ],
+      [
+        "GGBBBBG",
+        "R"
+      ],
+      [
+        "GGRRRRG",
+        "G"
+      ],
+      [
+        "GRRGBBG",
+        "G"
+      ],
+      [
+        "GRRRRGG",
+        "B"
+      ],
+      [
+        "RGBBGRR",
+        "B"
+      ],
+      [
+        "RGGRRRR",
+        "R"
+      ],
+      [
+        "RRGBBGR",
+        "G"
+      ],
+      [
+        "RRGGRRR",
+        "R"
+      ],
+      [
+        "RRRGGRR",
+        "G"
+      ],
+      [
+        "RRRRGGR",
+        "B"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "RRGGRRRRGGRRRRGGRRRRGGRRRRGGRRRRGGRRRRGGRRRRGGRRRRGGRRRRGGRRRRGGRRRRGGRR",
+    "width": 72,
+    "boundary": "periodic",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "5d391ec8fcd83f4958fdcee05d8a526825901ec29123e0ed65cae721e949d7aa",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "6af715a65903a43fc57ef26f92919378e4c279c399b216994edaad5e8c5a8a9b",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#f7f8f6",
+      "R": "#d7eff0",
+      "G": "#388ba7",
+      "B": "#17364c",
+      "K": "#ff0055"
+    },
+    "canvasBackground": "#f7f8f6",
+    "borders": "none",
+    "borderColor": "#000000ff",
+    "borderWidth": 0
+  },
+  "ids": {
+    "dynamics": "5d391ec8fcd83f4958fdcee05d8a526825901ec29123e0ed65cae721e949d7aa",
+    "geometry": "6af715a65903a43fc57ef26f92919378e4c279c399b216994edaad5e8c5a8a9b",
+    "appearance": "ad2b57654b1b1b91f0154734ac510937066d37be419e3bc0dad81f7bd2aee621",
+    "observation": "94e4a035eebe22cf74f381e93d3c1291224b13396803aacbe5959b9cdaf5958e"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "ad2b57654b1b1b91f0154734ac510937066d37be419e3bc0dad81f7bd2aee621",
+    "firstGeneration": 0,
+    "rowCount": 48,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "613f897b3bf5dab73950dd414eef481d7192f815165399d0c789c177cb50cebc"
+  },
+  "metadata": {
+    "name": "Chevron weave",
+    "status": "artist-selected",
+    "ruleFamily": "Chevron weave"
+  }
+}

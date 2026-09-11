@@ -1,0 +1,309 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBGRR",
+        "R"
+      ],
+      [
+        "BBBBGWW",
+        "W"
+      ],
+      [
+        "BBBGRRG",
+        "G"
+      ],
+      [
+        "BBBGWWW",
+        "W"
+      ],
+      [
+        "BBGGWWW",
+        "G"
+      ],
+      [
+        "BBGRRGB",
+        "B"
+      ],
+      [
+        "BBGRRGG",
+        "B"
+      ],
+      [
+        "BBGWWWW",
+        "W"
+      ],
+      [
+        "BGGWWWW",
+        "W"
+      ],
+      [
+        "BGRRGBB",
+        "B"
+      ],
+      [
+        "BGRRGGW",
+        "B"
+      ],
+      [
+        "BGWWWWW",
+        "W"
+      ],
+      [
+        "GBBGGWW",
+        "G"
+      ],
+      [
+        "GBBGRRG",
+        "G"
+      ],
+      [
+        "GBBGWWW",
+        "W"
+      ],
+      [
+        "GGWWWWW",
+        "W"
+      ],
+      [
+        "GRRGBBG",
+        "G"
+      ],
+      [
+        "GRRGGWW",
+        "G"
+      ],
+      [
+        "GWRRRRG",
+        "G"
+      ],
+      [
+        "GWWWWWW",
+        "W"
+      ],
+      [
+        "RGBBGGW",
+        "R"
+      ],
+      [
+        "RGBBGRR",
+        "R"
+      ],
+      [
+        "RGBBGWW",
+        "W"
+      ],
+      [
+        "RGGWWWW",
+        "W"
+      ],
+      [
+        "RGWRRRR",
+        "R"
+      ],
+      [
+        "RGWWWWW",
+        "W"
+      ],
+      [
+        "RRGBBGG",
+        "R"
+      ],
+      [
+        "RRGBBGR",
+        "R"
+      ],
+      [
+        "RRGBBGW",
+        "G"
+      ],
+      [
+        "RRGGWWW",
+        "W"
+      ],
+      [
+        "RRGWRRR",
+        "R"
+      ],
+      [
+        "RRGWWWW",
+        "G"
+      ],
+      [
+        "RRRGWRR",
+        "G"
+      ],
+      [
+        "RRRGWWW",
+        "G"
+      ],
+      [
+        "RRRRGWR",
+        "B"
+      ],
+      [
+        "RRRRGWW",
+        "B"
+      ],
+      [
+        "WBBBBGR",
+        "R"
+      ],
+      [
+        "WBBBBGW",
+        "W"
+      ],
+      [
+        "WBBGRRG",
+        "B"
+      ],
+      [
+        "WRRGBBG",
+        "G"
+      ],
+      [
+        "WRRRRGW",
+        "B"
+      ],
+      [
+        "WWBBBBG",
+        "W"
+      ],
+      [
+        "WWBBGRR",
+        "B"
+      ],
+      [
+        "WWRRGBB",
+        "B"
+      ],
+      [
+        "WWRRRRG",
+        "G"
+      ],
+      [
+        "WWWBBBB",
+        "W"
+      ],
+      [
+        "WWWBBGR",
+        "W"
+      ],
+      [
+        "WWWRRGB",
+        "B"
+      ],
+      [
+        "WWWRRRR",
+        "R"
+      ],
+      [
+        "WWWWBBB",
+        "W"
+      ],
+      [
+        "WWWWBBG",
+        "W"
+      ],
+      [
+        "WWWWRRG",
+        "W"
+      ],
+      [
+        "WWWWRRR",
+        "R"
+      ],
+      [
+        "WWWWWBB",
+        "W"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWB",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWRRRRGWRRRRGWRRRRGWRRRRGWWWWWWWW",
+    "width": 39,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "a0493833d7d51df7b5819b89300e62d30182a9e9596606c6382ebefd0098d7ea",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "1ca56f9be7064e01a9bb9e956ab5abfa02c21badf3ad61f8c02adc5e3bdba73e",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#f7f8f6",
+      "R": "#d7eff0",
+      "G": "#388ba7",
+      "B": "#17364c",
+      "K": "#ff0055"
+    },
+    "canvasBackground": "#f7f8f6",
+    "borders": "none",
+    "borderColor": "#000000ff",
+    "borderWidth": 0
+  },
+  "ids": {
+    "dynamics": "a0493833d7d51df7b5819b89300e62d30182a9e9596606c6382ebefd0098d7ea",
+    "geometry": "1ca56f9be7064e01a9bb9e956ab5abfa02c21badf3ad61f8c02adc5e3bdba73e",
+    "appearance": "f9b5c760165d4a0b8dbcb5ef3f02dad4b5e75e9272559e5627bd21c1654b4663",
+    "observation": "c99617bbbf06cee5fbbb5b7a63bcfd1a970ead79c647d4f40dbd61596e45c4ed"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "f9b5c760165d4a0b8dbcb5ef3f02dad4b5e75e9272559e5627bd21c1654b4663",
+    "firstGeneration": 0,
+    "rowCount": 15,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "6d7bde5068dcb4e68ed1eddc74ad64aa16666ccca1e4a65d63b6828bc454a1c6"
+  },
+  "metadata": {
+    "name": "Rosette triangle / 4 across",
+    "status": "artist-selected",
+    "ruleFamily": "Rosette triangle",
+    "seedCount": 4
+  }
+}
