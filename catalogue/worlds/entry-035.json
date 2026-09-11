@@ -1,0 +1,572 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBGRR",
+        "B"
+      ],
+      [
+        "BBBBWWW",
+        "R"
+      ],
+      [
+        "BBBGRRW",
+        "B"
+      ],
+      [
+        "BBBWWWW",
+        "W"
+      ],
+      [
+        "BBGRRWW",
+        "W"
+      ],
+      [
+        "BBRRGRR",
+        "R"
+      ],
+      [
+        "BBRWWWW",
+        "W"
+      ],
+      [
+        "BBWGBBB",
+        "G"
+      ],
+      [
+        "BBWWWWW",
+        "W"
+      ],
+      [
+        "BGGBBRW",
+        "R"
+      ],
+      [
+        "BGRRWWW",
+        "W"
+      ],
+      [
+        "BRRGGBB",
+        "B"
+      ],
+      [
+        "BRRGRRB",
+        "R"
+      ],
+      [
+        "BRWWWWW",
+        "W"
+      ],
+      [
+        "BWGBBBB",
+        "G"
+      ],
+      [
+        "BWWWWWW",
+        "W"
+      ],
+      [
+        "GBBBBGR",
+        "G"
+      ],
+      [
+        "GBBBBWW",
+        "B"
+      ],
+      [
+        "GBBGRRW",
+        "W"
+      ],
+      [
+        "GBBRRGR",
+        "B"
+      ],
+      [
+        "GBBRWWW",
+        "B"
+      ],
+      [
+        "GBBWGBB",
+        "B"
+      ],
+      [
+        "GBBWWWW",
+        "W"
+      ],
+      [
+        "GGBBBBG",
+        "R"
+      ],
+      [
+        "GGBBGRR",
+        "R"
+      ],
+      [
+        "GGBBRRG",
+        "R"
+      ],
+      [
+        "GGBBRWW",
+        "R"
+      ],
+      [
+        "GGBBWWW",
+        "R"
+      ],
+      [
+        "GGGBBBB",
+        "R"
+      ],
+      [
+        "GGGBBRR",
+        "R"
+      ],
+      [
+        "GGGGBBB",
+        "G"
+      ],
+      [
+        "GGGRRGB",
+        "B"
+      ],
+      [
+        "GGRRBGG",
+        "B"
+      ],
+      [
+        "GGRRGBB",
+        "B"
+      ],
+      [
+        "GRGRRBR",
+        "G"
+      ],
+      [
+        "GRRBGGB",
+        "R"
+      ],
+      [
+        "GRRBRRG",
+        "B"
+      ],
+      [
+        "GRRBWWW",
+        "B"
+      ],
+      [
+        "GRRGBBW",
+        "G"
+      ],
+      [
+        "GRRWWWW",
+        "W"
+      ],
+      [
+        "RBGGBBR",
+        "G"
+      ],
+      [
+        "RBRRGGB",
+        "B"
+      ],
+      [
+        "RBWWWWW",
+        "W"
+      ],
+      [
+        "RGBBWWW",
+        "R"
+      ],
+      [
+        "RGGBBWW",
+        "R"
+      ],
+      [
+        "RGRRBRR",
+        "G"
+      ],
+      [
+        "RGRRBWW",
+        "G"
+      ],
+      [
+        "RRBGGBB",
+        "R"
+      ],
+      [
+        "RRBRRGG",
+        "B"
+      ],
+      [
+        "RRBWWWW",
+        "B"
+      ],
+      [
+        "RRGBBWW",
+        "R"
+      ],
+      [
+        "RRGGBBW",
+        "G"
+      ],
+      [
+        "RRGRRBW",
+        "G"
+      ],
+      [
+        "RRWWWWW",
+        "W"
+      ],
+      [
+        "RWWWWWW",
+        "W"
+      ],
+      [
+        "WGBBBBW",
+        "B"
+      ],
+      [
+        "WGBBWGB",
+        "R"
+      ],
+      [
+        "WGGBBGR",
+        "R"
+      ],
+      [
+        "WGGGBBR",
+        "G"
+      ],
+      [
+        "WGGGGBB",
+        "G"
+      ],
+      [
+        "WGGGRRG",
+        "G"
+      ],
+      [
+        "WGGRRBG",
+        "B"
+      ],
+      [
+        "WGRGRRB",
+        "G"
+      ],
+      [
+        "WGRRWWW",
+        "W"
+      ],
+      [
+        "WWGBBWG",
+        "R"
+      ],
+      [
+        "WWGGBBG",
+        "G"
+      ],
+      [
+        "WWGGGBB",
+        "R"
+      ],
+      [
+        "WWGGGGB",
+        "G"
+      ],
+      [
+        "WWGGGRR",
+        "G"
+      ],
+      [
+        "WWGGRRB",
+        "G"
+      ],
+      [
+        "WWGRGRR",
+        "G"
+      ],
+      [
+        "WWGRRWW",
+        "W"
+      ],
+      [
+        "WWWGBBW",
+        "G"
+      ],
+      [
+        "WWWGGBB",
+        "W"
+      ],
+      [
+        "WWWGGGB",
+        "G"
+      ],
+      [
+        "WWWGGGG",
+        "W"
+      ],
+      [
+        "WWWGGGR",
+        "W"
+      ],
+      [
+        "WWWGGRR",
+        "G"
+      ],
+      [
+        "WWWGRGR",
+        "W"
+      ],
+      [
+        "WWWGRRW",
+        "W"
+      ],
+      [
+        "WWWWGBB",
+        "G"
+      ],
+      [
+        "WWWWGGB",
+        "W"
+      ],
+      [
+        "WWWWGGG",
+        "W"
+      ],
+      [
+        "WWWWGGR",
+        "G"
+      ],
+      [
+        "WWWWGRG",
+        "W"
+      ],
+      [
+        "WWWWGRR",
+        "W"
+      ],
+      [
+        "WWWWWGB",
+        "W"
+      ],
+      [
+        "WWWWWGG",
+        "W"
+      ],
+      [
+        "WWWWWGR",
+        "W"
+      ],
+      [
+        "WWWWWWG",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWGBBWGBBBBWWWWWWWW",
+    "width": 25,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "0f9d79f489b28fdaa8d04498ce14321bb82c002671857bf6d78986ecd09ef3bf",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "0f84944d2c0e1fdc6e640dc01b47eaf2f48180aa931845e98dec6cd23346b6b8",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#eaa27aff",
+      "G": "#537de3ff",
+      "B": "#f9d974ff",
+      "K": "#ee0055ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "0f9d79f489b28fdaa8d04498ce14321bb82c002671857bf6d78986ecd09ef3bf",
+    "geometry": "0f84944d2c0e1fdc6e640dc01b47eaf2f48180aa931845e98dec6cd23346b6b8",
+    "appearance": "60364f885e7b49eb371d786ec63e0c11577d4c294dcbbf2fd611bbc026626bb1",
+    "observation": "312fb5e72ef5e081997f36b27e1dc87dd224707933a022ed12a1bb222ed9fb98"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "60364f885e7b49eb371d786ec63e0c11577d4c294dcbbf2fd611bbc026626bb1",
+    "firstGeneration": 0,
+    "rowCount": 10,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "ecd09764e9b68f829656b2b3bc38b325e21014ef457ec4763626b77d389fb59a"
+  },
+  "metadata": {
+    "name": "Crowned terrace",
+    "status": "artist-selected",
+    "geometricModel": {
+      "voxels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          3,
+          0
+        ],
+        [
+          1,
+          3,
+          1
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          3,
+          2,
+          1
+        ],
+        [
+          3,
+          3,
+          0
+        ]
+      ],
+      "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+      "turn": 3
+    },
+    "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+    "ruleFamily": "Crowned terrace"
+  }
+}

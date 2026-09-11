@@ -1,0 +1,602 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBWWW",
+        "B"
+      ],
+      [
+        "BBBWWWW",
+        "B"
+      ],
+      [
+        "BBGGGGG",
+        "R"
+      ],
+      [
+        "BBRRRGG",
+        "W"
+      ],
+      [
+        "BBWWWWW",
+        "W"
+      ],
+      [
+        "BGGBRRB",
+        "B"
+      ],
+      [
+        "BGGGGGG",
+        "R"
+      ],
+      [
+        "BRBBWWW",
+        "B"
+      ],
+      [
+        "BRGGGGB",
+        "B"
+      ],
+      [
+        "BRRBBBB",
+        "R"
+      ],
+      [
+        "BRRRBRB",
+        "G"
+      ],
+      [
+        "BRRRGGB",
+        "G"
+      ],
+      [
+        "BWWGGBB",
+        "R"
+      ],
+      [
+        "BWWWWWW",
+        "W"
+      ],
+      [
+        "GBBBWWW",
+        "B"
+      ],
+      [
+        "GBBGGGG",
+        "R"
+      ],
+      [
+        "GBBWWWW",
+        "W"
+      ],
+      [
+        "GBRGGGG",
+        "G"
+      ],
+      [
+        "GBRRBBB",
+        "R"
+      ],
+      [
+        "GBWWWWW",
+        "W"
+      ],
+      [
+        "GGBBBWW",
+        "B"
+      ],
+      [
+        "GGBBGGG",
+        "B"
+      ],
+      [
+        "GGBBWWW",
+        "W"
+      ],
+      [
+        "GGBRGGG",
+        "G"
+      ],
+      [
+        "GGBRRBB",
+        "R"
+      ],
+      [
+        "GGBWWWW",
+        "B"
+      ],
+      [
+        "GGGBBBW",
+        "B"
+      ],
+      [
+        "GGGBBWW",
+        "B"
+      ],
+      [
+        "GGGBWWW",
+        "B"
+      ],
+      [
+        "GGGGBBB",
+        "R"
+      ],
+      [
+        "GGGGBBW",
+        "B"
+      ],
+      [
+        "GGGGBWW",
+        "B"
+      ],
+      [
+        "GGGGGBB",
+        "G"
+      ],
+      [
+        "GGGGGBW",
+        "G"
+      ],
+      [
+        "GGGGGGB",
+        "G"
+      ],
+      [
+        "GGGGGGG",
+        "G"
+      ],
+      [
+        "GRRBRRR",
+        "G"
+      ],
+      [
+        "RBBBBWW",
+        "R"
+      ],
+      [
+        "RBBRRRG",
+        "W"
+      ],
+      [
+        "RBBWWWW",
+        "W"
+      ],
+      [
+        "RBGGBRR",
+        "R"
+      ],
+      [
+        "RBRBBWW",
+        "B"
+      ],
+      [
+        "RBRRRBR",
+        "G"
+      ],
+      [
+        "RBWWGGB",
+        "W"
+      ],
+      [
+        "RBWWWWW",
+        "W"
+      ],
+      [
+        "RGGBBWW",
+        "B"
+      ],
+      [
+        "RGGGGBB",
+        "R"
+      ],
+      [
+        "RRBBBBW",
+        "B"
+      ],
+      [
+        "RRBBRRR",
+        "B"
+      ],
+      [
+        "RRBGGBR",
+        "R"
+      ],
+      [
+        "RRBRBBW",
+        "G"
+      ],
+      [
+        "RRBRRRB",
+        "G"
+      ],
+      [
+        "RRBWWGG",
+        "W"
+      ],
+      [
+        "RRBWWWW",
+        "W"
+      ],
+      [
+        "RRGGBBW",
+        "B"
+      ],
+      [
+        "RRRBRBB",
+        "G"
+      ],
+      [
+        "RRRGGBB",
+        "G"
+      ],
+      [
+        "WGGBBGG",
+        "B"
+      ],
+      [
+        "WGGBBWW",
+        "B"
+      ],
+      [
+        "WGGBRGG",
+        "B"
+      ],
+      [
+        "WGGGGGG",
+        "R"
+      ],
+      [
+        "WGRRBRR",
+        "B"
+      ],
+      [
+        "WRRBBRR",
+        "R"
+      ],
+      [
+        "WRRBGGB",
+        "G"
+      ],
+      [
+        "WRRBWWG",
+        "W"
+      ],
+      [
+        "WRRBWWW",
+        "W"
+      ],
+      [
+        "WWGGBBG",
+        "R"
+      ],
+      [
+        "WWGGBBW",
+        "R"
+      ],
+      [
+        "WWGGBRG",
+        "R"
+      ],
+      [
+        "WWGGGGG",
+        "B"
+      ],
+      [
+        "WWGRRBR",
+        "B"
+      ],
+      [
+        "WWRRBBR",
+        "R"
+      ],
+      [
+        "WWRRBGG",
+        "W"
+      ],
+      [
+        "WWRRBWW",
+        "W"
+      ],
+      [
+        "WWWGGBB",
+        "R"
+      ],
+      [
+        "WWWGGBR",
+        "R"
+      ],
+      [
+        "WWWGGGG",
+        "G"
+      ],
+      [
+        "WWWGRRB",
+        "G"
+      ],
+      [
+        "WWWRRBB",
+        "W"
+      ],
+      [
+        "WWWRRBG",
+        "W"
+      ],
+      [
+        "WWWRRBW",
+        "W"
+      ],
+      [
+        "WWWWGGB",
+        "W"
+      ],
+      [
+        "WWWWGGG",
+        "G"
+      ],
+      [
+        "WWWWGRR",
+        "G"
+      ],
+      [
+        "WWWWRRB",
+        "W"
+      ],
+      [
+        "WWWWWGG",
+        "W"
+      ],
+      [
+        "WWWWWGR",
+        "W"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWG",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWGGGGGGGGBWWWWWWWWWW",
+    "width": 27,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "f258e1a752a63cddf23bf514ef0bb3b095df6c01abeba89d5c55dba3a21e6bdc",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "ee4dee38f88353f5fb78f82ade75db40eef944499a5feafc0dd8f7a0db2ecfb3",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#eaa27aff",
+      "G": "#537de3ff",
+      "B": "#f9d974ff",
+      "K": "#ee0055ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "f258e1a752a63cddf23bf514ef0bb3b095df6c01abeba89d5c55dba3a21e6bdc",
+    "geometry": "ee4dee38f88353f5fb78f82ade75db40eef944499a5feafc0dd8f7a0db2ecfb3",
+    "appearance": "313ab6f140562c9bca0fafe9708cdc991bad7692b4b7f1dbad156fa1c7427679",
+    "observation": "e1790cd389bd17a4eac7d149114261a7b8f5b2a2d08f89e09e3b7f9177c7b4c4"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "313ab6f140562c9bca0fafe9708cdc991bad7692b4b7f1dbad156fa1c7427679",
+    "firstGeneration": 0,
+    "rowCount": 10,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "bc25d2bfe164997a9d2e44a05d541f945486b34657b6812d2e2961f8a1213d77"
+  },
+  "metadata": {
+    "name": "Forked terrace",
+    "status": "artist-selected",
+    "geometricModel": {
+      "voxels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          3,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          2,
+          2,
+          1
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          2,
+          3,
+          1
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          1
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          3,
+          2,
+          1
+        ],
+        [
+          3,
+          2,
+          2
+        ],
+        [
+          3,
+          3,
+          0
+        ],
+        [
+          3,
+          3,
+          1
+        ]
+      ],
+      "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+      "turn": 4
+    },
+    "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+    "ruleFamily": "Forked terrace"
+  }
+}

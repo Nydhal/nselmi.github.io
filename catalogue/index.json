@@ -15547,6 +15547,8166 @@
       "diagnostics": 0,
       "seamWarning": false,
       "ruleFamilyId": "2e20bd7b376c410cd958621ef328b743dbce75388648817b6b2a433b94af2518"
+    },
+    {
+      "key": "entry-034",
+      "name": "Forked terrace",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBWWW",
+              "B"
+            ],
+            [
+              "BBBWWWW",
+              "B"
+            ],
+            [
+              "BBGGGGG",
+              "R"
+            ],
+            [
+              "BBRRRGG",
+              "W"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGGBRRB",
+              "B"
+            ],
+            [
+              "BGGGGGG",
+              "R"
+            ],
+            [
+              "BRBBWWW",
+              "B"
+            ],
+            [
+              "BRGGGGB",
+              "B"
+            ],
+            [
+              "BRRBBBB",
+              "R"
+            ],
+            [
+              "BRRRBRB",
+              "G"
+            ],
+            [
+              "BRRRGGB",
+              "G"
+            ],
+            [
+              "BWWGGBB",
+              "R"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBWWW",
+              "B"
+            ],
+            [
+              "GBBGGGG",
+              "R"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GBRGGGG",
+              "G"
+            ],
+            [
+              "GBRRBBB",
+              "R"
+            ],
+            [
+              "GBWWWWW",
+              "W"
+            ],
+            [
+              "GGBBBWW",
+              "B"
+            ],
+            [
+              "GGBBGGG",
+              "B"
+            ],
+            [
+              "GGBBWWW",
+              "W"
+            ],
+            [
+              "GGBRGGG",
+              "G"
+            ],
+            [
+              "GGBRRBB",
+              "R"
+            ],
+            [
+              "GGBWWWW",
+              "B"
+            ],
+            [
+              "GGGBBBW",
+              "B"
+            ],
+            [
+              "GGGBBWW",
+              "B"
+            ],
+            [
+              "GGGBWWW",
+              "B"
+            ],
+            [
+              "GGGGBBB",
+              "R"
+            ],
+            [
+              "GGGGBBW",
+              "B"
+            ],
+            [
+              "GGGGBWW",
+              "B"
+            ],
+            [
+              "GGGGGBB",
+              "G"
+            ],
+            [
+              "GGGGGBW",
+              "G"
+            ],
+            [
+              "GGGGGGB",
+              "G"
+            ],
+            [
+              "GGGGGGG",
+              "G"
+            ],
+            [
+              "GRRBRRR",
+              "G"
+            ],
+            [
+              "RBBBBWW",
+              "R"
+            ],
+            [
+              "RBBRRRG",
+              "W"
+            ],
+            [
+              "RBBWWWW",
+              "W"
+            ],
+            [
+              "RBGGBRR",
+              "R"
+            ],
+            [
+              "RBRBBWW",
+              "B"
+            ],
+            [
+              "RBRRRBR",
+              "G"
+            ],
+            [
+              "RBWWGGB",
+              "W"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGGBBWW",
+              "B"
+            ],
+            [
+              "RGGGGBB",
+              "R"
+            ],
+            [
+              "RRBBBBW",
+              "B"
+            ],
+            [
+              "RRBBRRR",
+              "B"
+            ],
+            [
+              "RRBGGBR",
+              "R"
+            ],
+            [
+              "RRBRBBW",
+              "G"
+            ],
+            [
+              "RRBRRRB",
+              "G"
+            ],
+            [
+              "RRBWWGG",
+              "W"
+            ],
+            [
+              "RRBWWWW",
+              "W"
+            ],
+            [
+              "RRGGBBW",
+              "B"
+            ],
+            [
+              "RRRBRBB",
+              "G"
+            ],
+            [
+              "RRRGGBB",
+              "G"
+            ],
+            [
+              "WGGBBGG",
+              "B"
+            ],
+            [
+              "WGGBBWW",
+              "B"
+            ],
+            [
+              "WGGBRGG",
+              "B"
+            ],
+            [
+              "WGGGGGG",
+              "R"
+            ],
+            [
+              "WGRRBRR",
+              "B"
+            ],
+            [
+              "WRRBBRR",
+              "R"
+            ],
+            [
+              "WRRBGGB",
+              "G"
+            ],
+            [
+              "WRRBWWG",
+              "W"
+            ],
+            [
+              "WRRBWWW",
+              "W"
+            ],
+            [
+              "WWGGBBG",
+              "R"
+            ],
+            [
+              "WWGGBBW",
+              "R"
+            ],
+            [
+              "WWGGBRG",
+              "R"
+            ],
+            [
+              "WWGGGGG",
+              "B"
+            ],
+            [
+              "WWGRRBR",
+              "B"
+            ],
+            [
+              "WWRRBBR",
+              "R"
+            ],
+            [
+              "WWRRBGG",
+              "W"
+            ],
+            [
+              "WWRRBWW",
+              "W"
+            ],
+            [
+              "WWWGGBB",
+              "R"
+            ],
+            [
+              "WWWGGBR",
+              "R"
+            ],
+            [
+              "WWWGGGG",
+              "G"
+            ],
+            [
+              "WWWGRRB",
+              "G"
+            ],
+            [
+              "WWWRRBB",
+              "W"
+            ],
+            [
+              "WWWRRBG",
+              "W"
+            ],
+            [
+              "WWWRRBW",
+              "W"
+            ],
+            [
+              "WWWWGGB",
+              "W"
+            ],
+            [
+              "WWWWGGG",
+              "G"
+            ],
+            [
+              "WWWWGRR",
+              "G"
+            ],
+            [
+              "WWWWRRB",
+              "W"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWGR",
+              "W"
+            ],
+            [
+              "WWWWWRR",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWR",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWGGGGGGGGBWWWWWWWWWW",
+          "width": 27,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "f258e1a752a63cddf23bf514ef0bb3b095df6c01abeba89d5c55dba3a21e6bdc",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "ee4dee38f88353f5fb78f82ade75db40eef944499a5feafc0dd8f7a0db2ecfb3",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "f258e1a752a63cddf23bf514ef0bb3b095df6c01abeba89d5c55dba3a21e6bdc",
+          "geometry": "ee4dee38f88353f5fb78f82ade75db40eef944499a5feafc0dd8f7a0db2ecfb3",
+          "appearance": "313ab6f140562c9bca0fafe9708cdc991bad7692b4b7f1dbad156fa1c7427679",
+          "observation": "e1790cd389bd17a4eac7d149114261a7b8f5b2a2d08f89e09e3b7f9177c7b4c4"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "313ab6f140562c9bca0fafe9708cdc991bad7692b4b7f1dbad156fa1c7427679",
+          "firstGeneration": 0,
+          "rowCount": 10,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "bc25d2bfe164997a9d2e44a05d541f945486b34657b6812d2e2961f8a1213d77"
+        },
+        "metadata": {
+          "name": "Forked terrace",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                0,
+                3,
+                3
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                1,
+                3,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                3
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                1
+              ],
+              [
+                2,
+                3,
+                0
+              ],
+              [
+                2,
+                3,
+                1
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                3,
+                2,
+                0
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                2,
+                2
+              ],
+              [
+                3,
+                3,
+                0
+              ],
+              [
+                3,
+                3,
+                1
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 4
+          },
+          "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+          "ruleFamily": "Forked terrace"
+        }
+      },
+      "download": "worlds/entry-034.json",
+      "rows": [
+        "WWWWWWWWGGGGGGGGBWWWWWWWWWW",
+        "WWWWWWWGGBRGGGGBBBWWWWWWWWW",
+        "WWWWWWWRRBGGBRRBBBBWWWWWWWW",
+        "WWWWWWWWWGRRBRRRBRBBWWWWWWW",
+        "WWWWWWWWGGBBGGGGGGBBWWWWWWW",
+        "WWWWWWWWRRBBRRRGGBBWWWWWWWW",
+        "WWWWWWWWWRRBWWGGBBWWWWWWWWW",
+        "WWWWWWWWWWWWWWRRBWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 91,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "b2f1db519e625f5b0eb7fbe258ce2ffa1483db7b0c77b5952371d9aa49130286"
+    },
+    {
+      "key": "entry-035",
+      "name": "Crowned terrace",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBGRR",
+              "B"
+            ],
+            [
+              "BBBBWWW",
+              "R"
+            ],
+            [
+              "BBBGRRW",
+              "B"
+            ],
+            [
+              "BBBWWWW",
+              "W"
+            ],
+            [
+              "BBGRRWW",
+              "W"
+            ],
+            [
+              "BBRRGRR",
+              "R"
+            ],
+            [
+              "BBRWWWW",
+              "W"
+            ],
+            [
+              "BBWGBBB",
+              "G"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGGBBRW",
+              "R"
+            ],
+            [
+              "BGRRWWW",
+              "W"
+            ],
+            [
+              "BRRGGBB",
+              "B"
+            ],
+            [
+              "BRRGRRB",
+              "R"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "BWGBBBB",
+              "G"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBBGR",
+              "G"
+            ],
+            [
+              "GBBBBWW",
+              "B"
+            ],
+            [
+              "GBBGRRW",
+              "W"
+            ],
+            [
+              "GBBRRGR",
+              "B"
+            ],
+            [
+              "GBBRWWW",
+              "B"
+            ],
+            [
+              "GBBWGBB",
+              "B"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GGBBBBG",
+              "R"
+            ],
+            [
+              "GGBBGRR",
+              "R"
+            ],
+            [
+              "GGBBRRG",
+              "R"
+            ],
+            [
+              "GGBBRWW",
+              "R"
+            ],
+            [
+              "GGBBWWW",
+              "R"
+            ],
+            [
+              "GGGBBBB",
+              "R"
+            ],
+            [
+              "GGGBBRR",
+              "R"
+            ],
+            [
+              "GGGGBBB",
+              "G"
+            ],
+            [
+              "GGGRRGB",
+              "B"
+            ],
+            [
+              "GGRRBGG",
+              "B"
+            ],
+            [
+              "GGRRGBB",
+              "B"
+            ],
+            [
+              "GRGRRBR",
+              "G"
+            ],
+            [
+              "GRRBGGB",
+              "R"
+            ],
+            [
+              "GRRBRRG",
+              "B"
+            ],
+            [
+              "GRRBWWW",
+              "B"
+            ],
+            [
+              "GRRGBBW",
+              "G"
+            ],
+            [
+              "GRRWWWW",
+              "W"
+            ],
+            [
+              "RBGGBBR",
+              "G"
+            ],
+            [
+              "RBRRGGB",
+              "B"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGBBWWW",
+              "R"
+            ],
+            [
+              "RGGBBWW",
+              "R"
+            ],
+            [
+              "RGRRBRR",
+              "G"
+            ],
+            [
+              "RGRRBWW",
+              "G"
+            ],
+            [
+              "RRBGGBB",
+              "R"
+            ],
+            [
+              "RRBRRGG",
+              "B"
+            ],
+            [
+              "RRBWWWW",
+              "B"
+            ],
+            [
+              "RRGBBWW",
+              "R"
+            ],
+            [
+              "RRGGBBW",
+              "G"
+            ],
+            [
+              "RRGRRBW",
+              "G"
+            ],
+            [
+              "RRWWWWW",
+              "W"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WGBBBBW",
+              "B"
+            ],
+            [
+              "WGBBWGB",
+              "R"
+            ],
+            [
+              "WGGBBGR",
+              "R"
+            ],
+            [
+              "WGGGBBR",
+              "G"
+            ],
+            [
+              "WGGGGBB",
+              "G"
+            ],
+            [
+              "WGGGRRG",
+              "G"
+            ],
+            [
+              "WGGRRBG",
+              "B"
+            ],
+            [
+              "WGRGRRB",
+              "G"
+            ],
+            [
+              "WGRRWWW",
+              "W"
+            ],
+            [
+              "WWGBBWG",
+              "R"
+            ],
+            [
+              "WWGGBBG",
+              "G"
+            ],
+            [
+              "WWGGGBB",
+              "R"
+            ],
+            [
+              "WWGGGGB",
+              "G"
+            ],
+            [
+              "WWGGGRR",
+              "G"
+            ],
+            [
+              "WWGGRRB",
+              "G"
+            ],
+            [
+              "WWGRGRR",
+              "G"
+            ],
+            [
+              "WWGRRWW",
+              "W"
+            ],
+            [
+              "WWWGBBW",
+              "G"
+            ],
+            [
+              "WWWGGBB",
+              "W"
+            ],
+            [
+              "WWWGGGB",
+              "G"
+            ],
+            [
+              "WWWGGGG",
+              "W"
+            ],
+            [
+              "WWWGGGR",
+              "W"
+            ],
+            [
+              "WWWGGRR",
+              "G"
+            ],
+            [
+              "WWWGRGR",
+              "W"
+            ],
+            [
+              "WWWGRRW",
+              "W"
+            ],
+            [
+              "WWWWGBB",
+              "G"
+            ],
+            [
+              "WWWWGGB",
+              "W"
+            ],
+            [
+              "WWWWGGG",
+              "W"
+            ],
+            [
+              "WWWWGGR",
+              "G"
+            ],
+            [
+              "WWWWGRG",
+              "W"
+            ],
+            [
+              "WWWWGRR",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "W"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWGR",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWGBBWGBBBBWWWWWWWW",
+          "width": 25,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "0f9d79f489b28fdaa8d04498ce14321bb82c002671857bf6d78986ecd09ef3bf",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "0f84944d2c0e1fdc6e640dc01b47eaf2f48180aa931845e98dec6cd23346b6b8",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "0f9d79f489b28fdaa8d04498ce14321bb82c002671857bf6d78986ecd09ef3bf",
+          "geometry": "0f84944d2c0e1fdc6e640dc01b47eaf2f48180aa931845e98dec6cd23346b6b8",
+          "appearance": "60364f885e7b49eb371d786ec63e0c11577d4c294dcbbf2fd611bbc026626bb1",
+          "observation": "312fb5e72ef5e081997f36b27e1dc87dd224707933a022ed12a1bb222ed9fb98"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "60364f885e7b49eb371d786ec63e0c11577d4c294dcbbf2fd611bbc026626bb1",
+          "firstGeneration": 0,
+          "rowCount": 10,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "ecd09764e9b68f829656b2b3bc38b325e21014ef457ec4763626b77d389fb59a"
+        },
+        "metadata": {
+          "name": "Crowned terrace",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                2,
+                2
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                1,
+                3,
+                0
+              ],
+              [
+                1,
+                3,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                2,
+                0,
+                3
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                3,
+                2,
+                0
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                3,
+                0
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 3
+          },
+          "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+          "ruleFamily": "Crowned terrace"
+        }
+      },
+      "download": "worlds/entry-035.json",
+      "rows": [
+        "WWWWWWWWGBBWGBBBBWWWWWWWW",
+        "WWWWWWWGGRRBGGBBRWWWWWWWW",
+        "WWWWWWGGGBBRRGRRBWWWWWWWW",
+        "WWWWWWGRGRRBRRGGBBWWWWWWW",
+        "WWWWWWWGGGGBBBBGRRWWWWWWW",
+        "WWWWWWWWGGGRRGBBWWWWWWWWW",
+        "WWWWWWWWWGGBBGRRWWWWWWWWW",
+        "WWWWWWWWWWGRRWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 91,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "710dca331ce3e2c0a7aa246fce08ef16f67fe384da4bf8e69025c5ee4db25660"
+    },
+    {
+      "key": "entry-036",
+      "name": "Twin recesses",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBBBB",
+              "B"
+            ],
+            [
+              "BBBBBBW",
+              "R"
+            ],
+            [
+              "BBBBBWW",
+              "G"
+            ],
+            [
+              "BBBBRWW",
+              "R"
+            ],
+            [
+              "BBBBWWW",
+              "B"
+            ],
+            [
+              "BBBRWWW",
+              "W"
+            ],
+            [
+              "BBBWWWW",
+              "B"
+            ],
+            [
+              "BBGRRBG",
+              "G"
+            ],
+            [
+              "BBRGBBW",
+              "G"
+            ],
+            [
+              "BBRRRRR",
+              "B"
+            ],
+            [
+              "BBRWWWW",
+              "W"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGRRBGR",
+              "R"
+            ],
+            [
+              "BGRRBWW",
+              "R"
+            ],
+            [
+              "BGRRWWW",
+              "W"
+            ],
+            [
+              "BRGBBWW",
+              "R"
+            ],
+            [
+              "BRRRRRW",
+              "B"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBBBB",
+              "G"
+            ],
+            [
+              "GBBBBRW",
+              "R"
+            ],
+            [
+              "GBBGRRB",
+              "B"
+            ],
+            [
+              "GBBRGBB",
+              "B"
+            ],
+            [
+              "GBBRRRR",
+              "B"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GGBBBBR",
+              "R"
+            ],
+            [
+              "GGBBGRR",
+              "R"
+            ],
+            [
+              "GGBBRRR",
+              "B"
+            ],
+            [
+              "GGGBBGR",
+              "R"
+            ],
+            [
+              "GGGRRBG",
+              "B"
+            ],
+            [
+              "GGRRBGR",
+              "B"
+            ],
+            [
+              "GGRRGBB",
+              "B"
+            ],
+            [
+              "GRRBGRR",
+              "R"
+            ],
+            [
+              "GRRBWWW",
+              "R"
+            ],
+            [
+              "GRRGBBR",
+              "G"
+            ],
+            [
+              "GRRRRWW",
+              "W"
+            ],
+            [
+              "GRRWWWW",
+              "W"
+            ],
+            [
+              "RBGRRBW",
+              "R"
+            ],
+            [
+              "RBGRRWW",
+              "W"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGBBRGB",
+              "R"
+            ],
+            [
+              "RGBBWWW",
+              "R"
+            ],
+            [
+              "RRBGRRB",
+              "R"
+            ],
+            [
+              "RRBGRRW",
+              "B"
+            ],
+            [
+              "RRBWWWW",
+              "W"
+            ],
+            [
+              "RRGBBRG",
+              "R"
+            ],
+            [
+              "RRRRRWW",
+              "R"
+            ],
+            [
+              "RRRRWWW",
+              "W"
+            ],
+            [
+              "RRRWWWW",
+              "W"
+            ],
+            [
+              "RRWWWWW",
+              "W"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WGBBBBB",
+              "R"
+            ],
+            [
+              "WGGBBBB",
+              "R"
+            ],
+            [
+              "WGGBBRR",
+              "G"
+            ],
+            [
+              "WGGGBBG",
+              "G"
+            ],
+            [
+              "WGGGRRB",
+              "G"
+            ],
+            [
+              "WGGRRGB",
+              "B"
+            ],
+            [
+              "WGRRRRW",
+              "W"
+            ],
+            [
+              "WWGBBBB",
+              "R"
+            ],
+            [
+              "WWGGBBB",
+              "G"
+            ],
+            [
+              "WWGGBBR",
+              "G"
+            ],
+            [
+              "WWGGGBB",
+              "G"
+            ],
+            [
+              "WWGGGRR",
+              "G"
+            ],
+            [
+              "WWGGRRG",
+              "G"
+            ],
+            [
+              "WWGRRRR",
+              "W"
+            ],
+            [
+              "WWWGBBB",
+              "G"
+            ],
+            [
+              "WWWGGBB",
+              "W"
+            ],
+            [
+              "WWWGGGB",
+              "G"
+            ],
+            [
+              "WWWGGGR",
+              "W"
+            ],
+            [
+              "WWWGGRR",
+              "G"
+            ],
+            [
+              "WWWGRRR",
+              "W"
+            ],
+            [
+              "WWWWGBB",
+              "G"
+            ],
+            [
+              "WWWWGGB",
+              "W"
+            ],
+            [
+              "WWWWGGG",
+              "W"
+            ],
+            [
+              "WWWWGGR",
+              "G"
+            ],
+            [
+              "WWWWGRR",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "W"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWGR",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWGBBBBBBBBWWWWWWWW",
+          "width": 25,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "dde8786a7481e041b3e8ef138b45dff2e12aa099152d6278c2e8dd825354fbcb",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "58ea833934e5313c33a8f21d9e30abae5889a3f757b38ad802138c3e37a2502d",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "dde8786a7481e041b3e8ef138b45dff2e12aa099152d6278c2e8dd825354fbcb",
+          "geometry": "58ea833934e5313c33a8f21d9e30abae5889a3f757b38ad802138c3e37a2502d",
+          "appearance": "a61c28a75d75b1446e47c7737995f3aea080c57fdae7292d9889ae842618ba79",
+          "observation": "4223e2e8bff833676bf779bd4586f2bb80ba99843dfd80b0328989bfc1569695"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "a61c28a75d75b1446e47c7737995f3aea080c57fdae7292d9889ae842618ba79",
+          "firstGeneration": 0,
+          "rowCount": 9,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "4caf641db63c9da7e90dec7472b65b4b4bfeb977afe98aedcdefdb15696e444e"
+        },
+        "metadata": {
+          "name": "Twin recesses",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                3,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                3,
+                0
+              ],
+              [
+                2,
+                3,
+                1
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                3,
+                1,
+                1
+              ],
+              [
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                1,
+                3
+              ],
+              [
+                3,
+                2,
+                0
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                3,
+                0
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 3
+          },
+          "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+          "ruleFamily": "Twin recesses"
+        }
+      },
+      "download": "worlds/entry-036.json",
+      "rows": [
+        "WWWWWWWWGBBBBBBBBWWWWWWWW",
+        "WWWWWWWGGRRGBBRGBBWWWWWWW",
+        "WWWWWWGGGBBGRRBGRRWWWWWWW",
+        "WWWWWWGGGRRBGRRBWWWWWWWWW",
+        "WWWWWWWGGBBRRRRRWWWWWWWWW",
+        "WWWWWWWWGGBBBBRWWWWWWWWWW",
+        "WWWWWWWWWGRRRRWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 81,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "1805622169dd282a6a969f5cc85a479da2981d03d38a84c0a9c7879fd2e00077"
+    },
+    {
+      "key": "entry-037",
+      "name": "Stepped arch",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBWWWW",
+              "W"
+            ],
+            [
+              "BBGGGGB",
+              "B"
+            ],
+            [
+              "BBGRRBB",
+              "G"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGGBBWW",
+              "B"
+            ],
+            [
+              "BGGBRRB",
+              "B"
+            ],
+            [
+              "BGGGGBB",
+              "R"
+            ],
+            [
+              "BGRRBBW",
+              "G"
+            ],
+            [
+              "BRRBBBW",
+              "B"
+            ],
+            [
+              "BRRBBWW",
+              "R"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBWWW",
+              "B"
+            ],
+            [
+              "GBBGGGG",
+              "G"
+            ],
+            [
+              "GBBGRRB",
+              "G"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GBRRBBB",
+              "G"
+            ],
+            [
+              "GBRRBBW",
+              "R"
+            ],
+            [
+              "GBWWWWW",
+              "W"
+            ],
+            [
+              "GGBBBWW",
+              "B"
+            ],
+            [
+              "GGBBGGG",
+              "G"
+            ],
+            [
+              "GGBBGRR",
+              "G"
+            ],
+            [
+              "GGBBWWW",
+              "W"
+            ],
+            [
+              "GGBRRBB",
+              "G"
+            ],
+            [
+              "GGBWWWW",
+              "B"
+            ],
+            [
+              "GGGBBBW",
+              "B"
+            ],
+            [
+              "GGGBBGR",
+              "B"
+            ],
+            [
+              "GGGBRRB",
+              "B"
+            ],
+            [
+              "GGGBWWW",
+              "B"
+            ],
+            [
+              "GGGGBBB",
+              "R"
+            ],
+            [
+              "GGGGBBG",
+              "B"
+            ],
+            [
+              "GGGGBRR",
+              "B"
+            ],
+            [
+              "GGGGBWW",
+              "R"
+            ],
+            [
+              "GGGGGBW",
+              "R"
+            ],
+            [
+              "GGGGGGB",
+              "B"
+            ],
+            [
+              "GGGGGGG",
+              "G"
+            ],
+            [
+              "GRRBBWW",
+              "B"
+            ],
+            [
+              "RBBBWWW",
+              "W"
+            ],
+            [
+              "RBBWWWW",
+              "B"
+            ],
+            [
+              "RBGGBBW",
+              "R"
+            ],
+            [
+              "RBGGBRR",
+              "R"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGGBBGG",
+              "B"
+            ],
+            [
+              "RGGGGBR",
+              "G"
+            ],
+            [
+              "RRBBBWW",
+              "B"
+            ],
+            [
+              "RRBBWWW",
+              "B"
+            ],
+            [
+              "RRBGGBB",
+              "R"
+            ],
+            [
+              "RRBGGBR",
+              "R"
+            ],
+            [
+              "RRBWWWW",
+              "W"
+            ],
+            [
+              "WGGGGBB",
+              "G"
+            ],
+            [
+              "WGGGGGG",
+              "G"
+            ],
+            [
+              "WRGGBBG",
+              "R"
+            ],
+            [
+              "WRGGGGB",
+              "G"
+            ],
+            [
+              "WRRBGGB",
+              "W"
+            ],
+            [
+              "WRRBWWW",
+              "W"
+            ],
+            [
+              "WWGGGGB",
+              "G"
+            ],
+            [
+              "WWGGGGG",
+              "G"
+            ],
+            [
+              "WWRGGBB",
+              "R"
+            ],
+            [
+              "WWRGGGG",
+              "G"
+            ],
+            [
+              "WWRRBGG",
+              "W"
+            ],
+            [
+              "WWRRBWW",
+              "W"
+            ],
+            [
+              "WWWGGGG",
+              "R"
+            ],
+            [
+              "WWWRGGB",
+              "W"
+            ],
+            [
+              "WWWRGGG",
+              "G"
+            ],
+            [
+              "WWWRRBG",
+              "W"
+            ],
+            [
+              "WWWRRBW",
+              "W"
+            ],
+            [
+              "WWWWGGG",
+              "W"
+            ],
+            [
+              "WWWWRGG",
+              "W"
+            ],
+            [
+              "WWWWRRB",
+              "W"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWRG",
+              "W"
+            ],
+            [
+              "WWWWWRR",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWR",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWGGGGGGGGBWWWWWWWWWW",
+          "width": 25,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "deed538d6e43aa9a3ed44635974e3c84846cac0931581d523434d4c348b925e5",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "38b041fcbeb37b9290bafd49f1394a770b63786e3a626e0a995401ce44f56fb2",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "deed538d6e43aa9a3ed44635974e3c84846cac0931581d523434d4c348b925e5",
+          "geometry": "38b041fcbeb37b9290bafd49f1394a770b63786e3a626e0a995401ce44f56fb2",
+          "appearance": "b824bd498d192866a96f0fbc90ad94d1170f2741b766ce41cd8424b3d03b0f7a",
+          "observation": "e4522b81ce10a1296ce1643722049564677ff0e963c956367be8f01bb901856c"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "b824bd498d192866a96f0fbc90ad94d1170f2741b766ce41cd8424b3d03b0f7a",
+          "firstGeneration": 0,
+          "rowCount": 9,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "6191147186a79d9598111ab8c556f60b6941f931f065db815cc2d26ae295362e"
+        },
+        "metadata": {
+          "name": "Stepped arch",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                3,
+                0
+              ],
+              [
+                1,
+                3,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                3,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                3,
+                1,
+                1
+              ],
+              [
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                2,
+                0
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                2,
+                2
+              ],
+              [
+                3,
+                2,
+                3
+              ],
+              [
+                3,
+                3,
+                0
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 4
+          },
+          "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+          "ruleFamily": "Stepped arch"
+        }
+      },
+      "download": "worlds/entry-037.json",
+      "rows": [
+        "WWWWWWGGGGGGGGBWWWWWWWWWW",
+        "WWWWWWRGGGGBRRBBWWWWWWWWW",
+        "WWWWWWGGGGBBGRRBBWWWWWWWW",
+        "WWWWWWRGGBBGGGGBBBWWWWWWW",
+        "WWWWWWWRRBGGBRRBBBWWWWWWW",
+        "WWWWWWWWWWRRBGGBBWWWWWWWW",
+        "WWWWWWWWWWWWWRRBWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 74,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "92ef51defcf8b6283b816c215c3212e0a761eaebd26b321c08ba0e3d9a07cd02"
+    },
+    {
+      "key": "entry-038",
+      "name": "Branching beam",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBBRW",
+              "G"
+            ],
+            [
+              "BBBBRBB",
+              "R"
+            ],
+            [
+              "BBBBRWW",
+              "G"
+            ],
+            [
+              "BBBRBBB",
+              "R"
+            ],
+            [
+              "BBBRRBB",
+              "R"
+            ],
+            [
+              "BBBRWWW",
+              "R"
+            ],
+            [
+              "BBRBBBB",
+              "B"
+            ],
+            [
+              "BBRBBBR",
+              "R"
+            ],
+            [
+              "BBRGGRW",
+              "W"
+            ],
+            [
+              "BBRRBBR",
+              "R"
+            ],
+            [
+              "BBRRRGG",
+              "G"
+            ],
+            [
+              "BBRWBBB",
+              "R"
+            ],
+            [
+              "BBRWWWW",
+              "W"
+            ],
+            [
+              "BRBBBBB",
+              "B"
+            ],
+            [
+              "BRBBBRR",
+              "G"
+            ],
+            [
+              "BRGGRWW",
+              "W"
+            ],
+            [
+              "BRRBBRG",
+              "G"
+            ],
+            [
+              "BRRRGGR",
+              "R"
+            ],
+            [
+              "BRWBBBB",
+              "B"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "GBBRRRG",
+              "R"
+            ],
+            [
+              "GGGGGGR",
+              "W"
+            ],
+            [
+              "GGGGGRW",
+              "W"
+            ],
+            [
+              "GGGGRWW",
+              "W"
+            ],
+            [
+              "GGGRWWW",
+              "W"
+            ],
+            [
+              "GGRGRBB",
+              "G"
+            ],
+            [
+              "GGRRGGR",
+              "B"
+            ],
+            [
+              "GGRWWWW",
+              "W"
+            ],
+            [
+              "GRBBBBR",
+              "G"
+            ],
+            [
+              "GRGRBBB",
+              "G"
+            ],
+            [
+              "GRRGGRW",
+              "R"
+            ],
+            [
+              "GRWWWWW",
+              "W"
+            ],
+            [
+              "RBBBBBR",
+              "R"
+            ],
+            [
+              "RBBBBRW",
+              "G"
+            ],
+            [
+              "RBBBRRB",
+              "G"
+            ],
+            [
+              "RBBRGGR",
+              "R"
+            ],
+            [
+              "RGGRRGG",
+              "B"
+            ],
+            [
+              "RGGRWWW",
+              "W"
+            ],
+            [
+              "RGRBBBB",
+              "G"
+            ],
+            [
+              "RRBBRGG",
+              "G"
+            ],
+            [
+              "RRGGRRG",
+              "B"
+            ],
+            [
+              "RRGGRWW",
+              "W"
+            ],
+            [
+              "RRRGGRR",
+              "B"
+            ],
+            [
+              "RWBBBBR",
+              "B"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WBBBBRB",
+              "B"
+            ],
+            [
+              "WBBRWBB",
+              "B"
+            ],
+            [
+              "WGBBRRR",
+              "G"
+            ],
+            [
+              "WGGGGGG",
+              "W"
+            ],
+            [
+              "WGGRGRB",
+              "W"
+            ],
+            [
+              "WWBBBBR",
+              "B"
+            ],
+            [
+              "WWBBRWB",
+              "B"
+            ],
+            [
+              "WWGBBRR",
+              "G"
+            ],
+            [
+              "WWGGGGG",
+              "W"
+            ],
+            [
+              "WWGGRGR",
+              "W"
+            ],
+            [
+              "WWWBBBB",
+              "G"
+            ],
+            [
+              "WWWBBRW",
+              "B"
+            ],
+            [
+              "WWWGBBR",
+              "W"
+            ],
+            [
+              "WWWGGGG",
+              "W"
+            ],
+            [
+              "WWWGGRG",
+              "W"
+            ],
+            [
+              "WWWWBBB",
+              "W"
+            ],
+            [
+              "WWWWBBR",
+              "B"
+            ],
+            [
+              "WWWWGBB",
+              "W"
+            ],
+            [
+              "WWWWGGG",
+              "W"
+            ],
+            [
+              "WWWWGGR",
+              "W"
+            ],
+            [
+              "WWWWWBB",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "W"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWWB",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWBBRWBBBBRBBBBBRWWWWWWW",
+          "width": 30,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "a9fb963153ad06eb080475156334a4e0dfefa0ad30e9d5b97ddb53da5db8e67e",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "97b9cc8bfae4214c654b6c21f27a555392d4c0bd373b7786ca97c80c2978f0f3",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "a9fb963153ad06eb080475156334a4e0dfefa0ad30e9d5b97ddb53da5db8e67e",
+          "geometry": "97b9cc8bfae4214c654b6c21f27a555392d4c0bd373b7786ca97c80c2978f0f3",
+          "appearance": "8c261bd5a474cf0bbd1437445f3ac96d2793b07c4e017aa53caf84e86c916d0e",
+          "observation": "97ae8836b2bec91a48c6ab8a1efecaf134c0e8201d9db4f6c2a578754a01999f"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "8c261bd5a474cf0bbd1437445f3ac96d2793b07c4e017aa53caf84e86c916d0e",
+          "firstGeneration": 0,
+          "rowCount": 7,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "cb5d0078efdfbc63608cbf732524094fd7b495cc0c82d7be86c36c9bb2a9f20b"
+        },
+        "metadata": {
+          "name": "Branching beam",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                1,
+                3
+              ],
+              [
+                0,
+                1,
+                4
+              ],
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                1,
+                1,
+                3
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                2
+              ],
+              [
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                1
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                2,
+                3,
+                0
+              ],
+              [
+                3,
+                1,
+                1
+              ],
+              [
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                1,
+                3
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                3,
+                0
+              ],
+              [
+                3,
+                3,
+                1
+              ],
+              [
+                4,
+                3,
+                1
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 2
+          },
+          "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+          "ruleFamily": "Branching beam"
+        }
+      },
+      "download": "worlds/entry-038.json",
+      "rows": [
+        "WWWWWWWWBBRWBBBBRBBBBBRWWWWWWW",
+        "WWWWWWWBBBBRBBBRRBBRGGRWWWWWWW",
+        "WWWWWWWGBBRRRGGRRGGRWWWWWWWWWW",
+        "WWWWWWWWGGRGRBBBBRWWWWWWWWWWWW",
+        "WWWWWWWWWWWGGGGGGRWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 71,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "a889c10159430b79c90e1dcf5ec55e8448662379c9ffc7347cd68bc2de83d901"
+    },
+    {
+      "key": "entry-039",
+      "name": "Split bridge",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBRRB",
+              "G"
+            ],
+            [
+              "BBBRRBB",
+              "R"
+            ],
+            [
+              "BBRBRWW",
+              "R"
+            ],
+            [
+              "BBRGGGG",
+              "W"
+            ],
+            [
+              "BBRGGRR",
+              "B"
+            ],
+            [
+              "BBRRBBR",
+              "B"
+            ],
+            [
+              "BBRRWWW",
+              "W"
+            ],
+            [
+              "BBRWBBR",
+              "R"
+            ],
+            [
+              "BGGGGRB",
+              "G"
+            ],
+            [
+              "BRBRWWW",
+              "R"
+            ],
+            [
+              "BRGGGGG",
+              "W"
+            ],
+            [
+              "BRGGRRR",
+              "B"
+            ],
+            [
+              "BRRBBRR",
+              "B"
+            ],
+            [
+              "BRRWWWW",
+              "W"
+            ],
+            [
+              "BRWBBRB",
+              "G"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "GBBRGGR",
+              "R"
+            ],
+            [
+              "GGGGGGR",
+              "B"
+            ],
+            [
+              "GGGGGRW",
+              "R"
+            ],
+            [
+              "GGGGRBB",
+              "G"
+            ],
+            [
+              "GGGGRWW",
+              "R"
+            ],
+            [
+              "GGGRBBR",
+              "G"
+            ],
+            [
+              "GGGRWWW",
+              "W"
+            ],
+            [
+              "GGRBBRR",
+              "G"
+            ],
+            [
+              "GGRRRWW",
+              "R"
+            ],
+            [
+              "GGRWWBB",
+              "W"
+            ],
+            [
+              "GGRWWWW",
+              "W"
+            ],
+            [
+              "GRBBRRW",
+              "G"
+            ],
+            [
+              "GRRRWWW",
+              "W"
+            ],
+            [
+              "GRWWBBR",
+              "W"
+            ],
+            [
+              "GRWWWWW",
+              "W"
+            ],
+            [
+              "RBBRRWW",
+              "R"
+            ],
+            [
+              "RBRWWWW",
+              "W"
+            ],
+            [
+              "RGGGGGG",
+              "B"
+            ],
+            [
+              "RGGRRRW",
+              "R"
+            ],
+            [
+              "RRBBRRW",
+              "R"
+            ],
+            [
+              "RRRWWWW",
+              "W"
+            ],
+            [
+              "RRWWWWW",
+              "W"
+            ],
+            [
+              "RWBBRBR",
+              "G"
+            ],
+            [
+              "RWWBBRR",
+              "G"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WBBBBRR",
+              "G"
+            ],
+            [
+              "WBBRBRW",
+              "R"
+            ],
+            [
+              "WBBRGGG",
+              "R"
+            ],
+            [
+              "WBBRRWW",
+              "R"
+            ],
+            [
+              "WBBRWBB",
+              "B"
+            ],
+            [
+              "WBGGGGR",
+              "G"
+            ],
+            [
+              "WGBBRGG",
+              "R"
+            ],
+            [
+              "WGGRWWB",
+              "W"
+            ],
+            [
+              "WGGRWWW",
+              "W"
+            ],
+            [
+              "WWBBBBR",
+              "G"
+            ],
+            [
+              "WWBBRGG",
+              "G"
+            ],
+            [
+              "WWBBRRW",
+              "G"
+            ],
+            [
+              "WWBBRWB",
+              "B"
+            ],
+            [
+              "WWBGGGG",
+              "R"
+            ],
+            [
+              "WWGBBRG",
+              "B"
+            ],
+            [
+              "WWGGRWW",
+              "W"
+            ],
+            [
+              "WWWBBBB",
+              "G"
+            ],
+            [
+              "WWWBBRG",
+              "G"
+            ],
+            [
+              "WWWBBRW",
+              "G"
+            ],
+            [
+              "WWWBGGG",
+              "B"
+            ],
+            [
+              "WWWGBBR",
+              "B"
+            ],
+            [
+              "WWWGGRW",
+              "W"
+            ],
+            [
+              "WWWWBBB",
+              "B"
+            ],
+            [
+              "WWWWBBR",
+              "W"
+            ],
+            [
+              "WWWWBGG",
+              "B"
+            ],
+            [
+              "WWWWGBB",
+              "B"
+            ],
+            [
+              "WWWWGGR",
+              "W"
+            ],
+            [
+              "WWWWWBB",
+              "W"
+            ],
+            [
+              "WWWWWBG",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "B"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWWB",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWWWBBRWBBRBRWWWWWWW",
+          "width": 26,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "e6d574d5421348195509f542fdb292e9fb97c71d3675537186c8236835f93121",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "a8d944ceee8457b6ebf516c3763651aae4bf7451401ca850962a9f8480d31fc8",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "e6d574d5421348195509f542fdb292e9fb97c71d3675537186c8236835f93121",
+          "geometry": "a8d944ceee8457b6ebf516c3763651aae4bf7451401ca850962a9f8480d31fc8",
+          "appearance": "78c64d7b5cea8724c0bb366eb1c6ac9bdb02d2d3ac666ed8226f941afe3475ef",
+          "observation": "5085ba0f9fe000a602c7ab0c57e1ffdf6c4d6e5e09a8ddb7cf45162c6b5f5027"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "78c64d7b5cea8724c0bb366eb1c6ac9bdb02d2d3ac666ed8226f941afe3475ef",
+          "firstGeneration": 0,
+          "rowCount": 9,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "442a389853e26bf7b0660b5c6af15d04daa69d2928117d99a4ac3c5b820316ac"
+        },
+        "metadata": {
+          "name": "Split bridge",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                1,
+                3
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                3
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                3
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                3,
+                0,
+                2
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                3,
+                1,
+                1
+              ],
+              [
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                1,
+                3
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                2,
+                2
+              ],
+              [
+                4,
+                0,
+                2
+              ],
+              [
+                4,
+                1,
+                0
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 2
+          },
+          "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+          "ruleFamily": "Split bridge"
+        }
+      },
+      "download": "worlds/entry-039.json",
+      "rows": [
+        "WWWWWWWWWWBBRWBBRBRWWWWWWW",
+        "WWWWWWWWWWGBBRGGRRRWWWWWWW",
+        "WWWWWWWWBBBBRRBBRRWWWWWWWW",
+        "WWWWWWWBGGGGRBBRRWWWWWWWWW",
+        "WWWWWWBBRGGGGGGRWWWWWWWWWW",
+        "WWWWWWGGRWWBBRRWWWWWWWWWWW",
+        "WWWWWWWWWWWGGRWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 75,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "9859b844faf856543ce33680e5e1efa163adaa03e89d0377254717f2c553fe59"
+    },
+    {
+      "key": "entry-040",
+      "name": "Fork and bridge / Together",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBRRB",
+              "G"
+            ],
+            [
+              "BBBBWWW",
+              "B"
+            ],
+            [
+              "BBBRRBB",
+              "R"
+            ],
+            [
+              "BBBWWWW",
+              "B"
+            ],
+            [
+              "BBGGGGG",
+              "R"
+            ],
+            [
+              "BBRBRWW",
+              "R"
+            ],
+            [
+              "BBRGGGG",
+              "W"
+            ],
+            [
+              "BBRGGRR",
+              "B"
+            ],
+            [
+              "BBRRBBR",
+              "B"
+            ],
+            [
+              "BBRRRGG",
+              "W"
+            ],
+            [
+              "BBRRWWW",
+              "W"
+            ],
+            [
+              "BBRWBBR",
+              "R"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGGBRRB",
+              "B"
+            ],
+            [
+              "BGGGGGG",
+              "R"
+            ],
+            [
+              "BGGGGRB",
+              "G"
+            ],
+            [
+              "BRBBWWW",
+              "B"
+            ],
+            [
+              "BRBRWWW",
+              "R"
+            ],
+            [
+              "BRGGGGB",
+              "B"
+            ],
+            [
+              "BRGGGGG",
+              "W"
+            ],
+            [
+              "BRGGRRR",
+              "B"
+            ],
+            [
+              "BRRBBBB",
+              "R"
+            ],
+            [
+              "BRRBBRR",
+              "B"
+            ],
+            [
+              "BRRRBRB",
+              "G"
+            ],
+            [
+              "BRRRGGB",
+              "G"
+            ],
+            [
+              "BRRWWWW",
+              "W"
+            ],
+            [
+              "BRWBBRB",
+              "G"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "BWWGGBB",
+              "R"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBWWW",
+              "B"
+            ],
+            [
+              "GBBGGGG",
+              "R"
+            ],
+            [
+              "GBBRGGR",
+              "R"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GBRGGGG",
+              "G"
+            ],
+            [
+              "GBRRBBB",
+              "R"
+            ],
+            [
+              "GBWWWWW",
+              "W"
+            ],
+            [
+              "GGBBBWW",
+              "B"
+            ],
+            [
+              "GGBBGGG",
+              "B"
+            ],
+            [
+              "GGBBWWW",
+              "W"
+            ],
+            [
+              "GGBRGGG",
+              "G"
+            ],
+            [
+              "GGBRRBB",
+              "R"
+            ],
+            [
+              "GGBWWWW",
+              "B"
+            ],
+            [
+              "GGGBBBW",
+              "B"
+            ],
+            [
+              "GGGBBWW",
+              "B"
+            ],
+            [
+              "GGGBWWW",
+              "B"
+            ],
+            [
+              "GGGGBBB",
+              "R"
+            ],
+            [
+              "GGGGBBW",
+              "B"
+            ],
+            [
+              "GGGGBWW",
+              "B"
+            ],
+            [
+              "GGGGGBB",
+              "G"
+            ],
+            [
+              "GGGGGBW",
+              "G"
+            ],
+            [
+              "GGGGGGB",
+              "G"
+            ],
+            [
+              "GGGGGGG",
+              "G"
+            ],
+            [
+              "GGGGGGR",
+              "B"
+            ],
+            [
+              "GGGGGRW",
+              "R"
+            ],
+            [
+              "GGGGRBB",
+              "G"
+            ],
+            [
+              "GGGGRWW",
+              "R"
+            ],
+            [
+              "GGGRBBR",
+              "G"
+            ],
+            [
+              "GGGRWWW",
+              "W"
+            ],
+            [
+              "GGRBBRR",
+              "G"
+            ],
+            [
+              "GGRRRWW",
+              "R"
+            ],
+            [
+              "GGRWWBB",
+              "W"
+            ],
+            [
+              "GGRWWWW",
+              "W"
+            ],
+            [
+              "GRBBRRW",
+              "G"
+            ],
+            [
+              "GRRBRRR",
+              "G"
+            ],
+            [
+              "GRRRWWW",
+              "W"
+            ],
+            [
+              "GRWWBBR",
+              "W"
+            ],
+            [
+              "GRWWWWW",
+              "W"
+            ],
+            [
+              "RBBBBWW",
+              "R"
+            ],
+            [
+              "RBBRRRG",
+              "W"
+            ],
+            [
+              "RBBRRWW",
+              "R"
+            ],
+            [
+              "RBBWWWW",
+              "W"
+            ],
+            [
+              "RBGGBRR",
+              "R"
+            ],
+            [
+              "RBRBBWW",
+              "B"
+            ],
+            [
+              "RBRRRBR",
+              "G"
+            ],
+            [
+              "RBRWWWW",
+              "W"
+            ],
+            [
+              "RBWWGGB",
+              "W"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGGBBWW",
+              "B"
+            ],
+            [
+              "RGGGGBB",
+              "R"
+            ],
+            [
+              "RGGGGGG",
+              "B"
+            ],
+            [
+              "RGGRRRW",
+              "R"
+            ],
+            [
+              "RRBBBBW",
+              "B"
+            ],
+            [
+              "RRBBRRR",
+              "B"
+            ],
+            [
+              "RRBBRRW",
+              "R"
+            ],
+            [
+              "RRBGGBR",
+              "R"
+            ],
+            [
+              "RRBRBBW",
+              "G"
+            ],
+            [
+              "RRBRRRB",
+              "G"
+            ],
+            [
+              "RRBWWGG",
+              "W"
+            ],
+            [
+              "RRBWWWW",
+              "W"
+            ],
+            [
+              "RRGGBBW",
+              "B"
+            ],
+            [
+              "RRRBRBB",
+              "G"
+            ],
+            [
+              "RRRGGBB",
+              "G"
+            ],
+            [
+              "RRRWWWW",
+              "W"
+            ],
+            [
+              "RRWWWWW",
+              "W"
+            ],
+            [
+              "RWBBRBR",
+              "G"
+            ],
+            [
+              "RWWBBRR",
+              "G"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WBBBBRR",
+              "G"
+            ],
+            [
+              "WBBRBRW",
+              "R"
+            ],
+            [
+              "WBBRGGG",
+              "R"
+            ],
+            [
+              "WBBRRWW",
+              "R"
+            ],
+            [
+              "WBBRWBB",
+              "B"
+            ],
+            [
+              "WBGGGGR",
+              "G"
+            ],
+            [
+              "WGBBRGG",
+              "R"
+            ],
+            [
+              "WGGBBGG",
+              "B"
+            ],
+            [
+              "WGGBBWW",
+              "B"
+            ],
+            [
+              "WGGBRGG",
+              "B"
+            ],
+            [
+              "WGGGGGG",
+              "R"
+            ],
+            [
+              "WGGRWWB",
+              "W"
+            ],
+            [
+              "WGGRWWW",
+              "W"
+            ],
+            [
+              "WGRRBRR",
+              "B"
+            ],
+            [
+              "WRRBBRR",
+              "R"
+            ],
+            [
+              "WRRBGGB",
+              "G"
+            ],
+            [
+              "WRRBWWG",
+              "W"
+            ],
+            [
+              "WRRBWWW",
+              "W"
+            ],
+            [
+              "WWBBBBR",
+              "G"
+            ],
+            [
+              "WWBBRGG",
+              "G"
+            ],
+            [
+              "WWBBRRW",
+              "G"
+            ],
+            [
+              "WWBBRWB",
+              "B"
+            ],
+            [
+              "WWBGGGG",
+              "R"
+            ],
+            [
+              "WWGBBRG",
+              "B"
+            ],
+            [
+              "WWGGBBG",
+              "R"
+            ],
+            [
+              "WWGGBBW",
+              "R"
+            ],
+            [
+              "WWGGBRG",
+              "R"
+            ],
+            [
+              "WWGGGGG",
+              "B"
+            ],
+            [
+              "WWGGRWW",
+              "W"
+            ],
+            [
+              "WWGRRBR",
+              "B"
+            ],
+            [
+              "WWRRBBR",
+              "R"
+            ],
+            [
+              "WWRRBGG",
+              "W"
+            ],
+            [
+              "WWRRBWW",
+              "W"
+            ],
+            [
+              "WWWBBBB",
+              "G"
+            ],
+            [
+              "WWWBBRG",
+              "G"
+            ],
+            [
+              "WWWBBRW",
+              "G"
+            ],
+            [
+              "WWWBGGG",
+              "B"
+            ],
+            [
+              "WWWGBBR",
+              "B"
+            ],
+            [
+              "WWWGGBB",
+              "R"
+            ],
+            [
+              "WWWGGBR",
+              "R"
+            ],
+            [
+              "WWWGGGG",
+              "G"
+            ],
+            [
+              "WWWGGRW",
+              "W"
+            ],
+            [
+              "WWWGRRB",
+              "G"
+            ],
+            [
+              "WWWRRBB",
+              "W"
+            ],
+            [
+              "WWWRRBG",
+              "W"
+            ],
+            [
+              "WWWRRBW",
+              "W"
+            ],
+            [
+              "WWWWBBB",
+              "B"
+            ],
+            [
+              "WWWWBBR",
+              "W"
+            ],
+            [
+              "WWWWBGG",
+              "B"
+            ],
+            [
+              "WWWWGBB",
+              "B"
+            ],
+            [
+              "WWWWGGB",
+              "W"
+            ],
+            [
+              "WWWWGGG",
+              "G"
+            ],
+            [
+              "WWWWGGR",
+              "W"
+            ],
+            [
+              "WWWWGRR",
+              "G"
+            ],
+            [
+              "WWWWRRB",
+              "W"
+            ],
+            [
+              "WWWWWBB",
+              "W"
+            ],
+            [
+              "WWWWWBG",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "B"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWGR",
+              "W"
+            ],
+            [
+              "WWWWWRR",
+              "W"
+            ],
+            [
+              "WWWWWWB",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWR",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWGGGGGGGGBWWWWWWWWWWWWWWWWWWWWWWWWWWWWWBBRWBBRBRWWWWWWW",
+          "width": 62,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "0d09aec7a3a6ace0c5a44c9cd6955240560ffb46475d8bc5f7eb4f2a6041a0cc",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "86b43621126c67eb8443306a5c30f1d80ea9b17498f4582fb33a8912105a9a43",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "0d09aec7a3a6ace0c5a44c9cd6955240560ffb46475d8bc5f7eb4f2a6041a0cc",
+          "geometry": "86b43621126c67eb8443306a5c30f1d80ea9b17498f4582fb33a8912105a9a43",
+          "appearance": "8b20acdfb21d3160ec7b34cc379bf0abcbfc4cc7d0cbabba7d96423f62dfcb79",
+          "observation": "dce009ca9004d7c40c29d2581b8764fe7f6fad80fd09060d7cb20e3ba178703f"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "8b20acdfb21d3160ec7b34cc379bf0abcbfc4cc7d0cbabba7d96423f62dfcb79",
+          "firstGeneration": 0,
+          "rowCount": 10,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "67dbb46f256a6f490086d43f42b1f60c010c858426678957834a322f2bd304eb"
+        },
+        "metadata": {
+          "name": "Fork and bridge / Together",
+          "status": "artist-selected",
+          "ruleFamily": "Fork and bridge",
+          "members": [
+            "Forked terrace",
+            "Split bridge"
+          ],
+          "offsets": [
+            0,
+            36
+          ],
+          "phase": 0,
+          "verification": {
+            "literalAndNumpyReplay128Agree": true,
+            "exactRows": true,
+            "noDiagnosticCells": true,
+            "firstWhiteGeneration": 8,
+            "terminalWhiteForever": true,
+            "quiescentBackgroundRule": true,
+            "minimumWhiteSideband": 3,
+            "observedTransitionCount": 163,
+            "noNewObservedRules": true
+          },
+          "sourceCertificate": "../selected/certificates.json",
+          "sourceCertificateSha256": "4c1dd5f9ba7060acae53ae9cd67150a43b987af69df5d316eb04c7d6f3e2bc7d"
+        }
+      },
+      "download": "worlds/entry-040.json",
+      "rows": [
+        "WWWWWWWWGGGGGGGGBWWWWWWWWWWWWWWWWWWWWWWWWWWWWWBBRWBBRBRWWWWWWW",
+        "WWWWWWWGGBRGGGGBBBWWWWWWWWWWWWWWWWWWWWWWWWWWWWGBBRGGRRRWWWWWWW",
+        "WWWWWWWRRBGGBRRBBBBWWWWWWWWWWWWWWWWWWWWWWWWWBBBBRRBBRRWWWWWWWW",
+        "WWWWWWWWWGRRBRRRBRBBWWWWWWWWWWWWWWWWWWWWWWWBGGGGRBBRRWWWWWWWWW",
+        "WWWWWWWWGGBBGGGGGGBBWWWWWWWWWWWWWWWWWWWWWWBBRGGGGGGRWWWWWWWWWW",
+        "WWWWWWWWRRBBRRRGGBBWWWWWWWWWWWWWWWWWWWWWWWGGRWWBBRRWWWWWWWWWWW",
+        "WWWWWWWWWRRBWWGGBBWWWWWWWWWWWWWWWWWWWWWWWWWWWWWGGRWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWRRBWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 163,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "94f8560b17a55b1659675238381dacc2bde1f9d1fea6f28941e536973072a77b"
+    },
+    {
+      "key": "entry-041",
+      "name": "Fork and bridge / Forked terrace",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBRRB",
+              "G"
+            ],
+            [
+              "BBBBWWW",
+              "B"
+            ],
+            [
+              "BBBRRBB",
+              "R"
+            ],
+            [
+              "BBBWWWW",
+              "B"
+            ],
+            [
+              "BBGGGGG",
+              "R"
+            ],
+            [
+              "BBRBRWW",
+              "R"
+            ],
+            [
+              "BBRGGGG",
+              "W"
+            ],
+            [
+              "BBRGGRR",
+              "B"
+            ],
+            [
+              "BBRRBBR",
+              "B"
+            ],
+            [
+              "BBRRRGG",
+              "W"
+            ],
+            [
+              "BBRRWWW",
+              "W"
+            ],
+            [
+              "BBRWBBR",
+              "R"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGGBRRB",
+              "B"
+            ],
+            [
+              "BGGGGGG",
+              "R"
+            ],
+            [
+              "BGGGGRB",
+              "G"
+            ],
+            [
+              "BRBBWWW",
+              "B"
+            ],
+            [
+              "BRBRWWW",
+              "R"
+            ],
+            [
+              "BRGGGGB",
+              "B"
+            ],
+            [
+              "BRGGGGG",
+              "W"
+            ],
+            [
+              "BRGGRRR",
+              "B"
+            ],
+            [
+              "BRRBBBB",
+              "R"
+            ],
+            [
+              "BRRBBRR",
+              "B"
+            ],
+            [
+              "BRRRBRB",
+              "G"
+            ],
+            [
+              "BRRRGGB",
+              "G"
+            ],
+            [
+              "BRRWWWW",
+              "W"
+            ],
+            [
+              "BRWBBRB",
+              "G"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "BWWGGBB",
+              "R"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBWWW",
+              "B"
+            ],
+            [
+              "GBBGGGG",
+              "R"
+            ],
+            [
+              "GBBRGGR",
+              "R"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GBRGGGG",
+              "G"
+            ],
+            [
+              "GBRRBBB",
+              "R"
+            ],
+            [
+              "GBWWWWW",
+              "W"
+            ],
+            [
+              "GGBBBWW",
+              "B"
+            ],
+            [
+              "GGBBGGG",
+              "B"
+            ],
+            [
+              "GGBBWWW",
+              "W"
+            ],
+            [
+              "GGBRGGG",
+              "G"
+            ],
+            [
+              "GGBRRBB",
+              "R"
+            ],
+            [
+              "GGBWWWW",
+              "B"
+            ],
+            [
+              "GGGBBBW",
+              "B"
+            ],
+            [
+              "GGGBBWW",
+              "B"
+            ],
+            [
+              "GGGBWWW",
+              "B"
+            ],
+            [
+              "GGGGBBB",
+              "R"
+            ],
+            [
+              "GGGGBBW",
+              "B"
+            ],
+            [
+              "GGGGBWW",
+              "B"
+            ],
+            [
+              "GGGGGBB",
+              "G"
+            ],
+            [
+              "GGGGGBW",
+              "G"
+            ],
+            [
+              "GGGGGGB",
+              "G"
+            ],
+            [
+              "GGGGGGG",
+              "G"
+            ],
+            [
+              "GGGGGGR",
+              "B"
+            ],
+            [
+              "GGGGGRW",
+              "R"
+            ],
+            [
+              "GGGGRBB",
+              "G"
+            ],
+            [
+              "GGGGRWW",
+              "R"
+            ],
+            [
+              "GGGRBBR",
+              "G"
+            ],
+            [
+              "GGGRWWW",
+              "W"
+            ],
+            [
+              "GGRBBRR",
+              "G"
+            ],
+            [
+              "GGRRRWW",
+              "R"
+            ],
+            [
+              "GGRWWBB",
+              "W"
+            ],
+            [
+              "GGRWWWW",
+              "W"
+            ],
+            [
+              "GRBBRRW",
+              "G"
+            ],
+            [
+              "GRRBRRR",
+              "G"
+            ],
+            [
+              "GRRRWWW",
+              "W"
+            ],
+            [
+              "GRWWBBR",
+              "W"
+            ],
+            [
+              "GRWWWWW",
+              "W"
+            ],
+            [
+              "RBBBBWW",
+              "R"
+            ],
+            [
+              "RBBRRRG",
+              "W"
+            ],
+            [
+              "RBBRRWW",
+              "R"
+            ],
+            [
+              "RBBWWWW",
+              "W"
+            ],
+            [
+              "RBGGBRR",
+              "R"
+            ],
+            [
+              "RBRBBWW",
+              "B"
+            ],
+            [
+              "RBRRRBR",
+              "G"
+            ],
+            [
+              "RBRWWWW",
+              "W"
+            ],
+            [
+              "RBWWGGB",
+              "W"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGGBBWW",
+              "B"
+            ],
+            [
+              "RGGGGBB",
+              "R"
+            ],
+            [
+              "RGGGGGG",
+              "B"
+            ],
+            [
+              "RGGRRRW",
+              "R"
+            ],
+            [
+              "RRBBBBW",
+              "B"
+            ],
+            [
+              "RRBBRRR",
+              "B"
+            ],
+            [
+              "RRBBRRW",
+              "R"
+            ],
+            [
+              "RRBGGBR",
+              "R"
+            ],
+            [
+              "RRBRBBW",
+              "G"
+            ],
+            [
+              "RRBRRRB",
+              "G"
+            ],
+            [
+              "RRBWWGG",
+              "W"
+            ],
+            [
+              "RRBWWWW",
+              "W"
+            ],
+            [
+              "RRGGBBW",
+              "B"
+            ],
+            [
+              "RRRBRBB",
+              "G"
+            ],
+            [
+              "RRRGGBB",
+              "G"
+            ],
+            [
+              "RRRWWWW",
+              "W"
+            ],
+            [
+              "RRWWWWW",
+              "W"
+            ],
+            [
+              "RWBBRBR",
+              "G"
+            ],
+            [
+              "RWWBBRR",
+              "G"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WBBBBRR",
+              "G"
+            ],
+            [
+              "WBBRBRW",
+              "R"
+            ],
+            [
+              "WBBRGGG",
+              "R"
+            ],
+            [
+              "WBBRRWW",
+              "R"
+            ],
+            [
+              "WBBRWBB",
+              "B"
+            ],
+            [
+              "WBGGGGR",
+              "G"
+            ],
+            [
+              "WGBBRGG",
+              "R"
+            ],
+            [
+              "WGGBBGG",
+              "B"
+            ],
+            [
+              "WGGBBWW",
+              "B"
+            ],
+            [
+              "WGGBRGG",
+              "B"
+            ],
+            [
+              "WGGGGGG",
+              "R"
+            ],
+            [
+              "WGGRWWB",
+              "W"
+            ],
+            [
+              "WGGRWWW",
+              "W"
+            ],
+            [
+              "WGRRBRR",
+              "B"
+            ],
+            [
+              "WRRBBRR",
+              "R"
+            ],
+            [
+              "WRRBGGB",
+              "G"
+            ],
+            [
+              "WRRBWWG",
+              "W"
+            ],
+            [
+              "WRRBWWW",
+              "W"
+            ],
+            [
+              "WWBBBBR",
+              "G"
+            ],
+            [
+              "WWBBRGG",
+              "G"
+            ],
+            [
+              "WWBBRRW",
+              "G"
+            ],
+            [
+              "WWBBRWB",
+              "B"
+            ],
+            [
+              "WWBGGGG",
+              "R"
+            ],
+            [
+              "WWGBBRG",
+              "B"
+            ],
+            [
+              "WWGGBBG",
+              "R"
+            ],
+            [
+              "WWGGBBW",
+              "R"
+            ],
+            [
+              "WWGGBRG",
+              "R"
+            ],
+            [
+              "WWGGGGG",
+              "B"
+            ],
+            [
+              "WWGGRWW",
+              "W"
+            ],
+            [
+              "WWGRRBR",
+              "B"
+            ],
+            [
+              "WWRRBBR",
+              "R"
+            ],
+            [
+              "WWRRBGG",
+              "W"
+            ],
+            [
+              "WWRRBWW",
+              "W"
+            ],
+            [
+              "WWWBBBB",
+              "G"
+            ],
+            [
+              "WWWBBRG",
+              "G"
+            ],
+            [
+              "WWWBBRW",
+              "G"
+            ],
+            [
+              "WWWBGGG",
+              "B"
+            ],
+            [
+              "WWWGBBR",
+              "B"
+            ],
+            [
+              "WWWGGBB",
+              "R"
+            ],
+            [
+              "WWWGGBR",
+              "R"
+            ],
+            [
+              "WWWGGGG",
+              "G"
+            ],
+            [
+              "WWWGGRW",
+              "W"
+            ],
+            [
+              "WWWGRRB",
+              "G"
+            ],
+            [
+              "WWWRRBB",
+              "W"
+            ],
+            [
+              "WWWRRBG",
+              "W"
+            ],
+            [
+              "WWWRRBW",
+              "W"
+            ],
+            [
+              "WWWWBBB",
+              "B"
+            ],
+            [
+              "WWWWBBR",
+              "W"
+            ],
+            [
+              "WWWWBGG",
+              "B"
+            ],
+            [
+              "WWWWGBB",
+              "B"
+            ],
+            [
+              "WWWWGGB",
+              "W"
+            ],
+            [
+              "WWWWGGG",
+              "G"
+            ],
+            [
+              "WWWWGGR",
+              "W"
+            ],
+            [
+              "WWWWGRR",
+              "G"
+            ],
+            [
+              "WWWWRRB",
+              "W"
+            ],
+            [
+              "WWWWWBB",
+              "W"
+            ],
+            [
+              "WWWWWBG",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "B"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWGR",
+              "W"
+            ],
+            [
+              "WWWWWRR",
+              "W"
+            ],
+            [
+              "WWWWWWB",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWR",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWGGGGGGGGBWWWWWWWWWW",
+          "width": 27,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "5ef1ee7706ed606da1a1a3b99b38d5502052f9b541668b0141226ccd40554fca",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "65a15d85baa11f7518bb8754dedcf45ee6a3b80cfbd75ac309905d9cd7fa8a40",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "5ef1ee7706ed606da1a1a3b99b38d5502052f9b541668b0141226ccd40554fca",
+          "geometry": "65a15d85baa11f7518bb8754dedcf45ee6a3b80cfbd75ac309905d9cd7fa8a40",
+          "appearance": "94c50c4138404223ac9310d87451d61c85bec29c44a99b7ec1560b81dcb3bbf0",
+          "observation": "ce7d737778c37d0fb88b734376c71bd5517c991971918aba3c38a9f2130a5199"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "94c50c4138404223ac9310d87451d61c85bec29c44a99b7ec1560b81dcb3bbf0",
+          "firstGeneration": 0,
+          "rowCount": 10,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "bc25d2bfe164997a9d2e44a05d541f945486b34657b6812d2e2961f8a1213d77"
+        },
+        "metadata": {
+          "name": "Fork and bridge / Forked terrace",
+          "ruleFamily": "Fork and bridge",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                0,
+                3,
+                3
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                1,
+                3,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                3
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                1
+              ],
+              [
+                2,
+                3,
+                0
+              ],
+              [
+                2,
+                3,
+                1
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                3,
+                2,
+                0
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                2,
+                2
+              ],
+              [
+                3,
+                3,
+                0
+              ],
+              [
+                3,
+                3,
+                1
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 4
+          },
+          "verification": {
+            "literalAndNumpyReplay128Agree": true,
+            "exactRows": true,
+            "noDiagnosticCells": true,
+            "firstWhiteGeneration": 8,
+            "terminalWhiteForever": true,
+            "quiescentBackgroundRule": true,
+            "minimumWhiteSideband": 3,
+            "observedTransitionCount": 91,
+            "noNewObservedRules": true
+          }
+        }
+      },
+      "download": "worlds/entry-041.json",
+      "rows": [
+        "WWWWWWWWGGGGGGGGBWWWWWWWWWW",
+        "WWWWWWWGGBRGGGGBBBWWWWWWWWW",
+        "WWWWWWWRRBGGBRRBBBBWWWWWWWW",
+        "WWWWWWWWWGRRBRRRBRBBWWWWWWW",
+        "WWWWWWWWGGBBGGGGGGBBWWWWWWW",
+        "WWWWWWWWRRBBRRRGGBBWWWWWWWW",
+        "WWWWWWWWWRRBWWGGBBWWWWWWWWW",
+        "WWWWWWWWWWWWWWRRBWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 163,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "94f8560b17a55b1659675238381dacc2bde1f9d1fea6f28941e536973072a77b"
+    },
+    {
+      "key": "entry-042",
+      "name": "Fork and bridge / Split bridge",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBRRB",
+              "G"
+            ],
+            [
+              "BBBBWWW",
+              "B"
+            ],
+            [
+              "BBBRRBB",
+              "R"
+            ],
+            [
+              "BBBWWWW",
+              "B"
+            ],
+            [
+              "BBGGGGG",
+              "R"
+            ],
+            [
+              "BBRBRWW",
+              "R"
+            ],
+            [
+              "BBRGGGG",
+              "W"
+            ],
+            [
+              "BBRGGRR",
+              "B"
+            ],
+            [
+              "BBRRBBR",
+              "B"
+            ],
+            [
+              "BBRRRGG",
+              "W"
+            ],
+            [
+              "BBRRWWW",
+              "W"
+            ],
+            [
+              "BBRWBBR",
+              "R"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGGBRRB",
+              "B"
+            ],
+            [
+              "BGGGGGG",
+              "R"
+            ],
+            [
+              "BGGGGRB",
+              "G"
+            ],
+            [
+              "BRBBWWW",
+              "B"
+            ],
+            [
+              "BRBRWWW",
+              "R"
+            ],
+            [
+              "BRGGGGB",
+              "B"
+            ],
+            [
+              "BRGGGGG",
+              "W"
+            ],
+            [
+              "BRGGRRR",
+              "B"
+            ],
+            [
+              "BRRBBBB",
+              "R"
+            ],
+            [
+              "BRRBBRR",
+              "B"
+            ],
+            [
+              "BRRRBRB",
+              "G"
+            ],
+            [
+              "BRRRGGB",
+              "G"
+            ],
+            [
+              "BRRWWWW",
+              "W"
+            ],
+            [
+              "BRWBBRB",
+              "G"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "BWWGGBB",
+              "R"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBWWW",
+              "B"
+            ],
+            [
+              "GBBGGGG",
+              "R"
+            ],
+            [
+              "GBBRGGR",
+              "R"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GBRGGGG",
+              "G"
+            ],
+            [
+              "GBRRBBB",
+              "R"
+            ],
+            [
+              "GBWWWWW",
+              "W"
+            ],
+            [
+              "GGBBBWW",
+              "B"
+            ],
+            [
+              "GGBBGGG",
+              "B"
+            ],
+            [
+              "GGBBWWW",
+              "W"
+            ],
+            [
+              "GGBRGGG",
+              "G"
+            ],
+            [
+              "GGBRRBB",
+              "R"
+            ],
+            [
+              "GGBWWWW",
+              "B"
+            ],
+            [
+              "GGGBBBW",
+              "B"
+            ],
+            [
+              "GGGBBWW",
+              "B"
+            ],
+            [
+              "GGGBWWW",
+              "B"
+            ],
+            [
+              "GGGGBBB",
+              "R"
+            ],
+            [
+              "GGGGBBW",
+              "B"
+            ],
+            [
+              "GGGGBWW",
+              "B"
+            ],
+            [
+              "GGGGGBB",
+              "G"
+            ],
+            [
+              "GGGGGBW",
+              "G"
+            ],
+            [
+              "GGGGGGB",
+              "G"
+            ],
+            [
+              "GGGGGGG",
+              "G"
+            ],
+            [
+              "GGGGGGR",
+              "B"
+            ],
+            [
+              "GGGGGRW",
+              "R"
+            ],
+            [
+              "GGGGRBB",
+              "G"
+            ],
+            [
+              "GGGGRWW",
+              "R"
+            ],
+            [
+              "GGGRBBR",
+              "G"
+            ],
+            [
+              "GGGRWWW",
+              "W"
+            ],
+            [
+              "GGRBBRR",
+              "G"
+            ],
+            [
+              "GGRRRWW",
+              "R"
+            ],
+            [
+              "GGRWWBB",
+              "W"
+            ],
+            [
+              "GGRWWWW",
+              "W"
+            ],
+            [
+              "GRBBRRW",
+              "G"
+            ],
+            [
+              "GRRBRRR",
+              "G"
+            ],
+            [
+              "GRRRWWW",
+              "W"
+            ],
+            [
+              "GRWWBBR",
+              "W"
+            ],
+            [
+              "GRWWWWW",
+              "W"
+            ],
+            [
+              "RBBBBWW",
+              "R"
+            ],
+            [
+              "RBBRRRG",
+              "W"
+            ],
+            [
+              "RBBRRWW",
+              "R"
+            ],
+            [
+              "RBBWWWW",
+              "W"
+            ],
+            [
+              "RBGGBRR",
+              "R"
+            ],
+            [
+              "RBRBBWW",
+              "B"
+            ],
+            [
+              "RBRRRBR",
+              "G"
+            ],
+            [
+              "RBRWWWW",
+              "W"
+            ],
+            [
+              "RBWWGGB",
+              "W"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGGBBWW",
+              "B"
+            ],
+            [
+              "RGGGGBB",
+              "R"
+            ],
+            [
+              "RGGGGGG",
+              "B"
+            ],
+            [
+              "RGGRRRW",
+              "R"
+            ],
+            [
+              "RRBBBBW",
+              "B"
+            ],
+            [
+              "RRBBRRR",
+              "B"
+            ],
+            [
+              "RRBBRRW",
+              "R"
+            ],
+            [
+              "RRBGGBR",
+              "R"
+            ],
+            [
+              "RRBRBBW",
+              "G"
+            ],
+            [
+              "RRBRRRB",
+              "G"
+            ],
+            [
+              "RRBWWGG",
+              "W"
+            ],
+            [
+              "RRBWWWW",
+              "W"
+            ],
+            [
+              "RRGGBBW",
+              "B"
+            ],
+            [
+              "RRRBRBB",
+              "G"
+            ],
+            [
+              "RRRGGBB",
+              "G"
+            ],
+            [
+              "RRRWWWW",
+              "W"
+            ],
+            [
+              "RRWWWWW",
+              "W"
+            ],
+            [
+              "RWBBRBR",
+              "G"
+            ],
+            [
+              "RWWBBRR",
+              "G"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WBBBBRR",
+              "G"
+            ],
+            [
+              "WBBRBRW",
+              "R"
+            ],
+            [
+              "WBBRGGG",
+              "R"
+            ],
+            [
+              "WBBRRWW",
+              "R"
+            ],
+            [
+              "WBBRWBB",
+              "B"
+            ],
+            [
+              "WBGGGGR",
+              "G"
+            ],
+            [
+              "WGBBRGG",
+              "R"
+            ],
+            [
+              "WGGBBGG",
+              "B"
+            ],
+            [
+              "WGGBBWW",
+              "B"
+            ],
+            [
+              "WGGBRGG",
+              "B"
+            ],
+            [
+              "WGGGGGG",
+              "R"
+            ],
+            [
+              "WGGRWWB",
+              "W"
+            ],
+            [
+              "WGGRWWW",
+              "W"
+            ],
+            [
+              "WGRRBRR",
+              "B"
+            ],
+            [
+              "WRRBBRR",
+              "R"
+            ],
+            [
+              "WRRBGGB",
+              "G"
+            ],
+            [
+              "WRRBWWG",
+              "W"
+            ],
+            [
+              "WRRBWWW",
+              "W"
+            ],
+            [
+              "WWBBBBR",
+              "G"
+            ],
+            [
+              "WWBBRGG",
+              "G"
+            ],
+            [
+              "WWBBRRW",
+              "G"
+            ],
+            [
+              "WWBBRWB",
+              "B"
+            ],
+            [
+              "WWBGGGG",
+              "R"
+            ],
+            [
+              "WWGBBRG",
+              "B"
+            ],
+            [
+              "WWGGBBG",
+              "R"
+            ],
+            [
+              "WWGGBBW",
+              "R"
+            ],
+            [
+              "WWGGBRG",
+              "R"
+            ],
+            [
+              "WWGGGGG",
+              "B"
+            ],
+            [
+              "WWGGRWW",
+              "W"
+            ],
+            [
+              "WWGRRBR",
+              "B"
+            ],
+            [
+              "WWRRBBR",
+              "R"
+            ],
+            [
+              "WWRRBGG",
+              "W"
+            ],
+            [
+              "WWRRBWW",
+              "W"
+            ],
+            [
+              "WWWBBBB",
+              "G"
+            ],
+            [
+              "WWWBBRG",
+              "G"
+            ],
+            [
+              "WWWBBRW",
+              "G"
+            ],
+            [
+              "WWWBGGG",
+              "B"
+            ],
+            [
+              "WWWGBBR",
+              "B"
+            ],
+            [
+              "WWWGGBB",
+              "R"
+            ],
+            [
+              "WWWGGBR",
+              "R"
+            ],
+            [
+              "WWWGGGG",
+              "G"
+            ],
+            [
+              "WWWGGRW",
+              "W"
+            ],
+            [
+              "WWWGRRB",
+              "G"
+            ],
+            [
+              "WWWRRBB",
+              "W"
+            ],
+            [
+              "WWWRRBG",
+              "W"
+            ],
+            [
+              "WWWRRBW",
+              "W"
+            ],
+            [
+              "WWWWBBB",
+              "B"
+            ],
+            [
+              "WWWWBBR",
+              "W"
+            ],
+            [
+              "WWWWBGG",
+              "B"
+            ],
+            [
+              "WWWWGBB",
+              "B"
+            ],
+            [
+              "WWWWGGB",
+              "W"
+            ],
+            [
+              "WWWWGGG",
+              "G"
+            ],
+            [
+              "WWWWGGR",
+              "W"
+            ],
+            [
+              "WWWWGRR",
+              "G"
+            ],
+            [
+              "WWWWRRB",
+              "W"
+            ],
+            [
+              "WWWWWBB",
+              "W"
+            ],
+            [
+              "WWWWWBG",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "B"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWGR",
+              "W"
+            ],
+            [
+              "WWWWWRR",
+              "W"
+            ],
+            [
+              "WWWWWWB",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWR",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWWWBBRWBBRBRWWWWWWW",
+          "width": 26,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "cd493bc1c9d1c950c114407ab862672b73f78415d0b95efc91ccff8e54fe2886",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "e2d1a957dfdd605d0a8abfdc68cb5ccf760e2dd619cdbdc00d5c6a5223709409",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "cd493bc1c9d1c950c114407ab862672b73f78415d0b95efc91ccff8e54fe2886",
+          "geometry": "e2d1a957dfdd605d0a8abfdc68cb5ccf760e2dd619cdbdc00d5c6a5223709409",
+          "appearance": "3a86db7d936a6b16dd81a0223f4b2d9794e25dd1c173173a57d2cf7419b5b1cf",
+          "observation": "abc34003ac4aa997414d51972c988a6a310cd5768928fac9d1b6ad9ac9e65297"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "3a86db7d936a6b16dd81a0223f4b2d9794e25dd1c173173a57d2cf7419b5b1cf",
+          "firstGeneration": 0,
+          "rowCount": 9,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "442a389853e26bf7b0660b5c6af15d04daa69d2928117d99a4ac3c5b820316ac"
+        },
+        "metadata": {
+          "name": "Fork and bridge / Split bridge",
+          "ruleFamily": "Fork and bridge",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                1,
+                3
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                3
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                3
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                3,
+                0,
+                2
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                3,
+                1,
+                1
+              ],
+              [
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                1,
+                3
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                2,
+                2
+              ],
+              [
+                4,
+                0,
+                2
+              ],
+              [
+                4,
+                1,
+                0
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 2
+          },
+          "verification": {
+            "literalAndNumpyReplay128Agree": true,
+            "exactRows": true,
+            "noDiagnosticCells": true,
+            "firstWhiteGeneration": 7,
+            "terminalWhiteForever": true,
+            "quiescentBackgroundRule": true,
+            "minimumWhiteSideband": 3,
+            "observedTransitionCount": 75,
+            "noNewObservedRules": true
+          }
+        }
+      },
+      "download": "worlds/entry-042.json",
+      "rows": [
+        "WWWWWWWWWWBBRWBBRBRWWWWWWW",
+        "WWWWWWWWWWGBBRGGRRRWWWWWWW",
+        "WWWWWWWWBBBBRRBBRRWWWWWWWW",
+        "WWWWWWWBGGGGRBBRRWWWWWWWWW",
+        "WWWWWWBBRGGGGGGRWWWWWWWWWW",
+        "WWWWWWGGRWWBBRRWWWWWWWWWWW",
+        "WWWWWWWWWWWGGRWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 163,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "94f8560b17a55b1659675238381dacc2bde1f9d1fea6f28941e536973072a77b"
+    },
+    {
+      "key": "entry-043",
+      "name": "Arch and bridge / Together",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBRRB",
+              "G"
+            ],
+            [
+              "BBBRRBB",
+              "R"
+            ],
+            [
+              "BBBWWWW",
+              "W"
+            ],
+            [
+              "BBGGGGB",
+              "B"
+            ],
+            [
+              "BBGRRBB",
+              "G"
+            ],
+            [
+              "BBRBRWW",
+              "R"
+            ],
+            [
+              "BBRGGGG",
+              "W"
+            ],
+            [
+              "BBRGGRR",
+              "B"
+            ],
+            [
+              "BBRRBBR",
+              "B"
+            ],
+            [
+              "BBRRWWW",
+              "W"
+            ],
+            [
+              "BBRWBBR",
+              "R"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGGBBWW",
+              "B"
+            ],
+            [
+              "BGGBRRB",
+              "B"
+            ],
+            [
+              "BGGGGBB",
+              "R"
+            ],
+            [
+              "BGGGGRB",
+              "G"
+            ],
+            [
+              "BGRRBBW",
+              "G"
+            ],
+            [
+              "BRBRWWW",
+              "R"
+            ],
+            [
+              "BRGGGGG",
+              "W"
+            ],
+            [
+              "BRGGRRR",
+              "B"
+            ],
+            [
+              "BRRBBBW",
+              "B"
+            ],
+            [
+              "BRRBBRR",
+              "B"
+            ],
+            [
+              "BRRBBWW",
+              "R"
+            ],
+            [
+              "BRRWWWW",
+              "W"
+            ],
+            [
+              "BRWBBRB",
+              "G"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBWWW",
+              "B"
+            ],
+            [
+              "GBBGGGG",
+              "G"
+            ],
+            [
+              "GBBGRRB",
+              "G"
+            ],
+            [
+              "GBBRGGR",
+              "R"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GBRRBBB",
+              "G"
+            ],
+            [
+              "GBRRBBW",
+              "R"
+            ],
+            [
+              "GBWWWWW",
+              "W"
+            ],
+            [
+              "GGBBBWW",
+              "B"
+            ],
+            [
+              "GGBBGGG",
+              "G"
+            ],
+            [
+              "GGBBGRR",
+              "G"
+            ],
+            [
+              "GGBBWWW",
+              "W"
+            ],
+            [
+              "GGBRRBB",
+              "G"
+            ],
+            [
+              "GGBWWWW",
+              "B"
+            ],
+            [
+              "GGGBBBW",
+              "B"
+            ],
+            [
+              "GGGBBGR",
+              "B"
+            ],
+            [
+              "GGGBRRB",
+              "B"
+            ],
+            [
+              "GGGBWWW",
+              "B"
+            ],
+            [
+              "GGGGBBB",
+              "R"
+            ],
+            [
+              "GGGGBBG",
+              "B"
+            ],
+            [
+              "GGGGBRR",
+              "B"
+            ],
+            [
+              "GGGGBWW",
+              "R"
+            ],
+            [
+              "GGGGGBW",
+              "R"
+            ],
+            [
+              "GGGGGGB",
+              "B"
+            ],
+            [
+              "GGGGGGG",
+              "G"
+            ],
+            [
+              "GGGGGGR",
+              "B"
+            ],
+            [
+              "GGGGGRW",
+              "R"
+            ],
+            [
+              "GGGGRBB",
+              "G"
+            ],
+            [
+              "GGGGRWW",
+              "R"
+            ],
+            [
+              "GGGRBBR",
+              "G"
+            ],
+            [
+              "GGGRWWW",
+              "W"
+            ],
+            [
+              "GGRBBRR",
+              "G"
+            ],
+            [
+              "GGRRRWW",
+              "R"
+            ],
+            [
+              "GGRWWBB",
+              "W"
+            ],
+            [
+              "GGRWWWW",
+              "W"
+            ],
+            [
+              "GRBBRRW",
+              "G"
+            ],
+            [
+              "GRRBBWW",
+              "B"
+            ],
+            [
+              "GRRRWWW",
+              "W"
+            ],
+            [
+              "GRWWBBR",
+              "W"
+            ],
+            [
+              "GRWWWWW",
+              "W"
+            ],
+            [
+              "RBBBWWW",
+              "W"
+            ],
+            [
+              "RBBRRWW",
+              "R"
+            ],
+            [
+              "RBBWWWW",
+              "B"
+            ],
+            [
+              "RBGGBBW",
+              "R"
+            ],
+            [
+              "RBGGBRR",
+              "R"
+            ],
+            [
+              "RBRWWWW",
+              "W"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGGBBGG",
+              "B"
+            ],
+            [
+              "RGGGGBR",
+              "G"
+            ],
+            [
+              "RGGGGGG",
+              "B"
+            ],
+            [
+              "RGGRRRW",
+              "R"
+            ],
+            [
+              "RRBBBWW",
+              "B"
+            ],
+            [
+              "RRBBRRW",
+              "R"
+            ],
+            [
+              "RRBBWWW",
+              "B"
+            ],
+            [
+              "RRBGGBB",
+              "R"
+            ],
+            [
+              "RRBGGBR",
+              "R"
+            ],
+            [
+              "RRBWWWW",
+              "W"
+            ],
+            [
+              "RRRWWWW",
+              "W"
+            ],
+            [
+              "RRWWWWW",
+              "W"
+            ],
+            [
+              "RWBBRBR",
+              "G"
+            ],
+            [
+              "RWWBBRR",
+              "G"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WBBBBRR",
+              "G"
+            ],
+            [
+              "WBBRBRW",
+              "R"
+            ],
+            [
+              "WBBRGGG",
+              "R"
+            ],
+            [
+              "WBBRRWW",
+              "R"
+            ],
+            [
+              "WBBRWBB",
+              "B"
+            ],
+            [
+              "WBGGGGR",
+              "G"
+            ],
+            [
+              "WGBBRGG",
+              "R"
+            ],
+            [
+              "WGGGGBB",
+              "G"
+            ],
+            [
+              "WGGGGGG",
+              "G"
+            ],
+            [
+              "WGGRWWB",
+              "W"
+            ],
+            [
+              "WGGRWWW",
+              "W"
+            ],
+            [
+              "WRGGBBG",
+              "R"
+            ],
+            [
+              "WRGGGGB",
+              "G"
+            ],
+            [
+              "WRRBGGB",
+              "W"
+            ],
+            [
+              "WRRBWWW",
+              "W"
+            ],
+            [
+              "WWBBBBR",
+              "G"
+            ],
+            [
+              "WWBBRGG",
+              "G"
+            ],
+            [
+              "WWBBRRW",
+              "G"
+            ],
+            [
+              "WWBBRWB",
+              "B"
+            ],
+            [
+              "WWBGGGG",
+              "R"
+            ],
+            [
+              "WWGBBRG",
+              "B"
+            ],
+            [
+              "WWGGGGB",
+              "G"
+            ],
+            [
+              "WWGGGGG",
+              "G"
+            ],
+            [
+              "WWGGRWW",
+              "W"
+            ],
+            [
+              "WWRGGBB",
+              "R"
+            ],
+            [
+              "WWRGGGG",
+              "G"
+            ],
+            [
+              "WWRRBGG",
+              "W"
+            ],
+            [
+              "WWRRBWW",
+              "W"
+            ],
+            [
+              "WWWBBBB",
+              "G"
+            ],
+            [
+              "WWWBBRG",
+              "G"
+            ],
+            [
+              "WWWBBRW",
+              "G"
+            ],
+            [
+              "WWWBGGG",
+              "B"
+            ],
+            [
+              "WWWGBBR",
+              "B"
+            ],
+            [
+              "WWWGGGG",
+              "R"
+            ],
+            [
+              "WWWGGRW",
+              "W"
+            ],
+            [
+              "WWWRGGB",
+              "W"
+            ],
+            [
+              "WWWRGGG",
+              "G"
+            ],
+            [
+              "WWWRRBG",
+              "W"
+            ],
+            [
+              "WWWRRBW",
+              "W"
+            ],
+            [
+              "WWWWBBB",
+              "B"
+            ],
+            [
+              "WWWWBBR",
+              "W"
+            ],
+            [
+              "WWWWBGG",
+              "B"
+            ],
+            [
+              "WWWWGBB",
+              "B"
+            ],
+            [
+              "WWWWGGG",
+              "W"
+            ],
+            [
+              "WWWWGGR",
+              "W"
+            ],
+            [
+              "WWWWRGG",
+              "W"
+            ],
+            [
+              "WWWWRRB",
+              "W"
+            ],
+            [
+              "WWWWWBB",
+              "W"
+            ],
+            [
+              "WWWWWBG",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "B"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWRG",
+              "W"
+            ],
+            [
+              "WWWWWRR",
+              "W"
+            ],
+            [
+              "WWWWWWB",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWR",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWGGGGGGGGBWWWWWWWWWWWWWWWWWWWWWWWWWWWWWBBRWBBRBRWWWWWWW",
+          "width": 60,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "4225d195e716558380f5760ccb97660d5eeab6fe56ae11bdb2e71b3b5b10a1f2",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "ff898add25f99270a55fafa2e28b6c515a9195b83b0b193e78551854e48828e6",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "4225d195e716558380f5760ccb97660d5eeab6fe56ae11bdb2e71b3b5b10a1f2",
+          "geometry": "ff898add25f99270a55fafa2e28b6c515a9195b83b0b193e78551854e48828e6",
+          "appearance": "d9aef0aaf3ee72113e03664932d42b89c24179114c55cf61c1fe1def868e3e00",
+          "observation": "c7c7a22b78571f8d6148aff9d52fd16ef8d224160f70a2641d0de2cf4a2d7be6"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "d9aef0aaf3ee72113e03664932d42b89c24179114c55cf61c1fe1def868e3e00",
+          "firstGeneration": 0,
+          "rowCount": 9,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "a5d8b0af7b176172bd1c4e951355f0e77fc7109f6a25d4736b234beac2c8f0bf"
+        },
+        "metadata": {
+          "name": "Arch and bridge / Together",
+          "status": "artist-selected",
+          "ruleFamily": "Arch and bridge",
+          "members": [
+            "Stepped arch",
+            "Split bridge"
+          ],
+          "offsets": [
+            0,
+            34
+          ],
+          "phase": 0,
+          "verification": {
+            "literalAndNumpyReplay128Agree": true,
+            "exactRows": true,
+            "noDiagnosticCells": true,
+            "firstWhiteGeneration": 7,
+            "terminalWhiteForever": true,
+            "quiescentBackgroundRule": true,
+            "minimumWhiteSideband": 3,
+            "observedTransitionCount": 146,
+            "noNewObservedRules": true
+          },
+          "sourceCertificate": "../selected/certificates.json",
+          "sourceCertificateSha256": "4c1dd5f9ba7060acae53ae9cd67150a43b987af69df5d316eb04c7d6f3e2bc7d"
+        }
+      },
+      "download": "worlds/entry-043.json",
+      "rows": [
+        "WWWWWWGGGGGGGGBWWWWWWWWWWWWWWWWWWWWWWWWWWWWWBBRWBBRBRWWWWWWW",
+        "WWWWWWRGGGGBRRBBWWWWWWWWWWWWWWWWWWWWWWWWWWWWGBBRGGRRRWWWWWWW",
+        "WWWWWWGGGGBBGRRBBWWWWWWWWWWWWWWWWWWWWWWWWWBBBBRRBBRRWWWWWWWW",
+        "WWWWWWRGGBBGGGGBBBWWWWWWWWWWWWWWWWWWWWWWWBGGGGRBBRRWWWWWWWWW",
+        "WWWWWWWRRBGGBRRBBBWWWWWWWWWWWWWWWWWWWWWWBBRGGGGGGRWWWWWWWWWW",
+        "WWWWWWWWWWRRBGGBBWWWWWWWWWWWWWWWWWWWWWWWGGRWWBBRRWWWWWWWWWWW",
+        "WWWWWWWWWWWWWRRBWWWWWWWWWWWWWWWWWWWWWWWWWWWWWGGRWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 146,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "2b87de754529dca55f884f1a3012852c8407f6f033631ffbc290c2e0f10a2002"
+    },
+    {
+      "key": "entry-044",
+      "name": "Arch and bridge / Stepped arch",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBRRB",
+              "G"
+            ],
+            [
+              "BBBRRBB",
+              "R"
+            ],
+            [
+              "BBBWWWW",
+              "W"
+            ],
+            [
+              "BBGGGGB",
+              "B"
+            ],
+            [
+              "BBGRRBB",
+              "G"
+            ],
+            [
+              "BBRBRWW",
+              "R"
+            ],
+            [
+              "BBRGGGG",
+              "W"
+            ],
+            [
+              "BBRGGRR",
+              "B"
+            ],
+            [
+              "BBRRBBR",
+              "B"
+            ],
+            [
+              "BBRRWWW",
+              "W"
+            ],
+            [
+              "BBRWBBR",
+              "R"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGGBBWW",
+              "B"
+            ],
+            [
+              "BGGBRRB",
+              "B"
+            ],
+            [
+              "BGGGGBB",
+              "R"
+            ],
+            [
+              "BGGGGRB",
+              "G"
+            ],
+            [
+              "BGRRBBW",
+              "G"
+            ],
+            [
+              "BRBRWWW",
+              "R"
+            ],
+            [
+              "BRGGGGG",
+              "W"
+            ],
+            [
+              "BRGGRRR",
+              "B"
+            ],
+            [
+              "BRRBBBW",
+              "B"
+            ],
+            [
+              "BRRBBRR",
+              "B"
+            ],
+            [
+              "BRRBBWW",
+              "R"
+            ],
+            [
+              "BRRWWWW",
+              "W"
+            ],
+            [
+              "BRWBBRB",
+              "G"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBWWW",
+              "B"
+            ],
+            [
+              "GBBGGGG",
+              "G"
+            ],
+            [
+              "GBBGRRB",
+              "G"
+            ],
+            [
+              "GBBRGGR",
+              "R"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GBRRBBB",
+              "G"
+            ],
+            [
+              "GBRRBBW",
+              "R"
+            ],
+            [
+              "GBWWWWW",
+              "W"
+            ],
+            [
+              "GGBBBWW",
+              "B"
+            ],
+            [
+              "GGBBGGG",
+              "G"
+            ],
+            [
+              "GGBBGRR",
+              "G"
+            ],
+            [
+              "GGBBWWW",
+              "W"
+            ],
+            [
+              "GGBRRBB",
+              "G"
+            ],
+            [
+              "GGBWWWW",
+              "B"
+            ],
+            [
+              "GGGBBBW",
+              "B"
+            ],
+            [
+              "GGGBBGR",
+              "B"
+            ],
+            [
+              "GGGBRRB",
+              "B"
+            ],
+            [
+              "GGGBWWW",
+              "B"
+            ],
+            [
+              "GGGGBBB",
+              "R"
+            ],
+            [
+              "GGGGBBG",
+              "B"
+            ],
+            [
+              "GGGGBRR",
+              "B"
+            ],
+            [
+              "GGGGBWW",
+              "R"
+            ],
+            [
+              "GGGGGBW",
+              "R"
+            ],
+            [
+              "GGGGGGB",
+              "B"
+            ],
+            [
+              "GGGGGGG",
+              "G"
+            ],
+            [
+              "GGGGGGR",
+              "B"
+            ],
+            [
+              "GGGGGRW",
+              "R"
+            ],
+            [
+              "GGGGRBB",
+              "G"
+            ],
+            [
+              "GGGGRWW",
+              "R"
+            ],
+            [
+              "GGGRBBR",
+              "G"
+            ],
+            [
+              "GGGRWWW",
+              "W"
+            ],
+            [
+              "GGRBBRR",
+              "G"
+            ],
+            [
+              "GGRRRWW",
+              "R"
+            ],
+            [
+              "GGRWWBB",
+              "W"
+            ],
+            [
+              "GGRWWWW",
+              "W"
+            ],
+            [
+              "GRBBRRW",
+              "G"
+            ],
+            [
+              "GRRBBWW",
+              "B"
+            ],
+            [
+              "GRRRWWW",
+              "W"
+            ],
+            [
+              "GRWWBBR",
+              "W"
+            ],
+            [
+              "GRWWWWW",
+              "W"
+            ],
+            [
+              "RBBBWWW",
+              "W"
+            ],
+            [
+              "RBBRRWW",
+              "R"
+            ],
+            [
+              "RBBWWWW",
+              "B"
+            ],
+            [
+              "RBGGBBW",
+              "R"
+            ],
+            [
+              "RBGGBRR",
+              "R"
+            ],
+            [
+              "RBRWWWW",
+              "W"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGGBBGG",
+              "B"
+            ],
+            [
+              "RGGGGBR",
+              "G"
+            ],
+            [
+              "RGGGGGG",
+              "B"
+            ],
+            [
+              "RGGRRRW",
+              "R"
+            ],
+            [
+              "RRBBBWW",
+              "B"
+            ],
+            [
+              "RRBBRRW",
+              "R"
+            ],
+            [
+              "RRBBWWW",
+              "B"
+            ],
+            [
+              "RRBGGBB",
+              "R"
+            ],
+            [
+              "RRBGGBR",
+              "R"
+            ],
+            [
+              "RRBWWWW",
+              "W"
+            ],
+            [
+              "RRRWWWW",
+              "W"
+            ],
+            [
+              "RRWWWWW",
+              "W"
+            ],
+            [
+              "RWBBRBR",
+              "G"
+            ],
+            [
+              "RWWBBRR",
+              "G"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WBBBBRR",
+              "G"
+            ],
+            [
+              "WBBRBRW",
+              "R"
+            ],
+            [
+              "WBBRGGG",
+              "R"
+            ],
+            [
+              "WBBRRWW",
+              "R"
+            ],
+            [
+              "WBBRWBB",
+              "B"
+            ],
+            [
+              "WBGGGGR",
+              "G"
+            ],
+            [
+              "WGBBRGG",
+              "R"
+            ],
+            [
+              "WGGGGBB",
+              "G"
+            ],
+            [
+              "WGGGGGG",
+              "G"
+            ],
+            [
+              "WGGRWWB",
+              "W"
+            ],
+            [
+              "WGGRWWW",
+              "W"
+            ],
+            [
+              "WRGGBBG",
+              "R"
+            ],
+            [
+              "WRGGGGB",
+              "G"
+            ],
+            [
+              "WRRBGGB",
+              "W"
+            ],
+            [
+              "WRRBWWW",
+              "W"
+            ],
+            [
+              "WWBBBBR",
+              "G"
+            ],
+            [
+              "WWBBRGG",
+              "G"
+            ],
+            [
+              "WWBBRRW",
+              "G"
+            ],
+            [
+              "WWBBRWB",
+              "B"
+            ],
+            [
+              "WWBGGGG",
+              "R"
+            ],
+            [
+              "WWGBBRG",
+              "B"
+            ],
+            [
+              "WWGGGGB",
+              "G"
+            ],
+            [
+              "WWGGGGG",
+              "G"
+            ],
+            [
+              "WWGGRWW",
+              "W"
+            ],
+            [
+              "WWRGGBB",
+              "R"
+            ],
+            [
+              "WWRGGGG",
+              "G"
+            ],
+            [
+              "WWRRBGG",
+              "W"
+            ],
+            [
+              "WWRRBWW",
+              "W"
+            ],
+            [
+              "WWWBBBB",
+              "G"
+            ],
+            [
+              "WWWBBRG",
+              "G"
+            ],
+            [
+              "WWWBBRW",
+              "G"
+            ],
+            [
+              "WWWBGGG",
+              "B"
+            ],
+            [
+              "WWWGBBR",
+              "B"
+            ],
+            [
+              "WWWGGGG",
+              "R"
+            ],
+            [
+              "WWWGGRW",
+              "W"
+            ],
+            [
+              "WWWRGGB",
+              "W"
+            ],
+            [
+              "WWWRGGG",
+              "G"
+            ],
+            [
+              "WWWRRBG",
+              "W"
+            ],
+            [
+              "WWWRRBW",
+              "W"
+            ],
+            [
+              "WWWWBBB",
+              "B"
+            ],
+            [
+              "WWWWBBR",
+              "W"
+            ],
+            [
+              "WWWWBGG",
+              "B"
+            ],
+            [
+              "WWWWGBB",
+              "B"
+            ],
+            [
+              "WWWWGGG",
+              "W"
+            ],
+            [
+              "WWWWGGR",
+              "W"
+            ],
+            [
+              "WWWWRGG",
+              "W"
+            ],
+            [
+              "WWWWRRB",
+              "W"
+            ],
+            [
+              "WWWWWBB",
+              "W"
+            ],
+            [
+              "WWWWWBG",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "B"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWRG",
+              "W"
+            ],
+            [
+              "WWWWWRR",
+              "W"
+            ],
+            [
+              "WWWWWWB",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWR",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWGGGGGGGGBWWWWWWWWWW",
+          "width": 25,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "1ea3e84b15373783649edab4b9a8cb2c035d60b2d4d3e8dbc9c529b4ac5f1455",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "37f5334b9a271f280a3f776e563bba8ed709511e894a59a33200a3ab2133739d",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "1ea3e84b15373783649edab4b9a8cb2c035d60b2d4d3e8dbc9c529b4ac5f1455",
+          "geometry": "37f5334b9a271f280a3f776e563bba8ed709511e894a59a33200a3ab2133739d",
+          "appearance": "3029a64fa72007420cc0e4eca4ca73db04fa8fcb6bdf26d45359ce962b51dd67",
+          "observation": "2b4ac541a169c3a52ac209c18fab60829c0b4070686bc441342480d27ff5504b"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "3029a64fa72007420cc0e4eca4ca73db04fa8fcb6bdf26d45359ce962b51dd67",
+          "firstGeneration": 0,
+          "rowCount": 9,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "6191147186a79d9598111ab8c556f60b6941f931f065db815cc2d26ae295362e"
+        },
+        "metadata": {
+          "name": "Arch and bridge / Stepped arch",
+          "ruleFamily": "Arch and bridge",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                3,
+                0
+              ],
+              [
+                1,
+                3,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                3,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                3,
+                1,
+                1
+              ],
+              [
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                2,
+                0
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                2,
+                2
+              ],
+              [
+                3,
+                2,
+                3
+              ],
+              [
+                3,
+                3,
+                0
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 4
+          },
+          "verification": {
+            "literalAndNumpyReplay128Agree": true,
+            "exactRows": true,
+            "noDiagnosticCells": true,
+            "firstWhiteGeneration": 7,
+            "terminalWhiteForever": true,
+            "quiescentBackgroundRule": true,
+            "minimumWhiteSideband": 3,
+            "observedTransitionCount": 74,
+            "noNewObservedRules": true
+          }
+        }
+      },
+      "download": "worlds/entry-044.json",
+      "rows": [
+        "WWWWWWGGGGGGGGBWWWWWWWWWW",
+        "WWWWWWRGGGGBRRBBWWWWWWWWW",
+        "WWWWWWGGGGBBGRRBBWWWWWWWW",
+        "WWWWWWRGGBBGGGGBBBWWWWWWW",
+        "WWWWWWWRRBGGBRRBBBWWWWWWW",
+        "WWWWWWWWWWRRBGGBBWWWWWWWW",
+        "WWWWWWWWWWWWWRRBWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 146,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "2b87de754529dca55f884f1a3012852c8407f6f033631ffbc290c2e0f10a2002"
+    },
+    {
+      "key": "entry-045",
+      "name": "Arch and bridge / Split bridge",
+      "status": "artist-selected",
+      "world": {
+        "schema": "ca-world-v1",
+        "dynamics": {
+          "schema": "ca-dynamics-v1",
+          "states": [
+            "W",
+            "R",
+            "G",
+            "B"
+          ],
+          "diagnostic": "K",
+          "offsets": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "rules": [
+            [
+              "BBBBRRB",
+              "G"
+            ],
+            [
+              "BBBRRBB",
+              "R"
+            ],
+            [
+              "BBBWWWW",
+              "W"
+            ],
+            [
+              "BBGGGGB",
+              "B"
+            ],
+            [
+              "BBGRRBB",
+              "G"
+            ],
+            [
+              "BBRBRWW",
+              "R"
+            ],
+            [
+              "BBRGGGG",
+              "W"
+            ],
+            [
+              "BBRGGRR",
+              "B"
+            ],
+            [
+              "BBRRBBR",
+              "B"
+            ],
+            [
+              "BBRRWWW",
+              "W"
+            ],
+            [
+              "BBRWBBR",
+              "R"
+            ],
+            [
+              "BBWWWWW",
+              "W"
+            ],
+            [
+              "BGGBBWW",
+              "B"
+            ],
+            [
+              "BGGBRRB",
+              "B"
+            ],
+            [
+              "BGGGGBB",
+              "R"
+            ],
+            [
+              "BGGGGRB",
+              "G"
+            ],
+            [
+              "BGRRBBW",
+              "G"
+            ],
+            [
+              "BRBRWWW",
+              "R"
+            ],
+            [
+              "BRGGGGG",
+              "W"
+            ],
+            [
+              "BRGGRRR",
+              "B"
+            ],
+            [
+              "BRRBBBW",
+              "B"
+            ],
+            [
+              "BRRBBRR",
+              "B"
+            ],
+            [
+              "BRRBBWW",
+              "R"
+            ],
+            [
+              "BRRWWWW",
+              "W"
+            ],
+            [
+              "BRWBBRB",
+              "G"
+            ],
+            [
+              "BRWWWWW",
+              "W"
+            ],
+            [
+              "BWWWWWW",
+              "W"
+            ],
+            [
+              "GBBBWWW",
+              "B"
+            ],
+            [
+              "GBBGGGG",
+              "G"
+            ],
+            [
+              "GBBGRRB",
+              "G"
+            ],
+            [
+              "GBBRGGR",
+              "R"
+            ],
+            [
+              "GBBWWWW",
+              "W"
+            ],
+            [
+              "GBRRBBB",
+              "G"
+            ],
+            [
+              "GBRRBBW",
+              "R"
+            ],
+            [
+              "GBWWWWW",
+              "W"
+            ],
+            [
+              "GGBBBWW",
+              "B"
+            ],
+            [
+              "GGBBGGG",
+              "G"
+            ],
+            [
+              "GGBBGRR",
+              "G"
+            ],
+            [
+              "GGBBWWW",
+              "W"
+            ],
+            [
+              "GGBRRBB",
+              "G"
+            ],
+            [
+              "GGBWWWW",
+              "B"
+            ],
+            [
+              "GGGBBBW",
+              "B"
+            ],
+            [
+              "GGGBBGR",
+              "B"
+            ],
+            [
+              "GGGBRRB",
+              "B"
+            ],
+            [
+              "GGGBWWW",
+              "B"
+            ],
+            [
+              "GGGGBBB",
+              "R"
+            ],
+            [
+              "GGGGBBG",
+              "B"
+            ],
+            [
+              "GGGGBRR",
+              "B"
+            ],
+            [
+              "GGGGBWW",
+              "R"
+            ],
+            [
+              "GGGGGBW",
+              "R"
+            ],
+            [
+              "GGGGGGB",
+              "B"
+            ],
+            [
+              "GGGGGGG",
+              "G"
+            ],
+            [
+              "GGGGGGR",
+              "B"
+            ],
+            [
+              "GGGGGRW",
+              "R"
+            ],
+            [
+              "GGGGRBB",
+              "G"
+            ],
+            [
+              "GGGGRWW",
+              "R"
+            ],
+            [
+              "GGGRBBR",
+              "G"
+            ],
+            [
+              "GGGRWWW",
+              "W"
+            ],
+            [
+              "GGRBBRR",
+              "G"
+            ],
+            [
+              "GGRRRWW",
+              "R"
+            ],
+            [
+              "GGRWWBB",
+              "W"
+            ],
+            [
+              "GGRWWWW",
+              "W"
+            ],
+            [
+              "GRBBRRW",
+              "G"
+            ],
+            [
+              "GRRBBWW",
+              "B"
+            ],
+            [
+              "GRRRWWW",
+              "W"
+            ],
+            [
+              "GRWWBBR",
+              "W"
+            ],
+            [
+              "GRWWWWW",
+              "W"
+            ],
+            [
+              "RBBBWWW",
+              "W"
+            ],
+            [
+              "RBBRRWW",
+              "R"
+            ],
+            [
+              "RBBWWWW",
+              "B"
+            ],
+            [
+              "RBGGBBW",
+              "R"
+            ],
+            [
+              "RBGGBRR",
+              "R"
+            ],
+            [
+              "RBRWWWW",
+              "W"
+            ],
+            [
+              "RBWWWWW",
+              "W"
+            ],
+            [
+              "RGGBBGG",
+              "B"
+            ],
+            [
+              "RGGGGBR",
+              "G"
+            ],
+            [
+              "RGGGGGG",
+              "B"
+            ],
+            [
+              "RGGRRRW",
+              "R"
+            ],
+            [
+              "RRBBBWW",
+              "B"
+            ],
+            [
+              "RRBBRRW",
+              "R"
+            ],
+            [
+              "RRBBWWW",
+              "B"
+            ],
+            [
+              "RRBGGBB",
+              "R"
+            ],
+            [
+              "RRBGGBR",
+              "R"
+            ],
+            [
+              "RRBWWWW",
+              "W"
+            ],
+            [
+              "RRRWWWW",
+              "W"
+            ],
+            [
+              "RRWWWWW",
+              "W"
+            ],
+            [
+              "RWBBRBR",
+              "G"
+            ],
+            [
+              "RWWBBRR",
+              "G"
+            ],
+            [
+              "RWWWWWW",
+              "W"
+            ],
+            [
+              "WBBBBRR",
+              "G"
+            ],
+            [
+              "WBBRBRW",
+              "R"
+            ],
+            [
+              "WBBRGGG",
+              "R"
+            ],
+            [
+              "WBBRRWW",
+              "R"
+            ],
+            [
+              "WBBRWBB",
+              "B"
+            ],
+            [
+              "WBGGGGR",
+              "G"
+            ],
+            [
+              "WGBBRGG",
+              "R"
+            ],
+            [
+              "WGGGGBB",
+              "G"
+            ],
+            [
+              "WGGGGGG",
+              "G"
+            ],
+            [
+              "WGGRWWB",
+              "W"
+            ],
+            [
+              "WGGRWWW",
+              "W"
+            ],
+            [
+              "WRGGBBG",
+              "R"
+            ],
+            [
+              "WRGGGGB",
+              "G"
+            ],
+            [
+              "WRRBGGB",
+              "W"
+            ],
+            [
+              "WRRBWWW",
+              "W"
+            ],
+            [
+              "WWBBBBR",
+              "G"
+            ],
+            [
+              "WWBBRGG",
+              "G"
+            ],
+            [
+              "WWBBRRW",
+              "G"
+            ],
+            [
+              "WWBBRWB",
+              "B"
+            ],
+            [
+              "WWBGGGG",
+              "R"
+            ],
+            [
+              "WWGBBRG",
+              "B"
+            ],
+            [
+              "WWGGGGB",
+              "G"
+            ],
+            [
+              "WWGGGGG",
+              "G"
+            ],
+            [
+              "WWGGRWW",
+              "W"
+            ],
+            [
+              "WWRGGBB",
+              "R"
+            ],
+            [
+              "WWRGGGG",
+              "G"
+            ],
+            [
+              "WWRRBGG",
+              "W"
+            ],
+            [
+              "WWRRBWW",
+              "W"
+            ],
+            [
+              "WWWBBBB",
+              "G"
+            ],
+            [
+              "WWWBBRG",
+              "G"
+            ],
+            [
+              "WWWBBRW",
+              "G"
+            ],
+            [
+              "WWWBGGG",
+              "B"
+            ],
+            [
+              "WWWGBBR",
+              "B"
+            ],
+            [
+              "WWWGGGG",
+              "R"
+            ],
+            [
+              "WWWGGRW",
+              "W"
+            ],
+            [
+              "WWWRGGB",
+              "W"
+            ],
+            [
+              "WWWRGGG",
+              "G"
+            ],
+            [
+              "WWWRRBG",
+              "W"
+            ],
+            [
+              "WWWRRBW",
+              "W"
+            ],
+            [
+              "WWWWBBB",
+              "B"
+            ],
+            [
+              "WWWWBBR",
+              "W"
+            ],
+            [
+              "WWWWBGG",
+              "B"
+            ],
+            [
+              "WWWWGBB",
+              "B"
+            ],
+            [
+              "WWWWGGG",
+              "W"
+            ],
+            [
+              "WWWWGGR",
+              "W"
+            ],
+            [
+              "WWWWRGG",
+              "W"
+            ],
+            [
+              "WWWWRRB",
+              "W"
+            ],
+            [
+              "WWWWWBB",
+              "W"
+            ],
+            [
+              "WWWWWBG",
+              "W"
+            ],
+            [
+              "WWWWWGB",
+              "B"
+            ],
+            [
+              "WWWWWGG",
+              "W"
+            ],
+            [
+              "WWWWWRG",
+              "W"
+            ],
+            [
+              "WWWWWRR",
+              "W"
+            ],
+            [
+              "WWWWWWB",
+              "W"
+            ],
+            [
+              "WWWWWWG",
+              "W"
+            ],
+            [
+              "WWWWWWR",
+              "W"
+            ],
+            [
+              "WWWWWWW",
+              "W"
+            ]
+          ],
+          "seed": "WWWWWWWWWWBBRWBBRBRWWWWWWW",
+          "width": 26,
+          "boundary": "fixed-W",
+          "update": "synchronous",
+          "missing": "output-K",
+          "diagnosticPropagation": "output-K"
+        },
+        "geometry": {
+          "schema": "ca-geometry-v1",
+          "dynamicsId": "bf866cf25dbf8bd5fee15227e5ed2088bfe3ddb65c6bde11f54c9a2cef7c4a56",
+          "tessellation": "triangular-strip",
+          "phase": 0,
+          "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+          "horizontalUnit": 10,
+          "verticalUnit": 17,
+          "seam": "unjoined-planar-view"
+        },
+        "appearance": {
+          "schema": "ca-appearance-v1",
+          "geometryId": "65ba1bfc947e407afe1373e41a865c36f341dc71e7f940e6e8e1667e68a6fa7f",
+          "colorSpace": "srgb",
+          "palette": {
+            "W": "#ffffffff",
+            "R": "#eaa27aff",
+            "G": "#537de3ff",
+            "B": "#f9d974ff",
+            "K": "#ee0055ff"
+          },
+          "canvasBackground": "#ffffffff",
+          "borders": "different-state-and-support-boundary",
+          "borderColor": "#000000ff",
+          "borderWidth": 1
+        },
+        "ids": {
+          "dynamics": "bf866cf25dbf8bd5fee15227e5ed2088bfe3ddb65c6bde11f54c9a2cef7c4a56",
+          "geometry": "65ba1bfc947e407afe1373e41a865c36f341dc71e7f940e6e8e1667e68a6fa7f",
+          "appearance": "9962e0bc28a6b864ffe230b498cf50326b890a4aa9e3022387b033344edccabd",
+          "observation": "0ec5b9d46809db4ca79ed9e82fc21f7fd8154096e1feec3bbc2be5cbd83172da"
+        },
+        "observation": {
+          "schema": "ca-observation-v1",
+          "appearanceId": "9962e0bc28a6b864ffe230b498cf50326b890a4aa9e3022387b033344edccabd",
+          "firstGeneration": 0,
+          "rowCount": 9,
+          "renderer": "catalogue-canvas-v1",
+          "crop": "full-domain",
+          "gridSha256": "442a389853e26bf7b0660b5c6af15d04daa69d2928117d99a4ac3c5b820316ac"
+        },
+        "metadata": {
+          "name": "Arch and bridge / Split bridge",
+          "ruleFamily": "Arch and bridge",
+          "status": "artist-selected",
+          "geometricModel": {
+            "voxels": [
+              [
+                0,
+                1,
+                3
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                3
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                3
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                3,
+                0,
+                2
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                3,
+                1,
+                1
+              ],
+              [
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                1,
+                3
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                2,
+                2
+              ],
+              [
+                4,
+                0,
+                2
+              ],
+              [
+                4,
+                1,
+                0
+              ]
+            ],
+            "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+            "turn": 2
+          },
+          "verification": {
+            "literalAndNumpyReplay128Agree": true,
+            "exactRows": true,
+            "noDiagnosticCells": true,
+            "firstWhiteGeneration": 7,
+            "terminalWhiteForever": true,
+            "quiescentBackgroundRule": true,
+            "minimumWhiteSideband": 3,
+            "observedTransitionCount": 75,
+            "noNewObservedRules": true
+          }
+        }
+      },
+      "download": "worlds/entry-045.json",
+      "rows": [
+        "WWWWWWWWWWBBRWBBRBRWWWWWWW",
+        "WWWWWWWWWWGBBRGGRRRWWWWWWW",
+        "WWWWWWWWBBBBRRBBRRWWWWWWWW",
+        "WWWWWWWBGGGGRBBRRWWWWWWWWW",
+        "WWWWWWBBRGGGGGGRWWWWWWWWWW",
+        "WWWWWWGGRWWBBRRWWWWWWWWWWW",
+        "WWWWWWWWWWWGGRWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "WWWWWWWWWWWWWWWWWWWWWWWWWW"
+      ],
+      "ruleCount": 146,
+      "diagnostics": 0,
+      "seamWarning": false,
+      "ruleFamilyId": "2b87de754529dca55f884f1a3012852c8407f6f033631ffbc290c2e0f10a2002"
     }
   ],
   "assets": []

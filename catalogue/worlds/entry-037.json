@@ -1,0 +1,509 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBWWWW",
+        "W"
+      ],
+      [
+        "BBGGGGB",
+        "B"
+      ],
+      [
+        "BBGRRBB",
+        "G"
+      ],
+      [
+        "BBWWWWW",
+        "W"
+      ],
+      [
+        "BGGBBWW",
+        "B"
+      ],
+      [
+        "BGGBRRB",
+        "B"
+      ],
+      [
+        "BGGGGBB",
+        "R"
+      ],
+      [
+        "BGRRBBW",
+        "G"
+      ],
+      [
+        "BRRBBBW",
+        "B"
+      ],
+      [
+        "BRRBBWW",
+        "R"
+      ],
+      [
+        "BWWWWWW",
+        "W"
+      ],
+      [
+        "GBBBWWW",
+        "B"
+      ],
+      [
+        "GBBGGGG",
+        "G"
+      ],
+      [
+        "GBBGRRB",
+        "G"
+      ],
+      [
+        "GBBWWWW",
+        "W"
+      ],
+      [
+        "GBRRBBB",
+        "G"
+      ],
+      [
+        "GBRRBBW",
+        "R"
+      ],
+      [
+        "GBWWWWW",
+        "W"
+      ],
+      [
+        "GGBBBWW",
+        "B"
+      ],
+      [
+        "GGBBGGG",
+        "G"
+      ],
+      [
+        "GGBBGRR",
+        "G"
+      ],
+      [
+        "GGBBWWW",
+        "W"
+      ],
+      [
+        "GGBRRBB",
+        "G"
+      ],
+      [
+        "GGBWWWW",
+        "B"
+      ],
+      [
+        "GGGBBBW",
+        "B"
+      ],
+      [
+        "GGGBBGR",
+        "B"
+      ],
+      [
+        "GGGBRRB",
+        "B"
+      ],
+      [
+        "GGGBWWW",
+        "B"
+      ],
+      [
+        "GGGGBBB",
+        "R"
+      ],
+      [
+        "GGGGBBG",
+        "B"
+      ],
+      [
+        "GGGGBRR",
+        "B"
+      ],
+      [
+        "GGGGBWW",
+        "R"
+      ],
+      [
+        "GGGGGBW",
+        "R"
+      ],
+      [
+        "GGGGGGB",
+        "B"
+      ],
+      [
+        "GGGGGGG",
+        "G"
+      ],
+      [
+        "GRRBBWW",
+        "B"
+      ],
+      [
+        "RBBBWWW",
+        "W"
+      ],
+      [
+        "RBBWWWW",
+        "B"
+      ],
+      [
+        "RBGGBBW",
+        "R"
+      ],
+      [
+        "RBGGBRR",
+        "R"
+      ],
+      [
+        "RBWWWWW",
+        "W"
+      ],
+      [
+        "RGGBBGG",
+        "B"
+      ],
+      [
+        "RGGGGBR",
+        "G"
+      ],
+      [
+        "RRBBBWW",
+        "B"
+      ],
+      [
+        "RRBBWWW",
+        "B"
+      ],
+      [
+        "RRBGGBB",
+        "R"
+      ],
+      [
+        "RRBGGBR",
+        "R"
+      ],
+      [
+        "RRBWWWW",
+        "W"
+      ],
+      [
+        "WGGGGBB",
+        "G"
+      ],
+      [
+        "WGGGGGG",
+        "G"
+      ],
+      [
+        "WRGGBBG",
+        "R"
+      ],
+      [
+        "WRGGGGB",
+        "G"
+      ],
+      [
+        "WRRBGGB",
+        "W"
+      ],
+      [
+        "WRRBWWW",
+        "W"
+      ],
+      [
+        "WWGGGGB",
+        "G"
+      ],
+      [
+        "WWGGGGG",
+        "G"
+      ],
+      [
+        "WWRGGBB",
+        "R"
+      ],
+      [
+        "WWRGGGG",
+        "G"
+      ],
+      [
+        "WWRRBGG",
+        "W"
+      ],
+      [
+        "WWRRBWW",
+        "W"
+      ],
+      [
+        "WWWGGGG",
+        "R"
+      ],
+      [
+        "WWWRGGB",
+        "W"
+      ],
+      [
+        "WWWRGGG",
+        "G"
+      ],
+      [
+        "WWWRRBG",
+        "W"
+      ],
+      [
+        "WWWRRBW",
+        "W"
+      ],
+      [
+        "WWWWGGG",
+        "W"
+      ],
+      [
+        "WWWWRGG",
+        "W"
+      ],
+      [
+        "WWWWRRB",
+        "W"
+      ],
+      [
+        "WWWWWGG",
+        "W"
+      ],
+      [
+        "WWWWWRG",
+        "W"
+      ],
+      [
+        "WWWWWRR",
+        "W"
+      ],
+      [
+        "WWWWWWG",
+        "W"
+      ],
+      [
+        "WWWWWWR",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWGGGGGGGGBWWWWWWWWWW",
+    "width": 25,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "deed538d6e43aa9a3ed44635974e3c84846cac0931581d523434d4c348b925e5",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "38b041fcbeb37b9290bafd49f1394a770b63786e3a626e0a995401ce44f56fb2",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#eaa27aff",
+      "G": "#537de3ff",
+      "B": "#f9d974ff",
+      "K": "#ee0055ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "deed538d6e43aa9a3ed44635974e3c84846cac0931581d523434d4c348b925e5",
+    "geometry": "38b041fcbeb37b9290bafd49f1394a770b63786e3a626e0a995401ce44f56fb2",
+    "appearance": "b824bd498d192866a96f0fbc90ad94d1170f2741b766ce41cd8424b3d03b0f7a",
+    "observation": "e4522b81ce10a1296ce1643722049564677ff0e963c956367be8f01bb901856c"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "b824bd498d192866a96f0fbc90ad94d1170f2741b766ce41cd8424b3d03b0f7a",
+    "firstGeneration": 0,
+    "rowCount": 9,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "6191147186a79d9598111ab8c556f60b6941f931f065db815cc2d26ae295362e"
+  },
+  "metadata": {
+    "name": "Stepped arch",
+    "status": "artist-selected",
+    "geometricModel": {
+      "voxels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          1,
+          2,
+          2
+        ],
+        [
+          1,
+          3,
+          0
+        ],
+        [
+          1,
+          3,
+          1
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          3,
+          1,
+          1
+        ],
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          3,
+          2,
+          1
+        ],
+        [
+          3,
+          2,
+          2
+        ],
+        [
+          3,
+          2,
+          3
+        ],
+        [
+          3,
+          3,
+          0
+        ]
+      ],
+      "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+      "turn": 4
+    },
+    "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+    "ruleFamily": "Stepped arch"
+  }
+}

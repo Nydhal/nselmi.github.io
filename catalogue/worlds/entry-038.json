@@ -1,0 +1,467 @@
+{
+  "schema": "ca-world-v1",
+  "dynamics": {
+    "schema": "ca-dynamics-v1",
+    "states": [
+      "W",
+      "R",
+      "G",
+      "B"
+    ],
+    "diagnostic": "K",
+    "offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "rules": [
+      [
+        "BBBBBRW",
+        "G"
+      ],
+      [
+        "BBBBRBB",
+        "R"
+      ],
+      [
+        "BBBBRWW",
+        "G"
+      ],
+      [
+        "BBBRBBB",
+        "R"
+      ],
+      [
+        "BBBRRBB",
+        "R"
+      ],
+      [
+        "BBBRWWW",
+        "R"
+      ],
+      [
+        "BBRBBBB",
+        "B"
+      ],
+      [
+        "BBRBBBR",
+        "R"
+      ],
+      [
+        "BBRGGRW",
+        "W"
+      ],
+      [
+        "BBRRBBR",
+        "R"
+      ],
+      [
+        "BBRRRGG",
+        "G"
+      ],
+      [
+        "BBRWBBB",
+        "R"
+      ],
+      [
+        "BBRWWWW",
+        "W"
+      ],
+      [
+        "BRBBBBB",
+        "B"
+      ],
+      [
+        "BRBBBRR",
+        "G"
+      ],
+      [
+        "BRGGRWW",
+        "W"
+      ],
+      [
+        "BRRBBRG",
+        "G"
+      ],
+      [
+        "BRRRGGR",
+        "R"
+      ],
+      [
+        "BRWBBBB",
+        "B"
+      ],
+      [
+        "BRWWWWW",
+        "W"
+      ],
+      [
+        "GBBRRRG",
+        "R"
+      ],
+      [
+        "GGGGGGR",
+        "W"
+      ],
+      [
+        "GGGGGRW",
+        "W"
+      ],
+      [
+        "GGGGRWW",
+        "W"
+      ],
+      [
+        "GGGRWWW",
+        "W"
+      ],
+      [
+        "GGRGRBB",
+        "G"
+      ],
+      [
+        "GGRRGGR",
+        "B"
+      ],
+      [
+        "GGRWWWW",
+        "W"
+      ],
+      [
+        "GRBBBBR",
+        "G"
+      ],
+      [
+        "GRGRBBB",
+        "G"
+      ],
+      [
+        "GRRGGRW",
+        "R"
+      ],
+      [
+        "GRWWWWW",
+        "W"
+      ],
+      [
+        "RBBBBBR",
+        "R"
+      ],
+      [
+        "RBBBBRW",
+        "G"
+      ],
+      [
+        "RBBBRRB",
+        "G"
+      ],
+      [
+        "RBBRGGR",
+        "R"
+      ],
+      [
+        "RGGRRGG",
+        "B"
+      ],
+      [
+        "RGGRWWW",
+        "W"
+      ],
+      [
+        "RGRBBBB",
+        "G"
+      ],
+      [
+        "RRBBRGG",
+        "G"
+      ],
+      [
+        "RRGGRRG",
+        "B"
+      ],
+      [
+        "RRGGRWW",
+        "W"
+      ],
+      [
+        "RRRGGRR",
+        "B"
+      ],
+      [
+        "RWBBBBR",
+        "B"
+      ],
+      [
+        "RWWWWWW",
+        "W"
+      ],
+      [
+        "WBBBBRB",
+        "B"
+      ],
+      [
+        "WBBRWBB",
+        "B"
+      ],
+      [
+        "WGBBRRR",
+        "G"
+      ],
+      [
+        "WGGGGGG",
+        "W"
+      ],
+      [
+        "WGGRGRB",
+        "W"
+      ],
+      [
+        "WWBBBBR",
+        "B"
+      ],
+      [
+        "WWBBRWB",
+        "B"
+      ],
+      [
+        "WWGBBRR",
+        "G"
+      ],
+      [
+        "WWGGGGG",
+        "W"
+      ],
+      [
+        "WWGGRGR",
+        "W"
+      ],
+      [
+        "WWWBBBB",
+        "G"
+      ],
+      [
+        "WWWBBRW",
+        "B"
+      ],
+      [
+        "WWWGBBR",
+        "W"
+      ],
+      [
+        "WWWGGGG",
+        "W"
+      ],
+      [
+        "WWWGGRG",
+        "W"
+      ],
+      [
+        "WWWWBBB",
+        "W"
+      ],
+      [
+        "WWWWBBR",
+        "B"
+      ],
+      [
+        "WWWWGBB",
+        "W"
+      ],
+      [
+        "WWWWGGG",
+        "W"
+      ],
+      [
+        "WWWWGGR",
+        "W"
+      ],
+      [
+        "WWWWWBB",
+        "W"
+      ],
+      [
+        "WWWWWGB",
+        "W"
+      ],
+      [
+        "WWWWWGG",
+        "W"
+      ],
+      [
+        "WWWWWWB",
+        "W"
+      ],
+      [
+        "WWWWWWG",
+        "W"
+      ],
+      [
+        "WWWWWWW",
+        "W"
+      ]
+    ],
+    "seed": "WWWWWWWWBBRWBBBBRBBBBBRWWWWWWW",
+    "width": 30,
+    "boundary": "fixed-W",
+    "update": "synchronous",
+    "missing": "output-K",
+    "diagnosticPropagation": "output-K"
+  },
+  "geometry": {
+    "schema": "ca-geometry-v1",
+    "dynamicsId": "a9fb963153ad06eb080475156334a4e0dfefa0ad30e9d5b97ddb53da5db8e67e",
+    "tessellation": "triangular-strip",
+    "phase": 0,
+    "coordinates": "even: (c,r+1),(c+1,r),(c+2,r+1); odd: (c,r),(c+1,r+1),(c+2,r)",
+    "horizontalUnit": 10,
+    "verticalUnit": 17,
+    "seam": "unjoined-planar-view"
+  },
+  "appearance": {
+    "schema": "ca-appearance-v1",
+    "geometryId": "97b9cc8bfae4214c654b6c21f27a555392d4c0bd373b7786ca97c80c2978f0f3",
+    "colorSpace": "srgb",
+    "palette": {
+      "W": "#ffffffff",
+      "R": "#eaa27aff",
+      "G": "#537de3ff",
+      "B": "#f9d974ff",
+      "K": "#ee0055ff"
+    },
+    "canvasBackground": "#ffffffff",
+    "borders": "different-state-and-support-boundary",
+    "borderColor": "#000000ff",
+    "borderWidth": 1
+  },
+  "ids": {
+    "dynamics": "a9fb963153ad06eb080475156334a4e0dfefa0ad30e9d5b97ddb53da5db8e67e",
+    "geometry": "97b9cc8bfae4214c654b6c21f27a555392d4c0bd373b7786ca97c80c2978f0f3",
+    "appearance": "8c261bd5a474cf0bbd1437445f3ac96d2793b07c4e017aa53caf84e86c916d0e",
+    "observation": "97ae8836b2bec91a48c6ab8a1efecaf134c0e8201d9db4f6c2a578754a01999f"
+  },
+  "observation": {
+    "schema": "ca-observation-v1",
+    "appearanceId": "8c261bd5a474cf0bbd1437445f3ac96d2793b07c4e017aa53caf84e86c916d0e",
+    "firstGeneration": 0,
+    "rowCount": 7,
+    "renderer": "catalogue-canvas-v1",
+    "crop": "full-domain",
+    "gridSha256": "cb5d0078efdfbc63608cbf732524094fd7b495cc0c82d7be86c36c9bb2a9f20b"
+  },
+  "metadata": {
+    "name": "Branching beam",
+    "status": "artist-selected",
+    "geometricModel": {
+      "voxels": [
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          1,
+          2,
+          2
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          2,
+          2,
+          1
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          3,
+          1,
+          1
+        ],
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          3,
+          1,
+          3
+        ],
+        [
+          3,
+          2,
+          1
+        ],
+        [
+          3,
+          3,
+          0
+        ],
+        [
+          3,
+          3,
+          1
+        ],
+        [
+          4,
+          3,
+          1
+        ]
+      ],
+      "projection": "u=2X-Y-Z, v=Y-Z; greatest depth 2(X+Y+Z)",
+      "turn": 2
+    },
+    "attribution": "New explicit voxel construction; no claim of historical novelty or reproduction of a Pinterest image.",
+    "ruleFamily": "Branching beam"
+  }
+}
