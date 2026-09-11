@@ -9,7 +9,7 @@ function support(value){
 }
 async function main(){
   for(const entry of catalogue.entries){const world=entry.world,mirrored=await Target.mirrorWorld(world);await World.verify(mirrored);assert.deepEqual(World.run(mirrored.dynamics,world.observation.rowCount).rows,entry.rows.map(row=>[...row].reverse().join('')));const twice=await Target.mirrorWorld(mirrored);assert.deepEqual(twice.dynamics,world.dynamics);assert.equal(twice.geometry.phase,world.geometry.phase);}
-  const family=catalogue.entries.filter(entry=>entry.key>='entry-023'),ensemble=family[0].world,rows=drawingOf(ensemble).rows;
+  const family=catalogue.entries.filter(entry=>['entry-023','entry-024','entry-025','entry-026','entry-027'].includes(entry.key)),ensemble=family[0].world,rows=drawingOf(ensemble).rows;
   const expected=Array.from({length:8},()=>Array(81).fill('W'));
   family.slice(1).forEach((entry,index)=>{assert.deepEqual(entry.world.dynamics.rules,ensemble.dynamics.rules);entry.rows.forEach((row,rowIndex)=>[...row].forEach((state,column)=>{if(state!=='W'){assert.equal(expected[rowIndex][column+index*20],'W');expected[rowIndex][column+index*20]=state;}}));});
   assert.deepEqual(rows,expected.map(row=>row.join('')));assert(World.run(ensemble.dynamics,64).rows.slice(4).every(row=>/^W+$/.test(row)));
@@ -28,7 +28,7 @@ async function main(){
   const cubes=['WWWRRGWWWW','WWWBBGWWWW','WWWWWWWWWW','WWWRRGWWWW'];assert(!Target.fit(cubes).consistent);
   for(const bad of [[],['WR','W'],['WX'],{rows:['R'],phase:2}])assert.throws(()=>Target.normalize(bad));
   for(const file of ['ca-drawing-controls.js','ca-svg-drawing.js','construction-presets.js'])new vm.Script(fs.readFileSync(__dirname+'/'+file,'utf8'));
-  console.log('Mirror replay across all 25 worlds; shared seed, fitted replay, six rotations, contradictions, background and reference constraints pass.');
+  console.log(`Mirror replay across all ${catalogue.entries.length} worlds; shared seed, fitted replay, six rotations, contradictions, background and reference constraints pass.`);
   console.log(JSON.stringify(seedOnly,null,2));
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

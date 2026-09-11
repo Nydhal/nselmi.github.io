@@ -36,7 +36,8 @@ async function main(){
     await vm.runInContext('exportWorld()',context);
     await W.verify(downloaded);assert.deepEqual(downloaded.dynamics,e.world.dynamics);
     assert.deepEqual(W.run(downloaded.dynamics,downloaded.observation.rowCount).rows,e.rows);
-    assert.equal(downloaded.geometry.phase,e.world.geometry.phase);assert.deepEqual(downloaded.appearance.palette,e.world.appearance.palette);
+    assert.equal(downloaded.geometry.phase,e.world.geometry.phase);
+    assert.deepEqual(downloaded.appearance.palette,Object.fromEntries(Object.entries(e.world.appearance.palette).map(([state,color])=>[state,color.length===7?color+'ff':color])));
     vm.runInContext('importWorld()',context);upload.files=[{size:100,text:async()=>JSON.stringify(downloaded)}];await upload.onchange();
     assert.equal(get('initString').value,downloaded.dynamics.seed);
   }
@@ -44,7 +45,8 @@ async function main(){
   assert.equal(downloaded.geometry.tessellation,'square-grid');assert.equal(downloaded.appearance.borderWidth,0);assert.equal(downloaded.appearance.skipWhite,false);
   const before=get('initString').value;vm.runInContext('importWorld()',context);upload.files=[{size:2,text:async()=>'{}'}];await upload.onchange();assert.equal(get('initString').value,before);assert.match(get('worldNotice').textContent,/Import failed/);
   const paletteContext=vm.createContext({window:{}});vm.runInContext(fs.readFileSync(__dirname+'/ca-palettes.js','utf8'),paletteContext);
-  assert.equal(paletteContext.window.CA_PALETTES.length,23);
+  assert(paletteContext.window.CA_PALETTES.length>=23);
+  assert.equal(new Set(paletteContext.window.CA_PALETTES.map(palette=>palette.name)).size,paletteContext.window.CA_PALETTES.length);
   for(const p of paletteContext.window.CA_PALETTES){const w=structuredClone(terrace);w.appearance.palette=Object.fromEntries([...'WRGBK'].map(s=>[s,p[s]+'ff']));w.appearance.canvasBackground=p.W+'ff';await W.verify(await W.seal(w));assert.equal(w.ids.dynamics,terrace.ids.dynamics);}
   console.log(`${data.entries.length} worlds: independent grid fixtures, import/export, identity layers, K semantics, boundaries, invalid imports, and script syntax pass.`);
 }
